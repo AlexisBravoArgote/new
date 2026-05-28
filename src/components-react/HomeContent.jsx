@@ -1,29 +1,27 @@
 ﻿// src/App.jsx
 import React, { useEffect, useMemo, useRef, useState, useCallback, useId } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
-import { useTranslation } from "react-i18next";
-import "./i18n"; // <<<<<< inicializa i18next
 
 const __MOTION_USED = Boolean(motion); // eslint-disable-line no-unused-vars
 
 // Assets
-import alineadores from "/assets/alineadores.avif";
-import transparentes from "/assets/transparentes2.jpg";
-import seguimiento2 from "/assets/seguimiento2.jpg";
-import ubicacion from "/assets/ubicacion.webp";
-import unidades from "/assets/unidades.png";
-import recepcion from "/assets/recepcion.webp";
-import fotos from "/assets/fotos.webp";
-import primera from "/assets/primera.webp";
-import segunda from "/assets/segunda.webp";
-import tercera from "/assets/tercera.webp";
-import cuarta from "/assets/cuarta.webp";
-import arquitectura from "/assets/arquitectura.png";
+const alineadores = "/assets/alineadores.avif";
+const transparentes = "/assets/transparentes2.jpg";
+const seguimiento2 = "/assets/seguimiento2.jpg";
+const ubicacion = "/assets/ubicacion.webp";
+const unidades = "/assets/unidades.png";
+const recepcion = "/assets/recepcion.webp";
+const fotos = "/assets/fotos.webp";
+const primera = "/assets/primera.webp";
+const segunda = "/assets/segunda.webp";
+const tercera = "/assets/tercera.webp";
+const cuarta = "/assets/cuarta.webp";
+const arquitectura = "/assets/arquitectura.png";
 
 import TopBar from "./TopBar.jsx";
 import Footer from "./Footer.jsx";
-import LanguageBoutique from "./LanguageBoutique.jsx";
-import "../i18n";
+import LanguageSwitcher from "./LanguageSwitcher.jsx";
+import { useSiteCopy } from "./SiteCopyContext.jsx";
 
 
 // =========================
@@ -44,30 +42,28 @@ const getWaUrl = (key, title) => {
 
 if (typeof window !== "undefined") window.WA_URL = WA_URL;
 
+const LOCATION_SCROLL_OFFSET = 132; // TopBar + margen para que el panel no quede muy abajo
+
+function scrollToLocationPanel() {
+    const panel = document.getElementById("ubicacion-panel");
+    const fallback = document.querySelector("#ubicacion");
+    const target = panel || fallback;
+    if (!target) return;
+
+    const y = target.getBoundingClientRect().top + window.scrollY - LOCATION_SCROLL_OFFSET;
+    window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
+}
+
 function navigateToLocation(tabKey) {
     try {
         sessionStorage.setItem("initialTab", tabKey);
     } catch (err) { void err; }
 
-    // 1) Activa el tab ANTES del scroll
     window.dispatchEvent(new CustomEvent("select-location-tab", { detail: tabKey }));
 
-    // 2) Espera a que el DOM se relayout (2 frames para mayor seguridad)
     requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-            const el = document.querySelector("#ubicacion");
-            if (!el) return;
-
-            const isMobile = window.innerWidth < 640; // sm
-            if (isMobile) {
-                const extra = 195; // ajusta 140–200 a tu gusto
-                const y = el.getBoundingClientRect().top + window.scrollY + extra;
-                window.scrollTo({ top: y, behavior: "smooth" });
-            } else {
-                el.scrollIntoView({ behavior: "smooth", block: "start" });
-            }
-
-            // 3) Actualiza el hash SIN provocar auto-scroll del navegador
+            scrollToLocationPanel();
             if (location.hash !== "#ubicacion") {
                 history.replaceState(null, "", "#ubicacion");
             }
@@ -93,7 +89,7 @@ function Container({ children, className = "" }) {
 function Home() {
     const { scrollYProgress } = useScroll();
     const bgOpacity = useTransform(scrollYProgress, [0, 1], [0.55, 0.85]);
-    const { t } = useTranslation("home");
+    const { t, lang } = useSiteCopy();
 
     // Structured Data para LocalBusiness
     const localBusinessData = {
@@ -136,9 +132,8 @@ function Home() {
 
     return (
         <div className="min-h-screen w-full bg-[#0b1b2b] text-white">
-            <TopBar bgOpacity={bgOpacity} />
-            {/* 🌐 selector global, debajo del TopBar en todas las páginas */}
-            <LanguageBoutique />
+            <TopBar bgOpacity={bgOpacity} lang={lang} />
+            <LanguageSwitcher currentLang={lang} page="home" />
 
             {/* Secciones */}
             <Hero />
@@ -164,7 +159,7 @@ export default Home;
 // =========================
 
 function Hero() {
-    const { t } = useTranslation("home"); // usa el namespace "home"
+    const { t, lang } = useSiteCopy(); // usa el namespace "home"
     const ref = useRef(null);
     const { scrollYProgress } = useScroll({
         target: ref,
@@ -198,11 +193,12 @@ function Hero() {
             />
             <motion.div
                 style={{ y }}
-                className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-[#0b1b2b]/70 via-[#0b1b2b]/30 to-transparent opacity-60"
+                className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-[#0b1b2b]/75 via-[#0b1b2b]/45 to-[#0b1b2b]/85"
             />
+            <HeroDentalBackdrop y={y} />
             <motion.div
                 style={{ y }}
-                className="pointer-events-none absolute inset-0 -z-10 opacity-25"
+                className="pointer-events-none absolute inset-0 -z-[4] opacity-20"
             >
                 <Noise />
             </motion.div>
@@ -220,24 +216,24 @@ function Hero() {
                 )}
             </AnimatePresence>
 
-            <Container className="flex min-h-[78vh] flex-col items-center justify-center py-20 text-center relative z-20">
+            <Container className="flex min-h-[85vh] flex-col items-center justify-center py-24 md:py-32 text-center relative z-20">
                 <motion.h1
-                    initial={{ y: 18, opacity: 0 }}
+                    initial={{ y: 20, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.7 }}
-                    className="text-[42px] md:text-6xl font-light tracking-wide leading-[1.15] md:leading-[1.1] pb-[2px]"
+                    transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                    className="font-display text-[28px] sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.12] pb-2"
                 >
-                    <span className="golden-sweep">
+                    <span className="golden-sweep text-shadow">
                         {t("hero.title", { defaultValue: "Elegancia que se nota al sonreír" })}
                     </span>
                 </motion.h1>
 
                 <motion.p
-                    initial={{ y: 18, opacity: 0 }}
+                    initial={{ y: 20, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.1, duration: 0.7 }}
-                    className="mx-auto mt-6 max-w-2xl text-[17px] leading-relaxed text-white/85"
+                    transition={{ delay: 0.15, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                    className="mx-auto mt-8 max-w-2xl text-lg md:text-xl leading-relaxed text-white/90 font-light"
                 >
                     {t("hero.subtitle", {
                         defaultValue:
@@ -246,19 +242,21 @@ function Hero() {
                 </motion.p>
 
                 {/* Botones */}
-                <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+                <div className="mt-12 flex flex-wrap items-center justify-center gap-5">
                     <div className="relative" ref={menuRef}>
                         <motion.button
                             onClick={() => setOpenHeroCta((v) => !v)}
-                            className={`flex items-center gap-2 rounded-full px-7 py-3 font-medium shadow-lg transition active:scale-[0.97] ${openHeroCta
-                                ? "bg-gradient-to-r from-[#e8c3a2] to-[#d8a07b] text-[#0b1b2b]"
-                                : "bg-[#d8a07b] text-[#0b1b2b] hover:brightness-105"
+                            className={`group flex items-center gap-2.5 rounded-full px-8 py-3.5 font-semibold text-base shadow-2xl transition-all duration-300 active:scale-[0.96] ${openHeroCta
+                                ? "bg-gradient-to-r from-[#e8c3a2] via-[#e4b892] to-[#d8a07b] text-[#0b1b2b] shadow-[0_8px_30px_rgba(228,184,146,0.4)]"
+                                : "bg-gradient-to-r from-[#d8a07b] via-[#e4b892] to-[#d8a07b] text-[#0b1b2b] hover:shadow-[0_8px_30px_rgba(228,184,146,0.3)] hover:scale-105"
                                 }`}
                             aria-haspopup="menu"
                             aria-expanded={openHeroCta}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.96 }}
                             animate={{
                                 filter: openHeroCta
-                                    ? "drop-shadow(0 0 14px rgba(228,184,146,0.7))"
+                                    ? "drop-shadow(0 0 20px rgba(228,184,146,0.8))"
                                     : "drop-shadow(0 0 0 rgba(0,0,0,0))",
                             }}
                             transition={{ duration: 0.4, ease: "easeOut" }}
@@ -268,12 +266,12 @@ function Hero() {
                                 viewBox="0 0 24 24"
                                 fill="none"
                                 stroke="currentColor"
-                                strokeWidth="2"
+                                strokeWidth="2.5"
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
                                 className="h-5 w-5"
                                 animate={{ rotate: openHeroCta ? 180 : 0, y: openHeroCta ? 2 : 0 }}
-                                transition={{ duration: 0.25, ease: "easeOut" }}
+                                transition={{ duration: 0.3, ease: "easeOut" }}
                             >
                                 <path d="M6 9l6 6 6-6" />
                             </motion.svg>
@@ -290,8 +288,8 @@ function Hero() {
                                        Desktop (>=640px): vuelve a centrado y 280px */
                                     className="absolute top-[110%] left-0 translate-x-0 w-max max-w-[90vw]
 
-                                               sm:left-1/2 sm:-translate-x-1/2 sm:w-[280px] sm:max-w-[280px]
-                                               rounded-2xl border border-[#e4b89233] bg-[#11243a]/95 p-2 text-white/90 shadow-[0_8px_30px_rgba(0,0,0,0.5)] backdrop-blur-lg z-20"
+                                               sm:left-1/2 sm:-translate-x-1/2 sm:w-[300px] sm:max-w-[300px]
+                                               rounded-2xl border border-[#e4b89240] bg-[#11243a]/98 p-3 text-white/95 shadow-[0_20px_60px_rgba(0,0,0,0.6)] backdrop-blur-xl z-20"
                                     role="menu"
                                 >
                                     <button
@@ -299,7 +297,7 @@ function Hero() {
                                             navigateToLocation("Dental City");
                                             setOpenHeroCta(false);
                                         }}
-                                        className="flex w-full items-center justify-between gap-2 rounded-xl px-4 py-3 text-left transition hover:bg-white/10"
+                                        className="flex w-full items-center justify-between gap-2 rounded-xl px-4 py-3.5 text-left transition-all duration-200 hover:bg-white/15 hover:translate-x-1"
                                         role="menuitem"
                                     >
                                         <span>Dental City</span>
@@ -338,30 +336,21 @@ function Hero() {
                         </AnimatePresence>
                     </div>
 
-                    <a
+                    <motion.a
                         href="#servicios"
-                        className="rounded-full border border-white/25 bg-white/5 px-7 py-3 text-white/90 backdrop-blur-md transition hover:bg-white/15"
+                        className="group rounded-full border-2 border-white/30 bg-white/5 px-8 py-3.5 text-white/95 backdrop-blur-md font-semibold text-base transition-all duration-300 hover:bg-white/15 hover:border-white/50 hover:shadow-[0_8px_30px_rgba(255,255,255,0.1)]"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.96 }}
                     >
-                        {t("hero.viewTreatments", { defaultValue: "Ver tratamientos" })}
-                    </a>
+                        <span className="flex items-center gap-2">
+                            {t("hero.viewTreatments", { defaultValue: "Ver tratamientos" })}
+                            <svg className="h-5 w-5 transition-transform group-hover:translate-y-0.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </span>
+                    </motion.a>
                 </div>
             </Container>
-
-            <style>{`
-        .golden-sweep {
-          color: transparent;
-          background-image: linear-gradient(90deg,#c89b7b 0%,#e4b892 25%,#f4d3b3 50%,#e4b892 75%,#c89b7b 100%);
-          background-size: 250% 100%;
-          background-clip: text;
-          -webkit-background-clip: text;
-          animation: goldSweep 3.5s ease-in-out infinite;
-        }
-        @keyframes goldSweep {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-      `}</style>
         </section>
     );
 }
@@ -387,17 +376,111 @@ function Noise() {
     );
 }
 
+/** Capas SVG decorativas — arco dental, precisión y brillo sutil en el hero */
+function HeroDentalBackdrop({ y }) {
+    return (
+        <motion.div
+            style={{ y }}
+            className="pointer-events-none absolute inset-0 -z-[5] overflow-hidden"
+            aria-hidden
+        >
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_42%_at_50%_48%,rgba(228,184,146,0.14),transparent_68%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(228,184,146,0.08),transparent_40%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_75%,rgba(200,155,123,0.07),transparent_38%)]" />
+
+            <svg
+                className="hero-dental-svg absolute inset-0 h-full w-full"
+                viewBox="0 0 1440 900"
+                preserveAspectRatio="xMidYMid slice"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <defs>
+                    <linearGradient id="heroGoldStroke" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#c89b7b" stopOpacity="0" />
+                        <stop offset="35%" stopColor="#e4b892" stopOpacity="0.55" />
+                        <stop offset="65%" stopColor="#f4d3b3" stopOpacity="0.45" />
+                        <stop offset="100%" stopColor="#c89b7b" stopOpacity="0" />
+                    </linearGradient>
+                    <radialGradient id="heroGlow" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stopColor="#e4b892" stopOpacity="0.12" />
+                        <stop offset="100%" stopColor="#e4b892" stopOpacity="0" />
+                    </radialGradient>
+                </defs>
+
+                <circle cx="720" cy="460" r="320" fill="url(#heroGlow)" className="hero-dental-arch" />
+
+                {/* Arco superior e inferior — silueta de sonrisa / arco dental */}
+                <g className="hero-dental-arch" fill="none" stroke="url(#heroGoldStroke)" strokeWidth="1.25">
+                    <path d="M180 500 C360 340, 1080 340, 1260 500" />
+                    <path d="M260 560 C420 640, 1020 640, 1180 560" opacity="0.55" strokeWidth="1" />
+                </g>
+
+                {/* Líneas de precisión (escáner / planeación digital) */}
+                <g stroke="#e4b892" strokeWidth="0.75" opacity="0.12">
+                    <line x1="0" y1="450" x2="1440" y2="450" strokeDasharray="6 14" />
+                    <line x1="720" y1="0" x2="720" y2="900" strokeDasharray="6 14" />
+                    <circle cx="720" cy="450" r="180" fill="none" />
+                    <circle cx="720" cy="450" r="260" fill="none" opacity="0.6" />
+                </g>
+
+                {/* Dientes estilizados — contorno minimalista en esquinas */}
+                <g fill="none" stroke="#e4b892" strokeWidth="1" opacity="0.1" className="hero-dental-float-slow">
+                    <path d="M120 180c0-28 22-50 50-50s50 22 50 50v20c0 18-14 32-32 32h-36c-18 0-32-14-32-32v-20z" />
+                    <path d="M1220 620c0-28 22-50 50-50s50 22 50 50v20c0 18-14 32-32 32h-36c-18 0-32-14-32-32v-20z" />
+                </g>
+                <g fill="none" stroke="#e4b892" strokeWidth="0.9" opacity="0.08" className="hero-dental-float-delayed">
+                    <path d="M1280 200c0-22 18-40 40-40s40 18 40 40v16c0 14-11 26-26 26h-28c-15 0-26-12-26-26v-16z" />
+                    <path d="M80 680c0-22 18-40 40-40s40 18 40 40v16c0 14-11 26-26 26h-28c-15 0-26-12-26-26v-16z" />
+                </g>
+
+                {/* Destellos puntuales */}
+                <g fill="#f4d3b3" opacity="0.35" className="hero-dental-sparkle">
+                    <circle cx="340" cy="320" r="1.5" />
+                    <circle cx="1100" cy="280" r="1.25" />
+                    <circle cx="900" cy="620" r="1.5" />
+                    <circle cx="520" cy="640" r="1" />
+                </g>
+            </svg>
+
+            <div className="hero-dental-shimmer absolute left-1/2 top-[46%] h-px w-[min(72vw,680px)] -translate-x-1/2 bg-gradient-to-r from-transparent via-[#e4b892]/35 to-transparent" />
+        </motion.div>
+    );
+}
+
 function SectionHeading({ overline, title, subtitle }) {
     return (
         <div className="text-center">
             {overline && (
-                <div className="text-xs tracking-[0.35em] text-white/50">{overline}</div>
+                <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                    className="section-eyebrow mb-4"
+                >
+                    {overline}
+                </motion.div>
             )}
-            <h2 className="mt-3 text-3xl font-semibold text-[#d8a07b] md:text-4xl">
-                {title}
-            </h2>
+            <motion.h2
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="font-display mt-2 inline-block text-3xl md:text-5xl font-semibold relative pb-1"
+            >
+                <span className="golden-sweep">{title}</span>
+                <span className="title-underline" />
+            </motion.h2>
             {subtitle && (
-                <p className="mx-auto mt-3 max-w-2xl text-white/75">{subtitle}</p>
+                <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="mx-auto mt-8 max-w-2xl text-base md:text-lg text-white/80 leading-relaxed font-light"
+                >
+                    {subtitle}
+                </motion.p>
             )}
         </div>
     );
@@ -466,12 +549,17 @@ function Chip({ children }) {
 }
 
 /* ======= ImageCard (igual de UI) ======= */
-function ImageCard({ src, alt, label }) {
+function ImageCard({ src, alt, label, fill = false }) {
     return (
-        <figure className="group relative aspect-square overflow-hidden rounded-2xl">
-            <img src={src} alt={alt} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" />
+        <figure
+            className={[
+                "group relative overflow-hidden rounded-2xl border border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.35)]",
+                fill ? "h-full min-h-0 w-full" : "aspect-square",
+            ].join(" ")}
+        >
+            <img src={src} alt={alt} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]" />
             {label && (
-                <figcaption className="pointer-events-none absolute left-1 top-2 rounded-lg md:rounded-full md:left-2 bg-black/40 px-1.5 py-0.5 md:px-2 md:py-1 text-[11px] leading-tight md:text-xs md:leading-normal text-white/90 backdrop-blur-sm max-w-[calc(100%-0.5rem)] md:max-w-none">
+                <figcaption className="pointer-events-none absolute left-2 top-2 rounded-full bg-black/50 px-2.5 py-1 text-[11px] md:text-xs text-white/95 backdrop-blur-md max-w-[calc(100%-1rem)]">
                     <span className="block line-clamp-2 md:line-clamp-none">{label}</span>
                 </figcaption>
             )}
@@ -491,7 +579,7 @@ function ImageCard({ src, alt, label }) {
 
 /* ======= About (con i18n) ======= */
 function About() {
-    const { t } = useTranslation("home");
+    const { t, lang } = useSiteCopy();
 
     const IMAGES = [
         { src: primera, alt: t("about.img_all") },
@@ -501,25 +589,25 @@ function About() {
     ];
 
     return (
-        <section id="about" className="bg-[#0f2237] py-20">
+        <section id="about" className="section-elevated py-20 md:py-24">
             <Container>
-                <div className="text-center">
-                    <div className="text-xs tracking-[0.35em] text-white/50">
-                        {t("about.eyebrow")}
-                    </div>
-                    <h2 className="mt-3 inline-block text-3xl font-semibold md:text-4xl relative">
-                        <span className="golden-sweep">{t("about.title")}</span>
-                        <span className="absolute left-0 right-0 -bottom-2 h-[2px] rounded bg-gradient-to-r from-[#c89b7b] via-[#e4b892] to-[#c89b7b]" />
-                    </h2>
-                    <p className="mx-auto mt-3 max-w-2xl text-white/75">
-                        {t("about.blurb")}
-                    </p>
-                </div>
+                <SectionHeading
+                    overline={t("about.eyebrow")}
+                    title={t("about.title")}
+                    subtitle={t("about.blurb")}
+                />
 
-                <div className="mt-12 grid gap-8 md:grid-cols-2">
-                    <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] p-6 shadow-[0_18px_50px_rgba(0,0,0,.35)]">
-                        <div className="pointer-events-none absolute -inset-px rounded-3xl bg-[radial-gradient(120%_120%_at_10%_0%,rgba(228,184,146,.18),transparent)]" />
-                        <p className="text-[15px] leading-7 text-white/85 text-justify">
+                <div className="mt-14 grid gap-8 md:grid-cols-2 md:items-stretch">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        className="glass-card relative overflow-hidden rounded-3xl p-8"
+                    >
+                        <div className="pointer-events-none absolute -inset-px rounded-3xl bg-[radial-gradient(120%_120%_at_10%_0%,rgba(228,184,146,.25),transparent)]" />
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#e4b892]/10 to-transparent rounded-full blur-3xl" />
+                        <p className="text-[16px] leading-8 text-white/90 text-justify relative z-10 font-light">
                             {t("about.paragraph")}
                         </p>
 
@@ -542,35 +630,27 @@ function About() {
                             />
                             <div className="mt-3 h-[2px] w-full bg-gradient-to-r from-[#c89b7b] via-[#e4b892] to-[#c89b7b] opacity-80" />
                         </div>
-                    </div>
+                    </motion.div>
 
-                    <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-4 shadow-[0_18px_50px_rgba(0,0,0,.35)]">
-                        <div className="grid grid-cols-2 gap-4 md:gap-5">
-                            {IMAGES.map((img, i) => (
-                                <ImageCard key={i} src={img.src} alt={img.alt} label={img.alt} />
-                            ))}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.1 }}
+                        className="glass-card relative flex min-h-full flex-col rounded-3xl p-6 md:p-8"
+                    >
+                        <div className="relative min-h-0 w-full flex-1">
+                            <div className="absolute inset-0 flex items-center justify-center">
+                                <div className="grid aspect-square h-full max-h-full w-auto max-w-full grid-cols-2 grid-rows-2 gap-2 md:gap-2.5">
+                                    {IMAGES.map((img, i) => (
+                                        <ImageCard key={i} fill src={img.src} alt={img.alt} label={img.alt} />
+                                    ))}
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </Container>
-
-            <style>{`
-        @keyframes shine { 0% { transform: translateX(-100%);} 100% { transform: translateX(100%);} }
-        .golden-sweep {
-          color: transparent;
-          background-image: linear-gradient(90deg, #c89b7b 0%, #e4b892 20%, #f4d3b3 35%, #e4b892 60%, #c89b7b 100%);
-          background-size: 250% 100%;
-          background-clip: text; -webkit-background-clip: text;
-          position: relative; display: inline-block;
-          animation: goldSweep 3.2s linear infinite;
-        }
-        @media (prefers-reduced-motion: reduce){ .golden-sweep{ animation: none; background-size: 100% 100%; } }
-        @keyframes goldSweep {
-          0% { background-position: 0% 50%;   filter: drop-shadow(0 0 0 rgba(228,184,146,0)); }
-          45% { filter: drop-shadow(0 0 4px rgba(228,184,146,.35)); }
-          100% { background-position: 200% 50%; filter: drop-shadow(0 0 0 rgba(228,184,146,0)); }
-        }
-      `}</style>
         </section>
     );
 }
@@ -579,7 +659,7 @@ function About() {
 
 
 function Services() {
-    const { t } = useTranslation("home");
+    const { t, lang } = useSiteCopy();
     const all = useMemo(
         () => [
             { key: "implantes", title: t("services.items.implantes.title"), desc: t("services.items.implantes.desc") },
@@ -602,6 +682,7 @@ function Services() {
             { key: "ortopedia", title: t("services.items.ortopedia.title"), desc: t("services.items.ortopedia.desc") },
             { key: "armonizacion-facial", title: t("services.items.armonizacion_facial.title"), desc: t("services.items.armonizacion_facial.desc") },
             { key: "diseno-sonrisa", title: t("services.items.diseno_sonrisa.title"), desc: t("services.items.diseno_sonrisa.desc") },
+            { key: "odontologia-biologica", title: t("services.items.odontologia_biologica.title"), desc: t("services.items.odontologia_biologica.desc") },
         ],
         [t]
     );
@@ -638,23 +719,17 @@ function Services() {
     const prevPageDesktop = () => setDPage((p) => Math.max(p - 1, 0));
 
     return (
-        <section id="servicios" className="bg-[#0f2237] py-20">
-            <Container>
-                <div className="text-center">
-                    <div className="text-xs tracking-[0.35em] text-white/50">
-                        {t("services.eyebrow")}
-                    </div>
-                    <h2 className="mt-3 inline-block text-3xl font-semibold md:text-4xl relative">
-                        <span className="golden-sweep">{t("services.title")}</span>
-                        <span className="absolute left-0 right-0 -bottom-2 h-[2px] rounded bg-gradient-to-r from-[#c89b7b] via-[#e4b892] to-[#c89b7b]" />
-                    </h2>
-                    <p className="mx-auto mt-3 max-w-2xl text-white/75">
-                        {t("services.blurb")}
-                    </p>
-                </div>
+        <section id="servicios" className="section-elevated py-24 md:py-28 relative overflow-hidden">
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(228,184,146,0.06),transparent)]" />
+            <Container className="relative z-10">
+                <SectionHeading
+                    overline={t("services.eyebrow")}
+                    title={t("services.title")}
+                    subtitle={t("services.blurb")}
+                />
 
-                <div className="mt-8 flex justify-center">
-                    <div className="relative w-full max-w-md">
+                <div id="servicios-busqueda" className="mt-10 flex justify-center scroll-mt-[112px]">
+                    <div className="relative w-full max-w-lg">
                         <input
                             value={query}
                             onChange={(e) => {
@@ -663,11 +738,11 @@ function Services() {
                                 setDPage(0);
                             }}
                             placeholder={t("services.searchPlaceholder")}
-                            className="w-full rounded-full border border-white/15 bg-white/5 px-4 py-2.5 pl-10 text-sm outline-none placeholder:text-white/50 focus:border-[#e4b89266] focus:ring-2 focus:ring-[#e4b89233]"
+                            className="w-full rounded-full border border-white/15 bg-[#0b1b2b]/50 px-5 py-3 pl-11 text-sm text-white outline-none placeholder:text-white/45 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] focus:border-[#e4b892]/50 focus:ring-2 focus:ring-[#e4b892]/20"
                         />
                         <svg
                             viewBox="0 0 24 24"
-                            className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/60"
+                            className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-white/50"
                             fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"
                         >
                             <circle cx="11" cy="11" r="7" />
@@ -703,9 +778,9 @@ function Services() {
                         >
                             {t("services.prev")}
                         </button>
-                        <div className="inline-flex items-center gap-2 rounded-full border border-[#e4b89255] bg:white/5 bg-white/5 px-3 py-1">
+                        <div className="inline-flex items-center gap-2 rounded-full border border-[#e4b89255] bg-white/5 px-3 py-1">
                             <span className="text-xs text-[#e4b892]">{t("services.pageLabel")}</span>
-                            <span className="text-sm text:white/90 text-white/90">{dPage + 1}</span>
+                            <span className="text-sm text-white/90">{dPage + 1}</span>
                             <span className="text-white/60 text-sm">/</span>
                             <span className="text-sm text-white/80">{totalPagesDesktop}</span>
                         </div>
@@ -741,7 +816,7 @@ function Services() {
                             >
                                 {t("services.prev")}
                             </button>
-                            <div className="inline-flex items-center gap-2 rounded-full border border-[#e4b7 89255] bg-white/5 px-3 py-1">
+                            <div className="inline-flex items-center gap-2 rounded-full border border-[#e4b89255] bg-white/5 px-3 py-1">
                                 <span className="text-xs text-[#e4b892]">{t("services.pageLabel")}</span>
                                 <span className="text-sm text-white/90">{mPage + 1}</span>
                                 <span className="text-white/60 text-sm">/</span>
@@ -761,74 +836,48 @@ function Services() {
 
             {/* Pasa el servicio activo al modal; dentro elegiremos el WhatsApp correcto */}
             <InfoModal open={open} onClose={closeInfo} service={active} />
-
-            <style>{`
-        @keyframes shimmer { 0% { transform: translateX(-40%);} 50% { transform: translateX(40%);} 100% { transform: translateX(120%);} }
-        @keyframes sweep   { 0% { transform: translateX(-120%) rotate(12deg);} 100% { transform: translateX(220%) rotate(12deg);} }
-        .golden-sweep{
-          color: transparent;
-          background-image: linear-gradient(90deg, #c89b7b 0%, #e4b892 20%, #f4d3b3 35%, #e4b892 60%, #c89b7b 100%);
-          background-size: 250% 100%;
-          background-clip: text; -webkit-background-clip: text;
-          position: relative; display: inline-block;
-          animation: goldSweep 3.2s linear infinite;
-        }
-        @media (prefers-reduced-motion: reduce){ .golden-sweep{ animation: none; background-size: 100% 100%; } }
-        @keyframes goldSweep {
-          0% { background-position: 0% 50%;   filter: drop-shadow(0 0 0 rgba(228,184,146,0)); }
-          45% { filter: drop-shadow(0 0 4px rgba(228,184,146,.35)); }
-          100% { background-position: 200% 50%; filter: drop-shadow(0 0 0 rgba(228,184,146,0)); }
-        }
-      `}</style>
         </section>
     );
 }
 
 
 function ServiceCard({ title, desc, index, onInfo, waUrl }) {
-    const { t } = useTranslation("home");
+    const { t, lang } = useSiteCopy();
 
     return (
         <motion.div
-            initial={{ opacity: 0, y: 14 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: index * 0.04 }}
+            transition={{ delay: index * 0.05, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="group relative h-full"
         >
-            <div className="h-full rounded-2xl bg-gradient-to-br from-[#c89b7b40] via-[#e4b89233] to-transparent p-[1px] transition duration-300 group-hover:from-[#c89b7b66] group-hover:via-[#e4b89255]">
-                <div className="relative h-full rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm transition-all duration-300 group-hover:-translate-y-0.5 group-hover:shadow-[0_12px_26px_rgba(0,0,0,.35)] flex flex-col">
-                    <div className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100" style={{ boxShadow: "inset 0 0 60px rgba(228,184,146,.06)" }} />
-                    <span className="pointer-events-none absolute right-3 top-3 h-[10px] w-[10px] rounded-full bg-[#e4b89280] blur-[1px]" />
-                    <h3 className="text-[17px] font-semibold text-white tracking-wide">{title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-white/75">{desc}</p>
+            <div className="dc-service-card group/card relative flex h-full flex-col rounded-2xl p-6 transition-all duration-300 hover:-translate-y-0.5">
+                <span className="pointer-events-none absolute right-4 top-4 h-2 w-2 rounded-full bg-[#e4b892] opacity-70 shadow-[0_0_8px_rgba(228,184,146,0.5)]" />
+                <h3 className="font-display pr-6 text-lg font-semibold tracking-tight">
+                    <span className="golden-sweep">{title}</span>
+                </h3>
+                <p className="mt-3 flex-1 text-sm leading-6 text-white/70 font-light">{desc}</p>
 
-                    {/* Empuja el footer al fondo para igualar alturas */}
-                    <div className="mt-auto pt-4 flex items-center justify-between">
-                        <a
-                            href={waUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="relative inline-flex items-center gap-1 rounded-full bg-[#d8a07b] px-3.5 py-1.5 text-xs font-semibold text-[#0b1b2b] transition hover:brightness-110"
-                        >
-                            {t("services2.btn_schedule", { defaultValue: "Agendar" })}
-                            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M5 12h14M13 5l7 7-7 7" />
-                            </svg>
-                            <span className="pointer-events-none absolute inset-0 overflow-hidden rounded-full">
-                                <span className="absolute -inset-y-2 -left-1/3 h-[200%] w-1/3 rotate-12 bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-70 animate-[sweep_1.6s_ease-out_infinite]" />
-                            </span>
-                        </a>
+                <div className="mt-5 flex items-center justify-between gap-3">
+                    <a
+                        href={waUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[#d8a07b] via-[#e4b892] to-[#d8a07b] px-4 py-2 text-xs font-bold text-[#0b1b2b] shadow-[0_4px_14px_rgba(228,184,146,0.25)] transition hover:brightness-110"
+                    >
+                        {t("services2.btn_schedule", { defaultValue: "Agendar" })}
+                        <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M5 12h14M13 5l7 7-7 7" />
+                        </svg>
+                    </a>
 
-                        <button
-                            onClick={onInfo}
-                            className="rounded-full border border-white/20 px-3 py-1 text-xs text-white/75 transition hover:border-[#e4b89255] hover:bg:white/10 hover:bg-white/10"
-                        >
-                            {t("services2.btn_moreInfo", { defaultValue: "Más info" })}
-                        </button>
-                    </div>
-
-                    <span className="pointer-events-none absolute bottom-0 left-4 right-4 h-[2px] translate-y-1 rounded bg-gradient-to-r from-transparent via-[#e4b89280] to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    <button
+                        onClick={onInfo}
+                        className="rounded-full border border-white/25 bg-transparent px-4 py-2 text-xs font-medium text-white/85 transition hover:border-[#e4b892]/50 hover:bg-white/8 hover:text-white"
+                    >
+                        {t("services2.btn_moreInfo", { defaultValue: "Más info" })}
+                    </button>
                 </div>
             </div>
         </motion.div>
@@ -836,8 +885,17 @@ function ServiceCard({ title, desc, index, onInfo, waUrl }) {
 }
 
 
+function serviceBulletEmoji(text, index) {
+    const lower = String(text).toLowerCase();
+    if (/tiempo|time|minuto|min\b|cita|hour|heure|zeit|時間|시간/.test(lower)) return "⏱️";
+    if (/precio|price|\$|mxn|cost|coût|preis|価格|가격|€/.test(lower)) return "💵";
+    if (index === 0) return "💡";
+    if (index === 1) return "⏱️";
+    return "💵";
+}
+
 function InfoModal({ open, onClose, service }) {
-    const { t } = useTranslation("home");
+    const { t, lang } = useSiteCopy();
 
     useEffect(() => {
         if (!open) return;
@@ -892,55 +950,73 @@ function InfoModal({ open, onClose, service }) {
                     animate={{ y: 0, opacity: 1, scale: 1 }}
                     exit={{ y: 10, opacity: 0, scale: 0.98 }}
                     transition={{ duration: 0.25, ease: "easeOut" }}
-                    className="relative w-full max-w-2xl overflow-hidden rounded-[22px] border border-[#e4b89233] bg-[#0f2237] text-white shadow-2xl"
+                    className="relative w-full max-w-2xl overflow-hidden rounded-[22px] border border-[#e4b892]/45 bg-[#0f2237] text-white shadow-[0_24px_80px_rgba(0,0,0,0.55)] ring-1 ring-[#e4b892]/20"
                 >
-                    {/* líneas doradas */}
-                    <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-[#c89b7b] via-[#e4b892] to-[#c89b7b]" />
-                    <div className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-[#c89b7b] via-[#e4b892] to-[#c89b7b]" />
+                    <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#e4b892] to-transparent opacity-90" />
+                    <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-transparent via-[#e4b892] to-transparent opacity-90" />
+                    <div className="pointer-events-none absolute inset-y-4 left-0 w-[2px] bg-gradient-to-b from-transparent via-[#e4b892]/50 to-transparent" />
+                    <div className="pointer-events-none absolute inset-y-4 right-0 w-[2px] bg-gradient-to-b from-transparent via-[#e4b892]/50 to-transparent" />
 
-                    {/* botón cerrar */}
+                    <span className="pointer-events-none absolute left-4 top-4 h-[12px] w-[2px] rounded bg-[#e4b892]/70" />
+                    <span className="pointer-events-none absolute left-4 top-4 h-[2px] w-[12px] rounded bg-[#e4b892]/70" />
+                    <span className="pointer-events-none absolute right-4 top-4 h-[12px] w-[2px] rounded bg-[#e4b892]/70" />
+                    <span className="pointer-events-none absolute right-4 top-4 h-[2px] w-[12px] rounded bg-[#e4b892]/70" />
+                    <span className="pointer-events-none absolute bottom-4 left-4 h-[12px] w-[2px] rounded bg-[#e4b892]/70" />
+                    <span className="pointer-events-none absolute bottom-4 left-4 h-[2px] w-[12px] rounded bg-[#e4b892]/70" />
+                    <span className="pointer-events-none absolute bottom-4 right-4 h-[12px] w-[2px] rounded bg-[#e4b892]/70" />
+                    <span className="pointer-events-none absolute bottom-4 right-4 h-[2px] w-[12px] rounded bg-[#e4b892]/70" />
+
                     <button
                         onClick={onClose}
-                        className="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white/80 hover:bg-white/10"
+                        className="absolute right-4 top-4 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#e4b892]/35 bg-[#0b1b2b]/60 text-white/80 transition hover:border-[#e4b892]/60 hover:bg-white/10"
                         aria-label={t("serviceModal.close", { defaultValue: "Cerrar" })}
                         title={t("serviceModal.close", { defaultValue: "Cerrar" })}
                     >
                         ✕
                     </button>
 
-                    {/* cabecera */}
-                    <div className="px-6 pt-8 text-center sm:px-10">
-                        <div className="text-[11px] tracking-[.35em] text-[#e4b892cc]">
+                    <div className="px-6 pt-9 text-center sm:px-10 sm:pt-10">
+                        <div className="section-eyebrow text-[#e4b892]">
                             {t("serviceModal.eyebrow", { defaultValue: "SERVICIO" })}
                         </div>
-                        <h3 className="mt-2 text-3xl font-extrabold leading-tight sm:text-4xl">
+                        <h3 className="mt-3 text-3xl font-bold leading-tight text-white sm:text-4xl">
                             {service.title}
                         </h3>
-                        <p className="mx-auto mt-3 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">
+                        <p className="mx-auto mt-3 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">
                             {subtitle}
                         </p>
                     </div>
 
-                    {/* bullets */}
-                    <div className="px-6 pt-5 sm:px-10">
-                        <ul className="grid gap-3 text-[15px] sm:text-[16px] text-white/90">
+                    <div className="mx-6 mt-6 h-px bg-gradient-to-r from-transparent via-[#e4b892]/40 to-transparent sm:mx-10" />
+
+                    <div className="px-6 py-6 sm:px-10">
+                        <ul className="mx-auto grid max-w-xl gap-4 text-[15px] text-white/90 sm:text-[16px]">
                             {bullets.map((b, i) => (
-                                <li key={i} className="flex items-start gap-3">
-                                    <span className="mt-2 inline-block h-2.5 w-2.5 shrink-0 rounded-full bg-[#e4b892]" />
-                                    <span className="leading-relaxed">{b}</span>
+                                <li
+                                    key={i}
+                                    className="flex items-start gap-4 rounded-xl border border-[#e4b892]/15 bg-white/[0.03] px-4 py-3.5"
+                                >
+                                    <span
+                                        className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#e4b892]/20 text-xl ring-1 ring-[#e4b892]/30"
+                                        aria-hidden
+                                    >
+                                        {serviceBulletEmoji(b, i)}
+                                    </span>
+                                    <span className="pt-1.5 leading-relaxed">{b}</span>
                                 </li>
                             ))}
                         </ul>
                     </div>
 
-                    {/* CTAs */}
-                    <div className="px-6 pb-8 pt-7 sm:px-10">
-                        <div className="flex flex-col items-stretch gap-4 sm:flex-row sm:items-center">
+                    <div className="mx-6 h-px bg-gradient-to-r from-transparent via-[#e4b892]/40 to-transparent sm:mx-10" />
+
+                    <div className="px-6 pb-9 pt-7 sm:px-10">
+                        <div className="flex flex-col items-stretch justify-center gap-4 sm:flex-row sm:items-center">
                             <a
                                 href={waForThisService}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex h-12 min-w-[260px] items-center justify-center gap-2 rounded-full bg-[#d8a07b] px-7 text-[15px] font-semibold text-[#0b1b2b] shadow-[0_8px_24px_rgba(216,160,123,.25)] transition hover:brightness-110"
+                                className="inline-flex h-12 flex-1 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#d8a07b] via-[#e4b892] to-[#d8a07b] px-7 text-[15px] font-semibold text-[#0b1b2b] shadow-[0_8px_24px_rgba(216,160,123,.3)] transition hover:brightness-110"
                             >
                                 {t("serviceModal.cta_whatsapp", { defaultValue: "Agendar por WhatsApp" })}
                                 <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -949,11 +1025,13 @@ function InfoModal({ open, onClose, service }) {
                             </a>
 
                             <a
-                                href="#ubicacion"
-                                onClick={onClose}
-                                className="inline-flex h-12 min-w-[200px] items-center justify-center gap-2 rounded-full border border-white/20 px-7 text-[15px] text-white/90 transition hover:bg-white/10"
+                                href={`/tratamientos/${service.key}`}
+                                className="inline-flex h-12 flex-1 items-center justify-center gap-2 rounded-full border border-[#e4b892]/40 bg-transparent px-7 text-[15px] font-medium text-white/90 transition hover:border-[#e4b892]/70 hover:bg-[#e4b892]/10"
                             >
-                                {t("serviceModal.cta_viewClinics", { defaultValue: "Ver clínicas" })}
+                                {t("serviceModal.cta_fullInfo", { defaultValue: "Info completa" })}
+                                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M5 12h14M13 5l7 7-7 7" />
+                                </svg>
                             </a>
                         </div>
                     </div>
@@ -967,7 +1045,7 @@ function InfoModal({ open, onClose, service }) {
 
 
 function GalleryCarousel() {
-    const { t } = useTranslation("home");
+    const { t, lang } = useSiteCopy();
 
     const IMAGES = [
         { src: ubicacion, title: t("gallery.items.ubicacion.title"), subtitle: t("gallery.items.ubicacion.subtitle") },
@@ -1012,18 +1090,14 @@ function GalleryCarousel() {
     const active = IMAGES[i];
 
     return (
-        <section id="galeria" className="bg-[#0b1b2b] py-16">
+        <section id="galeria" className="section-dark py-20 md:py-24">
             <Container>
-                <div className="text-center">
-                    <div className="text-xs tracking-[0.35em] text-white/50">{t("gallery.eyebrow")}</div>
-                    <h2 className="mt-5 md:-mt-1 inline-block text-3xl font-semibold md:text-4xl relative">
-                        <span className="golden-sweep">{t("gallery.title")}</span>
-                        <span className="absolute left-0 right-0 -bottom-2 h-[2px] rounded bg-gradient-to-r from-[#c89b7b] via-[#e4b892] to-[#c89b7b]" />
-                    </h2>
-                </div>
+                <SectionHeading overline={t("gallery.eyebrow")} title={t("gallery.title")} />
 
+                <div id="galeria-showcase" className="mt-10 scroll-mt-[112px]">
                 <div
-                    className="relative mt-8 overflow-hidden rounded-3xl border border-[#e4b89233] bg_white/5 ring-1 ring-white/10 shadow-[0_20px_60px_rgba(0,0,0,.35)]"
+                    id="galeria-carousel"
+                    className="relative overflow-hidden rounded-3xl border border-[#e4b892]/25 bg-white/5 ring-1 ring-white/10 shadow-[0_20px_60px_rgba(0,0,0,.4)]"
                     onMouseEnter={() => setHover(true)}
                     onMouseLeave={() => setHover(false)}
                 >
@@ -1053,7 +1127,7 @@ function GalleryCarousel() {
                         {/* Móvil: brand + título arriba; subtítulo abajo. Desktop: todo abajo como antes */}
                         {/* Top caption (mobile only) */}
                         <div className="absolute left-0 right-0 top-0 p-4 sm:hidden">
-                            <div className="text-xs tracking-[.35em] text_white/60">{t("gallery.brand")}</div>
+                            <div className="text-xs tracking-[.35em] text-white/60">{t("gallery.brand")}</div>
                             <h3 className="mt-1 text-2xl font-semibold text-white/95">{active.title}</h3>
                         </div>
 
@@ -1061,7 +1135,7 @@ function GalleryCarousel() {
                         <div className="absolute bottom-0 left-0 right-0 p-5 md:p-7 hidden sm:block">
                             <div className="flex items-end justify-between">
                                 <div>
-                                    <div className="text-xs tracking-[.35em] text_white/60">{t("gallery.brand")}</div>
+                                    <div className="text-xs tracking-[.35em] text-white/60">{t("gallery.brand")}</div>
                                     <h3 className="mt-1 text-2xl md:text-3xl font-semibold text-white/95">{active.title}</h3>
                                     <p className="text-white/75 text-sm md:text-[15px]">{active.subtitle}</p>
                                 </div>
@@ -1136,7 +1210,7 @@ function GalleryCarousel() {
                             <img
                                 src={img.src}
                                 alt={img.title}
-                                className="h-12 w-16 sm:h-14 sm:w-20 md:h-[68px] md:w[96px] object-cover"
+                                className="h-12 w-16 sm:h-14 sm:w-20 md:h-[68px] md:w-[96px] object-cover"
                                 loading="lazy"
                             />
                             {idx === i && <span className="pointer-events-none absolute inset-0 rounded-xl ring-2 ring-[#e4b892]/70" />}
@@ -1157,32 +1231,8 @@ function GalleryCarousel() {
                         />
                     ))}
                 </div>
+                </div>
             </Container>
-
-            <style>{`
-        .thumb:hover .tooltip { opacity: 1; transform: translate(-50%, -2px); }
-        .thumb::after {
-          content: ""; position: absolute; left: 10%; right: 10%; bottom: -2px; height: 2px;
-          background: linear-gradient(90deg, #c89b7b, #e4b892, #c89b7b);
-          transform: scaleX(0); transform-origin: left; transition: transform .35s ease;
-        }
-        .thumb:hover::after { transform: scaleX(1); animation: shine 1.4s linear infinite; }
-        @keyframes shine { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
-        .golden-sweep{
-          color: transparent;
-          background-image: linear-gradient(90deg, #c89b7b 0%, #e4b892 20%, #f4d3b3 35%, #e4b892 60%, #c89b7b 100%);
-          background-size: 250% 100%;
-          background-clip: text; -webkit-background-clip: text;
-          position: relative; display: inline-block;
-          animation: goldSweep 3.2s linear infinite;
-        }
-        @media (prefers-reduced-motion: reduce){ .golden-sweep{ animation: none; background-size: 100% 100%; } }
-        @keyframes goldSweep {
-          0% { background-position: 0% 50%;   filter: drop-shadow(0 0 0 rgba(228,184,146,0)); }
-          45% { filter: drop-shadow(0 0 4px rgba(228,184,146,.35)); }
-          100% { background-position: 200% 50%; filter: drop-shadow(0 0 0 rgba(228,184,146,0)); }
-        }
-      `}</style>
         </section>
     );
 }
@@ -1191,7 +1241,7 @@ function GalleryCarousel() {
 
 
 function InvisalignInteractive() {
-    const { t } = useTranslation("home");
+    const { t, lang } = useSiteCopy();
 
     const slides = useMemo(
         () => [
@@ -1251,10 +1301,13 @@ function InvisalignInteractive() {
     }, [open]);
 
     return (
-        <section className="relative bg-[#dfeaf5] py-4 text-[#0b1b2b] sm:py-6">
-            <div className="mx-auto max-w-6xl px-3 sm:px-4">
+        <section className="section-elevated relative overflow-hidden py-8 sm:py-10">
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_45%_at_50%_0%,rgba(228,184,146,0.1),transparent_65%)]" />
+            <div className="relative mx-auto max-w-6xl px-3 sm:px-4">
                 {/* Slide container */}
-                <div className="relative isolate overflow-hidden rounded-2xl min-h-[440px] sm:min-h-[500px]">
+                <div className="relative isolate min-h-[440px] overflow-hidden rounded-2xl border border-[#e4b892]/25 shadow-[0_20px_60px_rgba(0,0,0,0.45)] ring-1 ring-white/10 sm:min-h-[500px]">
+                    <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-[2px] bg-gradient-to-r from-[#c89b7b] via-[#e4b892] to-[#c89b7b] opacity-80" />
+                    <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-[2px] bg-gradient-to-r from-[#c89b7b] via-[#e4b892] to-[#c89b7b] opacity-80" />
                     <AnimatePresence mode="wait">
                         <motion.img
                             key={idx}
@@ -1283,12 +1336,12 @@ function InvisalignInteractive() {
                                 </div>
 
                                 {/* ↓ móvil: fuente un poco más chica y SIN nowrap; desktop igual */}
-                                <h2 className="mt-3 inline-block text-[26px] sm:text-[34px] md:text-5xl font-semibold leading-tight relative whitespace-normal sm:whitespace-nowrap">
+                                <h2 className="font-display mt-3 mb-2 inline-block text-[26px] sm:text-[34px] md:text-5xl font-semibold leading-tight relative whitespace-normal sm:whitespace-nowrap pb-2">
                                     <span className="golden-sweep">{s.title}</span>
-                                    <span className="absolute left-0 right-0 -bottom-2 h-[2px] rounded bg-gradient-to-r from-[#c89b7b] via-[#e4b892] to-[#c89b7b]" />
+                                    <span className="title-underline" />
                                 </h2>
 
-                                <p className="mt-2 text-[15px] leading-7 text-white/90">
+                                <p className="mt-5 md:mt-6 text-[15px] leading-7 text-white/90">
                                     {s.subLeft}
                                 </p>
 
@@ -1321,9 +1374,9 @@ function InvisalignInteractive() {
 
                     {/* bottom card */}
                     {/* ↓ móvil: usar left & right para que no se corte; desktop igual */}
-                    <div className="pointer-events-auto absolute z-20 left-3 right-3 bottom-4 sm:left-6 sm:right-auto">
-                        <div className="w-full sm:w-[430px] max-w-[calc(100vw-2rem)] rounded-xl border border-white/40 bg-white/30 px-4 py-3 text-center text-[14px] font-medium text-[#0b1b2b] backdrop-blur-md shadow-[0_6px_20px_rgba(0,0,0,.08)]">
-                            <span className="font-semibold italic underline decoration-[#0b1b2b]/25 underline-offset-[6px]">
+                    <div className="pointer-events-auto absolute z-20 bottom-4 left-3 right-3 sm:left-6 sm:right-auto">
+                        <div className="w-full max-w-[calc(100vw-2rem)] rounded-xl border border-[#e4b892]/35 bg-[#0f2237]/88 px-4 py-3 text-center text-[14px] font-medium text-white/90 shadow-[0_8px_24px_rgba(0,0,0,0.35)] backdrop-blur-md sm:w-[430px]">
+                            <span className="font-semibold italic text-[#e4b892] underline decoration-[#e4b892]/40 underline-offset-[6px]">
                                 {s.strongRight}
                             </span>{" "}
                             {s.textRight}
@@ -1336,7 +1389,7 @@ function InvisalignInteractive() {
                     <button
                         aria-label={t("invis.controls.prev")}
                         onClick={prev}
-                        className="rounded-full p-1.5 outline-none transition hover:scale-105 focus-visible:ring-2 focus-visible:ring-[#edb791]"
+                        className="rounded-full p-1.5 outline-none transition hover:scale-105 focus-visible:ring-2 focus-visible:ring-[#e4b892]"
                     >
                         <Arrow />
                     </button>
@@ -1352,12 +1405,12 @@ function InvisalignInteractive() {
                                     className={[
                                         "relative inline-flex items-center justify-center rounded-full transition",
                                         active
-                                            ? "h-2.5 w-8 bg-[#edb791]"
-                                            : "h-2.5 w-5 bg-[#cfd9e6] hover:bg-[#e0e7f0]",
+                                            ? "h-2.5 w-8 bg-[#e4b892]"
+                                            : "h-2.5 w-5 bg-white/25 hover:bg-white/45",
                                     ].join(" ")}
                                 >
                                     {active && (
-                                        <span className="pointer-events-none absolute inset-0 rounded-full ring-2 ring-[#edb791]/40" />
+                                        <span className="pointer-events-none absolute inset-0 rounded-full ring-2 ring-[#e4b892]/40" />
                                     )}
                                 </button>
                             );
@@ -1367,7 +1420,7 @@ function InvisalignInteractive() {
                     <button
                         aria-label={t("invis.controls.next")}
                         onClick={next}
-                        className="rotate-180 rounded-full p-1.5 outline-none transition hover:scale-105 focus-visible:ring-2 focus-visible:ring-[#edb791]"
+                        className="rotate-180 rounded-full p-1.5 outline-none transition hover:scale-105 focus-visible:ring-2 focus-visible:ring-[#e4b892]"
                     >
                         <Arrow />
                     </button>
@@ -1423,22 +1476,6 @@ function InvisalignInteractive() {
                 )}
             </AnimatePresence>
 
-            <style>{`
-        .golden-sweep{
-          color: transparent;
-          background-image: linear-gradient(90deg,#c89b7b 0%,#e4b892 20%,#f4d3b3 35%,#e4b892 60%,#c89b7b 100%);
-          background-size: 250% 100%;
-          background-clip: text; -webkit-background-clip: text;
-          position: relative; display: inline-block;
-          animation: goldSweep 3.2s linear infinite;
-        }
-        @media (prefers-reduced-motion: reduce){ .golden-sweep{ animation: none; background-size: 100% 100%; } }
-        @keyframes goldSweep {
-          0% { background-position: 0% 50%; filter: drop-shadow(0 0 0 rgba(228,184,146,0)); }
-          45% { filter: drop-shadow(0 0 4px rgba(228,184,146,.35)); }
-          100% { background-position: 200% 50%; filter: drop-shadow(0 0 0 rgba(228,184,146,0)); }
-        }
-      `}</style>
         </section>
     );
 }
@@ -1448,7 +1485,7 @@ function InvisalignInteractive() {
 
 function Arrow() {
     return (
-        <svg viewBox="0 0 24 24" className="h-6 w-6 text-[#edb791] drop-shadow" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <svg viewBox="0 0 24 24" className="h-6 w-6 text-[#e4b892] drop-shadow" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="M15 19l-7-7 7-7" />
         </svg>
     );
@@ -1458,9 +1495,27 @@ function Arrow() {
 
 
 function LocationsTabs() {
-    const { t } = useTranslation("home");
+    const { t, lang } = useSiteCopy();
 
     const MAP_HEIGHT = 330;
+
+    const closedLabel = t("locations.labels.closed");
+    const scheduleRows = useMemo(
+        () => [
+            { day: t("locations.days.monFri"), time: "9:00 - 20:00" },
+            { day: t("locations.days.sat"), time: "9:00 - 15:00" },
+            { day: t("locations.days.sun"), time: closedLabel, closed: true },
+        ],
+        [t, closedLabel]
+    );
+    const holidayRows = useMemo(
+        () => [
+            { day: t("locations.holidayDates.dec24"), closed: true },
+            { day: t("locations.holidayDates.dec25"), closed: true },
+            { day: t("locations.holidayDates.jan1"), closed: true },
+        ],
+        [t]
+    );
 
     const tabs = useMemo(
         () => ({
@@ -1475,16 +1530,8 @@ function LocationsTabs() {
                     { key: "instagram", label: "Instagram", href: "https://www.instagram.com/dentalcity_oficial/", icon: InstagramIcon },
                     { key: "whatsapp", label: "WhatsApp", href: WA_URL, icon: WhatsAppIcon },
                 ],
-                schedule: [
-                    { day: "Lunes - Viernes", time: "9:00 - 20:00" },
-                    { day: "Sábado", time: "9:00 - 15:00" },
-                    { day: "Domingo", time: "Cerrado", closed: true },
-                ],
-                holidays: [
-                    { day: "24 de diciembre", closed: true },
-                    { day: "25 de diciembre", closed: true },
-                    { day: "1 de enero", closed: true },
-                ],
+                schedule: scheduleRows,
+                holidays: holidayRows,
             },
             "Dental City Kids & Family": {
                 query: "Dental City Kids & Family, Zapopan, Jalisco",
@@ -1497,19 +1544,11 @@ function LocationsTabs() {
                     { key: "instagram", label: "Instagram", href: "https://www.instagram.com/dentalcity_kids/", icon: InstagramIcon },
                     { key: "whatsapp", label: "WhatsApp", href: WA_URL, icon: WhatsAppIcon },
                 ],
-                schedule: [
-                    { day: "Lunes - Viernes", time: "9:00 - 20:00" },
-                    { day: "Sábado", time: "9:00 - 15:00" },
-                    { day: "Domingo", time: "Cerrado", closed: true },
-                ],
-                holidays: [
-                    { day: "24 de diciembre", closed: true },
-                    { day: "25 de diciembre", closed: true },
-                    { day: "1 de enero", closed: true },
-                ],
+                schedule: scheduleRows,
+                holidays: holidayRows,
             },
         }),
-        []
+        [scheduleRows, holidayRows]
     );
 
     const [tab, setTab] = useState("Dental City");
@@ -1647,19 +1686,11 @@ function LocationsTabs() {
     }, [tab]);
 
     return (
-        <section id="ubicacion" className="bg-[#0f2237] py-20">
+        <section id="ubicacion" className="section-elevated py-20 md:py-24">
             <Container>
-                <div className="text-center">
-                    <div className="text-xs tracking-[0.35em] text-white/50">
-                        {t("locations.eyebrow")}
-                    </div>
-                    <h2 className="mt-3 inline-block text-3xl font-semibold md:text-4xl relative">
-                        <span className="golden-sweep">{t("locations.title")}</span>
-                        <span className="absolute left-0 right-0 -bottom-2 h-[2px] rounded bg-gradient-to-r from-[#c89b7b] via-[#e4b892] to-[#c89b7b]" />
-                    </h2>
-                </div>
+                <SectionHeading overline={t("locations.eyebrow")} title={t("locations.title")} />
 
-                <div className="mx-auto mt-8 max-w-5xl rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_10px_30px_rgba(0,0,0,.25)] backdrop-blur">
+                <div id="ubicacion-panel" className="dc-clinic-panel mx-auto mt-10 max-w-5xl rounded-3xl p-6 md:p-8 scroll-mt-[132px]">
                     <div className="flex flex-wrap gap-2">
                         {Object.keys(tabs).map((k) => {
                             const isActive = k === tab;
@@ -1668,15 +1699,15 @@ function LocationsTabs() {
                                     key={k}
                                     onClick={() => setTab(k)}
                                     className={[
-                                        "relative rounded-full px-5 py-2 text-sm transition border",
+                                        "relative rounded-full px-5 py-2.5 text-sm font-medium transition border",
                                         isActive
-                                            ? "border-white/30 bg-white text-[#0b1b2b] shadow-sm"
-                                            : "border-white/10 bg-white/5 text-white hover:bg-white/10",
+                                            ? "border-[#e4b892]/70 bg-[#1a3352]/90 text-white shadow-[0_0_20px_rgba(228,184,146,0.15)]"
+                                            : "border-white/15 bg-[#0b1b2b]/50 text-white/75 hover:border-[#e4b892]/30 hover:bg-[#0b1b2b]/70",
                                     ].join(" ")}
                                 >
                                     {k}
                                     {isActive && (
-                                        <span className="pointer-events-none absolute inset-0 rounded-full ring-2 ring-[#d8a07b]/40" />
+                                        <span className="pointer-events-none absolute inset-0 rounded-full ring-2 ring-[#e4b892]/50" />
                                     )}
                                 </button>
                             );
@@ -1705,7 +1736,7 @@ function LocationsTabs() {
                     <div className="mt-7 grid items-stretch gap-8 md:grid-cols-2">
                         <div
                             ref={leftTopRef}
-                            className="relative flex flex-col rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.03] p-5"
+                            className="relative flex flex-col rounded-2xl border border-[#e4b892]/15 bg-[#0b1b2b]/40 p-5"
                             style={{ minHeight: MAP_HEIGHT }}
                         >
                             <span className="pointer-events-none absolute left-3 top-3 h-[10px] w-[2px] rounded bg-[#e4b89266]" />
@@ -1723,7 +1754,7 @@ function LocationsTabs() {
                                 {active.schedule.map((s, i) => (
                                     <li key={i} className="relative mb-3 pl-8">
                                         <span className="absolute left-0 top-2 block h-3 w-3 rounded-full bg-[#d8a07b] shadow-[0_0_0_2px_rgba(216,160,123,.25)]" />
-                                        <div className="flex items-center justify-between gap-3 rounded-xl bg-white/5 px-4 py-3 ring-1 ring-white/10">
+                                        <div className="flex items-center justify-between gap-3 rounded-xl bg-[#0b1b2b]/50 px-4 py-3 ring-1 ring-[#e4b892]/10">
                                             <span className="text-[15px] text-white/90">{s.day}</span>
                                             {s.closed ? (
                                                 <span className="rounded-full bg-red-500/15 px-3 py-1.5 text-xs font-semibold text-red-300">
@@ -1765,7 +1796,7 @@ function LocationsTabs() {
                         </div>
 
                         <div
-                            className="overflow-hidden rounded-2xl border border-white/10 bg-black/10 shadow-[0_10px_25px_rgba(0,0,0,.25)]"
+                            className="overflow-hidden rounded-2xl border border-[#e4b892]/15 bg-black/20 shadow-[0_10px_25px_rgba(0,0,0,.3)]"
                             style={{ height: mapHeight }}
                         >
                             <iframe
@@ -1779,7 +1810,7 @@ function LocationsTabs() {
                         </div>
 
                         <div
-                            className="relative flex flex-col rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/[0.03] p-5"
+                            className="relative flex flex-col rounded-2xl border border-[#e4b892]/15 bg-[#0b1b2b]/40 p-5"
                             style={isMdUp && rightHeight ? { height: `${rightHeight}px` } : undefined}
                         >
                             <div className="mb-3 flex items-center gap-2">
@@ -1792,7 +1823,7 @@ function LocationsTabs() {
                                 {active.holidays.map((h, i) => (
                                     <li key={i} className="relative mb-3 pl-8">
                                         <span className="absolute left-0 top-2 block h-3 w-3 rounded-full bg-[#edb791] shadow-[0_0_0_2px_rgba(237,183,145,.25)]" />
-                                        <div className="flex items-center justify-between gap-3 rounded-xl bg-white/5 px-4 py-3 ring-1 ring-white/10">
+                                        <div className="flex items-center justify-between gap-3 rounded-xl bg-[#0b1b2b]/50 px-4 py-3 ring-1 ring-[#e4b892]/10">
                                             <span className="text-[15px] text-white/90">{h.day}</span>
                                             {h.closed ? (
                                                 <span className="rounded-full bg-red-500/15 px-3 py-1.5 text-xs font-semibold text-red-300">{t("locations.labels.closed")}</span>
@@ -1809,7 +1840,7 @@ function LocationsTabs() {
 
                         <div
                             ref={rightCardRef}
-                            className="relative rounded-2xl border border-white/10 bg-white/5 p-4"
+                            className="relative rounded-2xl border border-[#e4b892]/15 bg-[#0b1b2b]/40 p-4"
                         >
                             <span className="pointer-events-none absolute left-0 top-0 h-[2px] w-6 rounded-r bg-[#e4b89266]" />
                             <span className="pointer-events-none absolute left-0 top-0 h-6 w-[2px] rounded-b bg-[#e4b89266]" />
@@ -1870,24 +1901,6 @@ function LocationsTabs() {
                     </div>
                 </div>
             </Container>
-
-            <style>{`
-        @keyframes shine { 0% { transform: translateX(-100%);} 100% { transform: translateX(100%);} }
-        .golden-sweep{
-          color: transparent;
-          background-image: linear-gradient(90deg, #c89b7b 0%, #e4b892 20%, #f4d3b3 35%, #e4b892 60%, #c89b7b 100%);
-          background-size: 250% 100%;
-          background-clip: text; -webkit-background-clip: text;
-          position: relative; display: inline-block;
-          animation: goldSweep 3.2s linear infinite;
-        }
-        @media (prefers-reduced-motion: reduce){ .golden-sweep{ animation: none; background-size: 100% 100%; } }
-        @keyframes goldSweep {
-          0% { background-position: 0% 50%; filter: drop-shadow(0 0 0 rgba(228,184,146,0)); }
-          45% { filter: drop-shadow(0 0 4px rgba(228,184,146,.35)); }
-          100% { background-position: 200% 50%; filter: drop-shadow(0 0 0 rgba(228,184,146,0)); }
-        }
-      `}</style>
         </section>
     );
 }
@@ -1948,7 +1961,7 @@ function DoctoraliaIcon() {
 
 
 function FAQ() {
-    const { t } = useTranslation("home"); // usa el namespace donde guardes estas claves, p. ej. 'home'
+    const { t, lang } = useSiteCopy(); // usa el namespace donde guardes estas claves, p. ej. 'home'
 
     // Cargamos el arreglo de Q&A desde i18n
     const data = t("faq.items", { returnObjects: true });
@@ -1956,26 +1969,13 @@ function FAQ() {
     const [open, setOpen] = useState(0);
 
     return (
-        <section className="relative bg-[#0b1b2b] py-20">
-            {/* filete superior sutil */}
+        <section className="section-dark relative py-20 md:py-24">
             <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] animate-[faqShimmer_6s_linear_infinite] bg-gradient-to-r from-[#c89b7b] via-[#e4b892] to-[#c89b7b]" />
 
             <Container>
-                <div className="text-center">
-                    <div className="text-xs tracking-[0.35em] text-white/50">{t("faq.eyebrow")}</div>
+                <SectionHeading overline={t("faq.eyebrow")} title={t("faq.title")} />
 
-                    {/* Título con luz dorada que barre las letras */}
-                    <h2 className="relative mt-3 inline-block text-3xl md:text-4xl font-semibold">
-                        <span className="golden-sweep">
-                            {t("faq.title")}
-                        </span>
-                        {/* línea dorada debajo */}
-                        <span className="absolute left-0 right-0 -bottom-2 h-[2px] rounded bg-gradient-to-r from-[#c89b7b] via-[#e4b892] to-[#c89b7b]" />
-                    </h2>
-                </div>
-
-                {/* Caja del FAQ */}
-                <div className="mx-auto mt-10 max-w-3xl overflow-visible rounded-2xl border border-white/10 bg-white/5 p-1 shadow-[0_18px_50px_rgba(0,0,0,.35)] ring-1 ring-white/10">
+                <div className="mx-auto mt-10 max-w-3xl overflow-visible rounded-2xl border border-white/12 bg-white/[0.04] p-1 shadow-[0_20px_60px_rgba(0,0,0,.4)] ring-1 ring-white/10">
                     <div className="rounded-2xl bg-gradient-to-br from-[#c89b7b33] via-transparent to-[#e4b89222] p-[1px]">
                         <div className="rounded-2xl bg-[#0f2136]/50 backdrop-blur">
                             {data.map((item, idx) => {
@@ -2052,37 +2052,6 @@ function FAQ() {
                     </div>
                 </div>
             </Container>
-
-            {/* keyframes locales */}
-            <style>{`
-        @keyframes faqShimmer {
-          0% { filter: brightness(1); }
-          50% { filter: brightness(1.25); }
-          100% { filter: brightness(1); }
-        }
-
-        .golden-sweep{
-          color: transparent;
-          background-image:
-            linear-gradient(90deg, #c89b7b 0%, #e4b892 20%, #f4d3b3 35%, #e4b892 60%, #c89b7b 100%);
-          background-size: 250% 100%;
-          background-clip: text;
-          -webkit-background-clip: text;
-          position: relative;
-          display: inline-block;
-          animation: goldSweep 3.2s linear infinite;
-        }
-
-        @media (prefers-reduced-motion: reduce){
-          .golden-sweep{ animation: none; background-size: 100% 100%; }
-        }
-
-        @keyframes goldSweep {
-          0%   { background-position: 0% 50%;   filter: drop-shadow(0 0 0 rgba(228,184,146,0)); }
-          45%  { filter: drop-shadow(0 0 4px rgba(228,184,146,.35)); }
-          100% { background-position: 200% 50%; filter: drop-shadow(0 0 0 rgba(228,184,146,0)); }
-        }
-      `}</style>
         </section>
     );
 }
@@ -2091,37 +2060,32 @@ function FAQ() {
 
 
 function FloatingCta() {
-    const { t } = useTranslation("home");
+    const { t, lang } = useSiteCopy();
     const [open, setOpen] = useState(false);
     const wrapRef = useRef(null);
 
-    // ▼ NUEVO: visibilidad condicional (solo móvil después del hero)
-    const [isMobile, setIsMobile] = useState(false);
-    const [showAfterHero, setShowAfterHero] = useState(true); // en desktop será true siempre
+    // Visible al llegar a #about y se mantiene al seguir bajando
+    const [showFromAbout, setShowFromAbout] = useState(false);
 
     useEffect(() => {
-        const updateIsMobile = () => setIsMobile(window.innerWidth < 640); // sm breakpoint
-        updateIsMobile();
-        window.addEventListener("resize", updateIsMobile);
-        return () => window.removeEventListener("resize", updateIsMobile);
-    }, []);
+        const about = document.getElementById("about");
+        if (!about) return undefined;
 
-    useEffect(() => {
-        if (!isMobile) {
-            setShowAfterHero(true); // desktop: siempre visible
-            return;
-        }
-        const onScroll = () => {
-            // umbral ~ altura del hero (78vh). Usamos 80% de la ventana como aproximación.
-            const threshold = window.innerHeight * 0.8;
-            const visible = window.scrollY > threshold;
-            setShowAfterHero(visible);
-            if (!visible) setOpen(false); // si se oculta, cierra el popover
+        const update = () => {
+            const top = about.getBoundingClientRect().top;
+            const reachedAbout = top <= window.innerHeight * 0.9;
+            setShowFromAbout(reachedAbout);
+            if (!reachedAbout) setOpen(false);
         };
-        onScroll(); // estado inicial
-        window.addEventListener("scroll", onScroll, { passive: true });
-        return () => window.removeEventListener("scroll", onScroll);
-    }, [isMobile]);
+
+        update();
+        window.addEventListener("scroll", update, { passive: true });
+        window.addEventListener("resize", update);
+        return () => {
+            window.removeEventListener("scroll", update);
+            window.removeEventListener("resize", update);
+        };
+    }, []);
 
     // Cerrar al hacer clic fuera o con ESC
     useEffect(() => {
@@ -2141,34 +2105,11 @@ function FloatingCta() {
     }, [open]);
 
     const go = (tabKey) => {
-        try { sessionStorage.setItem("initialTab", tabKey); } catch (err) { void err; }
-
-        // Activa el tab ANTES del scroll
-        window.dispatchEvent(new CustomEvent("select-location-tab", { detail: tabKey }));
         setOpen(false);
-
-        // Espera 1–2 frames para que el layout del tab se actualice y luego hace scroll con offset (solo móvil)
-        requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-                const el = document.querySelector("#ubicacion");
-                if (!el) return;
-
-                const isMobile = window.innerWidth < 640; // sm
-                if (isMobile) {
-                    const extra = 195; // súbele/bájale (140–200) para ajustar qué tan "abajo" cae
-                    const y = el.getBoundingClientRect().top + window.scrollY + extra;
-                    window.scrollTo({ top: y, behavior: "smooth" });
-                } else {
-                    el.scrollIntoView({ behavior: "smooth", block: "start" });
-                }
-
-                // Evita el salto automático del navegador al cambiar el hash
-                if (location.hash !== "#ubicacion") history.replaceState(null, "", "#ubicacion");
-            });
-        });
+        navigateToLocation(tabKey);
     };
 
-    const visible = !isMobile || showAfterHero;
+    const visible = showFromAbout;
 
     return (
         <div

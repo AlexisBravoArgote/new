@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BlogClient from '../components-react/BlogContent.jsx';
+
+const blogData = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Dental City Blog",
+    "description": "Artículos clínicos, tecnología, prevención y research de Dental City",
+    "url": "https://dentalcity.mx/blog",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Dental City",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://dentalcity.mx/logo.png"
+        }
+    }
+};
+---
+
+<Layout
+    title="Blog & Research"
+    description="Artículos clínicos, tecnología, prevención y research de Dental City. Información sobre ortodoncia, implantes, odontopediatría y más."
+    keywords="blog dental, artículos odontología, investigación dental, ortodoncia, implantes, odontopediatría"
+    structuredData={blogData}
+>
+    <BlogClient client:load />
+</Layout>
+
+<style>
+    @import "../styles/global.css";
+</style>

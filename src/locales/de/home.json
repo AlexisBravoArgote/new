@@ -1,0 +1,456 @@
+﻿{
+    "hero": {
+        "title": "Eleganz, die man beim Lächeln sieht",
+        "subtitle": "Modernste digitale Zahnmedizin, wo Präzision auf Komfort und persönliche Betreuung trifft.",
+        "book": "Termin buchen",
+        "viewTreatments": "Behandlungen ansehen"
+    },
+    "about": {
+        "eyebrow": "ÜBER UNS",
+        "title": "Zahnmedizin mit Design",
+        "blurb": "Gegründet von Dr. Linda Argote im Jahr 1999 verbinden wir Technologie und Qualität, damit Ihr Lächeln besser aussieht und sich besser anfühlt.",
+        "paragraph": "Umfassende Zahnklinik mit allen Fachbereichen, gelegen in Zapopan, Jalisco. Wir sind eine Invisalign-Diamond-Klinik mit eigenem Labor, um präzise, natürliche und personalisierte digitale Smile-Designs zu erstellen.",
+        "all": "alle zahnmedizinischen Fachrichtungen",
+        "brand": "Invisalign",
+        "designs": "digitale Smile-Designs",
+        "chip_diag3d": "3D-Diagnostik",
+        "chip_lab": "Eigenes Labor",
+        "chip_invisible": "Unsichtbare Kieferorthopädie",
+        "chip_aesthetic": "Ästhetische Zahnmedizin",
+        "arch_alt": "Architektur von Dental City",
+        "img_all": "Alle Fachrichtungen",
+        "img_ortho": "Kieferorthopädie",
+        "img_aesthetic": "Ästhetische Zahnmedizin",
+        "img_scan": "Digitaler Scan"
+    },
+    "services": {
+        "eyebrow": "DIENSTLEISTUNGEN",
+        "title": "Behandlungen",
+        "blurb": "Behandlungen in Kieferorthopädie, Rehabilitation, Endodontie, Kinderzahnheilkunde, Prothetik, Parodontologie.",
+        "searchPlaceholder": "Behandlung suchen…",
+        "prev": "← Zurück",
+        "next": "Weiter →",
+        "pageLabel": "Seite",
+        "btn_schedule": "Termin",
+        "btn_moreInfo": "Mehr Infos",
+        "items": {
+            "implantes": {
+                "title": "Implantate",
+                "desc": "Fester und ästhetischer Ersatz fehlender Zähne."
+            },
+            "limpieza": {
+                "title": "Zahnreinigung",
+                "desc": "Professionelle Prophylaxe für gesunde Zähne und gesundes Zahnfleisch."
+            },
+            "coronas": {
+                "title": "Zahnkronen",
+                "desc": "Widerstandsfähige und natürliche Restauration beschädigter Zähne."
+            },
+            "resinas": {
+                "title": "Kompositfüllungen",
+                "desc": "Ästhetische, zahnschonende Restaurationen in Zahnfarbe."
+            },
+            "maxilofacial": {
+                "title": "Mund-, Kiefer- & Gesichtschirurgie",
+                "desc": "Hochpräzise spezialisierte chirurgische Eingriffe."
+            },
+            "endodoncia": {
+                "title": "Endodontie",
+                "desc": "Wurzelkanalbehandlungen zum Erhalt natürlicher Zähne."
+            },
+            "periodoncia": {
+                "title": "Parodontologie",
+                "desc": "Umfassende Behandlung von Zahnfleisch und Knochensupport."
+            },
+            "guarda_oclusal": {
+                "title": "Aufbissschiene",
+                "desc": "Schutz bei Bruxismus und Entlastung der Kaumuskulatur."
+            },
+            "puentes": {
+                "title": "Orale Rehabilitation",
+                "desc": "Feste Lösungen zum Ersatz eines oder mehrerer Zähne."
+            },
+            "alineadores": {
+                "title": "Aligner",
+                "desc": "Herausnehmbare, diskrete Kieferorthopädie zur Zahnkorrektur."
+            },
+            "invisalign": {
+                "title": "Invisalign",
+                "desc": "Unsichtbare Aligner mit digitaler Planung."
+            },
+            "brackets": {
+                "title": "Zahnspangen",
+                "desc": "Feste Kieferorthopädie zur Bisskorrektur und Ausrichtung."
+            },
+            "blanqueamientos": {
+                "title": "Zahnaufhellung",
+                "desc": "Sichere und effektive Zahnaufhellung."
+            },
+            "carillas": {
+                "title": "Veneers",
+                "desc": "Ästhetische Verblendschalen für perfekte Form und Farbe."
+            },
+            "limpieza_ninos": {
+                "title": "Zahnreinigung für Kinder",
+                "desc": "Sanfte und lehrreiche Kinderprophylaxe."
+            },
+            "selladores": {
+                "title": "Fissurenversiegelung",
+                "desc": "Schutz von Grübchen und Fissuren gegen Karies."
+            },
+            "extracciones": {
+                "title": "Zahnextraktionen",
+                "desc": "Einfache und Weisheitszahnextraktionen mit minimal-invasivem Ansatz."
+            },
+            "ortopedia": {
+                "title": "Kieferorthopädische Orthopädie",
+                "desc": "Wachstumslenkung des Ober- und Unterkiefers bei jungen Patienten."
+            },
+            "armonizacion_facial": {
+                "title": "Gesichts­harmonisierung",
+                "desc": "Ästhetische Botox-Behandlung zur Betonung und Balance der Gesichtszüge."
+            },
+            "diseno_sonrisa": {
+                "title": "Smile-Design",
+                "desc": "Umfassender ästhetischer Plan für ein harmonisches, personalisiertes Lächeln."
+            },
+            "odontologia_biologica": {
+                "title": "Biologische Zahnmedizin",
+                "desc": "Ganzheitlicher Ansatz, der Mundgesundheit und Wohlbefinden mit biokompatiblen Materialien verbindet."
+            }
+        }
+    },
+    "services2": {
+        "btn_schedule": "Termin",
+        "btn_moreInfo": "Mehr Infos"
+    },
+    "serviceModal": {
+        "eyebrow": "DIENSTLEISTUNG",
+        "close": "Schließen",
+        "ariaClose": "Modal schließen",
+        "cta_whatsapp": "Über WhatsApp buchen",
+        "cta_fullInfo": "Vollständige Info",
+        "byService": {
+            "implantes": {
+                "subtitle": "Fester Ersatz mit hochwertigen Schweizer Straumann-Implantaten aus Titan oder Zirkon und einer natürlich aussehenden Krone.",
+                "bullets": [
+                    "Geführte Platzierung für höhere Präzision und Komfort.",
+                    "Geschätzte Zeit: Operation 30–45 Min.; Einheilung 3–6 Monate.",
+                    "Geschätzter Preis: 33.000–38.000 MXN pro Implantat."
+                ]
+            },
+            "limpieza": {
+                "subtitle": "Professionelle Prophylaxe zur Erhaltung gesunder Zähne und eines gesunden Zahnfleisches.",
+                "bullets": [
+                    "Entfernung von Plaque, Zahnstein und Politur.",
+                    "Geschätzte Zeit: 45 Min.",
+                    "Geschätzter Preis: 1.200 (Standard) – 1.500 MXN (mit Air-Polisher)."
+                ]
+            },
+            "coronas": {
+                "subtitle": "Widerstandsfähige und ästhetische Restauration beschädigter Zähne.",
+                "bullets": [
+                    "Keramik/Zirkon mit digitaler Passform.",
+                    "Geschätzte Zeit: 2 Termine à 60–90 Min.",
+                    "Geschätzter Preis: 9.000–10.000 MXN pro Zahn."
+                ]
+            },
+            "resinas": {
+                "subtitle": "Zahnschonende Restaurationen in Zahnfarbe.",
+                "bullets": [
+                    "Fortgeschrittene Adhäsivtechnik und Hochglanzpolitur.",
+                    "Geschätzte Zeit: 40–60 Min. pro Zahn.",
+                    "Geschätzter Preis: 1.500–2.500 MXN (Erwachsene, je nach Fall), 1.000 MXN (Kinder) pro Zahn."
+                ]
+            },
+            "maxilofacial": {
+                "subtitle": "Hochpräzise spezialisierte chirurgische Verfahren.",
+                "bullets": [
+                    "Individueller chirurgischer Plan und Schmerzmanagement.",
+                    "Geschätzte Zeit: 45–120 Min.",
+                    "Geschätzter Preis: 5.000–25.000+ MXN (je nach Komplexität)."
+                ]
+            },
+            "endodoncia": {
+                "subtitle": "Wurzelkanalbehandlung zum Erhalt natürlicher Zähne.",
+                "bullets": [
+                    "Desinfektion, Formgebung und Versiegelung des Kanals.",
+                    "Geschätzte Zeit: 60–120 Min. (1–2 Termine).",
+                    "Geschätzter Preis: 4.900 MXN."
+                ]
+            },
+            "periodoncia": {
+                "subtitle": "Umfassende Behandlung von Zahnfleisch und Knochensupport.",
+                "bullets": [
+                    "Nicht-chirurgische Parodontaltherapie und Nachsorge.",
+                    "Geschätzte Zeit: 60–90 Min. pro Quadrant.",
+                    "Geschätzter Preis: 1.500–3.000 MXN (Nachsorge), 4.200 MXN (Kronenverlängerung)."
+                ]
+            },
+            "guarda-oclusal": {
+                "subtitle": "Schutz bei Bruxismus und Entlastung.",
+                "bullets": [
+                    "Abdruck/Scan und individuelle Anpassung.",
+                    "Geschätzte Zeit: 2 Termine à 20–30 Min.; Lieferung in 5–7 Tagen.",
+                    "Geschätzter Preis: 2.500 MXN (Schiene), 4.500 MXN (CEREC-Funktionsschiene)."
+                ]
+            },
+            "puentes": {
+                "subtitle": "Feste Lösungen zum Ersatz eines oder mehrerer Zähne.",
+                "bullets": [
+                    "Design und Okklusionsanpassung für Stabilität.",
+                    "Geschätzte Zeit: 2–3 Termine à 60–90 Min.",
+                    "Geschätzter Preis: 27.000–30.000 MXN (3-gliedrige Brücke)."
+                ]
+            },
+            "alineadores": {
+                "subtitle": "Herausnehmbare, diskrete Zahnkorrektur.",
+                "bullets": [
+                    "3D-Scan und Stufenplan zur Zahnbewegung.",
+                    "Geschätzte Zeit: 6–18 Monate, Kontrollen alle 6–8 Wochen.",
+                    "Geschätzter Preis: 25.000–40.000 MXN (je nach Fall)."
+                ]
+            },
+            "invisalign": {
+                "subtitle": "Unsichtbare Aligner mit digitaler Behandlungsplanung.",
+                "bullets": [
+                    "Hoher Komfort und präzise Kontrolle.",
+                    "Geschätzte Zeit: 6–18 Monate, regelmäßige Kontrollen.",
+                    "Geschätzter Preis: 50.000–85.000 MXN."
+                ]
+            },
+            "brackets": {
+                "subtitle": "Feste Zahnspangen zur Biss- und Zahnkorrektur.",
+                "bullets": [
+                    "Metall- oder Keramikoptionen.",
+                    "Geschätzte Zeit: 18–24 Monate, monatliche Termine.",
+                    "Geschätzter Preis: 33.000–52.000 MXN."
+                ]
+            },
+            "blanqueamientos": {
+                "subtitle": "Sichere und effektive Zahnaufhellung.",
+                "bullets": [
+                    "In der Klinik oder überwacht zu Hause.",
+                    "Geschätzte Zeit: 45–60 Min. pro Sitzung.",
+                    "Geschätzter Preis: 3.900 MXN (komplett) / 1.500 MXN (Auffrischung)."
+                ]
+            },
+            "carillas": {
+                "subtitle": "Ästhetische Verblendschalen für perfekte Form und Farbe.",
+                "bullets": [
+                    "Keramik oder Komposit mit minimaler Präparation.",
+                    "Geschätzte Zeit: 2–3 Termine; Laborzeit 7–14 Tage.",
+                    "Geschätzter Preis: 6.000–12.000 MXN pro Zahn."
+                ]
+            },
+            "limpieza-ninos": {
+                "subtitle": "Sanfte und lehrreiche Kinderprophylaxe.",
+                "bullets": [
+                    "Sanfte Reinigung, Fluorid-Lack und Hygieneanleitung.",
+                    "Geschätzte Zeit: 30 Min.",
+                    "Geschätzter Preis: 950 MXN."
+                ]
+            },
+            "selladores": {
+                "subtitle": "Schutz von Fissuren und Grübchen gegen Karies.",
+                "bullets": [
+                    "Schmerzfreie Anwendung auf gesunden Molaren.",
+                    "Geschätzte Zeit: 15–20 Min. pro Zahn.",
+                    "Geschätzter Preis: 1.000 MXN pro Zahn."
+                ]
+            },
+            "extracciones": {
+                "subtitle": "Einfache und Weisheitszahnextraktionen mit minimal-invasivem Ansatz.",
+                "bullets": [
+                    "Lokalanästhesie und Nachsorge.",
+                    "Geschätzte Zeit: 20–60 Min.",
+                    "Geschätzter Preis: 2.000 MXN (Schneidezahn) / 3.000 MXN (Weisheitszahn)."
+                ]
+            },
+            "ortopedia": {
+                "subtitle": "Wachstumslenkung des Kiefers bei jungen Patienten.",
+                "bullets": [
+                    "Individuelle Funktionsapparaturen und regelmäßige Kontrollen.",
+                    "Geschätzte Zeit: 6–18 Monate.",
+                    "Geschätzter Preis: 20.000–28.000 MXN."
+                ]
+            },
+            "armonizacion-facial": {
+                "subtitle": "Botulinumtoxin und Dermalfüller für natürliche Gesichtsharmonie.",
+                "bullets": [
+                    "Reduktion feiner Linien und dezente Volumenverbesserung.",
+                    "Geschätzte Zeit: 20–40 Min.; Ergebnisse 4–12 Monate.",
+                    "Geschätzter Preis: 5.000 MXN pro Bereich (Bruxismus-Botox) / 2.800 MXN (Baby Botox)."
+                ]
+            },
+            "diseno-sonrisa": {
+                "subtitle": "Umfassendes ästhetisches Konzept mit digitalem Mock-up.",
+                "bullets": [
+                    "Klinische Fotografie, Proportionsanalyse und Vorabtests.",
+                    "Geschätzte Zeit: 1–3 Termine.",
+                    "Geschätzter Preis: Studie 5.000 MXN; endgültige Behandlung je nach Plan (10.000–60.000 MXN). Gingiva-Remodellierung ab 5.000 MXN."
+                ]
+            },
+            "odontologia-biologica": {
+                "subtitle": "Ganzheitlicher Ansatz mit biokompatiblen Materialien und minimalinvasiven Techniken.",
+                "bullets": [
+                    "Biokompatible Materialien, sichere Protokolle und persönliche Betreuung.",
+                    "Geschätzte Zeit: je nach Behandlung variabel.",
+                    "Geschätzter Preis: nach klinischer Bewertung."
+                ]
+            },
+            "default": {
+                "subtitle": "Personalisierte Behandlung gemäß Ihrer Diagnose.",
+                "bullets": [
+                    "Klinische Untersuchung und individueller Plan.",
+                    "Geschätzte Zeit: variabel.",
+                    "Geschätzter Preis: nach Untersuchung."
+                ]
+            }
+        }
+    },
+
+    "gallery": {
+        "eyebrow": "GALERIE",
+        "title": "Unsere Einrichtungen",
+        "brand": "DENTAL CITY",
+        "prev": "Zurück",
+        "next": "Weiter",
+        "goToPhoto": "Zu Foto {{n}} gehen",
+        "items": {
+            "ubicacion": {
+                "title": "Standort",
+                "subtitle": "Jardín Real · Zapopan"
+            },
+            "unidades": {
+                "title": "Behandlungsräume",
+                "subtitle": "Technologie und Komfort"
+            },
+            "recepcion": {
+                "title": "Rezeption",
+                "subtitle": "Gastfreundlichkeit und Wärme"
+            },
+            "detalles": {
+                "title": "Details",
+                "subtitle": "Design, das inspiriert"
+            }
+        }
+    },
+
+    "invis": {
+        "cta_whatsapp": "Termin",
+        "cta_demo": "Demo ansehen",
+        "controls": {
+            "prev": "Zurück",
+            "next": "Weiter",
+            "goTo": "Zum Slide {{n}} springen",
+            "close": "Schließen"
+        },
+        "iframeTitle": "Invisalign-Demo",
+        "modal": {
+            "title": "Behandlungssimulation",
+            "subtitle": "Sehen Sie den Fortschritt Schritt für Schritt."
+        },
+        "slides": {
+            "slide1": {
+                "overline": "INVISALIGN",
+                "title": "Kieferorthopädie ohne Brackets",
+                "subLeft": "Die neue Zahnkorrektur ohne Metallbrackets.",
+                "strongRight": "Der Nr. 1 Aligner",
+                "textRight": "weltweit für bracketfreie Kieferorthopädie ab 8 Jahren."
+            },
+            "slide2": {
+                "overline": "DIGITALER PLAN",
+                "title": "3D-geführte Behandlung",
+                "subLeft": "Sehen Sie das Ergebnis noch vor Beginn.",
+                "strongRight": "Präzise Kontrolle Stufe für Stufe",
+                "textRight": "mit digitalem Monitoring und personalisierten Anpassungen."
+            },
+            "slide3": {
+                "overline": "KOMFORT & ÄSTHETIK",
+                "title": "Transparente Aligner",
+                "subLeft": "Bequem, herausnehmbar und hygienisch.",
+                "strongRight": "Alltag ohne Einschränkungen",
+                "textRight": "ohne drastische Änderungen Ihrer Hygiene- oder Essgewohnheiten."
+            }
+        }
+    },
+
+    "locations": {
+        "eyebrow": "STANDORTE",
+        "title": "Unsere Kliniken",
+        "labels": {
+            "whatsapp": "WhatsApp",
+            "phones": "Telefonnummern",
+            "schedule": "Öffnungszeiten",
+            "closed": "Geschlossen",
+            "holidays": "Feiertage",
+            "specialHours": "Sonderzeiten",
+            "address": "Adresse",
+            "followUs": "Folgen Sie uns"
+        },
+        "cta": {
+            "whatsapp": "Über WhatsApp buchen",
+            "call": "Per Anruf buchen",
+            "viewMaps": "Auf Maps ansehen"
+        },
+        "copy": {
+            "copy": "Kopieren",
+            "copied": "Kopiert ✓",
+            "copyAddressTitle": "Adresse kopieren"
+        },
+        "follow": {
+            "dc": "Kontaktieren Sie Dental City in den sozialen Medien.",
+            "kids": "Kontaktieren Sie Dental City Kids & Family in den sozialen Medien."
+        },
+        "mapTitle": "Karte {{name}}",
+        "days": {
+            "monFri": "Montag - Freitag",
+            "sat": "Samstag",
+            "sun": "Sonntag"
+        },
+        "holidayDates": {
+            "dec24": "24. Dezember",
+            "dec25": "25. Dezember",
+            "jan1": "1. Januar"
+        },
+        "msg": {
+            "dc": "Hallo, ich möchte einen Termin bei Dental City buchen.",
+            "kids": "Hallo, ich möchte einen Termin bei Dental City Kids buchen."
+        }
+    },
+
+    "faq": {
+        "eyebrow": "FAQ",
+        "title": "Häufig gestellte Fragen",
+        "items": [
+            {
+                "q": "Behandeln Sie auch Kinder?",
+                "a": "Ja, wir haben Kinderzahnheilkunde und einen freundlichen Ansatz für Kinder bei Dental City Kids & Family."
+            },
+            {
+                "q": "Akzeptieren Sie Kreditkarten?",
+                "a": "Ja, außerdem bieten wir Zahlungspläne für ausgewählte Behandlungen an."
+            },
+            {
+                "q": "Was beinhaltet der erste Termin?",
+                "a": "Klinische Untersuchung, notwendige Studien und ein individueller Behandlungsplan."
+            }
+        ]
+    },
+
+    "topbar": {
+        "treatments": "Unsere Behandlungen",
+        "gallery": "Unsere Einrichtungen",
+        "clinics": "Unsere Kliniken",
+        "doctors": "Unsere Ärzte",
+        "resources": "Ressourcen",
+        "blog": "Blog & Forschung",
+        "edu": "Dental City Edu",
+        "jobs": "Stellenangebote",
+        "menu": "Menü",
+        "menuCaps": "MENÜ",
+        "openMenu": "Menü öffnen",
+        "closeMenu": "Menü schließen"
+    }
+}

@@ -2,7 +2,7 @@
 import React from "react";
 import TopBar from "../TopBar.jsx";
 import Footer from "../Footer.jsx";
-import odontologiaDigital from "/assets/escaneo.jpg";
+const odontologiaDigital = "/assets/escaneo.jpg";
 
 function Container({ children, className = "" }) {
     return (
@@ -23,17 +23,17 @@ function Eyebrow({ children }) {
 export default function BlogPost2() {
     const post = {
         id: "2",
-        title: "Odontolog�a digital en Dental City: esc�neres, gu�as y precisi�n",
+        title: "Odontología digital en Dental City: escáneres, guías y precisión",
         excerpt:
-            "La revoluci�n digital lleg� a la odontolog�a. En Dental City, los esc�neres intraorales, gu�as quir�rgicas y flujos digitales permiten tratamientos m�s precisos, c�modos y personalizados.",
+            "La revolución digital llegó a la odontología. En Dental City, los escáneres intraorales, guías quirúrgicas y flujos digitales permiten tratamientos más precisos, cómodos y personalizados.",
         cover: odontologiaDigital,
-        category: "Tecnolog�a",
-        tags: ["Odontolog�a digital", "Esc�ner intraoral", "Gu�as quir�rgicas", "Precisi�n cl�nica"],
+        category: "Tecnología",
+        tags: ["Odontología digital", "Escáner intraoral", "Guías quirúrgicas", "Precisión clínica"],
         date: "2025-10-21",
         readingMin: 6,
     };
 
-    // Structured Data para art�culo de blog
+    // Structured Data para artículo de blog
     const articleData = {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
@@ -78,15 +78,15 @@ export default function BlogPost2() {
                                 Blog & Research
                             </a>{" "}
                             <span className="opacity-50">/</span>{" "}
-                            <a href="/blog?cat=Innovaci�n" className="hover:underline">
-                                Innovaci�n
+                            <a href="/blog?cat=Innovación" className="hover:underline">
+                                Innovación
                             </a>{" "}
                             <span className="opacity-50">/</span>{" "}
                             <span className="text-white">{post.title}</span>
                         </nav>
 
                         <header className="mt-4 md:mt-6">
-                            <Eyebrow>INNOVACI�N</Eyebrow>
+                            <Eyebrow>INNOVACIÓN</Eyebrow>
                             <h1 className="mt-3 text-3xl md:text-5xl font-semibold leading-tight">
                                 <span className="golden-sweep">{post.title}</span>
                             </h1>
@@ -99,7 +99,7 @@ export default function BlogPost2() {
                                         day: "2-digit",
                                     })}
                                 </time>
-                                <span className="text-white/30">�</span>
+                                <span className="text-white/30">•</span>
                                 <span>{post.readingMin} min</span>
                             </div>
                         </header>
@@ -129,40 +129,40 @@ export default function BlogPost2() {
                     <Container>
                         {/* Intro */}
                         <p className="text-white/85 text-lg leading-relaxed">
-                            {post.excerpt} Gracias a la integraci�n de tecnolog�a digital en
+                            {post.excerpt} Gracias a la integración de tecnología digital en
                             cada etapa del tratamiento, nuestros pacientes experimentan una
-                            odontolog�a m�s r�pida, precisa y predecible, desde el diagn�stico
-                            hasta la restauraci�n final.
+                            odontología más rápida, precisa y predecible, desde el diagnóstico
+                            hasta la restauración final.
                         </p>
 
                         <div className="mt-8 grid gap-6">
                             {/* 1 */}
                             <article className="rounded-3xl bg-white/[.04] border border-white/10 p-6">
                                 <h2 className="text-2xl font-semibold text-[#e4b892]">
-                                    1. Esc�ner intraoral: precisi�n sin moldes
+                                    1. Escáner intraoral: precisión sin moldes
                                 </h2>
                                 <p className="mt-3 text-white/85 leading-relaxed">
-                                    Los esc�neres intraorales reemplazan las impresiones
-                                    tradicionales de silic�n. Con una c�mara �ptica de alta
-                                    resoluci�n, obtenemos una imagen tridimensional exacta de tu
+                                    Los escáneres intraorales reemplazan las impresiones
+                                    tradicionales de silicón. Con una cámara óptica de alta
+                                    resolución, obtenemos una imagen tridimensional exacta de tu
                                     boca en segundos. Esto mejora la comodidad del paciente y
-                                    elimina errores de distorsi�n.
+                                    elimina errores de distorsión.
                                     En Dental City utilizamos flujos digitales para restauraciones
-                                    cer�micas, alineadores, implantes y coronas con <b>ajuste
-                                        milim�trico</b>.
+                                    cerámicas, alineadores, implantes y coronas con <b>ajuste
+                                        milimétrico</b>.
                                 </p>
                             </article>
 
                             {/* 2 */}
                             <article className="rounded-3xl bg-white/[.04] border border-white/10 p-6">
                                 <h2 className="text-2xl font-semibold text-[#e4b892]">
-                                    2. Gu�as quir�rgicas: seguridad en cada mil�metro
+                                    2. Guías quirúrgicas: seguridad en cada milímetro
                                 </h2>
                                 <p className="mt-3 text-white/85 leading-relaxed">
                                     Gracias a los modelos digitales obtenidos por escaneo, podemos
-                                    dise�ar y fabricar <b>gu�as quir�rgicas personalizadas</b> que
-                                    permiten colocar implantes con precisi�n tridimensional.
-                                    Estas gu�as reducen el tiempo quir�rgico, el sangrado y las
+                                    diseñar y fabricar <b>guías quirúrgicas personalizadas</b> que
+                                    permiten colocar implantes con precisión tridimensional.
+                                    Estas guías reducen el tiempo quirúrgico, el sangrado y las
                                     molestias, garantizando resultados predecibles y estables a
                                     largo plazo.
                                 </p>
@@ -171,15 +171,15 @@ export default function BlogPost2() {
                             {/* 3 */}
                             <article className="rounded-3xl bg-white/[.04] border border-white/10 p-6">
                                 <h2 className="text-2xl font-semibold text-[#e4b892]">
-                                    3. Dise�o asistido por computadora (CAD/CAM)
+                                    3. Diseño asistido por computadora (CAD/CAM)
                                 </h2>
                                 <p className="mt-3 text-white/85 leading-relaxed">
                                     Una vez digitalizado el modelo, los softwares CAD/CAM permiten
-                                    dise�ar restauraciones est�ticas y funcionales en minutos.
+                                    diseñar restauraciones estéticas y funcionales en minutos.
                                     En Dental City trabajamos con sistemas de <b>fresado
-                                        cer�mico</b> y <b>resinas h�bridas</b> de �ltima generaci�n,
-                                    logrando coronas y carillas personalizadas con precisi�n
-                                    microm�trica.
+                                        cerámico</b> y <b>resinas híbridas</b> de última generación,
+                                    logrando coronas y carillas personalizadas con precisión
+                                    micrométrica.
                                 </p>
                             </article>
 
@@ -189,12 +189,12 @@ export default function BlogPost2() {
                                     4. Flujo digital integral
                                 </h2>
                                 <p className="mt-3 text-white/85 leading-relaxed">
-                                    Desde el primer diagn�stico hasta la entrega final, todo el
-                                    proceso se realiza digitalmente: escaneo, planificaci�n,
-                                    dise�o y fabricaci�n.
-                                    Esto se traduce en <b>menos citas, mayor precisi�n y una
-                                        experiencia m�s c�moda</b> para el paciente.
-                                    Adem�s, permite almacenar registros digitales seguros y
+                                    Desde el primer diagnóstico hasta la entrega final, todo el
+                                    proceso se realiza digitalmente: escaneo, planificación,
+                                    diseño y fabricación.
+                                    Esto se traduce en <b>menos citas, mayor precisión y una
+                                        experiencia más cómoda</b> para el paciente.
+                                    Además, permite almacenar registros digitales seguros y
                                     comparativos para el seguimiento a largo plazo.
                                 </p>
                             </article>
@@ -202,26 +202,26 @@ export default function BlogPost2() {
                             {/* 5 */}
                             <article className="rounded-3xl bg-white/[.04] border border-white/10 p-6">
                                 <h2 className="text-2xl font-semibold text-[#e4b892]">
-                                    5. Beneficios de la odontolog�a digital
+                                    5. Beneficios de la odontología digital
                                 </h2>
                                 <ul className="mt-3 list-disc pl-6 text-white/85 leading-relaxed">
-                                    <li>Mayor precisi�n diagn�stica y restauradora.</li>
-                                    <li>Procedimientos m�s r�pidos y c�modos.</li>
-                                    <li>Comunicaci�n visual con el paciente (antes y despu�s en 3D).</li>
+                                    <li>Mayor precisión diagnóstica y restauradora.</li>
+                                    <li>Procedimientos más rápidos y cómodos.</li>
+                                    <li>Comunicación visual con el paciente (antes y después en 3D).</li>
                                     <li>Menor margen de error humano.</li>
-                                    <li>Resultados est�ticos m�s naturales y duraderos.</li>
+                                    <li>Resultados estéticos más naturales y duraderos.</li>
                                 </ul>
                             </article>
                         </div>
 
-                        {/* Conclusi�n */}
+                        {/* Conclusión */}
                         <p className="mt-10 text-white/85 leading-relaxed text-lg">
-                            La odontolog�a digital representa el presente y el futuro de la
-                            atenci�n dental. En Dental City, la tecnolog�a se combina con la
-                            experiencia cl�nica para ofrecerte <b>precisi�n, confort y
+                            La odontología digital representa el presente y el futuro de la
+                            atención dental. En Dental City, la tecnología se combina con la
+                            experiencia clínica para ofrecerte <b>precisión, confort y
                                 resultados predecibles</b> en cada tratamiento.
-                            Nuestra meta es simple: que sonr�as con confianza, sabiendo que
-                            est�s en manos expertas.
+                            Nuestra meta es simple: que sonrías con confianza, sabiendo que
+                            estás en manos expertas.
                         </p>
 
                         {/* Tags */}
@@ -242,13 +242,13 @@ export default function BlogPost2() {
                                 href="/blog"
                                 className="rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-white/85 hover:bg-white/10 transition"
                             >
-                                ? Volver al blog
+                                ← Volver al blog
                             </a>
                             <a
                                 href="/#ubicacion"
                                 className="rounded-xl bg-gradient-to-r from-[#c89b7b] via-[#e4b892] to-[#c89b7b] px-4 py-2 text-[#0f2237] font-medium hover:brightness-110 transition"
                             >
-                                Agenda tu diagn�stico digital
+                                Agenda tu diagnóstico digital
                             </a>
                         </div>
                     </Container>

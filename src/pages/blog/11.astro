@@ -1,0 +1,49 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BlogPost11 from '../../components-react/blog-posts/11.jsx';
+const atlas1 = '/assets/atlas2.jpg';
+
+const post = {
+    id: "11",
+    title: "Alianza: Dental City, clínica dental oficial del Club Atlas FC de Guadalajara",
+    excerpt: "La plantilla y administración del Atlas confían su salud bucal a nuestro equipo. Conoce cómo coordinamos diagnósticos, prevención y emergencias deportivas.",
+    cover: atlas1,
+    category: "Alianza",
+    tags: ["Deporte", "Atlas FC"],
+    date: "2025-09-05",
+};
+
+const articleData = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "description": post.excerpt,
+    "image": `https://dentalcity.mx${post.cover}`,
+    "datePublished": post.date,
+    "dateModified": post.date,
+    "author": { "@type": "Organization", "name": "Dental City" },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Dental City",
+        "logo": { "@type": "ImageObject", "url": "https://dentalcity.mx/logo.png" }
+    },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": `https://dentalcity.mx/blog/${post.id}` },
+    "keywords": post.tags.join(", "),
+    "articleSection": post.category
+};
+---
+
+<Layout
+    title={post.title}
+    description={post.excerpt}
+    keywords={post.tags.join(", ")}
+    image={`https://dentalcity.mx${post.cover}`}
+    type="article"
+    structuredData={articleData}
+>
+    <BlogPost11 client:load />
+</Layout>
+
+<style>
+    @import "../../styles/global.css";
+</style>

@@ -1,6 +1,8 @@
 ﻿import React, { useMemo, useState } from "react";
 import TopBar from "./TopBar.jsx";
 import Footer from "./Footer.jsx";
+import SEO from "./SEO.jsx";
+import StructuredData from "./StructuredData.jsx";
 
 /**
  * DentalCity – Quizzes (solo quiz, sin mini-juego)

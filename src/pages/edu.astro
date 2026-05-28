@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+import EduClient from '../components-react/EduContent.jsx';
+---
+
+<Layout
+    title="Educación y Quizzes"
+    description="Aprende sobre odontología con nuestros quizzes interactivos. Test de ortodoncia, implantes, higiene dental y más."
+    keywords="educación dental, quizzes odontología, test dental, aprendizaje odontología"
+>
+    <EduClient client:load />
+</Layout>
+
+<style>
+    @import "../styles/global.css";
+</style>

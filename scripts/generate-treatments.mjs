@@ -1,0 +1,1025 @@
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import home from "../src/locales/es/home.json" with { type: "json" };
+import { TREATMENT_SLUGS, slugToItemKey } from "../src/data/treatmentSlugs.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const outPath = path.join(__dirname, "../src/locales/es/treatments.json");
+
+const PAGE_TITLES = {
+    implantes: "Implantes Dentales",
+    limpieza: "Limpieza Dental",
+    coronas: "Coronas Dentales",
+    resinas: "Resinas Dentales",
+    maxilofacial: "Cirugía Maxilofacial",
+    endodoncia: "Endodoncia",
+    periodoncia: "Periodoncia",
+    "guarda-oclusal": "Guarda Oclusal",
+    puentes: "Rehabilitación Oral",
+    alineadores: "Alineadores",
+    invisalign: "Invisalign",
+    brackets: "Brackets",
+    blanqueamientos: "Blanqueamientos",
+    carillas: "Carillas Dentales",
+    "limpieza-ninos": "Limpieza Dental para Niños",
+    selladores: "Selladores de Fosas y Fisuras",
+    extracciones: "Extracciones Dentales",
+    ortopedia: "Ortopedia Maxilar",
+    "armonizacion-facial": "Armonización Facial",
+    "diseno-sonrisa": "Diseño de Sonrisa",
+    "odontologia-biologica": "Odontología Biológica",
+};
+
+const IMPLANTES = {
+    pageTitle: "Implantes Dentales",
+    heroSubtitle:
+        "Reposición fija con implante premium Suizos Straumann de titanio o zirconio y corona de aspecto natural. La solución definitiva para recuperar tu sonrisa y funcionalidad dental.",
+    whatTitle: "¿En qué consisten los implantes dentales?",
+    whatParagraphs: [
+        "Los implantes dentales son la solución más avanzada y duradera para reemplazar dientes perdidos. Consisten en una raíz artificial de titanio o zirconio que se coloca quirúrgicamente en el hueso maxilar o mandibular, sobre la cual se fija una corona dental que restaura tanto la estética como la funcionalidad de tu sonrisa.",
+        "En Dental City utilizamos implantes Straumann, reconocidos mundialmente por su calidad premium y altas tasas de éxito. Estos implantes suizos ofrecen una integración ósea superior y una durabilidad excepcional.",
+    ],
+    highlightPhrase: "implantes Straumann",
+    benefitsTitle: "Beneficios de los Implantes Straumann",
+    steps: [
+        {
+            title: "Evaluación y Planificación",
+            description:
+                "Realizamos un estudio completo con radiografías 3D y planificación digital para determinar la mejor posición del implante.",
+        },
+        {
+            title: "Cirugía de Colocación",
+            description:
+                "Procedimiento quirúrgico guiado de 30-45 minutos bajo anestesia local. Colocación precisa del implante en el hueso.",
+        },
+        {
+            title: "Periodo de Osteointegración",
+            description:
+                "El implante se integra con el hueso durante 3-6 meses, formando una base sólida y estable.",
+        },
+        {
+            title: "Colocación de la Corona",
+            description:
+                "Una vez integrado, se coloca la corona dental personalizada que restaura la estética y funcionalidad completa.",
+        },
+    ],
+    benefits: [
+        "Colocación guiada para mayor precisión y confort",
+        "Materiales premium de la más alta calidad",
+        "Durabilidad de por vida con cuidados adecuados",
+        "Aspecto y sensación completamente naturales",
+        "Preservación del hueso maxilar",
+        "No afecta dientes adyacentes",
+    ],
+    timeLines: ["Cirugía: 30-45 minutos", "Periodo de integración: 3-6 meses"],
+    priceLines: ["$33,000 - $38,000 MXN por implante"],
+};
+
+const CORONAS = {
+    pageTitle: "Coronas Dentales",
+    heroSubtitle:
+        "Rehabilitación resistente y estética de dientes dañados. En Dental City combinamos experiencia clínica y tecnología para resultados naturales y duraderos.",
+    whatTitle: "¿Qué son las coronas dentales?",
+    whatParagraphs: [
+        "Las coronas dentales son fundas que cubren completamente un diente dañado, restaurando su forma, tamaño, fuerza y apariencia. Son la solución ideal para dientes que han sufrido fracturas extensas, caries grandes, o que han sido tratados con endodoncia.",
+        "En Dental City utilizamos materiales de la más alta calidad como disilicato de litio y zirconia de la marca suiza Ivoclar, que ofrecen una apariencia natural y una durabilidad excepcional. Nuestro proceso incluye tecnología digital para un ajuste perfecto y resultados estéticos superiores.",
+    ],
+    highlightPhrase: "disilicato de litio y zirconia de la marca suiza Ivoclar",
+    benefitsTitle: "Beneficios de las Coronas Dentales",
+    steps: [
+        {
+            title: "Preparación del Diente",
+            description:
+                "El diente se prepara removiendo la parte dañada y dándole la forma adecuada para recibir la corona.",
+        },
+        {
+            title: "Toma de Impresiones Digitales",
+            description:
+                "Utilizamos tecnología de escaneo digital 3D para crear un modelo preciso de tu diente y diseñar la corona perfecta.",
+        },
+        {
+            title: "Corona Temporal",
+            description:
+                "Se coloca una corona temporal mientras se fabrica la definitiva, protegiendo el diente preparado.",
+        },
+        {
+            title: "Colocación de la Corona Definitiva",
+            description:
+                "Una vez lista, la corona definitiva se ajusta, se verifica la oclusión y se cementa de forma permanente.",
+        },
+    ],
+    benefits: [
+        "Disilicato de litio y zirconia Ivoclar con ajuste digital",
+        "Restauración estética y natural",
+        "Durabilidad y resistencia excepcionales",
+        "Protección completa del diente",
+        "Mejora de la función masticatoria",
+        "Larga duración con cuidados adecuados",
+    ],
+    timeLines: ["2 citas de 60–90 min."],
+    priceLines: ["$9,000–$10,000 MXN por pieza."],
+};
+
+const LIMPIEZA = {
+    pageTitle: "Limpieza Dental",
+    heroSubtitle:
+        "Profilaxis profesional que elimina placa, sarro y manchas superficiales. Tratamiento preventivo esencial para mantener encías y dientes sanos.",
+    whatTitle: "¿Qué es una limpieza dental profesional?",
+    whatParagraphs: [
+        "La limpieza dental profesional, también conocida como profilaxis, es un procedimiento preventivo esencial que elimina la placa bacteriana, el sarro (cálculo dental) y las manchas superficiales que no se pueden remover con el cepillado diario en casa.",
+        "Este tratamiento es fundamental para prevenir enfermedades periodontales, caries y mantener una salud bucal óptima. En Dental City realizamos limpiezas dentales completas utilizando tecnología avanzada, incluyendo el uso de aeropulidor para una limpieza más profunda y efectiva.",
+    ],
+    highlightPhrase: "aeropulidor",
+    processTitle: "¿Qué incluye la limpieza dental?",
+    steps: [
+        {
+            title: "Remoción de Placa y Sarro",
+            description:
+                "Eliminación completa de placa bacteriana y sarro acumulado en la superficie de los dientes y debajo de la línea de las encías mediante instrumentos especializados.",
+        },
+        {
+            title: "Pulido Dental",
+            description:
+                "Pulido de las superficies dentales para eliminar manchas y dejar los dientes lisos, dificultando la acumulación futura de placa.",
+        },
+        {
+            title: "Aeropulidor (Opcional)",
+            description:
+                "Técnica avanzada que utiliza un chorro de agua con bicarbonato de sodio para eliminar manchas superficiales y lograr una limpieza más profunda.",
+        },
+        {
+            title: "Aplicación de Flúor",
+            description:
+                "En algunos casos, se aplica flúor para fortalecer el esmalte dental y prevenir la formación de caries.",
+        },
+    ],
+    benefitsTitle: "Beneficios de la Limpieza Dental Regular",
+    benefits: [
+        "Prevención de enfermedades periodontales",
+        "Eliminación de manchas y sarro",
+        "Prevención de caries",
+        "Mantenimiento de encías saludables",
+        "Frescor y limpieza bucal",
+        "Detección temprana de problemas dentales",
+    ],
+    extraSection: {
+        title: "¿Con qué frecuencia debo hacerme una limpieza?",
+        paragraphs: [
+            "Se recomienda realizar una limpieza dental profesional cada 6 meses. Sin embargo, en casos de enfermedad periodontal o acumulación excesiva de sarro, tu dentista puede recomendar limpiezas más frecuentes, cada 3-4 meses.",
+            "La frecuencia ideal depende de tu salud bucal individual, hábitos de higiene y factores de riesgo. Consulta con nuestros especialistas para determinar el plan de limpieza más adecuado para ti.",
+        ],
+    },
+    timeLines: ["45 min."],
+    priceLines: ["$1,200 (general) – $1,500 MXN (con aeropulidor)."],
+};
+
+const RESINAS = {
+    pageTitle: "Resinas Dentales",
+    heroSubtitle:
+        "Restauraciones estéticas del color del diente para caries, fracturas menores y desgaste. Resultados naturales con adhesión avanzada y pulido de alto brillo.",
+    whatTitle: "¿Qué son las resinas dentales?",
+    whatParagraphs: [
+        "Las resinas dentales, también conocidas como resinas compuestas o empastes estéticos, son materiales del color del diente que se utilizan para restaurar dientes afectados por caries, fracturas menores o desgaste.",
+        "A diferencia de los empastes de amalgama tradicionales, las resinas ofrecen una apariencia completamente natural que se integra perfectamente con el color y la forma de tus dientes. En Dental City utilizamos adhesión avanzada y pulido de alto brillo para lograr resultados estéticos excepcionales.",
+    ],
+    highlightPhrase: "adhesión avanzada y pulido de alto brillo",
+    steps: [
+        {
+            title: "Preparación del Diente",
+            description: "Se remueve el tejido cariado o dañado, preparando el área para la restauración.",
+        },
+        {
+            title: "Aplicación del Adhesivo",
+            description: "Se aplica un adhesivo especial que permite que la resina se adhiera firmemente al diente.",
+        },
+        {
+            title: "Colocación de la Resina",
+            description: "La resina se coloca en capas y se moldea para restaurar la forma natural del diente.",
+        },
+        {
+            title: "Endurecimiento y Pulido",
+            description:
+                "La resina se endurece con luz especial y luego se pule para lograr un acabado brillante y natural.",
+        },
+    ],
+    benefitsTitle: "Beneficios de las Resinas Dentales",
+    benefits: [
+        "Adhesión avanzada y pulido de alto brillo",
+        "Apariencia completamente natural",
+        "Conservación máxima del tejido dental",
+        "Procedimiento rápido y cómodo",
+        "Durabilidad y resistencia",
+        "Adecuado para adultos y niños",
+    ],
+    timeLines: ["40–60 min por pieza."],
+    priceLines: ["$1,500 MXN - $2,500 MXN (adulto, dependiendo el caso), $1,000 (niño) por pieza."],
+};
+
+const MAXILOFACIAL = {
+    pageTitle: "Cirugía Maxilofacial",
+    heroSubtitle:
+        "Procedimientos quirúrgicos especializados de boca, mandíbula, cara y cuello. Plan quirúrgico personalizado y control del dolor avanzado en Dental City.",
+    whatTitle: "¿Qué es la cirugía maxilofacial?",
+    whatParagraphs: [
+        "La cirugía maxilofacial es una especialidad que se enfoca en el diagnóstico y tratamiento quirúrgico de enfermedades, lesiones y defectos que afectan la boca, mandíbula, cara y cuello.",
+        "En Dental City realizamos procedimientos quirúrgicos especializados con plan quirúrgico personalizado y control del dolor avanzado. Nuestros cirujanos maxilofaciales están altamente capacitados para realizar desde extracciones complejas hasta cirugías reconstructivas.",
+    ],
+    highlightPhrase: "plan quirúrgico personalizado",
+    processTitle: "Procedimientos que Realizamos",
+    steps: [
+        {
+            title: "Evaluación y Diagnóstico",
+            description:
+                "Análisis completo con radiografías y estudios de imagen para planificar el procedimiento quirúrgico adecuado.",
+        },
+        {
+            title: "Plan Quirúrgico Personalizado",
+            description: "Desarrollo de un plan quirúrgico específico para tu caso, considerando todos los factores relevantes.",
+        },
+        {
+            title: "Procedimiento Quirúrgico",
+            description:
+                "Cirugía realizada con técnicas avanzadas, anestesia adecuada y control del dolor durante todo el proceso.",
+        },
+        {
+            title: "Seguimiento y Recuperación",
+            description: "Control postoperatorio y recomendaciones para una recuperación óptima y sin complicaciones.",
+        },
+    ],
+    benefitsTitle: "Tipos de Cirugías",
+    benefits: [
+        "Extracciones dentales complejas",
+        "Extracción de muelas del juicio",
+        "Cirugía de implantes dentales",
+        "Cirugía ortognática",
+        "Biopsias y lesiones",
+        "Cirugía reconstructiva",
+    ],
+    timeLines: ["45–120 min (según procedimiento)."],
+    priceLines: ["$5,000 – $25,000+ MXN (según complejidad)."],
+};
+
+const ENDODONCIA = {
+    pageTitle: "Endodoncia",
+    heroSubtitle:
+        "Tratamiento de conductos para salvar dientes con pulpa infectada o dañada. Conserva tu pieza dental natural con técnicas avanzadas en Dental City.",
+    whatTitle: "¿Qué es la endodoncia?",
+    whatParagraphs: [
+        "La endodoncia, también conocida como tratamiento de conductos, es un procedimiento que se realiza para salvar un diente que tiene la pulpa (nervio) infectada o dañada. En lugar de extraer el diente, se limpia y sella el conducto radicular, permitiendo conservar la pieza dental natural.",
+        "Este tratamiento es necesario cuando la pulpa dental se inflama o infecta debido a caries profundas, fracturas, o traumatismos. En Dental City realizamos desinfección, conformación y sellado del conducto con técnicas avanzadas para garantizar el éxito del tratamiento.",
+    ],
+    highlightPhrase: "desinfección, conformación y sellado del conducto",
+    steps: [
+        {
+            title: "Diagnóstico y Anestesia",
+            description:
+                "Evaluación del diente y aplicación de anestesia local para garantizar tu comodidad durante el procedimiento.",
+        },
+        {
+            title: "Apertura y Acceso",
+            description:
+                "Se realiza una pequeña apertura en la corona del diente para acceder a la pulpa y los conductos radiculares.",
+        },
+        {
+            title: "Limpieza y Desinfección",
+            description:
+                "Se remueve la pulpa infectada y se limpian y desinfectan completamente los conductos radiculares.",
+        },
+        {
+            title: "Conformación y Sellado",
+            description:
+                "Los conductos se conforman y se sellan con material especial para prevenir futuras infecciones.",
+        },
+        {
+            title: "Restauración Final",
+            description:
+                "El diente se restaura con una corona o resina para protegerlo y restaurar su funcionalidad.",
+        },
+    ],
+    benefitsTitle: "Beneficios de la Endodoncia",
+    benefits: [
+        "Conservación de tu diente natural",
+        "Desinfección, conformación y sellado del conducto",
+        "Eliminación del dolor y la infección",
+        "Evita la necesidad de extracción",
+        "Mantiene la estética y función dental",
+        "Procedimiento cómodo con anestesia local",
+    ],
+    timeLines: ["60–120 min (1–2 citas)."],
+    priceLines: ["$4,900 MXN."],
+};
+
+const PERIODONCIA = {
+    pageTitle: "Periodoncia",
+    heroSubtitle:
+        "Diagnóstico, prevención y tratamiento de enfermedades de encías y tejidos de soporte. Terapia periodontal y mantenimiento especializado en Dental City.",
+    whatTitle: "¿Qué es la periodoncia?",
+    whatParagraphs: [
+        "La periodoncia es la especialidad dental que se enfoca en el diagnóstico, prevención y tratamiento de las enfermedades que afectan las encías y los tejidos que soportan los dientes, incluyendo el hueso alveolar.",
+        "Las enfermedades periodontales, como la gingivitis y la periodontitis, pueden causar inflamación, sangrado de encías, y en casos avanzados, pérdida de dientes. En Dental City ofrecemos terapia periodontal no quirúrgica y mantenimiento especializado para mantener tus encías saludables.",
+    ],
+    highlightPhrase: "terapia periodontal no quirúrgica y mantenimiento",
+    steps: [
+        {
+            title: "Evaluación Periodontal",
+            description:
+                "Examen completo de encías, medición de bolsas periodontales y evaluación del estado de los tejidos de soporte.",
+        },
+        {
+            title: "Raspado y Alisado Radicular",
+            description:
+                "Limpieza profunda para remover placa y sarro de las raíces dentales y debajo de la línea de las encías.",
+        },
+        {
+            title: "Terapia Adicional",
+            description:
+                "En casos necesarios, se pueden realizar procedimientos adicionales como alargamiento de corona o cirugía periodontal.",
+        },
+        {
+            title: "Mantenimiento Periódico",
+            description:
+                "Seguimiento regular con limpiezas profundas para mantener la salud periodontal y prevenir recaídas.",
+        },
+    ],
+    benefitsTitle: "Beneficios del Tratamiento Periodontal",
+    benefits: [
+        "Terapia periodontal no quirúrgica y mantenimiento",
+        "Prevención de pérdida de dientes",
+        "Mejora de la salud de las encías",
+        "Eliminación de sangrado e inflamación",
+        "Prevención de enfermedades sistémicas",
+        "Mantenimiento de la estética dental",
+    ],
+    timeLines: ["60–90 min por cuadrante."],
+    priceLines: ["$1,500–$3,000 MXN (mantenimiento). $4,200 (alargamiento de corona)"],
+};
+
+const GUARDA_OCLUSAL = {
+    pageTitle: "Guarda Oclusal",
+    heroSubtitle:
+        "Dispositivo personalizado para proteger tus dientes del bruxismo y aliviar la sobrecarga en la ATM. Impresión digital, ajuste preciso y opción CEREC en Dental City.",
+    whatTitle: "¿Qué es un guarda oclusal?",
+    whatParagraphs: [
+        "Un guarda oclusal es un dispositivo dental personalizado que se coloca sobre los dientes para protegerlos del desgaste causado por el bruxismo (rechinar o apretar los dientes) y para aliviar la sobrecarga en la articulación temporomandibular (ATM).",
+        "Estos dispositivos están diseñados específicamente para tu boca, ofreciendo un ajuste perfecto y máxima comodidad. En Dental City realizamos toma de impresión/escaneo y ajuste personalizado para garantizar la efectividad del tratamiento. También ofrecemos guardas funcionales CEREC fabricadas con tecnología digital de última generación.",
+    ],
+    highlightPhrase: "guardas funcionales CEREC",
+    steps: [
+        {
+            title: "Evaluación y Diagnóstico",
+            description:
+                "Examen de tu mordida y evaluación del bruxismo o problemas de ATM para determinar el tipo de guarda necesario.",
+        },
+        {
+            title: "Toma de Impresión o Escaneo",
+            description:
+                "Se toma una impresión tradicional o se realiza un escaneo digital 3D de tu boca para crear el modelo exacto.",
+        },
+        {
+            title: "Fabricación Personalizada",
+            description:
+                "El guarda se fabrica en el laboratorio o con tecnología CEREC según el tipo elegido, asegurando un ajuste perfecto.",
+        },
+        {
+            title: "Ajuste y Entrega",
+            description:
+                "Se realiza el ajuste final del guarda para garantizar comodidad y efectividad, y se te entrega con instrucciones de uso y cuidado.",
+        },
+    ],
+    benefitsTitle: "Beneficios del Guarda Oclusal",
+    benefits: [
+        "Protección contra bruxismo y desgaste dental",
+        "Alivio de sobrecarga en la ATM",
+        "Toma de impresión/escaneo y ajuste personalizado",
+        "Reducción de dolores de cabeza y mandíbula",
+        "Prevención de fracturas dentales",
+        "Mejora de la calidad del sueño",
+    ],
+    timeLines: ["2 citas de 20–30 min", "Entrega en 5–7 días"],
+    priceLines: ["$2,500 MXN (guarda oclusal), $4,500 MXN (guarda funcional CEREC)."],
+};
+
+const PUENTES = {
+    pageTitle: "Rehabilitación Oral",
+    heroSubtitle:
+        "Restaura función masticatoria, estética y salud bucal con prótesis fijas como puentes dentales y coronas. Diseño y ajuste de oclusión en Dental City.",
+    whatTitle: "¿Qué es la rehabilitación oral?",
+    whatParagraphs: [
+        "La rehabilitación oral es un conjunto de tratamientos que buscan restaurar la función masticatoria, la estética y la salud bucal mediante prótesis fijas como puentes dentales, coronas y otros dispositivos protésicos.",
+        "Los puentes dentales son una solución fija que reemplaza uno o más dientes perdidos, utilizando los dientes adyacentes como soporte. En Dental City realizamos diseño y ajuste de oclusión para garantizar estabilidad y funcionalidad óptima.",
+    ],
+    highlightPhrase: "diseño y ajuste de oclusión",
+    steps: [
+        {
+            title: "Evaluación y Planificación",
+            description:
+                "Análisis completo de tu caso para determinar el tipo de puente más adecuado y la preparación necesaria.",
+        },
+        {
+            title: "Preparación de los Dientes Pilares",
+            description: "Los dientes adyacentes se preparan para recibir el puente, asegurando un soporte sólido.",
+        },
+        {
+            title: "Toma de Impresiones",
+            description:
+                "Se toman impresiones precisas o se realiza un escaneo digital para fabricar el puente a medida.",
+        },
+        {
+            title: "Puente Temporal",
+            description:
+                "Se coloca un puente temporal mientras se fabrica el definitivo, protegiendo los dientes preparados.",
+        },
+        {
+            title: "Colocación del Puente Definitivo",
+            description:
+                "El puente definitivo se ajusta, se verifica la oclusión y se cementa de forma permanente.",
+        },
+    ],
+    benefitsTitle: "Beneficios de la Rehabilitación Oral",
+    benefits: [
+        "Diseño y ajuste de oclusión para estabilidad",
+        "Restauración de la función masticatoria",
+        "Mejora de la estética dental",
+        "Solución fija y permanente",
+        "Prevención de movimientos dentales",
+        "Distribución adecuada de fuerzas masticatorias",
+    ],
+    timeLines: ["2–3 citas de 60–90 min."],
+    priceLines: ["$27,000 - $30,000 MXN (puente de 3 unidades)."],
+};
+
+const INVISALIGN = {
+    pageTitle: "Invisalign",
+    heroSubtitle:
+        "Ortodoncia invisible con alineadores transparentes y planeación digital 3D. Clínica diamante Invisalign con laboratorio propio en Dental City.",
+    whatTitle: "¿Qué es Invisalign?",
+    whatParagraphs: [
+        "Invisalign es el sistema de ortodoncia invisible más avanzado del mundo. Utiliza alineadores transparentes y removibles fabricados con tecnología 3D para mover los dientes de forma gradual y precisa hacia su posición ideal.",
+        "En Dental City somos clínica diamante Invisalign con laboratorio propio. Ofrecemos planeación digital que te permite ver el resultado final antes de comenzar, garantizando comodidad y control preciso del tratamiento.",
+    ],
+    highlightPhrase: "clínica diamante Invisalign",
+    steps: [
+        {
+            title: "Consulta y Evaluación",
+            description:
+                "Escaneo 3D de tu boca y análisis completo de tu caso para determinar si Invisalign es adecuado para ti.",
+        },
+        {
+            title: "Planeación Digital",
+            description:
+                "Creación de un plan de tratamiento personalizado con simulación 3D que muestra el resultado final esperado.",
+        },
+        {
+            title: "Fabricación de Alineadores",
+            description:
+                "Se fabrican tus alineadores personalizados utilizando tecnología de impresión 3D de última generación.",
+        },
+        {
+            title: "Uso y Seguimiento",
+            description:
+                "Usas cada juego de alineadores durante 1-2 semanas, con citas de control periódicas para monitorear el progreso.",
+        },
+    ],
+    benefitsTitle: "Ventajas de Invisalign",
+    benefits: [
+        "Alineadores invisibles y removibles",
+        "Comodidad y control preciso del tratamiento",
+        "Planeación digital con simulación 3D",
+        "Sin brackets ni alambres visibles",
+        "Fácil limpieza y mantenimiento",
+        "Citas de control periódicas",
+    ],
+    timeLines: ["6–18 meses", "Citas de control periódicas"],
+    priceLines: ["$50,000 – $85,000 MXN (según complejidad)."],
+};
+
+const BRACKETS = {
+    pageTitle: "Brackets",
+    heroSubtitle:
+        "Ortodoncia fija para corregir mordida, alineación y espaciado. Brackets metálicos y estéticos en Dental City.",
+    whatTitle: "¿Qué son los brackets?",
+    whatParagraphs: [
+        "Los brackets son el sistema de ortodoncia fija más tradicional y efectivo. Consisten en pequeños brackets adheridos a los dientes que, junto con alambres y bandas elásticas, aplican fuerzas controladas para mover los dientes gradualmente a su posición correcta.",
+        "En Dental City ofrecemos brackets metálicos y brackets estéticos (cerámicos o de zafiro) según las necesidades de cada caso. Este tratamiento es ideal para corregir problemas de mordida, alineación y espaciado dental.",
+    ],
+    highlightPhrase: "brackets estéticos",
+    steps: [
+        {
+            title: "Evaluación y Diagnóstico",
+            description:
+                "Análisis completo con radiografías y modelos para determinar el plan de tratamiento más adecuado.",
+        },
+        {
+            title: "Colocación de Brackets",
+            description:
+                "Se adhieren los brackets a los dientes y se colocan los alambres iniciales para comenzar el movimiento.",
+        },
+        {
+            title: "Ajustes Periódicos",
+            description:
+                "Citas mensuales para ajustar los alambres y bandas elásticas, controlando el progreso del tratamiento.",
+        },
+        {
+            title: "Retención",
+            description:
+                "Una vez completado el tratamiento, se colocan retenedores para mantener los resultados obtenidos.",
+        },
+    ],
+    benefitsTitle: "Tipos de Brackets",
+    benefits: [
+        "Brackets metálicos (tradicionales)",
+        "Brackets estéticos (cerámicos o zafiro)",
+        "Opciones según el caso",
+        "Corrección de mordida y alineación",
+        "Tratamiento completo incluido",
+        "Citas mensuales de seguimiento",
+    ],
+    timeLines: ["18–24 meses", "Citas mensuales"],
+    priceLines: ["$33,000 – $52,000 MXN el tratamiento."],
+};
+
+const BLANQUEAMIENTOS = {
+    pageTitle: "Blanqueamientos",
+    heroSubtitle:
+        "Aclara el color natural de tus dientes de forma segura y efectiva. Blanqueamiento en clínica y/o domiciliario supervisado en Dental City.",
+    whatTitle: "¿Qué es el blanqueamiento dental?",
+    whatParagraphs: [
+        "El blanqueamiento dental es un procedimiento estético que aclara el color natural de los dientes, eliminando manchas y decoloraciones causadas por alimentos, bebidas, tabaco o el envejecimiento natural.",
+        "En Dental City ofrecemos tratamientos de blanqueamiento en clínica y/o domiciliario supervisado, adaptados a tus necesidades específicas. Utilizamos productos seguros y efectivos que proporcionan resultados visibles en poco tiempo.",
+    ],
+    highlightPhrase: "en clínica y/o domiciliario supervisado",
+    processTitle: "Tipos de Blanqueamiento",
+    steps: [
+        {
+            title: "Blanqueamiento en Clínica",
+            description:
+                "Tratamiento realizado en nuestra clínica con productos de alta concentración y luz especializada para resultados inmediatos.",
+        },
+        {
+            title: "Blanqueamiento Domiciliario",
+            description:
+                "Tratamiento supervisado que realizas en casa con férulas personalizadas y gel blanqueador proporcionado por nuestro equipo.",
+        },
+        {
+            title: "Tratamiento Combinado",
+            description:
+                "Combinación de ambos métodos para obtener los mejores resultados: sesión inicial en clínica seguida de mantenimiento en casa.",
+        },
+    ],
+    benefitsTitle: "Beneficios del Blanqueamiento",
+    benefits: [
+        "En clínica y/o domiciliario supervisado",
+        "Resultados visibles en poco tiempo",
+        "Tratamiento seguro y efectivo",
+        "Mejora significativa de la estética",
+        "Aumenta la confianza y autoestima",
+        "Mantenimiento con retoques periódicos",
+    ],
+    timeLines: ["45–60 min por sesión."],
+    priceLines: ["$3900 MXN (completo) / $1,500 MXN (retoque)."],
+};
+
+const CARILLAS = {
+    pageTitle: "Carillas Dentales",
+    heroSubtitle:
+        "Láminas estéticas personalizadas para transformar tu sonrisa. Carillas de cerámica y resina con mínima preparación en Dental City.",
+    whatTitle: "¿Qué son las carillas dentales?",
+    whatParagraphs: [
+        "Las carillas dentales son láminas delgadas de material estético que se adhieren a la superficie frontal de los dientes para mejorar su apariencia. Son la solución ideal para corregir dientes manchados, desalineados, con espacios, o con formas irregulares.",
+        "En Dental City ofrecemos carillas de cerámica y resina, con mínima preparación según el caso. Cada carilla se diseña y fabrica de forma personalizada para lograr resultados naturales y duraderos.",
+    ],
+    highlightPhrase: "cerámica y resina",
+    steps: [
+        {
+            title: "Consulta y Diseño",
+            description:
+                "Evaluación de tu sonrisa y diseño digital de las carillas para visualizar el resultado final.",
+        },
+        {
+            title: "Preparación del Diente",
+            description: "Preparación mínima del diente (si es necesaria) para crear espacio para la carilla.",
+        },
+        {
+            title: "Toma de Impresiones",
+            description:
+                "Impresiones precisas o escaneo digital para fabricar las carillas personalizadas en el laboratorio.",
+        },
+        {
+            title: "Colocación de Carillas",
+            description:
+                "Las carillas se adhieren permanentemente a los dientes con un cemento especial de alta resistencia.",
+        },
+    ],
+    benefitsTitle: "Beneficios de las Carillas",
+    benefits: [
+        "Cerámica o resina con mínima preparación",
+        "Forma y color perfectos",
+        "Resultados naturales y duraderos",
+        "Corrección de múltiples problemas estéticos",
+        "Resistencia a manchas",
+        "Transformación completa de la sonrisa",
+    ],
+    timeLines: ["2–3 citas", "Laboratorio 7–14 días"],
+    priceLines: ["$6,000–$12,000 MXN por pieza (dependiendo del material)."],
+};
+
+const LIMPIEZA_NINOS = {
+    pageTitle: "Limpieza Dental para Niños",
+    heroSubtitle:
+        "Profilaxis infantil amable y educativa en Dental City Kids & Family, nuestra clínica especializada para niños con odontopediatras de amplia experiencia.",
+    whatTitle: "¿Qué es la limpieza dental para niños?",
+    whatParagraphs: [
+        "La limpieza dental para niños es una profilaxis preventiva diseñada especialmente para los más pequeños. Elimina placa y sarro de forma suave y educativa, ayudando a prevenir caries y mantener encías sanas desde temprana edad.",
+        "Este tratamiento se realiza en Dental City Kids & Family, nuestra clínica dedicada exclusivamente a niños y adolescentes en Zapopan. Contamos con odontopediatras con amplia experiencia, entrenados para brindar una atención amigable, paciente y efectiva que genera confianza en los niños.",
+    ],
+    highlightPhrase: "Dental City Kids & Family",
+    processTitle: "¿Qué incluye la limpieza dental infantil?",
+    steps: [
+        {
+            title: "Bienvenida y Ambiente Amigable",
+            description:
+                "Ambiente diseñado para niños, donde el odontopediatra explica el procedimiento de forma lúdica y tranquila para que se sientan cómodos.",
+        },
+        {
+            title: "Limpieza Suave",
+            description:
+                "Remoción gentil de placa y sarro con técnicas adaptadas a la sensibilidad y necesidades de cada niño.",
+        },
+        {
+            title: "Pulido y Barniz de Flúor",
+            description: "Pulido dental y aplicación de barniz de flúor para fortalecer el esmalte y prevenir caries.",
+        },
+        {
+            title: "Educación en Higiene",
+            description:
+                "Consejos personalizados de cepillado y hábitos saludables para padres y niños, fomentando el cuidado dental en casa.",
+        },
+    ],
+    benefitsTitle: "Beneficios de la Limpieza Dental Infantil",
+    benefits: [
+        "Atención por odontopediatras con amplia experiencia",
+        "Ambiente amigable en Dental City Kids & Family",
+        "Limpieza suave, barniz de flúor y consejos de higiene",
+        "Prevención de caries desde la infancia",
+        "Genera confianza y hábitos positivos",
+        "Detección temprana de problemas dentales",
+    ],
+    extraSection: {
+        title: "Dental City Kids & Family",
+        paragraphs: [
+            "Dental City Kids es nuestra sucursal especializada para niños y adolescentes. Cuenta con instalaciones pensadas para ellos, equipo de odontopediatría y ortodoncia infantil, y un trato cálido que hace que cada visita sea una experiencia positiva.",
+            "Nuestros odontopediatras cuentan con años de experiencia atendiendo a los más pequeños. Además de limpiezas dentales, ofrecemos selladores, ortopedia infantil y todos los cuidados que tu hijo necesita en un solo lugar.",
+        ],
+    },
+    timeLines: ["30 min."],
+    priceLines: ["$950 MXN."],
+};
+
+const ORTOPEDIA = {
+    pageTitle: "Ortopedia Maxilar Infantil",
+    heroSubtitle:
+        "Guía del crecimiento maxilar y mandibular en niños y adolescentes en Dental City Kids & Family, con aparatología funcional personalizada y seguimiento especializado.",
+    whatTitle: "¿Qué es la ortopedia maxilar infantil?",
+    whatParagraphs: [
+        "La ortopedia maxilar es un tratamiento interceptivo que guía el crecimiento y desarrollo de los maxilares en niños y adolescentes. Corrige hábitos y desequilibrios óseos en etapas tempranas para prevenir problemas más complejos en el futuro y favorecer una mordida armónica.",
+        "En Dental City Kids & Family realizamos ortopedia maxilar con aparatología funcional personalizada, en un ambiente diseñado para los más pequeños y con especialistas en odontopediatría y ortodoncia infantil que acompañan a tu hijo en cada etapa del tratamiento.",
+    ],
+    highlightPhrase: "Dental City Kids & Family",
+    processTitle: "Proceso de Ortopedia Maxilar",
+    steps: [
+        {
+            title: "Evaluación y Diagnóstico",
+            description:
+                "Valoración del crecimiento maxilar y mandibular, hábitos orales y desarrollo dental en consulta infantil para determinar el plan más adecuado.",
+        },
+        {
+            title: "Plan de Tratamiento",
+            description:
+                "Diseño de aparatología funcional adaptada a la edad, etapa de crecimiento y necesidades específicas de cada paciente.",
+        },
+        {
+            title: "Colocación y Seguimiento",
+            description:
+                "Instalación del aparato ortopédico y revisiones bimestrales para ajustes, supervisión del progreso y apoyo a padres y paciente.",
+        },
+        {
+            title: "Monitoreo del Crecimiento",
+            description:
+                "Controles periódicos hasta completar la guía ósea, preparando si es necesario la siguiente fase de ortodoncia.",
+        },
+    ],
+    benefitsTitle: "Beneficios de la Ortopedia Infantil",
+    benefits: [
+        "Guía del crecimiento maxilar y mandibular en edades tempranas",
+        "Aparatología funcional personalizada y controles periódicos",
+        "Atención especializada en Dental City Kids & Family",
+        "Prevención de tratamientos ortodónticos más complejos",
+        "Ambiente amigable para niños y adolescentes",
+        "Equipo de odontopediatría y ortodoncia infantil",
+    ],
+    extraSection: {
+        title: "Dental City Kids & Family",
+        paragraphs: [
+            "Dental City Kids es nuestra sucursal especializada para niños y adolescentes en Zapopan. Cuenta con instalaciones pensadas para ellos, equipo de odontopediatría y ortodoncia infantil, y un trato cálido que hace que cada visita sea una experiencia positiva.",
+            "La ortopedia maxilar se realiza aquí con el mismo enfoque: atención personalizada, explicaciones claras para padres y niños, y todos los cuidados que tu hijo necesita en un solo lugar — desde limpiezas y selladores hasta ortopedia y ortodoncia.",
+        ],
+    },
+    timeLines: ["6–18 meses; revisiones bimestrales."],
+    priceLines: ["$20,000 – $28,000 MXN (según aparatología)."],
+};
+
+const EXTRACCIONES = {
+    pageTitle: "Extracciones Dentales",
+    heroSubtitle:
+        "Extracciones simples y de muelas del juicio con enfoque mínimamente invasivo, anestesia local y cuidados postoperatorios en Dental City.",
+    whatTitle: "¿Cuándo es necesaria una extracción?",
+    whatParagraphs: [
+        "Las extracciones dentales pueden ser necesarias por diversas razones: dientes muy dañados que no pueden restaurarse, muelas del juicio que causan problemas, dientes supernumerarios, o para crear espacio en tratamientos de ortodoncia.",
+        "En Dental City realizamos extracciones con un enfoque mínimamente invasivo, utilizando anestesia local para garantizar tu comodidad y proporcionando un manejo postoperatorio adecuado para una recuperación rápida y sin complicaciones.",
+    ],
+    highlightPhrase: "enfoque mínimamente invasivo",
+    processTitle: "Proceso del Procedimiento",
+    steps: [
+        {
+            title: "Evaluación y Diagnóstico",
+            description:
+                "Radiografías y examen clínico para evaluar la posición del diente y planificar la extracción.",
+        },
+        {
+            title: "Anestesia Local",
+            description: "Aplicación de anestesia local para garantizar que no sientas dolor durante el procedimiento.",
+        },
+        {
+            title: "Extracción",
+            description:
+                "Procedimiento realizado con técnicas mínimamente invasivas para remover el diente de forma segura.",
+        },
+        {
+            title: "Cuidados Postoperatorios",
+            description:
+                "Instrucciones detalladas y seguimiento para asegurar una recuperación adecuada y sin complicaciones.",
+        },
+    ],
+    benefitsTitle: "Tipos de Extracciones",
+    benefits: [
+        "Extracciones simples (incisivos, caninos)",
+        "Extracción de muelas del juicio (cordales)",
+        "Enfoque mínimamente invasivo",
+        "Anestesia local y manejo postoperatorio",
+        "Procedimiento seguro y cómodo",
+        "Recuperación rápida",
+    ],
+    timeLines: ["20–60 min (según complejidad)."],
+    priceLines: ["$2000 MXN (Incisivo) / $3000 MXN (muelas del juicio)."],
+};
+
+const ARMONIZACION_FACIAL = {
+    pageTitle: "Armonización Facial",
+    heroSubtitle:
+        "Equilibra y realza tus rasgos con toxina botulínica (Botox) y rellenos dérmicos. Resultados naturales en Dental City.",
+    whatTitle: "¿Qué es la armonización facial?",
+    whatParagraphs: [
+        "La armonización facial es un conjunto de tratamientos estéticos que buscan equilibrar y realzar los rasgos faciales de forma natural mediante el uso de toxina botulínica (Botox) y rellenos dérmicos.",
+        "Estos procedimientos permiten atenuar líneas de expresión, realzar volumen de forma sutil, y también pueden utilizarse para tratar el bruxismo mediante la aplicación de Botox en los músculos maseteros. Los resultados son naturales y pueden durar de 4 a 12 meses según el tratamiento.",
+    ],
+    highlightPhrase: "toxina botulínica (Botox)",
+    processTitle: "Tratamientos Disponibles",
+    steps: [
+        {
+            title: "Toxina Botulínica (Botox)",
+            description:
+                "Atenuación de líneas de expresión, tratamiento de bruxismo, y relajación de músculos faciales para un aspecto más joven y relajado.",
+        },
+        {
+            title: "Rellenos Dérmicos",
+            description:
+                "Realce de volumen sutil en labios, mejillas y otras áreas faciales para lograr equilibrio y armonía natural.",
+        },
+        {
+            title: "Botox para Bruxismo",
+            description:
+                "Aplicación específica de toxina botulínica en músculos maseteros para reducir el apretamiento y rechinamiento dental.",
+        },
+    ],
+    benefitsTitle: "Beneficios de la Armonización Facial",
+    benefits: [
+        "Atenuación de líneas y realce de volumen sutil",
+        "Resultados naturales y equilibrados",
+        "Tratamiento de bruxismo con Botox",
+        "Procedimiento rápido y mínimamente invasivo",
+        "Resultados visibles en poco tiempo",
+        "Duración de 4-12 meses según tratamiento",
+    ],
+    timeLines: ["20–40 min", "Resultados de 4–12 meses"],
+    priceLines: ["$5000 MXN por zona (Botox Bruxismo) / $2,800 (baby botox)."],
+};
+
+const DISENO_SONRISA = {
+    pageTitle: "Diseño de Sonrisa",
+    heroSubtitle:
+        "Sonrisa personalizada con fotografía clínica, análisis de proporciones, mock-up digital y ejecución guiada en Dental City.",
+    whatTitle: "¿Qué es el diseño de sonrisa?",
+    whatParagraphs: [
+        "El diseño de sonrisa es un proceso integral que combina arte, ciencia y tecnología para crear una sonrisa personalizada que se adapte perfectamente a tus características faciales, personalidad y necesidades estéticas.",
+        "En Dental City realizamos un plan estético integral que incluye fotografía clínica, análisis de proporciones, mock-up digital y pruebas previas para que puedas visualizar el resultado final antes de comenzar el tratamiento.",
+    ],
+    highlightPhrase: "mock-up digital",
+    processTitle: "Proceso del Diseño de Sonrisa",
+    steps: [
+        {
+            title: "Fotografía Clínica y Análisis",
+            description:
+                "Sesión de fotografía clínica profesional y análisis detallado de proporciones faciales y dentales.",
+        },
+        {
+            title: "Diseño Digital",
+            description:
+                "Creación de un mock-up digital que muestra cómo se verá tu nueva sonrisa, permitiéndote aprobar el diseño antes de comenzar.",
+        },
+        {
+            title: "Pruebas Previas (Mock-up)",
+            description:
+                "Aplicación de un mock-up temporal en tu boca para que puedas ver y sentir cómo será tu nueva sonrisa.",
+        },
+        {
+            title: "Ejecución Guiada",
+            description:
+                "Realización del tratamiento planificado con precisión, siguiendo el diseño aprobado para lograr los resultados deseados.",
+        },
+    ],
+    benefitsTitle: "Componentes del Diseño de Sonrisa",
+    benefits: [
+        "Fotografía clínica y análisis de proporciones",
+        "Mock-up digital y pruebas previas",
+        "Plan estético integral personalizado",
+        "Ejecución guiada del tratamiento",
+        "Recontorneo gingival disponible",
+        "Resultados naturales y armónicos",
+    ],
+    timeLines: ["1–3 citas para diagnóstico y mock-up."],
+    priceLines: [
+        "Estudio $5000 MXN; tratamiento final según plan ($10,000–$60,000 MXN). Recontorneo gingival desde $5000 MXN.",
+    ],
+};
+
+const ODONTOLOGIA_BIOLOGICA = {
+    pageTitle: "Odontología Biológica",
+    heroSubtitle:
+        "Enfoque integral que conecta la salud bucal con el bienestar general, usando materiales biocompatibles y técnicas mínimamente invasivas en Dental City.",
+    whatTitle: "¿Qué es la odontología biológica?",
+    whatParagraphs: [
+        "La odontología biológica considera la boca como parte integral del cuerpo. Prioriza materiales biocompatibles, procedimientos mínimamente invasivos y tratamientos que respetan la salud general del paciente, reconociendo que lo que ocurre en la boca repercute en todo el organismo.",
+        "En Dental City aplicamos este enfoque en restauraciones, endodoncia, periodoncia y rehabilitaciones, evitando materiales tóxicos cuando es posible y utilizando protocolos seguros para la remoción de amalgamas cuando el paciente lo requiere.",
+    ],
+    highlightPhrase: "materiales biocompatibles",
+    processTitle: "Nuestro Enfoque en Odontología Biológica",
+    steps: [
+        {
+            title: "Evaluación Integral",
+            description:
+                "Valoración clínica que considera tu historial de salud, sensibilidades y objetivos, no solo el problema dental aislado.",
+        },
+        {
+            title: "Plan Personalizado",
+            description:
+                "Diseño de tratamiento con materiales biocompatibles y técnicas conservadoras adaptadas a tu caso.",
+        },
+        {
+            title: "Tratamiento Mínimamente Invasivo",
+            description:
+                "Procedimientos que preservan la mayor cantidad de estructura dental sana posible.",
+        },
+        {
+            title: "Seguimiento y Prevención",
+            description:
+                "Controles y recomendaciones para mantener la salud bucal y general a largo plazo.",
+        },
+    ],
+    benefitsTitle: "Beneficios de la Odontología Biológica",
+    benefits: [
+        "Materiales biocompatibles y libres de mercurio",
+        "Enfoque integral que conecta boca y salud general",
+        "Técnicas mínimamente invasivas y conservadoras",
+        "Protocolo seguro para remoción de amalgamas",
+        "Detección temprana y prevención personalizada",
+        "Atención humana y plan de tratamiento transparente",
+    ],
+    timeLines: ["Variable según tratamiento y plan integral."],
+    priceLines: ["A cotizar tras valoración clínica."],
+};
+
+function parseTimePrice(bullets) {
+    let timeLines = [];
+    let priceLines = [];
+    for (const b of bullets) {
+        const lower = b.toLowerCase();
+        if (lower.includes("tiempo estimado")) {
+            const rest = b.replace(/^[^:]*:\s*/i, "").trim();
+            timeLines = rest.split(/[;,]/).map((s) => s.trim()).filter(Boolean);
+            if (timeLines.length === 1 && timeLines[0].length > 0) {
+                timeLines = [timeLines[0]];
+            }
+        }
+        if (lower.includes("precio estimado")) {
+            const rest = b.replace(/^[^:]*:\s*/i, "").trim();
+            priceLines = [rest];
+        }
+    }
+    return { timeLines, priceLines };
+}
+
+function genericSteps(name) {
+    return [
+        {
+            title: "Evaluación y Diagnóstico",
+            description: `Valoración clínica personalizada para determinar si ${name} es la mejor opción para tu caso.`,
+        },
+        {
+            title: "Planificación del Tratamiento",
+            description: "Diseñamos un plan a medida con tiempos, materiales y objetivos claros.",
+        },
+        {
+            title: "Procedimiento",
+            description: `Realizamos ${name} con protocolos de precisión, confort y seguridad en Dental City.`,
+        },
+        {
+            title: "Seguimiento",
+            description: "Control postoperatorio y recomendaciones para mantener los mejores resultados.",
+        },
+    ];
+}
+
+function buildEntry(slug) {
+    if (slug === "implantes") return IMPLANTES;
+    if (slug === "coronas") return CORONAS;
+    if (slug === "limpieza") return LIMPIEZA;
+    if (slug === "resinas") return RESINAS;
+    if (slug === "maxilofacial") return MAXILOFACIAL;
+    if (slug === "endodoncia") return ENDODONCIA;
+    if (slug === "periodoncia") return PERIODONCIA;
+    if (slug === "guarda-oclusal") return GUARDA_OCLUSAL;
+    if (slug === "puentes") return PUENTES;
+    if (slug === "invisalign") return INVISALIGN;
+    if (slug === "brackets") return BRACKETS;
+    if (slug === "blanqueamientos") return BLANQUEAMIENTOS;
+    if (slug === "carillas") return CARILLAS;
+    if (slug === "limpieza-ninos") return LIMPIEZA_NINOS;
+    if (slug === "ortopedia") return ORTOPEDIA;
+    if (slug === "extracciones") return EXTRACCIONES;
+    if (slug === "armonizacion-facial") return ARMONIZACION_FACIAL;
+    if (slug === "diseno-sonrisa") return DISENO_SONRISA;
+    if (slug === "odontologia-biologica") return ODONTOLOGIA_BIOLOGICA;
+
+    const modal = home.serviceModal.byService[slug] ?? home.serviceModal.byService.default;
+    const itemKey = slugToItemKey(slug);
+    const item = home.services.items[itemKey] ?? { title: slug, desc: "" };
+    const pageTitle = PAGE_TITLES[slug] ?? item.title;
+    const { timeLines, priceLines } = parseTimePrice(modal.bullets);
+
+    const feature = modal.bullets[0]?.replace(/\.$/, "") ?? "Atención personalizada y de alta calidad";
+    const extraBenefits = [
+        "Equipo especializado con experiencia comprobada",
+        "Tecnología digital para mayor precisión",
+        "Enfoque en confort y mínima invasión",
+        "Plan de tratamiento transparente",
+        "Seguimiento cercano en cada etapa",
+    ];
+
+    return {
+        pageTitle,
+        heroSubtitle: `${modal.subtitle} En Dental City combinamos experiencia clínica y tecnología para resultados naturales y duraderos.`,
+        whatTitle: `¿En qué consiste ${pageTitle.toLowerCase()}?`,
+        whatParagraphs: [
+            `${item.desc} ${modal.subtitle}`,
+            "En Dental City personalizamos cada tratamiento según tu diagnóstico, priorizando estética, funcionalidad y bienestar a largo plazo.",
+        ],
+        steps: genericSteps(pageTitle.toLowerCase()),
+        benefitsTitle: `Beneficios de ${pageTitle}`,
+        benefits: [feature, ...extraBenefits.slice(0, 5)],
+        timeLines: timeLines.length ? timeLines : ["Variable según diagnóstico"],
+        priceLines: priceLines.length ? priceLines : ["A cotizar tras valoración clínica"],
+    };
+}
+
+const output = {
+    common: {
+        eyebrow: "TRATAMIENTO DENTAL",
+        processTitle: "Proceso del Tratamiento",
+        infoTitle: "Información del Tratamiento",
+        timeLabel: "Tiempo Estimado",
+        priceLabel: "Precio Estimado",
+        priceNote: "*Precio puede variar según el caso.",
+        ctaWhatsapp: "Agendar por WhatsApp",
+        ctaOther: "Ver otros tratamientos",
+        notFound: "Tratamiento no encontrado",
+        backHome: "Volver al inicio",
+        bioInstagramTitle: "Video: Odontología Biológica",
+        bioInstagramSubtitle: "Conoce nuestro enfoque en este video de Dental City en Instagram.",
+        bioInstagramLink: "Ver publicación en Instagram",
+    },
+    byService: Object.fromEntries(TREATMENT_SLUGS.map((slug) => [slug, buildEntry(slug)])),
+};
+
+fs.writeFileSync(outPath, JSON.stringify(output, null, 4) + "\n", "utf8");
+console.log(`Wrote ${outPath} (${TREATMENT_SLUGS.length} treatments)`);

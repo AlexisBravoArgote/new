@@ -2,8 +2,8 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 // Using regular anchor tags for Astro
-import { useTranslation } from "react-i18next"; // ✅ i18n
-import logoPng from "/assets/download.avif";
+import { getHomeCopy, isHomePathname, localePath, normalizeLang, translate } from "../lib/site-copy.js";
+const logoPng = "/assets/download.avif";
 const __MOTION_USED = Boolean(motion); // eslint-disable-line no-unused-vars
 
 /* Helpers / Layout */
@@ -34,24 +34,66 @@ function scrollToId(hash) {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-/* Scroll a #ubicacion y selecciona pestaña */
-function navigateToLocation(tabKey) {
+const SERVICES_SCROLL_OFFSET = 112;
+
+function scrollToServices() {
+    const search = document.getElementById("servicios-busqueda");
+    const fallback = document.querySelector("#servicios");
+    const target = search || fallback;
+    if (!target) return;
+    const y = target.getBoundingClientRect().top + window.scrollY - SERVICES_SCROLL_OFFSET;
+    window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
+}
+
+const GALLERY_SCROLL_OFFSET = 112;
+
+function scrollToGallery() {
+    const showcase = document.getElementById("galeria-showcase");
+    const carousel = document.getElementById("galeria-carousel");
+    const fallback = document.querySelector("#galeria");
+    const target = showcase || carousel || fallback;
+    if (!target) return;
+    const y = target.getBoundingClientRect().top + window.scrollY - GALLERY_SCROLL_OFFSET;
+    window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
+}
+
+const LOCATION_SCROLL_OFFSET = 132;
+
+function scrollToLocationPanel() {
+    const panel = document.getElementById("ubicacion-panel");
+    const fallback = document.querySelector("#ubicacion");
+    const target = panel || fallback;
+    if (!target) return;
+    const y = target.getBoundingClientRect().top + window.scrollY - LOCATION_SCROLL_OFFSET;
+    window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
+}
+
+/* Scroll al panel de ubicación y selecciona pestaña */
+function navigateToLocation(tabKey, lang = "es") {
     try { sessionStorage.setItem("initialTab", tabKey); } catch { }
-    if (location.pathname !== "/") {
-        window.location.assign("/#ubicacion");
+    if (!isHomePathname(location.pathname, lang)) {
+        window.location.assign(`${localePath("/", lang)}#ubicacion-panel`);
         return;
     }
-    const el = document.querySelector("#ubicacion");
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-    if (location.hash !== "#ubicacion") location.hash = "#ubicacion";
-    setTimeout(() => {
-        window.dispatchEvent(new CustomEvent("select-location-tab", { detail: tabKey }));
-    }, 0);
+    window.dispatchEvent(new CustomEvent("select-location-tab", { detail: tabKey }));
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            scrollToLocationPanel();
+            if (location.hash !== "#ubicacion") {
+                history.replaceState(null, "", "#ubicacion");
+            }
+        });
+    });
 }
 
 /* TOP BAR */
-export default function TopBar({ bgOpacity }) {
-    const { t } = useTranslation("home");
+export default function TopBar({ bgOpacity, lang: langProp = "es" }) {
+    const lang = normalizeLang(langProp);
+    const copy = React.useMemo(() => getHomeCopy(lang), [lang]);
+    const t = React.useCallback((key, vars) => translate(copy, key, vars), [copy]);
+    const homeHref = localePath("/", lang);
+    const doctorsHref = localePath("/doctores", lang);
+    const onHome = () => isHomePathname(location.pathname, lang);
 
     const hasMotion =
         bgOpacity &&
@@ -115,7 +157,7 @@ export default function TopBar({ bgOpacity }) {
                 {/* Logo */}
                 <div className="relative inline-flex items-center justify-center rounded-full p-2 transition-transform duration-500 hover:scale-[1.03] hover:brightness-110">
                     <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#d8a07b33] to-transparent blur-lg transition-all duration-500 hover:from-[#e4b89266]" />
-                    <a href="/" className="relative z-10">
+                    <a href={homeHref} className="relative z-10">
                         <LogoImage className="h-14 w-auto md:h-16 object-contain" />
                     </a>
                 </div>
@@ -146,17 +188,19 @@ export default function TopBar({ bgOpacity }) {
                 {/* Nav principal (desktop) */}
                 <nav className="hidden items-center gap-8 md:flex text-[15px] font-medium tracking-wide">
                     {[
-                        [t("topbar.treatments", { defaultValue: "Nuestros tratamientos" }), "#servicios"],
-                        [t("topbar.gallery", { defaultValue: "Nuestras instalaciones" }), "#galeria"],
-                    ].map(([label, hash]) => (
+                        [t("topbar.treatments", { defaultValue: "Nuestros tratamientos" }), "#servicios", "services"],
+                        [t("topbar.gallery", { defaultValue: "Nuestras instalaciones" }), "#galeria", "gallery"],
+                    ].map(([label, hash, kind]) => (
                         <a
                             key={hash}
-                            href={`/${hash}`} // absoluto hacia home
+                            href={`${homeHref.replace(/\/$/, "")}${hash}`}
                             onClick={(e) => {
-                                if (location.pathname === "/") {
+                                if (onHome()) {
                                     e.preventDefault();
                                     if (location.hash !== hash) history.replaceState(null, "", hash);
-                                    scrollToId(hash);
+                                    if (kind === "gallery") scrollToGallery();
+                                    else if (kind === "services") scrollToServices();
+                                    else scrollToId(hash);
                                 }
                             }}
                             className="text-white/80 transition hover:text-white hover:drop-shadow-[0_0_4px_rgba(228,184,146,0.6)]"
@@ -185,14 +229,14 @@ export default function TopBar({ bgOpacity }) {
                         <div className={`absolute left-1/2 top-[120%] z-50 w-56 -translate-x-1/2 rounded-2xl border border-[#e4b89233] bg-[#11243a]/95 p-2 text-white/90 shadow-2xl backdrop-blur-lg transition-all duration-300 hover:border-[#e4b89266] ${openDesktop === "clinicas" ? "block" : "hidden"}`}>
                             <button
                                 type="button"
-                                onClick={() => { navigateToLocation("Dental City"); setOpenDesktop(null); }}
+                                onClick={() => { navigateToLocation("Dental City", lang); setOpenDesktop(null); }}
                                 className="block w-full rounded-xl px-4 py-3 text-left transition hover:bg-white/10"
                             >
                                 Dental City
                             </button>
                             <button
                                 type="button"
-                                onClick={() => { navigateToLocation("Dental City Kids & Family"); setOpenDesktop(null); }}
+                                onClick={() => { navigateToLocation("Dental City Kids & Family", lang); setOpenDesktop(null); }}
                                 className="mt-1 block w-full rounded-xl px-4 py-3 text-left transition hover:bg-white/10"
                             >
                                 Dental City Kids & Family
@@ -201,10 +245,17 @@ export default function TopBar({ bgOpacity }) {
                     </div>
 
                     <a
-                        href="/doctores"
+                        href={doctorsHref}
                         className="text-white/80 transition hover:text-white hover:drop-shadow-[0_0_4px_rgba(228,184,146,0.6)]"
                     >
                         {t("topbar.doctors", { defaultValue: "Nuestros doctores" })}
+                    </a>
+
+                    <a
+                        href="/blog"
+                        className="text-white/80 transition hover:text-white hover:drop-shadow-[0_0_4px_rgba(228,184,146,0.6)]"
+                    >
+                        {t("topbar.blog", { defaultValue: "Blog & Research" })}
                     </a>
 
                     {/* Dropdown: Recursos (desktop) */}
@@ -233,13 +284,6 @@ export default function TopBar({ bgOpacity }) {
                             </a>
                         </div>
                     </div>
-
-                    <a
-                        href="/blog"
-                        className="text-white/80 transition hover:text-white hover:drop-shadow-[0_0_4px_rgba(228,184,146,0.6)]"
-                    >
-                        {t("topbar.blog", { defaultValue: "Blog & Research" })}
-                    </a>
                 </nav>
             </Container>
 
@@ -287,10 +331,32 @@ export default function TopBar({ bgOpacity }) {
                                 <div className="h-[2px] w-full bg-gradient-to-r from-[#c89b7b] via-[#e4b892] to-[#c89b7b] opacity-80" />
 
                                 <div className="flex flex-col gap-2 py-3 flex-1">
-                                    <a href="/#servicios" onClick={() => setMobileOpen(false)} className="block rounded-xl px-4 py-3 text-[15px] hover:bg-white/10">
+                                    <a
+                                        href={`${homeHref.replace(/\/$/, "")}#servicios`}
+                                        onClick={(e) => {
+                                            setMobileOpen(false);
+                                            if (onHome()) {
+                                                e.preventDefault();
+                                                if (location.hash !== "#servicios") history.replaceState(null, "", "#servicios");
+                                                scrollToServices();
+                                            }
+                                        }}
+                                        className="block rounded-xl px-4 py-3 text-[15px] hover:bg-white/10"
+                                    >
                                         {t("topbar.treatments", { defaultValue: "Nuestros tratamientos" })}
                                     </a>
-                                    <a href="/#galeria" onClick={() => setMobileOpen(false)} className="block rounded-xl px-4 py-3 text-[15px] hover:bg-white/10">
+                                    <a
+                                        href={`${homeHref.replace(/\/$/, "")}#galeria`}
+                                        onClick={(e) => {
+                                            setMobileOpen(false);
+                                            if (onHome()) {
+                                                e.preventDefault();
+                                                if (location.hash !== "#galeria") history.replaceState(null, "", "#galeria");
+                                                scrollToGallery();
+                                            }
+                                        }}
+                                        className="block rounded-xl px-4 py-3 text-[15px] hover:bg-white/10"
+                                    >
                                         {t("topbar.gallery", { defaultValue: "Nuestras instalaciones" })}
                                     </a>
 
@@ -320,14 +386,14 @@ export default function TopBar({ bgOpacity }) {
                                                 >
                                                     <button
                                                         type="button"
-                                                        onClick={() => { navigateToLocation("Dental City"); setMobileOpen(false); }}
+                                                        onClick={() => { navigateToLocation("Dental City", lang); setMobileOpen(false); }}
                                                         className="mt-1 block w-full rounded-lg px-4 py-2.5 text-left text-[14px] text-white/90 hover:bg-white/10"
                                                     >
                                                         Dental City
                                                     </button>
                                                     <button
                                                         type="button"
-                                                        onClick={() => { navigateToLocation("Dental City Kids & Family"); setMobileOpen(false); }}
+                                                        onClick={() => { navigateToLocation("Dental City Kids & Family", lang); setMobileOpen(false); }}
                                                         className="mt-1 block w-full rounded-lg px-4 py-2.5 text-left text-[14px] text-white/90 hover:bg-white/10"
                                                     >
                                                         Dental City Kids & Family
@@ -337,8 +403,16 @@ export default function TopBar({ bgOpacity }) {
                                         </AnimatePresence>
                                     </div>
 
-                                    <a href="/doctores" onClick={() => setMobileOpen(false)} className="block rounded-xl px-4 py-3 text-[15px] hover:bg-white/10">
+                                    <a href={doctorsHref} onClick={() => setMobileOpen(false)} className="block rounded-xl px-4 py-3 text-[15px] hover:bg-white/10">
                                         {t("topbar.doctors", { defaultValue: "Nuestros doctores" })}
+                                    </a>
+
+                                    <a
+                                        href="/blog"
+                                        onClick={() => setMobileOpen(false)}
+                                        className="block rounded-xl px-4 py-3 text-[15px] hover:bg-white/10"
+                                    >
+                                        {t("topbar.blog", { defaultValue: "Blog & Research" })}
                                     </a>
 
                                     {/* Grupo: Recursos */}
@@ -375,15 +449,6 @@ export default function TopBar({ bgOpacity }) {
                                             )}
                                         </AnimatePresence>
                                     </div>
-
-                                    {/* ✅ Link correcto a Bolsa */}
-                                    <a
-                                        href="/blog"
-                                        onClick={() => setMobileOpen(false)}
-                                        className="block rounded-xl px-4 py-3 text-[15px] hover:bg-white/10"
-                                    >
-                                        {t("topbar.blog", { defaultValue: "Blog & Research" })}
-                                    </Link>
                                 </div>
 
                                 <div className="h-[2px] w-full bg-gradient-to-r from-[#c89b7b] via-[#e4b892] to-[#c89b7b] opacity-80" />

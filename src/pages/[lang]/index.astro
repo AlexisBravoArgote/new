@@ -1,0 +1,44 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import HomeClient from '../../components-react/HomeClient.jsx';
+import { SECONDARY_LOCALE_CODES } from '../../config/languages.js';
+import { getAlternateLinks, getPageSeo, normalizeLang } from '../../lib/site-copy.js';
+
+export function getStaticPaths() {
+    return SECONDARY_LOCALE_CODES.map((lang) => ({ params: { lang } }));
+}
+
+const { lang: rawLang } = Astro.params;
+const lang = normalizeLang(rawLang);
+const seo = getPageSeo('home', lang);
+
+const localBusinessData = {
+    "@context": "https://schema.org",
+    "@type": "DentalClinic",
+    "name": "Dental City",
+    "description": seo.description,
+    "url": `https://dentalcity.mx/${lang}/`,
+    "logo": "https://dentalcity.mx/logo.png",
+    "image": "https://dentalcity.mx/logo.png",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Zona Real, Zapopan",
+        "addressLocality": "Zapopan",
+        "addressRegion": "Jalisco",
+        "postalCode": "45000",
+        "addressCountry": "MX"
+    },
+    "areaServed": { "@type": "City", "name": "Zapopan, Guadalajara" }
+};
+---
+
+<Layout
+    lang={lang}
+    title={seo.title}
+    description={seo.description}
+    keywords={seo.keywords}
+    alternates={getAlternateLinks('home')}
+    structuredData={localBusinessData}
+>
+    <HomeClient client:load lang={lang} />
+</Layout>

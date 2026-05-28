@@ -1,11 +1,10 @@
-// src/pages/blog/12.jsx
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import TopBar from "../TopBar.jsx";
 import Footer from "../Footer.jsx";
 
 
 
-// Im�genes
+// Imágenes
 const sagradocorazon = "/assets/sagradocorazon.jpg";
 const sagradocorazon2 = "/assets/sagradocorazon2.jpg";
 const sagradocorazon3 = "/assets/sagradocorazon3.jpg";
@@ -27,6 +26,23 @@ function Eyebrow({ children }) {
         <span className="inline-flex items-center gap-2 rounded-full border border-[#e4b89233] bg-white/5 px-3 py-1 text-[11px] tracking-[.35em] text-[#e4b892]">
             {children}
         </span>
+    );
+}
+
+function Chevron({ dir = "left" }) {
+    return (
+        <svg
+            viewBox="0 0 24 24"
+            className={`h-5 w-5 ${dir === "right" ? "rotate-180" : ""}`}
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden
+        >
+            <path d="M15 19l-7-7 7-7" />
+        </svg>
     );
 }
 
@@ -81,14 +97,14 @@ function Carousel({ images = [], caption = "" }) {
                                 className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-black/35 hover:bg-black/45 text-white w-9 h-9 grid place-items-center"
                                 aria-label="Anterior"
                             >
-                                �
+                                <Chevron dir="left" />
                             </button>
                             <button
                                 onClick={() => go(1)}
                                 className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-black/35 hover:bg-black/45 text-white w-9 h-9 grid place-items-center"
                                 aria-label="Siguiente"
                             >
-                                �
+                                <Chevron dir="right" />
                             </button>
 
                             {/* Progreso dorado */}
@@ -133,15 +149,15 @@ function Carousel({ images = [], caption = "" }) {
     );
 }
 
-/* ------------------------- P�gina ------------------------- */
+/* ------------------------- Página ------------------------- */
 export default function BlogPost9() {
     const post = {
         id: "9",
         title:
-            "Filantrop�a: apoyo al Centro de Ayuda Integral Sagrado Coraz�n, A.C.",
+            "Filantropía: apoyo al Centro de Ayuda Integral Sagrado Corazón, A.C.",
         excerpt:
-            "Dental City don� atenci�n y material para apoyar a las hermanas del Centro de Ayuda Integral Sagrado Coraz�n, A.C., reforzando nuestra misi�n social.",
-        category: "Filantrop�a",
+            "Dental City donó atención y material para apoyar a las hermanas del Centro de Ayuda Integral Sagrado Corazón, A.C., reforzando nuestra misión social.",
+        category: "Filantropía",
         tags: ["Comunidad", "Donativos", "Alianzas", "Impacto social"],
         date: "2025-06-15",
         cover: sagradocorazon,
@@ -175,7 +191,7 @@ export default function BlogPost9() {
         "articleSection": post.category
     };
 
-    // ? Ahora s�: todas tus fotos en un solo arreglo
+    // ? Ahora sí: todas tus fotos en un solo arreglo
     const photos = useMemo(
         () => [
             sagradocorazon,
@@ -203,13 +219,13 @@ export default function BlogPost9() {
                         <nav className="text-sm text-white/70">
                             <a href="/blog" className="hover:underline">Blog & Research</a>{" "}
                             <span className="opacity-50">/</span>{" "}
-                            <a href="/blog?cat=Filantrop�a" className="hover:underline">Filantrop�a</a>{" "}
+                            <a href="/blog?cat=Filantropía" className="hover:underline">Filantropía</a>{" "}
                             <span className="opacity-50">/</span>{" "}
                             <span className="text-white">{post.title}</span>
                         </nav>
 
                         <header className="mt-4 md:mt-6 text-center">
-                            <Eyebrow>FILANTROP�A</Eyebrow>
+                            <Eyebrow>FILANTROPÍA</Eyebrow>
                             <h1 className="mt-3 text-3xl md:text-5xl font-semibold leading-tight">
                                 <span className="relative inline-block">
                                     <span className="golden-sweep">{post.title}</span>
@@ -231,7 +247,7 @@ export default function BlogPost9() {
                     {/* Carrusel con tus fotos */}
                     <div className="mt-6">
                         <Container className="max-w-6xl">
-                            <Carousel images={photos} caption="Apoyo Sagrado Coraz�n � Dental City" />
+                            <Carousel images={photos} caption="Apoyo Sagrado Corazón  — Dental City" />
                         </Container>
                     </div>
                 </section>
@@ -240,54 +256,54 @@ export default function BlogPost9() {
                 <section className="py-10 md:py-12">
                     <Container>
                         <p className="text-white/85 text-lg leading-relaxed">
-                            {post.excerpt} En colaboraci�n con aliados estrat�gicos,
-                            enfocamos esfuerzos para acompa�ar procesos de protecci�n,
-                            reintegraci�n y desarrollo de mujeres y sus hijas e hijos.
+                            {post.excerpt} En colaboración con aliados estratégicos,
+                            enfocamos esfuerzos para acompañar procesos de protección,
+                            reintegración y desarrollo de mujeres y sus hijas e hijos.
                         </p>
 
                         <div className="mt-8 grid gap-6">
                             <article className="rounded-3xl bg-white/[.04] border border-white/10 p-6">
                                 <h2 className="text-2xl font-semibold text-[#e4b892]">Alianza con Rotary Club Valle Real</h2>
                                 <p className="mt-3 text-white/85 leading-relaxed">
-                                    Nos asociamos con <strong>Rotary International � Club Valle Real</strong> para apoyar
-                                    econ�micamente a las hermanas del <strong>Centro de Ayuda Integral Sagrado Coraz�n, A.C.</strong>.
-                                    En conjunto brindamos <strong>donativos en efectivo</strong>, <strong>ropa</strong>, <strong>v�veres</strong>,
-                                    <strong> comida</strong> y otros insumos esenciales. Adem�s, el equipo de Dental City don�
-                                    <strong> atenci�n dental</strong> y material, alineando el proyecto con nuestra misi�n
-                                    de salud e inclusi�n.
+                                    Nos asociamos con <strong>Rotary International  — Club Valle Real</strong> para apoyar
+                                    económicamente a las hermanas del <strong>Centro de Ayuda Integral Sagrado Corazón, A.C.</strong>.
+                                    En conjunto brindamos <strong>donativos en efectivo</strong>, <strong>ropa</strong>, <strong>víveres</strong>,
+                                    <strong> comida</strong> y otros insumos esenciales. Además, el equipo de Dental City donó
+                                    <strong> atención dental</strong> y material, alineando el proyecto con nuestra misión
+                                    de salud e inclusión.
                                 </p>
                             </article>
 
                             <article className="rounded-3xl bg-white/[.04] border border-white/10 p-6">
-                                <h2 className="text-2xl font-semibold text-[#e4b892]">�Qu� es el Centro Sagrado Coraz�n?</h2>
+                                <h2 className="text-2xl font-semibold text-[#e4b892]">¿Qué es el Centro Sagrado Corazón?</h2>
                                 <p className="mt-3 text-white/85 leading-relaxed">
-                                    El <strong>Sagrado Coraz�n</strong> es una <strong>casa de refugio</strong> que brinda acompa�amiento
-                                    integral a <strong>mam�s solteras en situaciones de vulnerabilidad</strong>. Ofrece alojamiento,
-                                    contenci�n, formaci�n y redes de apoyo para que las familias recuperen estabilidad y autonom�a.
+                                    El <strong>Sagrado Corazón</strong> es una <strong>casa de refugio</strong> que brinda acompañamiento
+                                    integral a <strong>mamás solteras en situaciones de vulnerabilidad</strong>. Ofrece alojamiento,
+                                    contención, formación y redes de apoyo para que las familias recuperen estabilidad y autonomía.
                                 </p>
                                 <p className="mt-3 text-white/85 leading-relaxed">
-                                    El centro fue fundado en <strong>1929</strong> por la <strong>Madre Rita Ruiz Velasco ��iguez</strong>,
+                                    El centro fue fundado en <strong>1929</strong> por la <strong>Madre Rita Ruiz Velasco Iñiguez</strong>,
                                     y desde entonces se sostiene gracias a la labor de las hermanas y al compromiso de la comunidad.
                                 </p>
                             </article>
 
                             <article className="rounded-3xl bg-white/[.04] border border-white/10 p-6">
-                                <h2 className="text-2xl font-semibold text-[#e4b892]">Renovaci�n de instalaciones</h2>
+                                <h2 className="text-2xl font-semibold text-[#e4b892]">Renovación de instalaciones</h2>
                                 <p className="mt-3 text-white/85 leading-relaxed">
                                     Actualmente nos estamos organizando para <strong>renovar las instalaciones</strong> del centro:
-                                    mantenimiento de �reas comunes, mejoras en dormitorios y actualizaci�n de espacios para
-                                    la atenci�n de madres y ni�as/os. Estamos <strong>buscando donadores y convenios</strong> con empresas,
-                                    profesionales y organizaciones que deseen sumar con materiales, mano de obra o recursos econ�micos.
+                                    mantenimiento de áreas comunes, mejoras en dormitorios y actualización de espacios para
+                                    la atención de madres y niñas/os. Estamos <strong>buscando donadores y convenios</strong> con empresas,
+                                    profesionales y organizaciones que deseen sumar con materiales, mano de obra o recursos económicos.
                                 </p>
                             </article>
 
                             <article className="rounded-3xl bg-white/[.04] border border-white/10 p-6">
-                                <h2 className="text-2xl font-semibold text-[#e4b892]">�C�mo puedes sumarte?</h2>
+                                <h2 className="text-2xl font-semibold text-[#e4b892]">¿Cómo puedes sumarte?</h2>
                                 <ul className="mt-3 list-disc pl-6 text-white/85 leading-relaxed">
-                                    <li>Donativos en especie: ropa, v�veres, art�culos de higiene y limpieza.</li>
-                                    <li>Apoyo econ�mico para mantenimiento y renovaci�n de espacios.</li>
-                                    <li>Convenios con empresas para materiales, transporte y log�stica.</li>
-                                    <li>Voluntariado profesional (salud, oficios, asesor�a legal/psicosocial).</li>
+                                    <li>Donativos en especie: ropa, víveres, artículos de higiene y limpieza.</li>
+                                    <li>Apoyo económico para mantenimiento y renovación de espacios.</li>
+                                    <li>Convenios con empresas para materiales, transporte y logística.</li>
+                                    <li>Voluntariado profesional (salud, oficios, asesoría legal/psicosocial).</li>
                                 </ul>
                             </article>
                         </div>
@@ -308,7 +324,7 @@ export default function BlogPost9() {
                                 href="/blog"
                                 className="rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-white/85 hover:bg-white/10 transition"
                             >
-                                ? Volver al blog
+                                ← Volver al blog
                             </a>
                         </div>
                     </Container>

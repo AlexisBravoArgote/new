@@ -3,17 +3,17 @@ import React, { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import TopBar from "./TopBar.jsx";
 import Footer from "./Footer.jsx";
-import atlas1 from '/assets/atlas2.jpg';
-import sagradocorazon from "/assets/sagradocorazon.jpg";
-import cendi from "/assets/cendi.jpg"
-import limpiezakids from "/assets/limpiezakids.jpg"
-import limpieza from "/assets/limpieza.jpg"
-import escaneo from "/assets/escaneo.jpg"
-import alineadores from "/assets/alineadores.avif"
-import implantes from "/assets/implante.jpg"
-import periodoncia from "/assets/periodoncia.jpg"
-import blanqueamiento from "/assets/blanqueamiento.jpg"
-import endodoncia from "/assets/endodoncia2.jpg"
+const atlas1 = '/assets/atlas2.jpg';
+const sagradocorazon = "/assets/sagradocorazon.jpg";
+const cendi = "/assets/cendi.jpg"
+const limpiezakids = "/assets/limpiezakids.jpg"
+const limpieza = "/assets/limpieza.jpg"
+const escaneo = "/assets/escaneo.jpg"
+const alineadores = "/assets/alineadores.avif"
+const implantes = "/assets/implante.jpg"
+const periodoncia = "/assets/periodoncia.jpg"
+const blanqueamiento = "/assets/blanqueamiento.jpg"
+const endodoncia = "/assets/endodoncia2.jpg"
 const __MOTION_USED = Boolean(motion); // eslint-disable-line no-unused-vars
 
 /* ------------------------- Helpers/Layout ------------------------- */

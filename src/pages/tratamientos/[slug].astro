@@ -1,0 +1,37 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TreatmentContent from '../../components-react/TreatmentContent.jsx';
+import { TREATMENT_SLUGS } from '../../data/treatmentSlugs.js';
+import esTreatments from '../../locales/es/treatments.json';
+
+export function getStaticPaths() {
+    return TREATMENT_SLUGS.map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const treatment = esTreatments.byService[slug];
+const pageTitle = treatment?.pageTitle ?? 'Tratamiento';
+const description = treatment?.heroSubtitle ?? pageTitle;
+
+const medicalProcedureData = {
+    "@context": "https://schema.org",
+    "@type": "MedicalProcedure",
+    "name": pageTitle,
+    "description": description,
+    "url": `https://dentalcity.mx/tratamientos/${slug}`,
+    "provider": {
+        "@type": "DentalClinic",
+        "name": "Dental City",
+        "url": "https://dentalcity.mx"
+    }
+};
+---
+
+<Layout
+    title={pageTitle}
+    description={description}
+    keywords={`${pageTitle}, Dental City, clínica dental Zapopan, tratamiento dental`}
+    structuredData={medicalProcedureData}
+>
+    <TreatmentContent client:load slug={slug} />
+</Layout>

@@ -1,0 +1,49 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BlogPost2 from '../../components-react/blog-posts/2.jsx';
+const escaneo = '/assets/escaneo.jpg';
+
+const post = {
+    id: "2",
+    title: "Odontología digital en Dental City: escáneres, guías y precisión",
+    excerpt: "Cómo integramos flujos digitales para diagnósticos más rápidos y tratamientos predecibles.",
+    cover: escaneo,
+    category: "Tecnología",
+    tags: ["Escáner", "CAD/CAM"],
+    date: "2025-05-20",
+};
+
+const articleData = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "description": post.excerpt,
+    "image": `https://dentalcity.mx${post.cover}`,
+    "datePublished": post.date,
+    "dateModified": post.date,
+    "author": { "@type": "Organization", "name": "Dental City" },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Dental City",
+        "logo": { "@type": "ImageObject", "url": "https://dentalcity.mx/logo.png" }
+    },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": `https://dentalcity.mx/blog/${post.id}` },
+    "keywords": post.tags.join(", "),
+    "articleSection": post.category
+};
+---
+
+<Layout
+    title={post.title}
+    description={post.excerpt}
+    keywords={post.tags.join(", ")}
+    image={`https://dentalcity.mx${post.cover}`}
+    type="article"
+    structuredData={articleData}
+>
+    <BlogPost2 client:load />
+</Layout>
+
+<style>
+    @import "../../styles/global.css";
+</style>

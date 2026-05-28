@@ -1,0 +1,43 @@
+﻿{
+    "metaTitle": "Unsere Ärzte | Dental City",
+    "eyebrowTeam": "TEAM",
+    "pageTitle": "Unsere Ärzte",
+    "heroP1": "Dental City ist die größte Zahnarztklinik im Großraum Guadalajara. Mit über {{years}} Erfahrung betreuen wir die Gemeinschaft der Zona Real in Zapopan, Patienten aus anderen Bundesstaaten und internationale Besucher. Wir bieten {{allSpecs}} und {{twoBranches}}, einschließlich {{kids}}, spezialisiert auf Kinderzahnheilkunde und Kieferorthopädie.",
+    "heroP1_years": "26 Jahre",
+    "heroP1_allSpecs": "alle zahnmedizinischen Fachrichtungen",
+    "heroP1_twoBranches": "zwei Standorte",
+    "heroP1_kids": "Dental City Kids",
+    "heroP2": "Wir innovieren ständig in der digitalen Zahnmedizin für präzisere und effizientere Behandlungen – stets mit unserer bewährten Qualität.",
+    "heroP3": "Unser multidisziplinäres Team umfasst <strong>29 Zahnmediziner</strong>, darunter <strong>5 Kieferorthopäden, 9 Allgemeinzahnärzte, 5 Prothetiker, 2 Parodontologen, 2 Endodontologen, 2 Mund-Kiefer-Gesichtschirurgen, 2 Oralchirurgen, 1 Kinderzahnarzt und 1 Implantologe.</strong> Jeder Spezialist bringt Erfahrung und kontinuierliche Fortbildung mit.",
+    "heroP4": "Wir arbeiten mit modernster digitaler Technologie und höchsten Qualitäts- und Sicherheitsstandards. Unsere Ärzte sind der Weiterbildung und innovativen Behandlungen verpflichtet.",
+    "specialtiesTitle": "Spezialgebiete unseres Teams",
+    "mainClinicDesc": "Unser Spezialistenteam in der Hauptklinik Dental City in Zona Real, Zapopan. Hochqualifizierte Fachkräfte in allen Bereichen der modernen Zahnmedizin.",
+    "kidsClinicDesc": "Spezialisten für Kinderzahnheilkunde und Kieferorthopädie für Kinder bei Dental City Kids & Family. Unser Team ist besonders geschult, um Kindern und Jugendlichen in Zapopan, Jalisco, eine freundliche und effektive Zahnpflege zu bieten.",
+    "dentistsCount": "Zahnärzte",
+
+    "eyebrowMainClinic": "• HAUPTKLINIK •",
+    "titleMainClinic": "Dental City",
+    "ariaMainCarousel": "Ärzte Dental City",
+
+    "eyebrowKids": "• KINDERZAHNHEILKUNDE & KIEFERORTHOPÄDIE •",
+    "titleKids": "Dental City Kids & Family",
+    "ariaKidsCarousel": "Ärzte Dental City Kids",
+
+    "ariaPrev": "Zurück",
+    "ariaNext": "Weiter",
+
+    "stat_ortho": "Kieferorthopäden",
+    "stat_gd": "Allgemeinzahnärzte",
+    "stat_pros": "Prothetiker",
+    "stat_perio": "Parodontologen",
+    "stat_endo": "Endodontologen",
+    "stat_mfs": "Mund-, Kiefer-, Gesichtschirurg",
+    "stat_oral": "Oralchirurgen",
+    "stat_pedo": "Kinderzahnarzt",
+    "stat_implant": "Implantologe",
+
+    "altTech": "Digitale Technologie",
+    "altKids": "Kinderbetreuung",
+
+    "languageLabel": "Sprache"
+}

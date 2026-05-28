@@ -1,0 +1,49 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BlogPost8 from '../../components-react/blog-posts/8.jsx';
+const endodoncia = '/assets/endodoncia2.jpg';
+
+const post = {
+    id: "8",
+    title: "Endodoncia guiada por imagen",
+    excerpt: "Cuándo recurrimos a CBCT y cómo mejora la tasa de éxito en casos complejos.",
+    cover: endodoncia,
+    category: "Endodoncia",
+    tags: ["CBCT", "Microscopio"],
+    date: "2024-11-16",
+};
+
+const articleData = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "description": post.excerpt,
+    "image": `https://dentalcity.mx${post.cover}`,
+    "datePublished": post.date,
+    "dateModified": post.date,
+    "author": { "@type": "Organization", "name": "Dental City" },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Dental City",
+        "logo": { "@type": "ImageObject", "url": "https://dentalcity.mx/logo.png" }
+    },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": `https://dentalcity.mx/blog/${post.id}` },
+    "keywords": post.tags.join(", "),
+    "articleSection": post.category
+};
+---
+
+<Layout
+    title={post.title}
+    description={post.excerpt}
+    keywords={post.tags.join(", ")}
+    image={`https://dentalcity.mx${post.cover}`}
+    type="article"
+    structuredData={articleData}
+>
+    <BlogPost8 client:load />
+</Layout>
+
+<style>
+    @import "../../styles/global.css";
+</style>

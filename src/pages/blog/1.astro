@@ -1,0 +1,58 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BlogPost1 from '../../components-react/blog-posts/1.jsx';
+const limpieza = '/assets/limpieza.jpg';
+
+const post = {
+    id: "1",
+    title: "Guía definitiva de limpieza dental profesional",
+    excerpt: "¿Cada cuánto debo hacerme una profilaxis? Beneficios, mitos y qué esperar de tu cita.",
+    cover: limpieza,
+    category: "Prevención",
+    tags: ["Higiene", "Prophylaxis"],
+    date: "2025-06-01",
+};
+
+const articleData = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "description": post.excerpt,
+    "image": `https://dentalcity.mx${post.cover}`,
+    "datePublished": post.date,
+    "dateModified": post.date,
+    "author": {
+        "@type": "Organization",
+        "name": "Dental City"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Dental City",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://dentalcity.mx/logo.png"
+        }
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": `https://dentalcity.mx/blog/${post.id}`
+    },
+    "keywords": post.tags.join(", "),
+    "articleSection": post.category
+};
+---
+
+<Layout
+    title={post.title}
+    description={post.excerpt}
+    keywords={post.tags.join(", ")}
+    image={`https://dentalcity.mx${post.cover}`}
+    type="article"
+    structuredData={articleData}
+>
+    <BlogPost1 client:load />
+</Layout>
+
+<style>
+    @import "../../styles/global.css";
+</style>

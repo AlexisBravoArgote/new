@@ -1,0 +1,48 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import DoctoresContent from '../../components-react/DoctoresContent.jsx';
+import { SECONDARY_LOCALE_CODES } from '../../config/languages.js';
+import { getAlternateLinks, getPageSeo, normalizeLang } from '../../lib/site-copy.js';
+
+export function getStaticPaths() {
+    return SECONDARY_LOCALE_CODES.map((lang) => ({ params: { lang } }));
+}
+
+const { lang: rawLang } = Astro.params;
+const lang = normalizeLang(rawLang);
+const seo = getPageSeo('doctores', lang);
+
+const medicalOrgData = {
+    "@context": "https://schema.org",
+    "@type": "MedicalOrganization",
+    "name": "Dental City",
+    "description": seo.description,
+    "url": `https://dentalcity.mx/${lang}/doctores`,
+    "medicalSpecialty": [
+        "Orthodontics",
+        "General Dentistry",
+        "Pediatric Dentistry",
+        "Periodontics",
+        "Endodontics",
+        "Oral Surgery",
+        "Cosmetic Dentistry",
+        "Dental Implants"
+    ],
+    "numberOfEmployees": { "@type": "QuantitativeValue", "value": "29" }
+};
+---
+
+<Layout
+    lang={lang}
+    title={seo.title}
+    description={seo.description}
+    keywords={seo.keywords}
+    alternates={getAlternateLinks('doctores')}
+    structuredData={medicalOrgData}
+>
+    <DoctoresContent client:load lang={lang} />
+</Layout>
+
+<style>
+    @import "../../styles/global.css";
+</style>

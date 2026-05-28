@@ -1,0 +1,49 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BlogPost5 from '../../components-react/blog-posts/5.jsx';
+const limpiezakids = '/assets/limpiezakids.jpg';
+
+const post = {
+    id: "5",
+    title: "Caries en niños: prevención práctica para papás ocupados",
+    excerpt: "Hábitos simples, selladores y visitas que marcan la diferencia desde pequeños.",
+    cover: limpiezakids,
+    category: "Odontopediatría",
+    tags: ["Selladores", "Hábitos"],
+    date: "2025-06-22",
+};
+
+const articleData = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "description": post.excerpt,
+    "image": `https://dentalcity.mx${post.cover}`,
+    "datePublished": post.date,
+    "dateModified": post.date,
+    "author": { "@type": "Organization", "name": "Dental City" },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Dental City",
+        "logo": { "@type": "ImageObject", "url": "https://dentalcity.mx/logo.png" }
+    },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": `https://dentalcity.mx/blog/${post.id}` },
+    "keywords": post.tags.join(", "),
+    "articleSection": post.category
+};
+---
+
+<Layout
+    title={post.title}
+    description={post.excerpt}
+    keywords={post.tags.join(", ")}
+    image={`https://dentalcity.mx${post.cover}`}
+    type="article"
+    structuredData={articleData}
+>
+    <BlogPost5 client:load />
+</Layout>
+
+<style>
+    @import "../../styles/global.css";
+</style>

@@ -2,7 +2,7 @@
 import React from "react";
 import TopBar from "../TopBar.jsx";
 import Footer from "../Footer.jsx";
-import limpiezaDental from "/assets/limpieza.jpg";
+const limpiezaDental = "/assets/limpieza.jpg";
 
 function Container({ children, className = "" }) {
     return (
@@ -22,18 +22,18 @@ function Eyebrow({ children }) {
 
 export default function BlogPost1() {
     const post = {
-        id: "13",
-        title: "Gu�a definitiva de la limpieza dental profesional",
+        id: "1",
+        title: "Guía definitiva de limpieza dental profesional",
         excerpt:
-            "�Qu� sucede realmente durante una limpieza dental profesional? M�s all� de lo est�tico, esta rutina es clave para prevenir enfermedades, mantener enc�as sanas y prolongar la vida de tus dientes.",
+            "¿Cada cuánto debo hacerme una profilaxis? Beneficios, mitos y qué esperar de tu cita.",
         cover: limpiezaDental,
-        category: "Prevenci�n",
-        tags: ["Limpieza dental", "Higiene oral", "Odontolog�a preventiva", "Enc�as sanas"],
-        date: "2025-10-21",
+        category: "Prevención",
+        tags: ["Higiene", "Prophylaxis"],
+        date: "2025-06-01",
         readingMin: 6,
     };
 
-    // Structured Data para art�culo de blog
+    // Structured Data para artículo de blog
     const articleData = {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
@@ -76,15 +76,15 @@ export default function BlogPost1() {
                                 Blog & Research
                             </a>{" "}
                             <span className="opacity-50">/</span>{" "}
-                            <a href="/blog?cat=Prevenci�n" className="hover:underline">
-                                Prevenci�n
+                            <a href="/blog?cat=Prevención" className="hover:underline">
+                                Prevención
                             </a>{" "}
                             <span className="opacity-50">/</span>{" "}
                             <span className="text-white">{post.title}</span>
                         </nav>
 
                         <header className="mt-4 md:mt-6">
-                            <Eyebrow>PREVENCI�N</Eyebrow>
+                            <Eyebrow>PREVENCIÓN</Eyebrow>
                             <h1 className="mt-3 text-3xl md:text-5xl font-semibold leading-tight">
                                 <span className="golden-sweep">{post.title}</span>
                             </h1>
@@ -97,7 +97,7 @@ export default function BlogPost1() {
                                         day: "2-digit",
                                     })}
                                 </time>
-                                <span className="text-white/30">�</span>
+                                <span className="text-white/30">•</span>
                                 <span>{post.readingMin} min</span>
                             </div>
                         </header>
@@ -129,19 +129,19 @@ export default function BlogPost1() {
                         <p className="text-white/85 text-lg leading-relaxed">
                             {post.excerpt} En Dental City creemos que entender el proceso te
                             ayuda a cuidar mejor tu salud oral y a perder el miedo a este
-                            procedimiento tan com�n como importante.
+                            procedimiento tan común como importante.
                         </p>
 
                         <div className="mt-8 grid gap-6">
                             {/* 1 */}
                             <article className="rounded-3xl bg-white/[.04] border border-white/10 p-6">
                                 <h2 className="text-2xl font-semibold text-[#e4b892]">
-                                    1. Evaluaci�n inicial
+                                    1. Evaluación inicial
                                 </h2>
                                 <p className="mt-3 text-white/85 leading-relaxed">
-                                    Todo comienza con una inspecci�n cl�nica y, si es necesario,
-                                    radiogr�fica. El odont�logo eval�a la presencia de placa,
-                                    sarro, inflamaci�n o sangrado. Esta etapa permite personalizar
+                                    Todo comienza con una inspección clínica y, si es necesario,
+                                    radiográfica. El odontólogo evalúa la presencia de placa,
+                                    sarro, inflamación o sangrado. Esta etapa permite personalizar
                                     la limpieza y detectar signos tempranos de gingivitis o
                                     periodontitis.
                                 </p>
@@ -150,14 +150,14 @@ export default function BlogPost1() {
                             {/* 2 */}
                             <article className="rounded-3xl bg-white/[.04] border border-white/10 p-6">
                                 <h2 className="text-2xl font-semibold text-[#e4b892]">
-                                    2. Ultrasonido: eliminaci�n del sarro
+                                    2. Ultrasonido: eliminación del sarro
                                 </h2>
                                 <p className="mt-3 text-white/85 leading-relaxed">
                                     Usamos un instrumento que vibra suavemente para desprender el
-                                    sarro y la placa endurecida sin da�ar el esmalte. Este paso es
-                                    indoloro y r�pido, especialmente con equipos modernos como los
+                                    sarro y la placa endurecida sin dañar el esmalte. Este paso es
+                                    indoloro y rápidoo, especialmente con equipos modernos como los
                                     que utilizamos en Dental City. El sonido puede ser curioso,
-                                    pero el resultado es inmediato: enc�as m�s limpias y
+                                    pero el resultado es inmediato: encías más limpias y
                                     saludables.
                                 </p>
                             </article>
@@ -165,12 +165,12 @@ export default function BlogPost1() {
                             {/* 3 */}
                             <article className="rounded-3xl bg-white/[.04] border border-white/10 p-6">
                                 <h2 className="text-2xl font-semibold text-[#e4b892]">
-                                    3. Pulido con pasta profil�ctica
+                                    3. Pulido con pasta profiláctica
                                 </h2>
                                 <p className="mt-3 text-white/85 leading-relaxed">
                                     Tras retirar el sarro, se aplica una pasta especial con una
                                     copa de goma que pule la superficie dental. Esto elimina
-                                    pigmentaciones leves de caf�, t� o vino, y deja la superficie
+                                    pigmentaciones leves de café, té o vino, y deja la superficie
                                     lisa para evitar que las bacterias se adhieran con facilidad.
                                 </p>
                             </article>
@@ -178,27 +178,27 @@ export default function BlogPost1() {
                             {/* 4 */}
                             <article className="rounded-3xl bg-white/[.04] border border-white/10 p-6">
                                 <h2 className="text-2xl font-semibold text-[#e4b892]">
-                                    4. Aplicaci�n de fl�or (opcional pero recomendada)
+                                    4. Aplicación de flúor (opcional pero recomendada)
                                 </h2>
                                 <p className="mt-3 text-white/85 leading-relaxed">
-                                    El fl�or fortalece el esmalte y reduce la sensibilidad dental.
-                                    En adultos y ni�os, se puede aplicar en gel o barniz. Es un
+                                    El flúor fortalece el esmalte y reduce la sensibilidad dental.
+                                    En adultos y niños, se puede aplicar en gel o barniz. Es un
                                     refuerzo que prolonga los beneficios de la limpieza y protege
-                                    contra la aparici�n de nuevas caries.
+                                    contra la aparición de nuevas caries.
                                 </p>
                             </article>
 
                             {/* 5 */}
                             <article className="rounded-3xl bg-white/[.04] border border-white/10 p-6">
                                 <h2 className="text-2xl font-semibold text-[#e4b892]">
-                                    5. Beneficios m�s all� de la est�tica
+                                    5. Beneficios más allá de la estética
                                 </h2>
                                 <ul className="mt-3 list-disc pl-6 text-white/85 leading-relaxed">
                                     <li>Previene gingivitis y periodontitis.</li>
                                     <li>Elimina bacterias que causan mal aliento.</li>
-                                    <li>Mejora la absorci�n de fl�or y la salud general.</li>
+                                    <li>Mejora la absorción de flúor y la salud general.</li>
                                     <li>
-                                        Ayuda al diagn�stico temprano de otros problemas orales.
+                                        Ayuda al diagnóstico temprano de otros problemas orales.
                                     </li>
                                 </ul>
                             </article>
@@ -209,20 +209,20 @@ export default function BlogPost1() {
                                     6. Frecuencia recomendada
                                 </h2>
                                 <p className="mt-3 text-white/85 leading-relaxed">
-                                    En la mayor�a de los casos, una limpieza profesional cada{" "}
+                                    En la mayoría de los casos, una limpieza profesional cada{" "}
                                     <b>6 meses</b> es suficiente. Sin embargo, quienes usan
                                     ortodoncia, tienen implantes o antecedentes de enfermedad
-                                    periodontal pueden requerir controles m�s frecuentes.
+                                    periodontal pueden requerir controles más frecuentes.
                                 </p>
                             </article>
                         </div>
 
-                        {/* Conclusi�n */}
+                        {/* Conclusión */}
                         <p className="mt-10 text-white/85 leading-relaxed text-lg">
-                            La limpieza dental profesional no solo deja tu sonrisa m�s
-                            brillante, sino que tambi�n protege tu salud general. En Dental
-                            City combinamos tecnolog�a avanzada, manos expertas y una
-                            experiencia c�moda para que cada visita sea una inversi�n en tu
+                            La limpieza dental profesional no solo deja tu sonrisa más
+                            brillante, sino que también protege tu salud general. En Dental
+                            City combinamos tecnología avanzada, manos expertas y una
+                            experiencia cómoda para que cada visita sea una inversión en tu
                             bienestar.
                         </p>
 
@@ -244,7 +244,7 @@ export default function BlogPost1() {
                                 href="/blog"
                                 className="rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-white/85 hover:bg-white/10 transition"
                             >
-                                ? Volver al blog
+                                ← Volver al blog
                             </a>
                             <a
                                 href="/#ubicacion"

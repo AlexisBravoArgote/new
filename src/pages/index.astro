@@ -1,11 +1,56 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import HomeClient from '../components-react/HomeClient.jsx';
+import { getAlternateLinks, getPageSeo } from '../lib/site-copy.js';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const seo = getPageSeo('home', 'es');
+
+const localBusinessData = {
+    "@context": "https://schema.org",
+    "@type": "DentalClinic",
+    "name": "Dental City",
+    "description": "Clínica dental integral en Zapopan, Jalisco. Especialidades: ortodoncia, implantes, odontopediatría, estética dental. Tecnología digital de vanguardia.",
+    "url": "https://dentalcity.mx",
+    "logo": "https://dentalcity.mx/logo.png",
+    "image": "https://dentalcity.mx/logo.png",
+    "telephone": "+52-33-1234-5678",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Zona Real, Zapopan",
+        "addressLocality": "Zapopan",
+        "addressRegion": "Jalisco",
+        "postalCode": "45000",
+        "addressCountry": "MX"
+    },
+    "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "20.7238",
+        "longitude": "-103.3858"
+    },
+    "openingHoursSpecification": [
+        {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "09:00",
+            "closes": "19:00"
+        }
+    ],
+    "priceRange": "$$",
+    "medicalSpecialty": ["Orthodontics", "Dentistry", "Pediatric Dentistry", "Cosmetic Dentistry", "Dental Implants"],
+    "areaServed": {
+        "@type": "City",
+        "name": "Zapopan, Guadalajara"
+    }
+};
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+    lang="es"
+    title={seo.title}
+    description={seo.description}
+    keywords={seo.keywords}
+    alternates={getAlternateLinks('home')}
+    structuredData={localBusinessData}
+>
+    <HomeClient client:load lang="es" />
 </Layout>

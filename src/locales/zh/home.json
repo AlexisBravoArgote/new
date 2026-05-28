@@ -1,0 +1,451 @@
+﻿{
+    "hero": {
+        "title": "一笑之间尽显优雅",
+        "subtitle": "前沿数字化口腔医疗，让精确诊疗与舒适体验和个性化关怀完美融合。",
+        "book": "预约就诊",
+        "viewTreatments": "查看治疗项目"
+    },
+    "about": {
+        "eyebrow": "关于我们",
+        "title": "兼具设计感的口腔护理",
+        "blurb": "由 Linda Argote 医生于 1999 年创立，我们将科技与品质相结合，让您的笑容更美观、更舒适。",
+        "paragraph": "我们位于哈利斯科州萨波潘，是一家涵盖所有专科的综合口腔诊所。作为 Invisalign 钻石级诊所，我们配备自有技工实验室，可为您提供精确、自然、个性化的数字微笑设计方案。",
+        "all": "所有口腔专科",
+        "brand": "Invisalign",
+        "designs": "数字微笑设计",
+        "chip_diag3d": "3D 诊断",
+        "chip_lab": "自有技工室",
+        "chip_invisible": "隐形正畸",
+        "chip_aesthetic": "美学牙科",
+        "arch_alt": "Dental City 建筑",
+        "img_all": "所有专科",
+        "img_ortho": "正畸",
+        "img_aesthetic": "美学牙科",
+        "img_scan": "数字扫描"
+    },
+    "services": {
+        "eyebrow": "服务项目",
+        "title": "治疗项目",
+        "blurb": "提供正畸、修复、根管治疗、儿童口腔、修复义齿、牙周治疗等多种专科服务。",
+        "searchPlaceholder": "搜索服务…",
+        "prev": "← 上一页",
+        "next": "下一页 →",
+        "pageLabel": "第",
+        "btn_schedule": "预约",
+        "btn_moreInfo": "了解更多",
+        "items": {
+            "implantes": {
+                "title": "种植牙",
+                "desc": "固定且美观地修复缺失牙。"
+            },
+            "limpieza": {
+                "title": "洗牙护理",
+                "desc": "专业洁治，守护牙龈和牙齿健康。"
+            },
+            "coronas": {
+                "title": "牙冠修复",
+                "desc": "坚固而自然地重建受损牙齿。"
+            },
+            "resinas": {
+                "title": "树脂充填",
+                "desc": "与牙色匹配的美观、微创修复。"
+            },
+            "maxilofacial": {
+                "title": "口腔颌面外科",
+                "desc": "高精度的专科手术治疗。"
+            },
+            "endodoncia": {
+                "title": "根管治疗",
+                "desc": "保留天然牙的牙髓治疗。"
+            },
+            "periodoncia": {
+                "title": "牙周治疗",
+                "desc": "牙龈与牙槽骨的全面护理。"
+            },
+            "guarda_oclusal": {
+                "title": "夜磨牙护牙垫",
+                "desc": "防护磨牙，缓解过度咬合压力。"
+            },
+            "puentes": {
+                "title": "口腔修复",
+                "desc": "以固定修复替代一颗或多颗缺失牙。"
+            },
+            "alineadores": {
+                "title": "隐形矫治器",
+                "desc": "可摘戴且低可见度的正畸方式。"
+            },
+            "invisalign": {
+                "title": "Invisalign 隐适美",
+                "desc": "基于数字化方案的隐形矫正系统。"
+            },
+            "brackets": {
+                "title": "托槽矫正",
+                "desc": "固定矫治器，用于咬合与牙列矫正。"
+            },
+            "blanqueamientos": {
+                "title": "牙齿美白",
+                "desc": "安全、有效地提升牙齿亮度。"
+            },
+            "carillas": {
+                "title": "贴面修复",
+                "desc": "薄层美学贴面，改善牙齿形态与色泽。"
+            },
+            "limpieza_ninos": {
+                "title": "儿童洗牙",
+                "desc": "温和且兼具教育意义的儿童口腔清洁。"
+            },
+            "selladores": {
+                "title": "窝沟封闭",
+                "desc": "封闭牙面窝沟，预防龋齿。"
+            },
+            "extracciones": {
+                "title": "拔牙",
+                "desc": "从简单拔牙到智齿拔除，尽量采用微创方式。"
+            },
+            "ortopedia": {
+                "title": "口腔正颌矫形",
+                "desc": "引导儿童上、下颌骨健康生长。"
+            },
+            "armonizacion_facial": {
+                "title": "面部年轻化与和谐",
+                "desc": "通过肉毒素等方式提升与平衡五官。"
+            },
+            "diseno_sonrisa": {
+                "title": "微笑设计",
+                "desc": "为你量身打造协调、个性的微笑美学方案。"
+            },
+            "odontologia_biologica": {
+                "title": "生物牙科",
+                "desc": "以生物相容材料连接口腔健康与全身健康的整体诊疗理念。"
+            }
+        }
+    },
+    "services2": {
+        "btn_schedule": "预约",
+        "btn_moreInfo": "了解更多"
+    },
+    "serviceModal": {
+        "eyebrow": "服务详情",
+        "close": "关闭",
+        "ariaClose": "关闭弹窗",
+        "cta_whatsapp": "通过 WhatsApp 预约",
+        "cta_fullInfo": "完整信息",
+        "byService": {
+            "implantes": {
+                "subtitle": "采用瑞士 Straumann 高端钛或氧化锆种植体，搭配自然美观的牙冠进行固定修复。",
+                "bullets": [
+                    "使用导板种植，提高精度与舒适度。",
+                    "预计时间：手术约 30–45 分钟，骨结合约 3–6 个月。",
+                    "预计费用：每颗种植体约 33,000–38,000 MXN。"
+                ]
+            },
+            "limpieza": {
+                "subtitle": "专业洁牙，帮助维持牙龈和牙齿健康。",
+                "bullets": [
+                    "清除软垢、牙石并抛光牙面。",
+                    "预计时间：约 45 分钟。",
+                    "预计费用：普通洁牙约 1,200 MXN，配合喷砂约 1,500 MXN。"
+                ]
+            },
+            "coronas": {
+                "subtitle": "为受损牙齿提供坚固、自然的牙冠修复。",
+                "bullets": [
+                    "采用全瓷/氧化锆材料，并通过数字化技术精确就位。",
+                    "预计时间：每颗牙需 2 次就诊，每次 60–90 分钟。",
+                    "预计费用：每颗约 9,000–10,000 MXN。"
+                ]
+            },
+            "resinas": {
+                "subtitle": "颜色接近天然牙的微创树脂修复。",
+                "bullets": [
+                    "高性能粘结系统与高光泽抛光处理。",
+                    "预计时间：每颗牙约 40–60 分钟。",
+                    "预计费用：成人每颗 1,500–2,500 MXN（视病例而定），儿童每颗约 1,000 MXN。"
+                ]
+            },
+            "maxilofacial": {
+                "subtitle": "高精度口腔颌面外科手术。",
+                "bullets": [
+                    "量身定制的手术方案与完善的镇痛管理。",
+                    "预计时间：视手术复杂度约 45–120 分钟。",
+                    "预计费用：约 5,000–25,000+ MXN（视难度而定）。"
+                ]
+            },
+            "endodoncia": {
+                "subtitle": "通过根管治疗尽可能保留天然牙。",
+                "bullets": [
+                    "根管清理、塑形与严密充填。",
+                    "预计时间：1–2 次就诊，共约 60–120 分钟。",
+                    "预计费用：约 4,900 MXN。"
+                ]
+            },
+            "periodoncia": {
+                "subtitle": "牙龈及牙周组织的系统性治疗与维护。",
+                "bullets": [
+                    "非手术牙周治疗与定期维护。",
+                    "预计时间：每个象限约 60–90 分钟。",
+                    "预计费用：维护约 1,500–3,000 MXN；牙冠延长术约 4,200 MXN。"
+                ]
+            },
+            "guarda-oclusal": {
+                "subtitle": "用于缓解夜磨牙与咬合过载的个性化护牙垫。",
+                "bullets": [
+                    "取模或数字扫描，并进行个性化调整。",
+                    "预计时间：2 次就诊，每次 20–30 分钟，制作周期约 5–7 天。",
+                    "预计费用：普通咬合板约 2,500 MXN，CEREC 功能性护牙垫约 4,500 MXN。"
+                ]
+            },
+            "puentes": {
+                "subtitle": "以固定桥修复一颗或多颗缺失牙。",
+                "bullets": [
+                    "设计并调整咬合关系以保证长期稳定。",
+                    "预计时间：2–3 次就诊，每次 60–90 分钟。",
+                    "预计费用：三单位桥约 27,000–30,000 MXN。"
+                ]
+            },
+            "alineadores": {
+                "subtitle": "可摘戴的隐形矫治器，帮助悄然矫正牙列。",
+                "bullets": [
+                    "3D 扫描与阶段性移动方案设计。",
+                    "预计疗程：约 6–18 个月，每 6–8 周复诊一次。",
+                    "预计费用：视复杂度约 25,000–40,000 MXN。"
+                ]
+            },
+            "invisalign": {
+                "subtitle": "基于数字化规划的 Invisalign 隐形矫治。",
+                "bullets": [
+                    "兼顾舒适度与精确控制牙齿移动。",
+                    "预计疗程：6–18 个月，需定期复查。",
+                    "预计费用：视病例复杂度约 50,000–85,000 MXN。"
+                ]
+            },
+            "brackets": {
+                "subtitle": "通过固定托槽矫正咬合与牙列。",
+                "bullets": [
+                    "可选金属或美观托槽（视情况而定）。",
+                    "预计疗程：18–24 个月，每月复诊调整。",
+                    "预计费用：整个疗程约 33,000–52,000 MXN。"
+                ]
+            },
+            "blanqueamientos": {
+                "subtitle": "安全、有效提升牙色亮度的美白治疗。",
+                "bullets": [
+                    "可在诊所进行，也可在医生指导下在家配合使用。",
+                    "预计时间：每次疗程约 45–60 分钟。",
+                    "预计费用：全口美白约 3,900 MXN，补色约 1,500 MXN。"
+                ]
+            },
+            "carillas": {
+                "subtitle": "改善牙齿形态与色泽的美学贴面修复。",
+                "bullets": [
+                    "视病例选择瓷贴面或树脂贴面，并尽量减少牙体预备。",
+                    "预计时间：2–3 次就诊，技工周期约 7–14 天。",
+                    "预计费用：根据材料不同，每颗约 6,000–12,000 MXN。"
+                ]
+            },
+            "limpieza-ninos": {
+                "subtitle": "温和且富有引导性的儿童洁牙护理。",
+                "bullets": [
+                    "轻柔清洁、氟涂布与口腔卫生指导。",
+                    "预计时间：约 30 分钟。",
+                    "预计费用：约 950 MXN。"
+                ]
+            },
+            "selladores": {
+                "subtitle": "在牙齿窝沟处涂布封闭剂，预防龋坏发生。",
+                "bullets": [
+                    "在健康磨牙表面无痛涂布。",
+                    "预计时间：每颗牙约 15–20 分钟。",
+                    "预计费用：每颗约 1,000 MXN。"
+                ]
+            },
+            "extracciones": {
+                "subtitle": "包含简单拔牙及智齿拔除的微创拔牙服务。",
+                "bullets": [
+                    "局部麻醉下拔牙，并提供完善术后护理指导。",
+                    "预计时间：视难度约 20–60 分钟。",
+                    "预计费用：门牙约 2,000 MXN／智齿约 3,000 MXN。"
+                ]
+            },
+            "ortopedia": {
+                "subtitle": "帮助儿童上、下颌骨按照理想方向生长发育的正颌矫形治疗。",
+                "bullets": [
+                    "个性化功能矫形器与定期随访。",
+                    "预计疗程：6–18 个月，每两个月复诊一次。",
+                    "预计费用：视矫形装置而定约 20,000–28,000 MXN。"
+                ]
+            },
+            "armonizacion-facial": {
+                "subtitle": "通过肉毒毒素及皮肤填充剂实现自然的面部平衡与年轻化。",
+                "bullets": [
+                    "减轻表情纹，并进行轻柔的体积塑形。",
+                    "预计时间：约 20–40 分钟，效果可维持 4–12 个月。",
+                    "预计费用：磨牙肌肉肉毒每个区域约 5,000 MXN，baby botox 约 2,800 MXN。"
+                ]
+            },
+            "diseno-sonrisa": {
+                "subtitle": "结合数字化 mock-up 和引导方案的综合微笑美学设计。",
+                "bullets": [
+                    "临床摄影、比例分析及预先试戴评估。",
+                    "预计时间：用于诊断与 mock-up 的 1–3 次就诊。",
+                    "预计费用：美学分析约 5,000 MXN；最终治疗视方案而定约 10,000–60,000 MXN；牙龈重塑起价约 5,000 MXN。"
+                ]
+            },
+            "odontologia-biologica": {
+                "subtitle": "以生物相容材料和微创技术连接口腔与全身健康的整体理念。",
+                "bullets": [
+                    "生物相容材料、安全方案与个性化诊疗。",
+                    "预计时间：视具体治疗而定。",
+                    "预计费用：临床评估后报价。"
+                ]
+            },
+            "default": {
+                "subtitle": "根据你的诊断结果提供个性化治疗方案。",
+                "bullets": [
+                    "临床评估后制定专属计划。",
+                    "预计时间：视具体情况而定。",
+                    "预计费用：需面诊评估后报价。"
+                ]
+            }
+        }
+    },
+    "gallery": {
+        "eyebrow": "图库",
+        "title": "诊所环境",
+        "brand": "DENTAL CITY",
+        "prev": "上一张",
+        "next": "下一张",
+        "goToPhoto": "前往第 {{n}} 张照片",
+        "items": {
+            "ubicacion": {
+                "title": "地理位置",
+                "subtitle": "Jardín Real · Zapopan"
+            },
+            "unidades": {
+                "title": "诊疗单元",
+                "subtitle": "科技与舒适并存"
+            },
+            "recepcion": {
+                "title": "前台接待",
+                "subtitle": "热情与温暖"
+            },
+            "detalles": {
+                "title": "细节",
+                "subtitle": "启发灵感的设计"
+            }
+        }
+    },
+    "invis": {
+        "cta_whatsapp": "预约",
+        "cta_demo": "查看演示",
+        "controls": {
+            "prev": "上一张",
+            "next": "下一张",
+            "goTo": "前往第 {{n}} 张幻灯片",
+            "close": "关闭"
+        },
+        "iframeTitle": "Invisalign 演示",
+        "modal": {
+            "title": "治疗模拟",
+            "subtitle": "查看每一个阶段的牙齿变化。"
+        },
+        "slides": {
+            "slide1": {
+                "overline": "INVISALIGN",
+                "title": "无需托槽的正畸",
+                "subLeft": "全新的无托槽牙齿矫正方式。",
+                "strongRight": "全球领先的隐形矫治品牌",
+                "textRight": "适用于 8 岁及以上人群的无托槽正畸解决方案。"
+            },
+            "slide2": {
+                "overline": "数字化方案",
+                "title": "3D 引导的治疗计划",
+                "subLeft": "在开始前就能预览未来笑容效果。",
+                "strongRight": "分阶段精准控制",
+                "textRight": "通过数字化随访与个性化调整，让每一步移动都更可控。"
+            },
+            "slide3": {
+                "overline": "舒适与美观",
+                "title": "透明矫治器",
+                "subLeft": "佩戴舒适，可自行摘戴，易于清洁。",
+                "strongRight": "保持日常习惯",
+                "textRight": "无需大幅改变刷牙或饮食习惯，就能完成矫正。"
+            }
+        }
+    },
+    "locations": {
+        "eyebrow": "分院信息",
+        "title": "我们的诊所",
+        "labels": {
+            "whatsapp": "WhatsApp",
+            "phones": "电话",
+            "schedule": "门诊时间",
+            "closed": "休息",
+            "holidays": "节假日",
+            "specialHours": "特别门诊时间",
+            "address": "地址",
+            "followUs": "关注我们"
+        },
+        "cta": {
+            "whatsapp": "通过 WhatsApp 预约",
+            "call": "电话预约",
+            "viewMaps": "在地图中查看"
+        },
+        "copy": {
+            "copy": "复制",
+            "copied": "已复制 ✓",
+            "copyAddressTitle": "复制地址"
+        },
+        "follow": {
+            "dc": "通过社交媒体联系 Dental City。",
+            "kids": "通过社交媒体联系 Dental City Kids & Family。"
+        },
+        "mapTitle": "{{name}} 地图",
+        "days": {
+            "monFri": "周一至周五",
+            "sat": "周六",
+            "sun": "周日"
+        },
+        "holidayDates": {
+            "dec24": "12月24日",
+            "dec25": "12月25日",
+            "jan1": "1月1日"
+        },
+        "msg": {
+            "dc": "您好，我想在 Dental City 预约一个看诊时间。",
+            "kids": "您好，我想在 Dental City Kids 预约一个看诊时间。"
+        }
+    },
+    "faq": {
+        "eyebrow": "常见问题",
+        "title": "常见问答",
+        "items": [
+            {
+                "q": "你们接诊儿童吗？",
+                "a": "是的，我们设有儿童口腔专科，在 Dental City Kids & Family 为小朋友提供友好、有趣的就诊体验。"
+            },
+            {
+                "q": "可以使用信用卡支付吗？",
+                "a": "可以，我们支持信用卡支付，并为部分治疗提供分期或支付计划。"
+            },
+            {
+                "q": "首次就诊包括哪些内容？",
+                "a": "我们会进行临床检查及必要辅助检查，并为你制定专属的治疗方案。"
+            }
+        ]
+    },
+    "topbar": {
+        "treatments": "治疗项目",
+        "gallery": "诊所环境",
+        "clinics": "我们的诊所",
+        "doctors": "医生团队",
+        "resources": "资源中心",
+        "blog": "博客与研究",
+        "edu": "Dental City Edu",
+        "jobs": "招聘信息",
+        "menu": "菜单",
+        "menuCaps": "菜单",
+        "openMenu": "打开菜单",
+        "closeMenu": "关闭菜单"
+    }
+}

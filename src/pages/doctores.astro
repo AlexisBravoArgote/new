@@ -1,0 +1,44 @@
+---
+import Layout from '../layouts/Layout.astro';
+import DoctoresContent from '../components-react/DoctoresContent.jsx';
+import { getAlternateLinks, getPageSeo } from '../lib/site-copy.js';
+
+const seo = getPageSeo('doctores', 'es');
+
+const medicalOrgData = {
+    "@context": "https://schema.org",
+    "@type": "MedicalOrganization",
+    "name": "Dental City",
+    "description": "Clínica dental con más de 25 años de experiencia. Contamos con 29 dentistas especializados en todas las áreas de odontología.",
+    "url": "https://dentalcity.mx/doctores",
+    "medicalSpecialty": [
+        "Orthodontics",
+        "General Dentistry",
+        "Pediatric Dentistry",
+        "Periodontics",
+        "Endodontics",
+        "Oral Surgery",
+        "Cosmetic Dentistry",
+        "Dental Implants"
+    ],
+    "numberOfEmployees": {
+        "@type": "QuantitativeValue",
+        "value": "29"
+    }
+};
+---
+
+<Layout
+    lang="es"
+    title={seo.title}
+    description={seo.description}
+    keywords={seo.keywords}
+    alternates={getAlternateLinks('doctores')}
+    structuredData={medicalOrgData}
+>
+    <DoctoresContent client:load lang="es" />
+</Layout>
+
+<style>
+    @import "../styles/global.css";
+</style>

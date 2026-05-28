@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TerminosClient from '../components-react/TerminosContent.jsx';
+---
+
+<Layout
+    title="Términos y Condiciones"
+    description="Términos y condiciones de uso del sitio web de Dental City. Reglas y condiciones para el uso de nuestros servicios y contenido."
+    keywords="términos y condiciones, dental city, políticas, uso del sitio"
+>
+    <TerminosClient client:load />
+</Layout>
+
+<style>
+    @import "../styles/global.css";
+</style>

@@ -1,0 +1,45 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BlogPost10 from '../../components-react/blog-posts/10.jsx';
+const cendi = '/assets/cendi.jpg';
+
+const post = {
+    id: "10",
+    title: "Filantropía: jornada gratuita para niñas y niños de CENDI Tlajomulco",
+    excerpt: "En alianza con el Centro de estimulación para personas con discapacidad intelectual (CENDI) y Rotary International Club Valle Real, brindamos limpiezas, extracciones y revisiones sin costo, promoviendo salud oral inclusiva.",
+    cover: cendi,
+    category: "Filantropía",
+    tags: ["Inclusión", "Infancia", "Comunidad", "Voluntariado"],
+    date: "2025-10-17",
+};
+
+const articleData = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "description": post.excerpt,
+    "image": `https://dentalcity.mx${post.cover}`,
+    "datePublished": post.date,
+    "dateModified": post.date,
+    "author": { "@type": "Organization", "name": "Dental City" },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Dental City",
+        "logo": { "@type": "ImageObject", "url": "https://dentalcity.mx/logo.png" }
+    },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": `https://dentalcity.mx/blog/${post.id}` },
+    "keywords": post.tags.join(", "),
+    "articleSection": post.category
+};
+---
+
+<Layout
+    title={post.title}
+    description={post.excerpt}
+    keywords={post.tags.join(", ")}
+    image={`https://dentalcity.mx${post.cover}`}
+    type="article"
+    structuredData={articleData}
+>
+    <BlogPost10 client:load />
+</Layout>

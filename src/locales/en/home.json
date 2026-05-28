@@ -1,0 +1,457 @@
+﻿{
+    "hero": {
+        "title": "Elegance you can see when you smile",
+        "subtitle": "Cutting-edge digital dentistry, where precision meets comfort and personalized care.",
+        "book": "Book appointment",
+        "viewTreatments": "View treatments"
+    },
+    "about": {
+        "eyebrow": "ABOUT US",
+        "title": "Dental care with design",
+        "blurb": "Founded by Dr. Linda Argote in 1999, we combine technology and quality so your smile looks and feels better.",
+        "paragraph": "Comprehensive dental clinic with all specialties, located in Zapopan, Jalisco. We are a Diamond Invisalign clinic with an in-house lab to create precise, natural, and personalized digital smile designs.",
+        "all": "all dental specialties",
+        "brand": "Invisalign",
+        "designs": "digital smile designs",
+        "chip_diag3d": "3D Diagnosis",
+        "chip_lab": "In-house lab",
+        "chip_invisible": "Invisible orthodontics",
+        "chip_aesthetic": "Aesthetic dentistry",
+        "arch_alt": "Dental City architecture",
+        "img_all": "All specialties",
+        "img_ortho": "Orthodontics",
+        "img_aesthetic": "Aesthetic dentistry",
+        "img_scan": "Digital scan"
+    },
+    "services": {
+        "eyebrow": "SERVICES",
+        "title": "Treatments",
+        "blurb": "Orthodontics, rehabilitation, endodontics, pediatric dentistry, prosthodontics, periodontics.",
+        "searchPlaceholder": "Search service…",
+        "prev": "← Previous",
+        "next": "Next →",
+        "pageLabel": "Page",
+        "btn_schedule": "Schedule",
+        "btn_moreInfo": "More info",
+        "items": {
+            "implantes": {
+                "title": "Implants",
+                "desc": "Fixed and aesthetic replacement of missing teeth."
+            },
+            "limpieza": {
+                "title": "Dental cleaning",
+                "desc": "Professional prophylaxis to keep gums and teeth healthy."
+            },
+            "coronas": {
+                "title": "Dental crowns",
+                "desc": "Strong and natural restoration of damaged teeth."
+            },
+            "resinas": {
+                "title": "Dental composites",
+                "desc": "Aesthetic, conservative tooth-colored restorations."
+            },
+            "maxilofacial": {
+                "title": "Maxillofacial surgery",
+                "desc": "Specialized surgical procedures with high precision."
+            },
+            "endodoncia": {
+                "title": "Endodontics",
+                "desc": "Root canal treatment to preserve natural teeth."
+            },
+            "periodoncia": {
+                "title": "Periodontics",
+                "desc": "Comprehensive care of gums and bone support."
+            },
+            "guarda_oclusal": {
+                "title": "Occlusal guard",
+                "desc": "Protection against bruxism and overload relief."
+            },
+            "puentes": {
+                "title": "Oral rehabilitation",
+                "desc": "Fixed solutions to replace one or more teeth."
+            },
+            "alineadores": {
+                "title": "Aligners",
+                "desc": "Removable and discreet orthodontics to align your smile."
+            },
+            "invisalign": {
+                "title": "Invisalign",
+                "desc": "Invisible aligners with digital planning."
+            },
+            "brackets": {
+                "title": "Braces",
+                "desc": "Fixed orthodontics for bite correction and alignment."
+            },
+            "blanqueamientos": {
+                "title": "Whitening",
+                "desc": "Safe and effective teeth shade lightening."
+            },
+            "carillas": {
+                "title": "Veneers",
+                "desc": "Aesthetic laminates for perfect shape and color."
+            },
+            "limpieza_ninos": {
+                "title": "Dental cleaning for children",
+                "desc": "Friendly and educational pediatric prophylaxis."
+            },
+            "selladores": {
+                "title": "Sealants",
+                "desc": "Protection of pits and fissures against cavities."
+            },
+            "extracciones": {
+                "title": "Extractions",
+                "desc": "Simple and wisdom-tooth extractions with a minimally invasive approach."
+            },
+            "ortopedia": {
+                "title": "Orthopedics",
+                "desc": "Guiding jaw growth in young patients."
+            },
+            "armonizacion_facial": {
+                "title": "Facial harmonization",
+                "desc": "Aesthetic botox treatment to enhance and balance facial features."
+            },
+            "diseno_sonrisa": {
+                "title": "Smile design",
+                "desc": "Comprehensive aesthetic plan to achieve a harmonious, personalized smile."
+            },
+            "odontologia_biologica": {
+                "title": "Biological dentistry",
+                "desc": "Holistic approach connecting oral health and overall wellness with biocompatible materials."
+            }
+        }
+    },
+    "services2": {
+        "btn_schedule": "Schedule",
+        "btn_moreInfo": "More info"
+    },
+    "serviceModal": {
+        "eyebrow": "SERVICE",
+        "close": "Close",
+        "ariaClose": "Close modal",
+        "cta_whatsapp": "Schedule via WhatsApp",
+        "cta_fullInfo": "Full info",
+        "byService": {
+            "implantes": {
+                "subtitle": "Fixed replacement with premium Swiss Straumann titanium or zirconium implant and natural-looking crown.",
+                "bullets": [
+                    "Guided placement for greater precision and comfort.",
+                    "Estimated time: surgery 30–45 min; integration 3–6 months.",
+                    "Estimated price: $33,000–38,000 MXN per implant."
+                ]
+            },
+            "limpieza": {
+                "subtitle": "Professional prophylaxis to keep gums and teeth healthy.",
+                "bullets": [
+                    "Plaque removal, scaling, and polishing.",
+                    "Estimated time: 45 min.",
+                    "Estimated price: $1,200 (general) – $1,500 MXN (with air-polisher)."
+                ]
+            },
+            "coronas": {
+                "subtitle": "Strong and aesthetic restoration of damaged teeth.",
+                "bullets": [
+                    "Ceramic/zirconia material with digital fit.",
+                    "Estimated time: 2 appointments of 60–90 min.",
+                    "Estimated price: $9,000–$10,000 MXN per tooth."
+                ]
+            },
+            "resinas": {
+                "subtitle": "Conservative tooth-colored restorations.",
+                "bullets": [
+                    "Advanced bonding and high-gloss polishing.",
+                    "Estimated time: 40–60 min per tooth.",
+                    "Estimated price: $1,500–$2,500 MXN (adult, case-dependent), $1,000 (child) per tooth."
+                ]
+            },
+            "maxilofacial": {
+                "subtitle": "Specialized surgical procedures with high precision.",
+                "bullets": [
+                    "Personalized surgical plan and pain control.",
+                    "Estimated time: 45–120 min (depending on procedure).",
+                    "Estimated price: $5,000–$25,000+ MXN (depending on complexity)."
+                ]
+            },
+            "endodoncia": {
+                "subtitle": "Root canal treatment to preserve natural teeth.",
+                "bullets": [
+                    "Disinfection, shaping, and sealing of the canal.",
+                    "Estimated time: 60–120 min (1–2 visits).",
+                    "Estimated price: $4,900 MXN."
+                ]
+            },
+            "periodoncia": {
+                "subtitle": "Comprehensive care of gums and bone support.",
+                "bullets": [
+                    "Non-surgical periodontal therapy and maintenance.",
+                    "Estimated time: 60–90 min per quadrant.",
+                    "Estimated price: $1,500–$3,000 MXN (maintenance). $4,200 (crown lengthening)."
+                ]
+            },
+            "guarda-oclusal": {
+                "subtitle": "Protection against bruxism and overload relief.",
+                "bullets": [
+                    "Impression/scan and personalized adjustment.",
+                    "Estimated time: 2 visits of 20–30 min; delivery in 5–7 days.",
+                    "Estimated price: $2,500 MXN (occlusal guard), $4,500 MXN (CEREC functional guard)."
+                ]
+            },
+            "puentes": {
+                "subtitle": "Fixed solutions to replace one or more teeth.",
+                "bullets": [
+                    "Design and occlusion adjustment for stability.",
+                    "Estimated time: 2–3 visits of 60–90 min.",
+                    "Estimated price: $27,000–$30,000 MXN (3-unit bridge)."
+                ]
+            },
+            "alineadores": {
+                "subtitle": "Removable and discreet orthodontics to align your smile.",
+                "bullets": [
+                    "3D scan and progressive movement plan.",
+                    "Estimated time: 6–18 months, check-ups every 6–8 weeks.",
+                    "Estimated price: $25,000–$40,000 MXN (depending on complexity)."
+                ]
+            },
+            "invisalign": {
+                "subtitle": "Invisible aligners with digital planning.",
+                "bullets": [
+                    "Comfort and precise treatment control.",
+                    "Estimated time: 6–18 months, periodic check-ups.",
+                    "Estimated price: $50,000–$85,000 MXN (depending on complexity)."
+                ]
+            },
+            "brackets": {
+                "subtitle": "Fixed orthodontics for bite correction and alignment.",
+                "bullets": [
+                    "Metal or aesthetic options (case-dependent).",
+                    "Estimated time: 18–24 months; monthly visits.",
+                    "Estimated price: $33,000–$52,000 MXN for the treatment."
+                ]
+            },
+            "blanqueamientos": {
+                "subtitle": "Safe and effective teeth tone lightening.",
+                "bullets": [
+                    "In-clinic and/or supervised at-home treatment.",
+                    "Estimated time: 45–60 min per session.",
+                    "Estimated price: $3,900 MXN (complete) / $1,500 MXN (touch-up)."
+                ]
+            },
+            "carillas": {
+                "subtitle": "Aesthetic laminates for perfect shape and color.",
+                "bullets": [
+                    "Ceramic or resin with minimal preparation (case-dependent).",
+                    "Estimated time: 2–3 visits; 7–14 days lab work.",
+                    "Estimated price: $6,000–$12,000 MXN per tooth (depending on material)."
+                ]
+            },
+            "limpieza-ninos": {
+                "subtitle": "Friendly and educational pediatric prophylaxis.",
+                "bullets": [
+                    "Gentle cleaning, fluoride varnish, and hygiene guidance.",
+                    "Estimated time: 30 min.",
+                    "Estimated price: $950 MXN."
+                ]
+            },
+            "selladores": {
+                "subtitle": "Protection of pits and fissures against cavities.",
+                "bullets": [
+                    "Painless application on healthy molars.",
+                    "Estimated time: 15–20 min per tooth.",
+                    "Estimated price: $1,000 MXN per tooth."
+                ]
+            },
+            "extracciones": {
+                "subtitle": "Simple and wisdom tooth extractions with a minimally invasive approach.",
+                "bullets": [
+                    "Local anesthesia and postoperative management.",
+                    "Estimated time: 20–60 min (depending on complexity).",
+                    "Estimated price: $2,000 MXN (incisor) / $3,000 MXN (wisdom tooth)."
+                ]
+            },
+            "ortopedia": {
+                "subtitle": "Guidance of maxillary and mandibular growth in young patients.",
+                "bullets": [
+                    "Personalized functional appliances and periodic check-ups.",
+                    "Estimated time: 6–18 months; bi-monthly reviews.",
+                    "Estimated price: $20,000–$28,000 MXN (depending on appliance)."
+                ]
+            },
+            "armonizacion-facial": {
+                "subtitle": "Botulinum toxin and dermal fillers for natural facial balance.",
+                "bullets": [
+                    "Soft line reduction and subtle volume enhancement.",
+                    "Estimated time: 20–40 min; results last 4–12 months.",
+                    "Estimated price: $5,000 MXN per area (Bruxism Botox) / $2,800 (baby botox)."
+                ]
+            },
+            "diseno-sonrisa": {
+                "subtitle": "Comprehensive aesthetic plan with digital mock-up and guided execution.",
+                "bullets": [
+                    "Clinical photography, proportion analysis, and preliminary tests.",
+                    "Estimated time: 1–3 appointments for diagnosis and mock-up.",
+                    "Estimated price: Study $5,000 MXN; final treatment depending on plan ($10,000–$60,000 MXN). Gingival recontouring from $5,000 MXN."
+                ]
+            },
+            "odontologia-biologica": {
+                "subtitle": "Holistic approach with biocompatible materials and minimally invasive techniques.",
+                "bullets": [
+                    "Biocompatible materials, safe protocols, and personalized care.",
+                    "Estimated time: varies depending on treatment.",
+                    "Estimated price: quoted after clinical evaluation."
+                ]
+            },
+            "default": {
+                "subtitle": "Personalized care according to your diagnosis.",
+                "bullets": [
+                    "Clinical evaluation and tailored plan.",
+                    "Estimated time: variable.",
+                    "Estimated price: to be quoted after evaluation."
+                ]
+            }
+        }
+    },
+
+    "gallery": {
+        "eyebrow": "GALLERY",
+        "title": "Our facilities",
+        "brand": "DENTAL CITY",
+        "prev": "Previous",
+        "next": "Next",
+        "goToPhoto": "Go to photo {{n}}",
+        "items": {
+            "ubicacion": {
+                "title": "Location",
+                "subtitle": "Jardín Real · Zapopan"
+            },
+            "unidades": {
+                "title": "Units",
+                "subtitle": "Technology and comfort"
+            },
+            "recepcion": {
+                "title": "Reception",
+                "subtitle": "Warmth and hospitality"
+            },
+            "detalles": {
+                "title": "Details",
+                "subtitle": "Design that inspires"
+            }
+        }
+    },
+
+    "invis": {
+        "cta_whatsapp": "Schedule",
+        "cta_demo": "View demo",
+        "controls": {
+            "prev": "Previous",
+            "next": "Next",
+            "goTo": "Go to slide {{n}}",
+            "close": "Close"
+        },
+        "iframeTitle": "Invisalign demo",
+        "modal": {
+            "title": "Treatment simulation",
+            "subtitle": "View progress stage by stage."
+        },
+        "slides": {
+            "slide1": {
+                "overline": "INVISALIGN",
+                "title": "Orthodontics without braces",
+                "subLeft": "The new orthodontics without brackets.",
+                "strongRight": "The #1 aligner",
+                "textRight": "in the world for bracket-free orthodontic treatments starting at age 8."
+            },
+            "slide2": {
+                "overline": "DIGITAL PLAN",
+                "title": "3D-guided treatment",
+                "subLeft": "See the result before starting.",
+                "strongRight": "Precise stage-by-stage control",
+                "textRight": "with digital monitoring and personalized adjustments for your smile."
+            },
+            "slide3": {
+                "overline": "COMFORT & AESTHETICS",
+                "title": "Transparent aligners",
+                "subLeft": "Comfortable, removable, and hygienic.",
+                "strongRight": "Live your day-to-day",
+                "textRight": "without drastic changes in hygiene or eating habits."
+            }
+        }
+    },
+
+    "locations": {
+        "eyebrow": "CLINICS",
+        "title": "Our Clinics",
+        "labels": {
+            "whatsapp": "WhatsApp",
+            "phones": "Phones",
+            "schedule": "Hours",
+            "closed": "Closed",
+            "holidays": "Holidays",
+            "specialHours": "Special hours",
+            "address": "Address",
+            "followUs": "Follow us"
+        },
+        "cta": {
+            "whatsapp": "Schedule via WhatsApp",
+            "call": "Schedule by phone",
+            "viewMaps": "View on Maps"
+        },
+        "copy": {
+            "copy": "Copy",
+            "copied": "Copied ✓",
+            "copyAddressTitle": "Copy address"
+        },
+        "follow": {
+            "dc": "Contact Dental City on social media.",
+            "kids": "Contact Dental City Kids & Family on social media."
+        },
+        "mapTitle": "Map {{name}}",
+        "days": {
+            "monFri": "Monday - Friday",
+            "sat": "Saturday",
+            "sun": "Sunday"
+        },
+        "holidayDates": {
+            "dec24": "December 24",
+            "dec25": "December 25",
+            "jan1": "January 1"
+        },
+        "msg": {
+            "dc": "Hello, I would like to book an appointment at Dental City.",
+            "kids": "Hello, I would like to book an appointment at Dental City Kids."
+        }
+    },
+
+    "faq": {
+        "eyebrow": "FAQ",
+        "title": "Frequently Asked Questions",
+        "items": [
+            {
+                "q": "Do you treat children?",
+                "a": "Yes, we have pediatric dentistry and a friendly approach for children at Dental City Kids & Family."
+            },
+            {
+                "q": "Do you accept credit cards?",
+                "a": "Yes, along with payment plans for selected treatments."
+            },
+            {
+                "q": "What does the first visit include?",
+                "a": "Clinical evaluation, necessary studies, and a personalized plan."
+            }
+        ]
+    },
+
+    "topbar": {
+        "treatments": "Our treatments",
+        "gallery": "Our facilities",
+        "clinics": "Our clinics",
+        "doctors": "Our doctors",
+        "resources": "Resources",
+        "blog": "Blog & Research",
+        "edu": "Dental City Edu",
+        "jobs": "Job board",
+        "menu": "Menu",
+        "menuCaps": "MENU",
+        "openMenu": "Open menu",
+        "closeMenu": "Close menu"
+    }
+}
+

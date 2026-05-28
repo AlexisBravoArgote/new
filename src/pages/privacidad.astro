@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PrivacidadClient from '../components-react/PrivacidadContent.jsx';
+---
+
+<Layout
+    title="Aviso de Privacidad"
+    description="Aviso de privacidad de Dental City. Información sobre cómo protegemos y manejamos sus datos personales."
+    keywords="aviso de privacidad, protección de datos, dental city, privacidad"
+>
+    <PrivacidadClient client:load />
+</Layout>
+
+<style>
+    @import "../styles/global.css";
+</style>
