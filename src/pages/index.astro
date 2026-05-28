@@ -2,13 +2,16 @@
 import Layout from '../layouts/Layout.astro';
 import HomeClient from '../components-react/HomeClient.jsx';
 import { getAlternateLinks, getPageSeo } from '../lib/site-copy.js';
-import { buildJsonLd, dentalClinicOrganization, webSiteSchema } from '../lib/seo.js';
+import { getMainNavLinks } from '../config/site-nav.js';
+import { buildJsonLd, dentalClinicOrganization, siteNavigationSchema, webSiteSchema } from '../lib/seo.js';
 
 const seo = getPageSeo('home', 'es');
+const mainNavLinks = getMainNavLinks('es');
 
 const structuredData = buildJsonLd(
     dentalClinicOrganization({ description: seo.description }),
-    webSiteSchema()
+    webSiteSchema(),
+    siteNavigationSchema(mainNavLinks)
 );
 ---
 

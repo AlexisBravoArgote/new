@@ -3,7 +3,8 @@ import Layout from '../../layouts/Layout.astro';
 import HomeClient from '../../components-react/HomeClient.jsx';
 import { SECONDARY_LOCALE_CODES } from '../../config/languages.js';
 import { getAlternateLinks, getPageSeo, normalizeLang } from '../../lib/site-copy.js';
-import { buildJsonLd, dentalClinicOrganization, webSiteSchema } from '../../lib/seo.js';
+import { getMainNavLinks } from '../../config/site-nav.js';
+import { buildJsonLd, dentalClinicOrganization, siteNavigationSchema, webSiteSchema } from '../../lib/seo.js';
 
 export function getStaticPaths() {
     return SECONDARY_LOCALE_CODES.map((lang) => ({ params: { lang } }));
@@ -12,10 +13,12 @@ export function getStaticPaths() {
 const { lang: rawLang } = Astro.params;
 const lang = normalizeLang(rawLang);
 const seo = getPageSeo('home', lang);
+const mainNavLinks = getMainNavLinks(lang);
 
 const structuredData = buildJsonLd(
     dentalClinicOrganization({ description: seo.description }),
-    webSiteSchema()
+    webSiteSchema(),
+    siteNavigationSchema(mainNavLinks)
 );
 ---
 

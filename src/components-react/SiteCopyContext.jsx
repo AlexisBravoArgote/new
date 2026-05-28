@@ -25,3 +25,7 @@ export function useSiteCopy() {
     }
     return ctx;
 }
+
+export function useOptionalSiteCopy() {
+    return useContext(SiteCopyContext);
+}

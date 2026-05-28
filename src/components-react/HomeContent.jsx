@@ -20,6 +20,7 @@ const arquitectura = "/assets/arquitectura.png";
 
 import TopBar from "./TopBar.jsx";
 import Footer from "./Footer.jsx";
+import MainSiteLinks from "./MainSiteLinks.jsx";
 import LanguageSwitcher from "./LanguageSwitcher.jsx";
 import { useSiteCopy } from "./SiteCopyContext.jsx";
 
@@ -142,6 +143,7 @@ function Home() {
             <GalleryCarousel />
             <InvisalignInteractive />
             <LocationsTabs />
+            <MainSiteLinks variant="section" showLanguages />
             <FAQ />
 
             <Footer />

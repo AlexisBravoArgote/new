@@ -147,6 +147,21 @@ export function medicalProcedureSchema({ name, description, slug, image }) {
     };
 }
 
+/** @param {{ href: string; title: string; description?: string }[]} links */
+export function siteNavigationSchema(links) {
+    return {
+        "@type": "ItemList",
+        name: "Main site navigation",
+        itemListElement: links.map((link, index) => ({
+            "@type": "SiteNavigationElement",
+            position: index + 1,
+            name: link.title,
+            ...(link.description ? { description: link.description } : {}),
+            url: absoluteUrl(link.href),
+        })),
+    };
+}
+
 export function blogPostingSchema(post) {
     return {
         "@type": "BlogPosting",
