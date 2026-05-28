@@ -1,12 +1,25 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import TerminosClient from '../components-react/TerminosContent.jsx';
+import { STATIC_PAGE_SEO } from '../config/seo-static-pages.js';
+import { breadcrumbSchema, buildJsonLd, dentalClinicOrganization } from '../lib/seo.js';
+
+const seo = STATIC_PAGE_SEO.terminos;
+
+const structuredData = buildJsonLd(
+    dentalClinicOrganization(),
+    breadcrumbSchema([
+        { name: "Inicio", path: "/" },
+        { name: "Términos y condiciones", path: "/terminos" },
+    ])
+);
 ---
 
 <Layout
-    title="Términos y Condiciones"
-    description="Términos y condiciones de uso del sitio web de Dental City. Reglas y condiciones para el uso de nuestros servicios y contenido."
-    keywords="términos y condiciones, dental city, políticas, uso del sitio"
+    title={seo.title}
+    description={seo.description}
+    keywords={seo.keywords}
+    structuredData={structuredData}
 >
     <TerminosClient client:load />
 </Layout>

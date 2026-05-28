@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import { LOCALES } from '../config/languages.js';
+import { SITE, canonicalUrl, dentalClinicOrganization, webSiteSchema, buildJsonLd } from '../lib/seo.js';
 
 interface AlternateLink {
     hreflang: string;
@@ -12,27 +14,59 @@ interface Props {
     keywords?: string;
     image?: string;
     type?: string;
-    structuredData?: object;
+    structuredData?: object | null;
     lang?: string;
     alternates?: AlternateLink[];
+    noindex?: boolean;
+    publishedTime?: string;
+    modifiedTime?: string;
+    includeSiteSchemas?: boolean;
 }
 
 const {
     title = "Dental City | Clínica Dental en Zapopan, Guadalajara",
     description = "Clínica dental integral en Zapopan, Jalisco. Especialidades: ortodoncia, implantes, odontopediatría, estética dental. Tecnología digital de vanguardia.",
     keywords = "clínica dental, dentista Zapopan, ortodoncia Guadalajara, implantes dentales, odontopediatría, estética dental",
-    image = "https://dentalcity.mx/logo.png",
+    image = SITE.defaultImage,
     type = "website",
-    structuredData,
+    structuredData = null,
     lang = "es",
     alternates = [],
+    noindex = false,
+    publishedTime,
+    modifiedTime,
+    includeSiteSchemas = false,
 } = Astro.props;
 
-const baseUrl = "https://dentalcity.mx";
-const canonicalURL = new URL(Astro.url.pathname, baseUrl);
+const canonical = canonicalUrl(Astro.url.pathname);
 const finalTitle = title.includes("Dental City") ? title : `${title} | Dental City`;
 const htmlLang = lang === "es" ? "es-MX" : lang;
-const xDefault = alternates.find((a) => a.hreflang === "es-MX")?.href ?? `${baseUrl}/`;
+const ogLocale = lang === "es" ? "es_MX" : lang;
+const xDefault = alternates.find((a) => a.hreflang === "es-MX")?.href ?? `${SITE.origin}/`;
+const robotsContent = noindex ? "noindex, follow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
+
+const localeAlternates = LOCALES.filter((l) => l.code !== lang).map((l) => {
+    const hreflang = l.hreflang;
+    const href =
+        alternates.find((a) => a.hreflang === hreflang)?.href ??
+        alternates.find((a) => a.href.includes(`/${l.code}/`))?.href;
+    return href ? { hreflang, href } : null;
+}).filter(Boolean);
+
+function resolveJsonLd() {
+    if (includeSiteSchemas) {
+        return buildJsonLd(dentalClinicOrganization(), webSiteSchema(), structuredData);
+    }
+    if (structuredData && structuredData["@context"]) {
+        return structuredData;
+    }
+    if (structuredData) {
+        return buildJsonLd(structuredData);
+    }
+    return buildJsonLd(dentalClinicOrganization());
+}
+
+const jsonLd = JSON.stringify(resolveJsonLd());
 ---
 
 <!doctype html>
@@ -41,47 +75,57 @@ const xDefault = alternates.find((a) => a.hreflang === "es-MX")?.href ?? `${base
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" type="image/png" href="/logo.png" />
+        <link rel="apple-touch-icon" href="/logo.png" />
+        <meta name="theme-color" content="#0b1b2b" />
         <meta name="generator" content={Astro.generator} />
-        
-        <!-- Primary Meta Tags -->
+        <meta name="format-detection" content="telephone=yes" />
+
         <title>{finalTitle}</title>
         <meta name="title" content={finalTitle} />
         <meta name="description" content={description} />
         <meta name="keywords" content={keywords} />
         <meta name="author" content="Dental City" />
-        <meta name="robots" content="index, follow" />
-        
-        <!-- Open Graph / Facebook -->
+        <meta name="robots" content={robotsContent} />
+
+        <meta name="geo.region" content="MX-JAL" />
+        <meta name="geo.placename" content="Zapopan, Jalisco" />
+        <meta name="geo.position" content="20.7238;-103.3858" />
+        <meta name="ICBM" content="20.7238, -103.3858" />
+
+        <link rel="canonical" href={canonical} />
+
         <meta property="og:type" content={type} />
-        <meta property="og:url" content={canonicalURL} />
+        <meta property="og:url" content={canonical} />
         <meta property="og:title" content={finalTitle} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={image} />
-        <meta property="og:site_name" content="Dental City" />
-        <meta property="og:locale" content={lang === "es" ? "es_MX" : lang} />
-        
-        <!-- Twitter -->
+        <meta property="og:image:alt" content={`${SITE.name} - ${title}`} />
+        <meta property="og:site_name" content={SITE.name} />
+        <meta property="og:locale" content={ogLocale} />
+        {localeAlternates.map((alt) => (
+            <meta property="og:locale:alternate" content={alt.hreflang === "es-MX" ? "es_MX" : alt.hreflang} />
+        ))}
+
+        {type === "article" && publishedTime && (
+            <meta property="article:published_time" content={publishedTime} />
+        )}
+        {type === "article" && (modifiedTime || publishedTime) && (
+            <meta property="article:modified_time" content={modifiedTime ?? publishedTime} />
+        )}
+
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content={canonicalURL} />
+        <meta name="twitter:url" content={canonical} />
         <meta name="twitter:title" content={finalTitle} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={image} />
-        
-        <!-- Canonical URL -->
-        <link rel="canonical" href={canonicalURL} />
-        
-        <!-- Language alternates (separate URLs per locale) -->
+
         {alternates.map((alt) => (
             <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
         ))}
         <link rel="alternate" hreflang="x-default" href={xDefault} />
-        
-        <!-- Structured Data (JSON-LD) -->
-        {structuredData && (
-            <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
-        )}
-        
-        <!-- Google Fonts -->
+
+        {jsonLd && <script type="application/ld+json" set:html={jsonLd} />}
+
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />

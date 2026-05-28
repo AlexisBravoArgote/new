@@ -1,12 +1,25 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PrivacidadClient from '../components-react/PrivacidadContent.jsx';
+import { STATIC_PAGE_SEO } from '../config/seo-static-pages.js';
+import { breadcrumbSchema, buildJsonLd, dentalClinicOrganization } from '../lib/seo.js';
+
+const seo = STATIC_PAGE_SEO.privacidad;
+
+const structuredData = buildJsonLd(
+    dentalClinicOrganization(),
+    breadcrumbSchema([
+        { name: "Inicio", path: "/" },
+        { name: "Aviso de privacidad", path: "/privacidad" },
+    ])
+);
 ---
 
 <Layout
-    title="Aviso de Privacidad"
-    description="Aviso de privacidad de Dental City. Información sobre cómo protegemos y manejamos sus datos personales."
-    keywords="aviso de privacidad, protección de datos, dental city, privacidad"
+    title={seo.title}
+    description={seo.description}
+    keywords={seo.keywords}
+    structuredData={structuredData}
 >
     <PrivacidadClient client:load />
 </Layout>

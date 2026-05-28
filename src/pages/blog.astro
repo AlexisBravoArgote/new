@@ -1,29 +1,32 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import BlogClient from '../components-react/BlogContent.jsx';
+import { STATIC_PAGE_SEO } from '../config/seo-static-pages.js';
+import { buildJsonLd, breadcrumbSchema, dentalClinicOrganization } from '../lib/seo.js';
 
-const blogData = {
-    "@context": "https://schema.org",
-    "@type": "Blog",
-    "name": "Dental City Blog",
-    "description": "Artículos clínicos, tecnología, prevención y research de Dental City",
-    "url": "https://dentalcity.mx/blog",
-    "publisher": {
-        "@type": "Organization",
-        "name": "Dental City",
-        "logo": {
-            "@type": "ImageObject",
-            "url": "https://dentalcity.mx/logo.png"
-        }
-    }
-};
+const seo = STATIC_PAGE_SEO.blog;
+
+const structuredData = buildJsonLd(
+    dentalClinicOrganization(),
+    {
+        "@type": "Blog",
+        name: "Blog Dental City",
+        description: seo.description,
+        url: "https://dentalcity.mx/blog",
+        publisher: { "@id": "https://dentalcity.mx/#organization" },
+    },
+    breadcrumbSchema([
+        { name: "Inicio", path: "/" },
+        { name: "Blog", path: "/blog" },
+    ])
+);
 ---
 
 <Layout
-    title="Blog & Research"
-    description="Artículos clínicos, tecnología, prevención y research de Dental City. Información sobre ortodoncia, implantes, odontopediatría y más."
-    keywords="blog dental, artículos odontología, investigación dental, ortodoncia, implantes, odontopediatría"
-    structuredData={blogData}
+    title={seo.title}
+    description={seo.description}
+    keywords={seo.keywords}
+    structuredData={structuredData}
 >
     <BlogClient client:load />
 </Layout>

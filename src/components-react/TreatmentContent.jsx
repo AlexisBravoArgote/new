@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import TopBar from "./TopBar.jsx";
 import Footer from "./Footer.jsx";
 import LanguageBoutique from "./LanguageBoutique.jsx";
-import SEO from "./SEO.jsx";
 import KidsDoctorsCarouselSection from "./KidsDoctorsCarouselSection.jsx";
 import "./i18n";
 
@@ -188,12 +187,9 @@ export default function TreatmentContent({ slug }) {
     }
 
     const waUrl = getWaUrl(slug, pageTitle);
-    const seoTitle = `${pageTitle} | Dental City`;
-    const seoDesc = data.heroSubtitle ?? pageTitle;
 
     return (
         <div className="min-h-screen bg-[#0b1b2b] text-white">
-            <SEO title={seoTitle} description={seoDesc} />
             <TopBar bgOpacity={1} />
             <LanguageBoutique />
 

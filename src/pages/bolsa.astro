@@ -1,12 +1,25 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import BolsaClient from '../components-react/BolsaContent.jsx';
+import { STATIC_PAGE_SEO } from '../config/seo-static-pages.js';
+import { buildJsonLd, breadcrumbSchema, dentalClinicOrganization } from '../lib/seo.js';
+
+const seo = STATIC_PAGE_SEO.bolsa;
+
+const structuredData = buildJsonLd(
+    dentalClinicOrganization(),
+    breadcrumbSchema([
+        { name: "Inicio", path: "/" },
+        { name: "Bolsa de trabajo", path: "/bolsa" },
+    ])
+);
 ---
 
 <Layout
-    title="Bolsa de trabajo"
-    description="Únete al equipo de Dental City. Oportunidades laborales para odontólogos, asistentes y personal de marketing en Zapopan, Jalisco."
-    keywords="bolsa de trabajo dental, empleos odontología, trabajo dentista, vacantes clínica dental, Zapopan"
+    title={seo.title}
+    description={seo.description}
+    keywords={seo.keywords}
+    structuredData={structuredData}
 >
     <BolsaClient client:load />
 </Layout>

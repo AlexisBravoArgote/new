@@ -3,6 +3,12 @@ import Layout from '../../layouts/Layout.astro';
 import TreatmentContent from '../../components-react/TreatmentContent.jsx';
 import { TREATMENT_SLUGS } from '../../data/treatmentSlugs.js';
 import esTreatments from '../../locales/es/treatments.json';
+import {
+    buildJsonLd,
+    breadcrumbSchema,
+    dentalClinicOrganization,
+    medicalProcedureSchema,
+} from '../../lib/seo.js';
 
 export function getStaticPaths() {
     return TREATMENT_SLUGS.map((slug) => ({ params: { slug } }));
@@ -10,28 +16,35 @@ export function getStaticPaths() {
 
 const { slug } = Astro.params;
 const treatment = esTreatments.byService[slug];
-const pageTitle = treatment?.pageTitle ?? 'Tratamiento';
-const description = treatment?.heroSubtitle ?? pageTitle;
+const pageTitle = treatment?.pageTitle ?? 'Tratamiento dental';
+const description =
+    treatment?.heroSubtitle ??
+    `Tratamiento de ${pageTitle} en Dental City, clínica dental en Zapopan, Jalisco.`;
+const keywords = [
+    pageTitle,
+    'Dental City',
+    'clínica dental Zapopan',
+    'dentista Guadalajara',
+    'tratamiento dental',
+    slug.replace(/-/g, ' '),
+].join(', ');
 
-const medicalProcedureData = {
-    "@context": "https://schema.org",
-    "@type": "MedicalProcedure",
-    "name": pageTitle,
-    "description": description,
-    "url": `https://dentalcity.mx/tratamientos/${slug}`,
-    "provider": {
-        "@type": "DentalClinic",
-        "name": "Dental City",
-        "url": "https://dentalcity.mx"
-    }
-};
+const structuredData = buildJsonLd(
+    dentalClinicOrganization(),
+    breadcrumbSchema([
+        { name: 'Inicio', path: '/' },
+        { name: 'Tratamientos', path: '/#servicios' },
+        { name: pageTitle, path: `/tratamientos/${slug}` },
+    ]),
+    medicalProcedureSchema({ name: pageTitle, description, slug })
+);
 ---
 
 <Layout
     title={pageTitle}
     description={description}
-    keywords={`${pageTitle}, Dental City, clínica dental Zapopan, tratamiento dental`}
-    structuredData={medicalProcedureData}
+    keywords={keywords}
+    structuredData={structuredData}
 >
     <TreatmentContent client:load slug={slug} />
 </Layout>

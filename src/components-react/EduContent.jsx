@@ -1,8 +1,6 @@
 ﻿import React, { useMemo, useState } from "react";
 import TopBar from "./TopBar.jsx";
 import Footer from "./Footer.jsx";
-import SEO from "./SEO.jsx";
-import StructuredData from "./StructuredData.jsx";
 
 /**
  * DentalCity – Quizzes (solo quiz, sin mini-juego)
@@ -612,30 +610,6 @@ export default function DentalCityQuizzes() {
     const [answers, setAnswers] = useState([]);
     const quizData = QUIZZES[topic];
 
-    // Structured Data para Educational Content
-    const educationalData = {
-        "@context": "https://schema.org",
-        "@type": "EducationalOccupationalCredential",
-        "credentialCategory": "Quiz",
-        "name": "Quizzes de Salud Dental - Dental City",
-        "description": "Quizzes educativos interactivos sobre salud dental, ortodoncia, prevención, implantes y más. Aprende sobre odontología mientras respondes preguntas.",
-        "educationalLevel": "General Public",
-        "competencyRequired": "Ninguna - Para público general",
-        "provider": {
-            "@type": "Organization",
-            "name": "Dental City",
-            "url": "https://dentalcity.mx"
-        },
-        "about": [
-            "Dentistry",
-            "Oral Health",
-            "Orthodontics",
-            "Dental Implants",
-            "Pediatric Dentistry",
-            "Dental Prevention"
-        ]
-    };
-
     const quizScore = useMemo(() => {
         let ok = 0;
         quizData.forEach((q, i) => {
@@ -667,12 +641,6 @@ export default function DentalCityQuizzes() {
 
     return (
         <>
-            <SEO 
-                title="Quizzes de Salud Dental"
-                description="Quizzes educativos interactivos sobre salud dental, ortodoncia, prevención, implantes y más. Aprende sobre odontología mientras respondes preguntas y obtén recomendaciones personalizadas."
-                keywords="quizzes dentales, educación dental, test de salud bucal, ortodoncia quiz, prevención dental, aprendizaje interactivo"
-            />
-            <StructuredData data={educationalData} />
             <TopBar />
 
             <div className="w-full min-h-screen bg-[#0f2237] text-white py-10 px-4 sm:px-6 lg:px-8">

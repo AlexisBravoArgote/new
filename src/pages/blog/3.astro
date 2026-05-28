@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import BlogPost3 from '../../components-react/blog-posts/3.jsx';
+import { buildJsonLd, blogPostingSchema, breadcrumbSchema, dentalClinicOrganization } from '../../lib/seo.js';
 const alineadores = '/assets/alineadores.avif';
 
 const post = {
@@ -13,24 +14,17 @@ const post = {
     date: "2025-04-28",
 };
 
-const articleData = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": post.title,
-    "description": post.excerpt,
-    "image": `https://dentalcity.mx${post.cover}`,
-    "datePublished": post.date,
-    "dateModified": post.date,
-    "author": { "@type": "Organization", "name": "Dental City" },
-    "publisher": {
-        "@type": "Organization",
-        "name": "Dental City",
-        "logo": { "@type": "ImageObject", "url": "https://dentalcity.mx/logo.png" }
-    },
-    "mainEntityOfPage": { "@type": "WebPage", "@id": `https://dentalcity.mx/blog/${post.id}` },
-    "keywords": post.tags.join(", "),
-    "articleSection": post.category
-};
+const articleSchema = blogPostingSchema(post);
+const structuredData = buildJsonLd(
+    dentalClinicOrganization(),
+    breadcrumbSchema([
+        { name: "Inicio", path: "/" },
+        { name: "Blog", path: "/blog" },
+        { name: post.title, path: `/blog/${post.id}` },
+    ]),
+    articleSchema
+);
+
 ---
 
 <Layout
@@ -39,7 +33,9 @@ const articleData = {
     keywords={post.tags.join(", ")}
     image={`https://dentalcity.mx${post.cover}`}
     type="article"
-    structuredData={articleData}
+    structuredData={structuredData}
+    publishedTime={post.date}
+    modifiedTime={post.date}
 >
     <BlogPost3 client:load />
 </Layout>

@@ -1,12 +1,32 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import EduClient from '../components-react/EduContent.jsx';
+import { STATIC_PAGE_SEO } from '../config/seo-static-pages.js';
+import { buildJsonLd, breadcrumbSchema, dentalClinicOrganization } from '../lib/seo.js';
+
+const seo = STATIC_PAGE_SEO.edu;
+
+const structuredData = buildJsonLd(
+    dentalClinicOrganization(),
+    {
+        "@type": "EducationalOrganization",
+        name: "Dental City Edu",
+        description: seo.description,
+        url: "https://dentalcity.mx/edu",
+        provider: { "@id": "https://dentalcity.mx/#organization" },
+    },
+    breadcrumbSchema([
+        { name: "Inicio", path: "/" },
+        { name: "Dental City Edu", path: "/edu" },
+    ])
+);
 ---
 
 <Layout
-    title="Educación y Quizzes"
-    description="Aprende sobre odontología con nuestros quizzes interactivos. Test de ortodoncia, implantes, higiene dental y más."
-    keywords="educación dental, quizzes odontología, test dental, aprendizaje odontología"
+    title={seo.title}
+    description={seo.description}
+    keywords={seo.keywords}
+    structuredData={structuredData}
 >
     <EduClient client:load />
 </Layout>
