@@ -54,7 +54,7 @@ function scrollToClinicBranch() {
     const target = isMobile && heading ? heading : panel || fallback;
     if (!target) return;
 
-    const offset = isMobile ? 168 : LOCATION_SCROLL_OFFSET;
+    const offset = isMobile ? 120 : LOCATION_SCROLL_OFFSET;
     const y = target.getBoundingClientRect().top + window.scrollY - offset;
     window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
 }
@@ -649,12 +649,12 @@ function About() {
                         </p>
                         <div
                             lang={lang === "es" ? "es-MX" : lang}
-                            className="relative z-10 space-y-4 md:hidden"
+                            className="relative z-10 space-y-4 text-center md:hidden"
                         >
-                            <p className="hyphens-auto text-justify text-pretty text-[15px] font-light leading-relaxed text-white/90">
+                            <p className="hyphens-auto text-pretty text-[15px] font-light leading-relaxed text-white/90">
                                 {t("about.paragraph")}
                             </p>
-                            <p className="hyphens-auto text-justify text-pretty text-[15px] font-light leading-relaxed text-white/90">
+                            <p className="hyphens-auto text-pretty text-[15px] font-light leading-relaxed text-white/90">
                                 {t("about.paragraph2", { defaultValue: "" })}
                             </p>
                         </div>
@@ -1762,7 +1762,7 @@ function LocationsTabs() {
 
                     <div className="mt-6">
                         <div className="flex flex-wrap items-center justify-between gap-3">
-                            <h4 id="clinic-branch-heading" className="scroll-mt-[168px] text-2xl font-semibold tracking-wide md:scroll-mt-[132px]">{tab}</h4>
+                            <h4 id="clinic-branch-heading" className="scroll-mt-[120px] text-2xl font-semibold tracking-wide md:scroll-mt-[132px]">{tab}</h4>
                             <div className="inline-flex items-center gap-2 rounded-full border border-[#e4b89233] bg-white/5 px-3 py-1.5 text-xs text-white/90">
                                 <span className="text-[#e4b892]">{t("locations.labels.whatsapp")}:</span>
                                 <span className="opacity-90">{active.whatsapp}</span>

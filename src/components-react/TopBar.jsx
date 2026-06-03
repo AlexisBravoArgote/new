@@ -67,7 +67,7 @@ function scrollToLocationPanel() {
     const fallback = document.querySelector("#ubicacion");
     const target = isMobile && heading ? heading : panel || fallback;
     if (!target) return;
-    const offset = isMobile ? 168 : LOCATION_SCROLL_OFFSET;
+    const offset = isMobile ? 120 : LOCATION_SCROLL_OFFSET;
     const y = target.getBoundingClientRect().top + window.scrollY - offset;
     window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
 }
