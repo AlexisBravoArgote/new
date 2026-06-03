@@ -681,12 +681,16 @@ function About() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.1 }}
-                        className="glass-card relative flex items-center justify-center rounded-3xl p-6 md:p-8"
+                        className="glass-card relative flex min-h-full flex-col rounded-3xl p-6 md:p-8"
                     >
-                        <div className="mx-auto grid w-full max-w-sm grid-cols-2 gap-2 sm:max-w-md md:max-w-none md:gap-3">
-                            {IMAGES.map((img, i) => (
-                                <ImageCard key={i} src={img.src} alt={img.alt} label={img.alt} />
-                            ))}
+                        <div className="relative min-h-0 w-full flex-1">
+                            <div className="absolute inset-0 flex items-center justify-center">
+                                <div className="grid aspect-square h-full max-h-full w-auto max-w-full grid-cols-2 grid-rows-2 gap-2 md:gap-2.5">
+                                    {IMAGES.map((img, i) => (
+                                        <ImageCard key={i} fill src={img.src} alt={img.alt} label={img.alt} />
+                                    ))}
+                                </div>
+                            </div>
                         </div>
                     </motion.div>
                 </div>
