@@ -1,4 +1,6 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
+
+const MAIN_LINKS_PER_PAGE_MOBILE = 2;
 import {
     getLanguageNavLinks,
     getMainNavLinks,
@@ -26,6 +28,9 @@ export default function MainSiteLinks({
         () => (showLanguages ? getLanguageNavLinks(lang) : []),
         [lang, showLanguages]
     );
+
+    const [mainLinksPage, setMainLinksPage] = useState(0);
+    const mainLinksTotalPages = Math.max(1, Math.ceil(mainLinks.length / MAIN_LINKS_PER_PAGE_MOBILE));
 
     if (variant === "footer") {
         return (
@@ -68,23 +73,58 @@ export default function MainSiteLinks({
                 </header>
 
                 <nav aria-label={labels.heading}>
-                    <ul className="grid gap-4 sm:grid-cols-2">
-                        {mainLinks.map((link) => (
-                            <li key={link.href}>
-                                <a
-                                    href={link.href}
-                                    className="group block h-full rounded-2xl border border-white/10 bg-white/[.04] p-5 transition hover:border-[#e4b892]/40 hover:bg-white/[.07]"
+                    <ul className="grid gap-4 md:grid-cols-2">
+                        {mainLinks.map((link, index) => {
+                            const linkPage = Math.floor(index / MAIN_LINKS_PER_PAGE_MOBILE);
+                            const visibleOnMobile = linkPage === mainLinksPage;
+                            return (
+                                <li
+                                    key={link.href}
+                                    className={visibleOnMobile ? "block" : "hidden md:block"}
                                 >
-                                    <span className="text-lg font-semibold text-white group-hover:text-[#e4b892]">
-                                        {link.title}
-                                    </span>
-                                    <span className="mt-2 block text-sm leading-relaxed text-white/70">
-                                        {link.description}
-                                    </span>
-                                </a>
-                            </li>
-                        ))}
+                                    <a
+                                        href={link.href}
+                                        className="group block h-full rounded-2xl border border-white/10 bg-white/[.04] p-5 transition hover:border-[#e4b892]/40 hover:bg-white/[.07]"
+                                    >
+                                        <span className="text-lg font-semibold text-white group-hover:text-[#e4b892]">
+                                            {link.title}
+                                        </span>
+                                        <span className="mt-2 block text-sm leading-relaxed text-white/70">
+                                            {link.description}
+                                        </span>
+                                    </a>
+                                </li>
+                            );
+                        })}
                     </ul>
+
+                    {mainLinksTotalPages > 1 && (
+                        <div className="mt-6 flex items-center justify-center gap-2 md:hidden">
+                            <button
+                                type="button"
+                                onClick={() => setMainLinksPage((p) => Math.max(0, p - 1))}
+                                disabled={mainLinksPage === 0}
+                                className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/80 transition hover:bg-white/10 disabled:opacity-40"
+                            >
+                                {labels.prev ?? "Anterior"}
+                            </button>
+                            <span className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/70">
+                                {labels.page ?? "Página"}{" "}
+                                <span className="text-white">{mainLinksPage + 1}</span> /{" "}
+                                <span className="text-white">{mainLinksTotalPages}</span>
+                            </span>
+                            <button
+                                type="button"
+                                onClick={() =>
+                                    setMainLinksPage((p) => Math.min(mainLinksTotalPages - 1, p + 1))
+                                }
+                                disabled={mainLinksPage >= mainLinksTotalPages - 1}
+                                className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white/80 transition hover:bg-white/10 disabled:opacity-40"
+                            >
+                                {labels.next ?? "Siguiente"}
+                            </button>
+                        </div>
+                    )}
                 </nav>
 
                 {showLanguages && languageLinksMobile.length > 0 && (

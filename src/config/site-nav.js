@@ -1,6 +1,16 @@
 import { LOCALES, PAGE_SEO } from "./languages.js";
 import { STATIC_PAGE_SEO } from "./seo-static-pages.js";
 import { localePath, normalizeLang } from "../lib/site-copy.js";
+import esTreatments from "../locales/es/treatments.json";
+
+function treatmentNavLink(slug) {
+    const t = esTreatments.byService[slug];
+    return {
+        href: `/tratamientos/${slug}`,
+        title: t?.pageTitle ?? slug,
+        description: t?.heroSubtitle ?? "",
+    };
+}
 
 /** Short UI copy for the main-links block (home + footer). */
 export const SITE_NAV_LABELS = {
@@ -8,11 +18,17 @@ export const SITE_NAV_LABELS = {
         heading: "Páginas principales",
         languagesHeading: "Dental City en tu idioma",
         homeLabel: "Inicio",
+        prev: "Anterior",
+        next: "Siguiente",
+        page: "Página",
     },
     en: {
         heading: "Main pages",
         languagesHeading: "Dental City in your language",
         homeLabel: "Home",
+        prev: "Previous",
+        next: "Next",
+        page: "Page",
     },
     fr: {
         heading: "Pages principales",
@@ -77,11 +93,9 @@ export function getMainNavLinks(lang = "es") {
             title: STATIC_PAGE_SEO.edu.title,
             description: STATIC_PAGE_SEO.edu.description,
         },
-        {
-            href: "/bolsa",
-            title: STATIC_PAGE_SEO.bolsa.title,
-            description: STATIC_PAGE_SEO.bolsa.description,
-        },
+        treatmentNavLink("limpieza"),
+        treatmentNavLink("blanqueamientos"),
+        treatmentNavLink("invisalign"),
     ];
 }
 
