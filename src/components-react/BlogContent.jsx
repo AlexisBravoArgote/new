@@ -19,7 +19,7 @@ const __MOTION_USED = Boolean(motion); // eslint-disable-line no-unused-vars
 /* ------------------------- Helpers/Layout ------------------------- */
 function Container({ children, className = "" }) {
     return (
-        <div className={`mx-auto w-full max-w-6xl px-6 md:px-8 ${className}`}>
+        <div className={`mx-auto w-full min-w-0 max-w-6xl px-4 sm:px-6 md:px-8 ${className}`}>
             {children}
         </div>
     );
@@ -27,7 +27,7 @@ function Container({ children, className = "" }) {
 
 function Eyebrow({ children }) {
     return (
-        <span className="inline-flex items-center gap-2 rounded-full border border-[#e4b89233] bg-white/5 px-3 py-1 text-[11px] tracking-[.35em] text-[#e4b892]">
+        <span className="inline-flex max-w-full items-center gap-2 rounded-full border border-[#e4b89233] bg-white/5 px-3 py-1 text-[11px] tracking-[.2em] text-[#e4b892] sm:tracking-[.35em]">
             {children}
         </span>
     );
@@ -167,7 +167,7 @@ export default function Blog() {
         <>
             <TopBar />
 
-            <main className="min-h-dvh bg-[#0f2237]">
+            <main className="min-h-dvh overflow-x-clip bg-[#0f2237]">
                 {/* Hero */}
                 <section className="relative overflow-hidden bg-[radial-gradient(70%_70%_at_50%_0%,rgba(255,255,255,0.08),transparent_60%)]">
                     <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-[#c89b7b] via-[#e4b892] to-[#c89b7b]" />
@@ -197,7 +197,7 @@ export default function Blog() {
                                 initial={{ opacity: 0, y: 18 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                className="rounded-3xl bg-gradient-to-r from-[#c89b7b] via-[#e4b892] to-[#c89b7b] p-[1.5px] shadow-[0_18px_50px_rgba(0,0,0,.35)] golden-hover block h-full
+                                className="min-w-0 rounded-3xl bg-gradient-to-r from-[#c89b7b] via-[#e4b892] to-[#c89b7b] p-[1.5px] shadow-[0_18px_50px_rgba(0,0,0,.35)] golden-hover block h-full
              w-full max-w-full lg:max-w-none mx-auto"
                             >
                                 <div className="rounded-3xl overflow-hidden bg-[#0f2237]/90 backdrop-blur h-full flex flex-col">
@@ -239,8 +239,7 @@ export default function Blog() {
                             </motion.a>
 
                             {/* Panel de filtros */}
-                            <div className="rounded-3xl bg-white/[.04] border border-white/10 p-5 md:p-6 shadow-[0_12px_36px_rgba(0,0,0,.25)]
-             w-full max-w-full lg:max-w-none mx-auto overflow-hidden">
+                            <div className="min-w-0 w-full max-w-full rounded-3xl border border-white/10 bg-white/[.04] p-4 shadow-[0_12px_36px_rgba(0,0,0,.25)] sm:p-5 md:p-6">
                                 <SectionTitle
                                     eyebrow="• EXPLORAR •"
                                     title={<span className="golden-sweep">Encuentra artículos</span>}
@@ -248,7 +247,7 @@ export default function Blog() {
                                     className="!mt-0"
                                 />
 
-                                <div className="mt-5 grid gap-4">
+                                <div className="mt-5 grid min-w-0 gap-4">
                                     {/* Search */}
                                     <div>
                                         <label className="block text-sm text-white/70 mb-1">Búsqueda</label>
@@ -264,14 +263,14 @@ export default function Blog() {
                                     </div>
 
                                     {/* Categories */}
-                                    <div>
+                                    <div className="min-w-0">
                                         <label className="block text-sm text-white/70 mb-2">Categorías</label>
-                                        <div className="flex flex-wrap gap-2 -mx-1 px-1">
+                                        <div className="flex w-full min-w-0 flex-wrap gap-2">
                                             {categories.map((c) => (
                                                 <button
                                                     key={c}
                                                     onClick={() => setCategory(c)}
-                                                    className={`rounded-full px-2.5 py-1.5 md:px-3 text-xs md:text-sm border transition flex-shrink-0 ${category === c ? "border-[#e4b89280] bg-white/10 text-[#e4b892]" : "border-white/10 bg-white/5 text-white/80 hover:bg-white/10"
+                                                    className={`max-w-full rounded-full border px-2.5 py-1.5 text-xs transition sm:px-3 sm:text-sm ${category === c ? "border-[#e4b89280] bg-white/10 text-[#e4b892]" : "border-white/10 bg-white/5 text-white/80 hover:bg-white/10"
                                                         }`}
                                                 >
                                                     {c}
@@ -281,14 +280,14 @@ export default function Blog() {
                                     </div>
 
                                     {/* Tags quick-pick */}
-                                    <div>
+                                    <div className="min-w-0">
                                         <label className="block text-sm text-white/70 mb-2">Etiquetas populares</label>
-                                        <div className="flex flex-wrap gap-2 -mx-1 px-1">
+                                        <div className="flex w-full min-w-0 flex-wrap gap-2">
                                             {["Aligners", "CBCT", "Prophylaxis", "Selladores", "Brackets", "Comunidad", "Deporte"].map((t) => (
                                                 <button
                                                     key={t}
                                                     onClick={() => setActiveTag((prev) => (prev === t ? "" : t))}
-                                                    className={`rounded-full px-2.5 py-1.5 md:px-3 text-xs md:text-sm border transition flex-shrink-0 ${activeTag === t ? "border-[#e4b89280] bg-white/10 text-[#e4b892]" : "border-white/10 bg-white/5 text-white/80 hover:bg-white/10"
+                                                    className={`max-w-full rounded-full border px-2.5 py-1.5 text-xs transition sm:px-3 sm:text-sm ${activeTag === t ? "border-[#e4b89280] bg-white/10 text-[#e4b892]" : "border-white/10 bg-white/5 text-white/80 hover:bg-white/10"
                                                         }`}
                                                 >
                                                     #{t}
@@ -298,7 +297,7 @@ export default function Blog() {
                                     </div>
 
                                     {/* Sort */}
-                                    <div className="grid grid-cols-2 gap-3">
+                                    <div className="grid min-w-0 grid-cols-1 gap-3 sm:grid-cols-2">
                                         <div>
                                             <label className="block text-sm text-white/70 mb-1">Ordenar por</label>
                                             <select className="w-full rounded-xl bg-[#0f2237]/80 border border-white/10 px-3 py-2.5 text-white" value={sort} onChange={(e) => setSort(e.target.value)}>
@@ -321,12 +320,12 @@ export default function Blog() {
                                     </div>
 
                                     {/* Newsletter / CTA */}
-                                    <div className="mt-2 rounded-2xl bg-gradient-to-r from-[#c89b7b]/20 via-[#e4b892]/10 to-transparent p-[1.5px] w-full md:mx-auto md:max-w-none">
+                                    <div className="mt-2 min-w-0 w-full rounded-2xl bg-gradient-to-r from-[#c89b7b]/20 via-[#e4b892]/10 to-transparent p-[1.5px]">
                                         <div className="rounded-2xl bg-[#0f2237]/80 p-3.5 md:p-4">
-                                            <p className="text-sm text-white/85 text-left">¿Te gustaría recibir nuevos artículos?</p>
-                                            <form onSubmit={(e) => e.preventDefault()} className="mt-2 flex gap-2">
-                                                <input type="email" placeholder="tu@email.com" className="flex-1 rounded-xl bg-transparent border border-white/15 px-3 py-2 text-white placeholder-white/40 focus:outline-none focus:border-[#e4b89266] text-sm" />
-                                                <button className="rounded-xl bg-gradient-to-r from-[#c89b7b] via-[#e4b892] to-[#c89b7b] px-3 py-2 md:px-4 md:py-2 text-[#0f2237] font-medium hover:brightness-110 transition text-sm md:text-base whitespace-nowrap">
+                                            <p className="text-left text-sm text-white/85">¿Te gustaría recibir nuevos artículos?</p>
+                                            <form onSubmit={(e) => e.preventDefault()} className="mt-2 flex min-w-0 flex-col gap-2 sm:flex-row">
+                                                <input type="email" placeholder="tu@email.com" className="min-w-0 w-full flex-1 rounded-xl border border-white/15 bg-transparent px-3 py-2 text-sm text-white placeholder-white/40 focus:border-[#e4b89266] focus:outline-none" />
+                                                <button type="submit" className="w-full shrink-0 rounded-xl bg-gradient-to-r from-[#c89b7b] via-[#e4b892] to-[#c89b7b] px-4 py-2 text-sm font-medium text-[#0f2237] transition hover:brightness-110 sm:w-auto">
                                                     Suscribirme
                                                 </button>
                                             </form>

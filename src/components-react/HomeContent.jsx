@@ -243,12 +243,12 @@ function Hero() {
                     })}
                 </motion.p>
 
-                {/* Botones */}
-                <div className="mt-12 flex flex-wrap items-center justify-center gap-5">
-                    <div className="relative" ref={menuRef}>
+                {/* Botones — mismo ancho en móvil */}
+                <div className="mt-12 flex w-full max-w-[280px] flex-col items-stretch gap-4 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-5">
+                    <div className="relative w-full sm:w-auto" ref={menuRef}>
                         <motion.button
                             onClick={() => setOpenHeroCta((v) => !v)}
-                            className={`group flex items-center gap-2.5 rounded-full px-8 py-3.5 font-semibold text-base shadow-2xl transition-all duration-300 active:scale-[0.96] ${openHeroCta
+                            className={`group flex w-full items-center justify-center gap-2.5 rounded-full px-8 py-3.5 font-semibold text-base shadow-2xl transition-all duration-300 active:scale-[0.96] sm:w-auto ${openHeroCta
                                 ? "bg-gradient-to-r from-[#e8c3a2] via-[#e4b892] to-[#d8a07b] text-[#0b1b2b] shadow-[0_8px_30px_rgba(228,184,146,0.4)]"
                                 : "bg-gradient-to-r from-[#d8a07b] via-[#e4b892] to-[#d8a07b] text-[#0b1b2b] hover:shadow-[0_8px_30px_rgba(228,184,146,0.3)] hover:scale-105"
                                 }`}
@@ -340,11 +340,11 @@ function Hero() {
 
                     <motion.a
                         href="#servicios"
-                        className="group rounded-full border-2 border-white/30 bg-white/5 px-8 py-3.5 text-white/95 backdrop-blur-md font-semibold text-base transition-all duration-300 hover:bg-white/15 hover:border-white/50 hover:shadow-[0_8px_30px_rgba(255,255,255,0.1)]"
+                        className="group flex w-full items-center justify-center rounded-full border-2 border-white/30 bg-white/5 px-8 py-3.5 text-white/95 backdrop-blur-md font-semibold text-base transition-all duration-300 hover:bg-white/15 hover:border-white/50 hover:shadow-[0_8px_30px_rgba(255,255,255,0.1)] sm:w-auto"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.96 }}
                     >
-                        <span className="flex items-center gap-2">
+                        <span className="flex items-center justify-center gap-2">
                             {t("hero.viewTreatments", { defaultValue: "Ver tratamientos" })}
                             <svg className="h-5 w-5 transition-transform group-hover:translate-y-0.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -609,7 +609,7 @@ function About() {
                     >
                         <div className="pointer-events-none absolute -inset-px rounded-3xl bg-[radial-gradient(120%_120%_at_10%_0%,rgba(228,184,146,.25),transparent)]" />
                         <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#e4b892]/10 to-transparent rounded-full blur-3xl" />
-                        <p className="text-[16px] leading-8 text-white/90 text-justify relative z-10 font-light">
+                        <p className="relative z-10 text-left text-pretty text-[16px] font-light leading-relaxed text-white/90 md:leading-8">
                             {t("about.paragraph")}
                         </p>
 
@@ -639,16 +639,12 @@ function About() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.1 }}
-                        className="glass-card relative flex min-h-full flex-col rounded-3xl p-6 md:p-8"
+                        className="glass-card relative flex items-center justify-center rounded-3xl p-6 md:p-8"
                     >
-                        <div className="relative min-h-0 w-full flex-1">
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="grid aspect-square h-full max-h-full w-auto max-w-full grid-cols-2 grid-rows-2 gap-2 md:gap-2.5">
-                                    {IMAGES.map((img, i) => (
-                                        <ImageCard key={i} fill src={img.src} alt={img.alt} label={img.alt} />
-                                    ))}
-                                </div>
-                            </div>
+                        <div className="mx-auto grid w-full max-w-sm grid-cols-2 gap-2 sm:max-w-md md:max-w-none md:gap-3">
+                            {IMAGES.map((img, i) => (
+                                <ImageCard key={i} src={img.src} alt={img.alt} label={img.alt} />
+                            ))}
                         </div>
                     </motion.div>
                 </div>

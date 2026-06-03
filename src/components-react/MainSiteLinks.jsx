@@ -50,7 +50,7 @@ export default function MainSiteLinks({
             className="border-t border-white/10 bg-[#0f2237] py-14 md:py-16"
             aria-labelledby="main-site-links-heading"
         >
-            <div className="mx-auto w-full max-w-6xl px-6 md:px-8">
+            <div className="mx-auto w-full min-w-0 max-w-6xl px-4 sm:px-6 md:px-8">
                 <header className="mb-8 text-center md:mb-10">
                     <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#e4b892]">
                         Dental City
@@ -88,16 +88,16 @@ export default function MainSiteLinks({
                         <h3 className="mb-4 text-center text-sm font-semibold uppercase tracking-wider text-[#e4b892]">
                             {labels.languagesHeading}
                         </h3>
-                        <nav aria-label={labels.languagesHeading}>
-                            <ul className="flex flex-wrap justify-center gap-2">
+                        <nav aria-label={labels.languagesHeading} className="min-w-0">
+                            <ul className="mx-auto grid w-full max-w-md grid-cols-2 gap-2 sm:max-w-xl sm:grid-cols-3 sm:gap-3">
                                 {languageLinks.map((link) => (
-                                    <li key={link.href}>
+                                    <li key={link.href} className="min-w-0">
                                         <a
                                             href={link.href}
                                             hrefLang={link.hreflang}
-                                            className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/85 transition hover:border-[#e4b892]/50 hover:text-[#e4b892]"
+                                            className="flex w-full min-w-0 items-center justify-center rounded-full border border-white/15 bg-white/5 px-2 py-2.5 text-center text-xs text-white/85 transition hover:border-[#e4b892]/50 hover:text-[#e4b892] sm:px-3 sm:text-sm"
                                         >
-                                            {link.title}
+                                            <span className="truncate">{link.title}</span>
                                         </a>
                                     </li>
                                 ))}
