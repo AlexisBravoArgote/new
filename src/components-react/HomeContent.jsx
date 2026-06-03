@@ -683,9 +683,10 @@ function About() {
                         transition={{ duration: 0.6, delay: 0.1 }}
                         className="glass-card relative flex min-h-full flex-col rounded-3xl p-6 md:p-8"
                     >
-                        <div className="relative min-h-0 w-full flex-1">
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="grid aspect-square h-full max-h-full w-auto max-w-full grid-cols-2 grid-rows-2 gap-2 md:gap-2.5">
+                        {/* Móvil: grid con altura real. Desktop: mismo layout absoluto de antes */}
+                        <div className="relative w-full md:min-h-0 md:flex-1">
+                            <div className="flex items-center justify-center md:absolute md:inset-0">
+                                <div className="grid aspect-square w-full grid-cols-2 grid-rows-2 gap-2 md:h-full md:max-h-full md:w-auto md:max-w-full md:gap-2.5">
                                     {IMAGES.map((img, i) => (
                                         <ImageCard key={i} fill src={img.src} alt={img.alt} label={img.alt} />
                                     ))}
