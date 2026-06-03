@@ -252,7 +252,7 @@ function Hero() {
                     <div className="relative w-full sm:w-auto" ref={menuRef}>
                         <motion.button
                             onClick={() => setOpenHeroCta((v) => !v)}
-                            className={`group flex w-full items-center justify-center gap-2.5 rounded-full px-8 py-3.5 font-semibold text-base shadow-2xl transition-all duration-300 active:scale-[0.96] sm:w-auto ${openHeroCta
+                            className={`group flex w-full items-center justify-center rounded-full px-8 py-3.5 font-semibold text-base shadow-2xl transition-all duration-300 active:scale-[0.96] sm:w-auto ${openHeroCta
                                 ? "bg-gradient-to-r from-[#e8c3a2] via-[#e4b892] to-[#d8a07b] text-[#0b1b2b] shadow-[0_8px_30px_rgba(228,184,146,0.4)]"
                                 : "bg-gradient-to-r from-[#d8a07b] via-[#e4b892] to-[#d8a07b] text-[#0b1b2b] hover:shadow-[0_8px_30px_rgba(228,184,146,0.3)] hover:scale-105"
                                 }`}
@@ -267,20 +267,22 @@ function Hero() {
                             }}
                             transition={{ duration: 0.4, ease: "easeOut" }}
                         >
-                            {t("hero.book", { defaultValue: "Agendar cita" })}
-                            <motion.svg
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="2.5"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                className="h-5 w-5"
-                                animate={{ rotate: openHeroCta ? 180 : 0, y: openHeroCta ? 2 : 0 }}
-                                transition={{ duration: 0.3, ease: "easeOut" }}
-                            >
-                                <path d="M6 9l6 6 6-6" />
-                            </motion.svg>
+                            <span className="inline-flex items-center justify-center gap-2">
+                                {t("hero.book", { defaultValue: "Agendar cita" })}
+                                <motion.svg
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    className="h-5 w-5 shrink-0"
+                                    animate={{ rotate: openHeroCta ? 180 : 0 }}
+                                    transition={{ duration: 0.3, ease: "easeOut" }}
+                                >
+                                    <path d="M6 9l6 6 6-6" />
+                                </motion.svg>
+                            </span>
                         </motion.button>
 
                         <AnimatePresence>
@@ -584,7 +586,7 @@ function ImageCard({ src, alt, label, fill = false }) {
                 ].join(" ")}
             />
             {label && (
-                <figcaption className="pointer-events-none absolute left-1.5 top-1.5 max-w-[calc(100%-0.75rem)] rounded-full bg-black/50 px-1.5 py-0.5 text-[clamp(7px,2vw,10px)] leading-none text-white/95 backdrop-blur-md sm:left-2 sm:top-2 sm:px-2 sm:py-0.5 md:px-3 md:py-1 md:text-[13px] lg:text-sm">
+                <figcaption className="pointer-events-none absolute left-1.5 top-1.5 max-w-[calc(100%-0.75rem)] rounded-full bg-black/50 px-1.5 py-0.5 text-[clamp(9px,2.35vw,11px)] leading-none text-white/95 backdrop-blur-md sm:left-2 sm:top-2 sm:px-2 sm:py-0.5 md:px-3 md:py-1 md:text-[13px] lg:text-sm">
                     <span className="block truncate whitespace-nowrap">{label}</span>
                 </figcaption>
             )}

@@ -18,7 +18,11 @@ export default function MainSiteLinks({
     const lang = langProp ?? siteCopy?.lang ?? "es";
     const labels = getSiteNavLabels(lang);
     const mainLinks = useMemo(() => getMainNavLinks(lang), [lang]);
-    const languageLinks = useMemo(
+    const languageLinksMobile = useMemo(
+        () => (showLanguages ? getLanguageNavLinks(lang, { includeCurrent: true }) : []),
+        [lang, showLanguages]
+    );
+    const languageLinksDesktop = useMemo(
         () => (showLanguages ? getLanguageNavLinks(lang) : []),
         [lang, showLanguages]
     );
@@ -83,19 +87,36 @@ export default function MainSiteLinks({
                     </ul>
                 </nav>
 
-                {languageLinks.length > 0 && (
+                {showLanguages && languageLinksMobile.length > 0 && (
                     <div className="mt-10 border-t border-white/10 pt-8">
                         <h3 className="mb-4 text-center text-sm font-semibold uppercase tracking-wider text-[#e4b892]">
                             {labels.languagesHeading}
                         </h3>
-                        <nav aria-label={labels.languagesHeading} className="min-w-0">
-                            <ul className="mx-auto grid w-full max-w-md grid-cols-2 gap-2 sm:max-w-xl sm:grid-cols-3 sm:gap-3">
-                                {languageLinks.map((link) => (
+                        {/* Móvil: incluye Español para grid simétrico (5×2) */}
+                        <nav aria-label={labels.languagesHeading} className="min-w-0 md:hidden">
+                            <ul className="mx-auto grid w-full max-w-md grid-cols-2 gap-2">
+                                {languageLinksMobile.map((link) => (
+                                    <li key={`${link.href}-mobile`} className="min-w-0">
+                                        <a
+                                            href={link.href}
+                                            hrefLang={link.hreflang}
+                                            className="flex w-full min-w-0 items-center justify-center rounded-full border border-white/15 bg-white/5 px-2 py-2.5 text-center text-xs text-white/85 transition hover:border-[#e4b892]/50 hover:text-[#e4b892]"
+                                        >
+                                            <span className="truncate">{link.title}</span>
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </nav>
+                        {/* Desktop: sin idioma actual */}
+                        <nav aria-label={labels.languagesHeading} className="hidden min-w-0 md:block">
+                            <ul className="mx-auto grid w-full max-w-xl grid-cols-3 gap-3">
+                                {languageLinksDesktop.map((link) => (
                                     <li key={link.href} className="min-w-0">
                                         <a
                                             href={link.href}
                                             hrefLang={link.hreflang}
-                                            className="flex w-full min-w-0 items-center justify-center rounded-full border border-white/15 bg-white/5 px-2 py-2.5 text-center text-xs text-white/85 transition hover:border-[#e4b892]/50 hover:text-[#e4b892] sm:px-3 sm:text-sm"
+                                            className="flex w-full min-w-0 items-center justify-center rounded-full border border-white/15 bg-white/5 px-3 py-2.5 text-center text-sm text-white/85 transition hover:border-[#e4b892]/50 hover:text-[#e4b892]"
                                         >
                                             <span className="truncate">{link.title}</span>
                                         </a>

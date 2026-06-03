@@ -86,9 +86,10 @@ export function getMainNavLinks(lang = "es") {
 }
 
 /** Home URLs for other locales (shown on localized home only). */
-export function getLanguageNavLinks(currentLang = "es") {
+export function getLanguageNavLinks(currentLang = "es", { includeCurrent = false } = {}) {
     const code = normalizeLang(currentLang);
-    return LOCALES.filter((l) => l.code !== code).map((locale) => ({
+    const list = includeCurrent ? LOCALES : LOCALES.filter((l) => l.code !== code);
+    return list.map((locale) => ({
         href: localePath("/", locale.code),
         title: locale.label,
         description: SITE_NAV_LABELS[locale.code]?.homeLabel ?? locale.label,
