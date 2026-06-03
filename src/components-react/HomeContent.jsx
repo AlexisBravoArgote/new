@@ -222,13 +222,13 @@ function Hero() {
                 )}
             </AnimatePresence>
 
-            <Container className="flex min-h-[85vh] flex-col items-center justify-center py-24 md:py-32 text-center relative z-20">
+            <Container className="relative z-20 flex flex-col items-center justify-start pt-16 pb-12 text-center md:min-h-[85vh] md:justify-center md:py-32">
                 <motion.h1
                     initial={{ y: 20, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                    className="font-display text-[28px] sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.12] pb-2"
+                    className="font-display pb-2 text-[28px] font-semibold leading-[1.12] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl"
                 >
                     <span className="golden-sweep text-shadow">
                         {t("hero.title", { defaultValue: "Elegancia que se nota al sonreír" })}
@@ -239,7 +239,7 @@ function Hero() {
                     initial={{ y: 20, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.15, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                    className="mx-auto mt-8 max-w-2xl text-lg md:text-xl leading-relaxed text-white/90 font-light"
+                    className="mx-auto mt-4 max-w-2xl text-base font-light leading-relaxed text-white/90 md:mt-8 md:text-lg md:text-xl"
                 >
                     {t("hero.subtitle", {
                         defaultValue:
@@ -248,7 +248,7 @@ function Hero() {
                 </motion.p>
 
                 {/* Botones — mismo ancho en móvil */}
-                <div className="mt-12 flex w-full max-w-[280px] flex-col items-stretch gap-4 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-5">
+                <div className="mt-8 flex w-full max-w-[280px] flex-col items-stretch gap-4 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-5 md:mt-12">
                     <div className="relative w-full sm:w-auto" ref={menuRef}>
                         <motion.button
                             onClick={() => setOpenHeroCta((v) => !v)}
