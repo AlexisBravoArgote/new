@@ -45,13 +45,17 @@ if (typeof window !== "undefined") window.WA_URL = WA_URL;
 
 const LOCATION_SCROLL_OFFSET = 132; // TopBar + margen para que el panel no quede muy abajo
 
-function scrollToLocationPanel() {
+function scrollToClinicBranch() {
+    const isMobile =
+        typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches;
+    const heading = document.getElementById("clinic-branch-heading");
     const panel = document.getElementById("ubicacion-panel");
     const fallback = document.querySelector("#ubicacion");
-    const target = panel || fallback;
+    const target = isMobile && heading ? heading : panel || fallback;
     if (!target) return;
 
-    const y = target.getBoundingClientRect().top + window.scrollY - LOCATION_SCROLL_OFFSET;
+    const offset = isMobile ? 88 : LOCATION_SCROLL_OFFSET;
+    const y = target.getBoundingClientRect().top + window.scrollY - offset;
     window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
 }
 
@@ -64,7 +68,7 @@ function navigateToLocation(tabKey) {
 
     requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-            scrollToLocationPanel();
+            window.setTimeout(() => scrollToClinicBranch(), 80);
             if (location.hash !== "#ubicacion") {
                 history.replaceState(null, "", "#ubicacion");
             }
@@ -552,24 +556,59 @@ function Chip({ children }) {
 
 /* ======= ImageCard (igual de UI) ======= */
 function ImageCard({ src, alt, label, fill = false }) {
+    const [lit, setLit] = useState(false);
+
+    const triggerGlow = () => {
+        setLit(true);
+        window.setTimeout(() => setLit(false), 1600);
+    };
+
+    const glowOn = lit ? "opacity-70" : "opacity-0";
+    const sweepOn = lit ? "opacity-100" : "opacity-0";
+
     return (
         <figure
+            onClick={triggerGlow}
+            onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    triggerGlow();
+                }
+            }}
+            role="button"
+            tabIndex={0}
             className={[
-                "group relative overflow-hidden rounded-2xl border border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.35)]",
+                "group relative cursor-pointer overflow-hidden rounded-2xl border border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.35)] outline-none focus-visible:ring-2 focus-visible:ring-[#e4b892]/60",
                 fill ? "h-full min-h-0 w-full" : "aspect-square",
             ].join(" ")}
         >
-            <img src={src} alt={alt} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]" />
+            <img
+                src={src}
+                alt={alt}
+                loading="lazy"
+                className={[
+                    "h-full w-full object-cover transition duration-500",
+                    lit ? "scale-[1.04]" : "group-hover:scale-[1.04]",
+                ].join(" ")}
+            />
             {label && (
-                <figcaption className="pointer-events-none absolute left-2 top-2 rounded-full bg-black/50 px-2.5 py-1 text-[11px] md:text-xs text-white/95 backdrop-blur-md max-w-[calc(100%-1rem)]">
-                    <span className="block line-clamp-2 md:line-clamp-none">{label}</span>
+                <figcaption className="pointer-events-none absolute left-1.5 top-1.5 max-w-[calc(100%-0.75rem)] rounded-full bg-black/50 px-1.5 py-0.5 text-[clamp(7px,2vw,10px)] leading-none text-white/95 backdrop-blur-md sm:left-2 sm:top-2 sm:px-2 sm:py-0.5">
+                    <span className="block truncate whitespace-nowrap">{label}</span>
                 </figcaption>
             )}
             <div
-                className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-70"
+                className={[
+                    "pointer-events-none absolute inset-0 rounded-2xl transition-opacity duration-300 group-hover:opacity-70",
+                    glowOn,
+                ].join(" ")}
                 style={{ boxShadow: "inset 0 0 60px rgba(228,184,146,.12)" }}
             />
-            <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            <div
+                className={[
+                    "pointer-events-none absolute inset-0 overflow-hidden rounded-2xl transition-opacity duration-300 group-hover:opacity-100",
+                    sweepOn,
+                ].join(" ")}
+            >
                 <div className="absolute -inset-y-2 -left-1/3 h-[140%] w-1/3 rotate-12 bg-gradient-to-r from-transparent via-[#e4b89266] to-transparent animate-[sweep_1.6s_ease-out_infinite]" />
             </div>
             <style>{`
@@ -605,11 +644,14 @@ function About() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="glass-card relative overflow-hidden rounded-3xl p-8"
+                        className="glass-card relative overflow-hidden rounded-3xl p-5 sm:p-6 md:p-8"
                     >
                         <div className="pointer-events-none absolute -inset-px rounded-3xl bg-[radial-gradient(120%_120%_at_10%_0%,rgba(228,184,146,.25),transparent)]" />
                         <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#e4b892]/10 to-transparent rounded-full blur-3xl" />
-                        <p className="relative z-10 text-left text-pretty text-[16px] font-light leading-relaxed text-white/90 md:leading-8">
+                        <p
+                            lang={lang === "es" ? "es-MX" : lang}
+                            className="relative z-10 hyphens-auto text-justify text-pretty text-[15px] font-light leading-relaxed text-white/90 sm:text-[16px] md:leading-8"
+                        >
                             {t("about.paragraph")}
                         </p>
 
@@ -1714,7 +1756,7 @@ function LocationsTabs() {
 
                     <div className="mt-6">
                         <div className="flex flex-wrap items-center justify-between gap-3">
-                            <h4 className="text-2xl font-semibold tracking-wide">{tab}</h4>
+                            <h4 id="clinic-branch-heading" className="scroll-mt-[88px] text-2xl font-semibold tracking-wide md:scroll-mt-[132px]">{tab}</h4>
                             <div className="inline-flex items-center gap-2 rounded-full border border-[#e4b89233] bg-white/5 px-3 py-1.5 text-xs text-white/90">
                                 <span className="text-[#e4b892]">{t("locations.labels.whatsapp")}:</span>
                                 <span className="opacity-90">{active.whatsapp}</span>
