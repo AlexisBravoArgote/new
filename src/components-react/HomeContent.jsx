@@ -1102,19 +1102,47 @@ function GalleryCarousel() {
         { src: fotos, title: t("gallery.items.detalles.title"), subtitle: t("gallery.items.detalles.subtitle") },
     ];
 
+    const SLIDE_DURATION_MS = 5200;
     const [i, setI] = useState(0);
     const [hover, setHover] = useState(false);
+    const [progressKey, setProgressKey] = useState(0);
     const timerRef = useRef(null);
     const touchRef = useRef({ x: 0, y: 0, t: 0 });
 
-    const next = useCallback(() => setI((p) => (p + 1) % IMAGES.length), [IMAGES.length]);
-    const prev = useCallback(() => setI((p) => (p - 1 + IMAGES.length) % IMAGES.length), [IMAGES.length]);
+    const bumpSlide = useCallback((nextIndex) => {
+        setI(nextIndex);
+        setProgressKey((k) => k + 1);
+    }, []);
+
+    const next = useCallback(() => {
+        setI((p) => (p + 1) % IMAGES.length);
+        setProgressKey((k) => k + 1);
+    }, [IMAGES.length]);
+
+    const prev = useCallback(() => {
+        setI((p) => (p - 1 + IMAGES.length) % IMAGES.length);
+        setProgressKey((k) => k + 1);
+    }, [IMAGES.length]);
+
+    const goTo = useCallback(
+        (idx) => {
+            if (idx === i) {
+                setProgressKey((k) => k + 1);
+                return;
+            }
+            bumpSlide(idx);
+        },
+        [i, bumpSlide]
+    );
 
     useEffect(() => {
-        if (hover) return;
-        timerRef.current = setInterval(() => next(), 5200);
+        if (hover) return undefined;
+        timerRef.current = setInterval(() => {
+            setI((p) => (p + 1) % IMAGES.length);
+            setProgressKey((k) => k + 1);
+        }, SLIDE_DURATION_MS);
         return () => clearInterval(timerRef.current);
-    }, [hover, next]);
+    }, [hover, i, IMAGES.length]);
 
     useEffect(() => {
         const onKey = (e) => {
@@ -1196,11 +1224,11 @@ function GalleryCarousel() {
 
                             <div className="mt-3 h-[3px] w-full rounded bg-white/15 overflow-hidden">
                                 <motion.div
-                                    key={i + (hover ? "-paused" : "")}
+                                    key={`progress-desktop-${progressKey}${hover ? "-pause" : ""}`}
                                     className="h-full bg-gradient-to-r from-[#c89b7b] via-[#e4b892] to-[#c89b7b]"
                                     initial={{ width: "0%" }}
                                     animate={{ width: hover ? "0%" : "100%" }}
-                                    transition={{ duration: 5.2, ease: "linear" }}
+                                    transition={{ duration: SLIDE_DURATION_MS / 1000, ease: "linear" }}
                                 />
                             </div>
                         </div>
@@ -1212,11 +1240,11 @@ function GalleryCarousel() {
                             {/* Línea dorada de progreso (móvil, debajo del subtítulo) */}
                             <div className="mt-2 h-[3px] w-full rounded bg-white/15 overflow-hidden">
                                 <motion.div
-                                    key={i + (hover ? '-paused' : '')}
+                                    key={`progress-mobile-${progressKey}${hover ? "-pause" : ""}`}
                                     className="h-full bg-gradient-to-r from-[#c89b7b] via-[#e4b892] to-[#c89b7b]"
-                                    initial={{ width: '0%' }}
-                                    animate={{ width: hover ? '0%' : '100%' }}
-                                    transition={{ duration: 5.2, ease: 'linear' }}
+                                    initial={{ width: "0%" }}
+                                    animate={{ width: hover ? "0%" : "100%" }}
+                                    transition={{ duration: SLIDE_DURATION_MS / 1000, ease: "linear" }}
                                 />
                             </div>
                         </div>
@@ -1251,7 +1279,7 @@ function GalleryCarousel() {
                     {IMAGES.map((img, idx) => (
                         <button
                             key={idx}
-                            onClick={() => setI(idx)}
+                            onClick={() => goTo(idx)}
                             className={`thumb chic relative overflow-hidden rounded-xl border ${idx === i ? "border-[#e4b89299]" : "border-white/15"} bg-white/5 hover:bg-white/10 transition`}
                             title={img.title}
                         >
@@ -1273,7 +1301,7 @@ function GalleryCarousel() {
                     {IMAGES.map((_, idx) => (
                         <button
                             key={idx}
-                            onClick={() => setI(idx)}
+                            onClick={() => goTo(idx)}
                             className={`h-1.5 w-6 rounded-full transition ${idx === i ? "bg-[#e4b892]" : "bg-white/30 hover:bg-white/50"}`}
                             aria-label={t("gallery.goToPhoto", { n: idx + 1 })}
                         />
