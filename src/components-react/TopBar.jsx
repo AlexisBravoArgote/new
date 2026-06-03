@@ -60,11 +60,15 @@ function scrollToGallery() {
 const LOCATION_SCROLL_OFFSET = 132;
 
 function scrollToLocationPanel() {
+    const isMobile =
+        typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches;
+    const heading = document.getElementById("clinic-branch-heading");
     const panel = document.getElementById("ubicacion-panel");
     const fallback = document.querySelector("#ubicacion");
-    const target = panel || fallback;
+    const target = isMobile && heading ? heading : panel || fallback;
     if (!target) return;
-    const y = target.getBoundingClientRect().top + window.scrollY - LOCATION_SCROLL_OFFSET;
+    const offset = isMobile ? 168 : LOCATION_SCROLL_OFFSET;
+    const y = target.getBoundingClientRect().top + window.scrollY - offset;
     window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
 }
 
@@ -78,7 +82,7 @@ function navigateToLocation(tabKey, lang = "es") {
     window.dispatchEvent(new CustomEvent("select-location-tab", { detail: tabKey }));
     requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-            scrollToLocationPanel();
+            window.setTimeout(() => scrollToLocationPanel(), 80);
             if (location.hash !== "#ubicacion") {
                 history.replaceState(null, "", "#ubicacion");
             }

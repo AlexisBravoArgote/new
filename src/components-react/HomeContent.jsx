@@ -54,7 +54,7 @@ function scrollToClinicBranch() {
     const target = isMobile && heading ? heading : panel || fallback;
     if (!target) return;
 
-    const offset = isMobile ? 88 : LOCATION_SCROLL_OFFSET;
+    const offset = isMobile ? 168 : LOCATION_SCROLL_OFFSET;
     const y = target.getBoundingClientRect().top + window.scrollY - offset;
     window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
 }
@@ -569,16 +569,8 @@ function ImageCard({ src, alt, label, fill = false }) {
     return (
         <figure
             onClick={triggerGlow}
-            onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    triggerGlow();
-                }
-            }}
-            role="button"
-            tabIndex={0}
             className={[
-                "group relative cursor-pointer overflow-hidden rounded-2xl border border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.35)] outline-none focus-visible:ring-2 focus-visible:ring-[#e4b892]/60",
+                "group relative cursor-default overflow-hidden rounded-2xl border border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.35)]",
                 fill ? "h-full min-h-0 w-full" : "aspect-square",
             ].join(" ")}
         >
@@ -592,7 +584,7 @@ function ImageCard({ src, alt, label, fill = false }) {
                 ].join(" ")}
             />
             {label && (
-                <figcaption className="pointer-events-none absolute left-1.5 top-1.5 max-w-[calc(100%-0.75rem)] rounded-full bg-black/50 px-1.5 py-0.5 text-[clamp(7px,2vw,10px)] leading-none text-white/95 backdrop-blur-md sm:left-2 sm:top-2 sm:px-2 sm:py-0.5">
+                <figcaption className="pointer-events-none absolute left-1.5 top-1.5 max-w-[calc(100%-0.75rem)] rounded-full bg-black/50 px-1.5 py-0.5 text-[clamp(7px,2vw,10px)] leading-none text-white/95 backdrop-blur-md sm:left-2 sm:top-2 sm:px-2 sm:py-0.5 md:px-3 md:py-1 md:text-[13px] lg:text-sm">
                     <span className="block truncate whitespace-nowrap">{label}</span>
                 </figcaption>
             )}
@@ -650,10 +642,22 @@ function About() {
                         <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#e4b892]/10 to-transparent rounded-full blur-3xl" />
                         <p
                             lang={lang === "es" ? "es-MX" : lang}
-                            className="relative z-10 hyphens-auto text-justify text-pretty text-[15px] font-light leading-relaxed text-white/90 sm:text-[16px] md:leading-8"
+                            className="relative z-10 hidden hyphens-auto text-justify text-pretty text-[15px] font-light leading-relaxed text-white/90 sm:text-[16px] md:block md:leading-8"
                         >
-                            {t("about.paragraph")}
+                            {t("about.paragraph")}{" "}
+                            {t("about.paragraph2", { defaultValue: "" })}
                         </p>
+                        <div
+                            lang={lang === "es" ? "es-MX" : lang}
+                            className="relative z-10 space-y-4 md:hidden"
+                        >
+                            <p className="hyphens-auto text-justify text-pretty text-[15px] font-light leading-relaxed text-white/90">
+                                {t("about.paragraph")}
+                            </p>
+                            <p className="hyphens-auto text-justify text-pretty text-[15px] font-light leading-relaxed text-white/90">
+                                {t("about.paragraph2", { defaultValue: "" })}
+                            </p>
+                        </div>
 
                         <div className="mt-6 grid grid-cols-2 gap-4">
                             <Chip>{t("about.chip_diag3d")}</Chip>
@@ -1758,7 +1762,7 @@ function LocationsTabs() {
 
                     <div className="mt-6">
                         <div className="flex flex-wrap items-center justify-between gap-3">
-                            <h4 id="clinic-branch-heading" className="scroll-mt-[88px] text-2xl font-semibold tracking-wide md:scroll-mt-[132px]">{tab}</h4>
+                            <h4 id="clinic-branch-heading" className="scroll-mt-[168px] text-2xl font-semibold tracking-wide md:scroll-mt-[132px]">{tab}</h4>
                             <div className="inline-flex items-center gap-2 rounded-full border border-[#e4b89233] bg-white/5 px-3 py-1.5 text-xs text-white/90">
                                 <span className="text-[#e4b892]">{t("locations.labels.whatsapp")}:</span>
                                 <span className="opacity-90">{active.whatsapp}</span>
@@ -1814,7 +1818,7 @@ function LocationsTabs() {
                                 ))}
                             </ul>
 
-                            <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div id="location-cta-buttons" className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
                                 <a
                                     href={waHref}
                                     target="_blank"
@@ -2108,16 +2112,39 @@ function FloatingCta() {
 
     // Visible al llegar a #about y se mantiene al seguir bajando
     const [showFromAbout, setShowFromAbout] = useState(false);
+    const [overlapsLocationCta, setOverlapsLocationCta] = useState(false);
 
     useEffect(() => {
         const about = document.getElementById("about");
         if (!about) return undefined;
+
+        const checkOverlap = () => {
+            if (!window.matchMedia("(max-width: 767px)").matches) {
+                setOverlapsLocationCta(false);
+                return;
+            }
+            const floating = wrapRef.current;
+            const cta = document.getElementById("location-cta-buttons");
+            if (!floating || !cta) {
+                setOverlapsLocationCta(false);
+                return;
+            }
+            const a = floating.getBoundingClientRect();
+            const b = cta.getBoundingClientRect();
+            const overlaps =
+                a.top < b.bottom - 4 &&
+                a.bottom > b.top + 4 &&
+                a.left < b.right &&
+                a.right > b.left;
+            setOverlapsLocationCta(overlaps);
+        };
 
         const update = () => {
             const top = about.getBoundingClientRect().top;
             const reachedAbout = top <= window.innerHeight * 0.9;
             setShowFromAbout(reachedAbout);
             if (!reachedAbout) setOpen(false);
+            checkOverlap();
         };
 
         update();
@@ -2164,7 +2191,12 @@ function FloatingCta() {
             {/* Botón principal */}
             <motion.button
                 onClick={() => setOpen((v) => !v)}
-                className="relative rounded-full bg-[#d8a07b] px-6 py-3 text-sm font-semibold text-[#0b1b2b] shadow-xl ring-4 ring-[#d8a07b]/25 transition hover:brightness-105 active:scale-[0.97]"
+                className={[
+                    "relative rounded-full px-6 py-3 text-sm font-semibold shadow-xl transition hover:brightness-105 active:scale-[0.97]",
+                    overlapsLocationCta
+                        ? "max-md:bg-[#d8a07b]/45 max-md:text-[#0b1b2b]/90 max-md:ring-2 max-md:ring-[#d8a07b]/25 max-md:backdrop-blur-sm"
+                        : "bg-[#d8a07b] text-[#0b1b2b] ring-4 ring-[#d8a07b]/25",
+                ].join(" ")}
                 aria-haspopup="menu"
                 aria-expanded={open}
                 animate={{

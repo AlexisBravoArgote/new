@@ -44,6 +44,19 @@ a, button {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Manita en controles clicables (Tailwind v4 usa cursor default en botones) */
+a[href],
+button:not(:disabled),
+summary,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+input[type="file"],
+label[for],
+select {
+    cursor: pointer;
+}
+
 a:focus-visible, button:focus-visible {
     outline: 2px solid var(--dc-gold);
     outline-offset: 2px;
