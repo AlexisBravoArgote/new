@@ -1,5 +1,5 @@
 import React from "react";
-import InstagramEmbed, { InstagramReelIframe } from "./InstagramEmbed.jsx";
+import { InstagramReelIframe } from "./InstagramEmbed.jsx";
 import { useTranslation } from "react-i18next";
 import TopBar from "./TopBar.jsx";
 import Footer from "./Footer.jsx";
@@ -119,28 +119,6 @@ function InvisalignInstagramVideos() {
     );
 }
 
-function TreatmentInstagramEmbed({ postUrl, title, subtitle, linkLabel }) {
-    return (
-        <section className="pb-16 md:pb-20">
-            <Container>
-                <h2 className="font-display text-3xl font-semibold text-[#e4b892] md:text-4xl">{title}</h2>
-                <p className="mt-3 max-w-2xl text-base leading-relaxed text-white/70 md:text-[17px]">{subtitle}</p>
-                <div className="dc-treatment-video-card dc-treatment-instagram-embed mx-auto mt-8 overflow-hidden rounded-2xl">
-                    <InstagramEmbed postUrl={postUrl} captioned />
-                    <a
-                        href={postUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-3 block text-center text-sm text-[#e4b892] transition hover:text-[#f4d3b3]"
-                    >
-                        {linkLabel}
-                    </a>
-                </div>
-            </Container>
-        </section>
-    );
-}
-
 function TreatmentInstagramVideoPair({ sectionTitle, sectionSubtitle, linkLabel, videos }) {
     return (
         <section className="pb-16 md:pb-20">
@@ -225,16 +203,36 @@ function BlanqueamientoInstagramVideos() {
 
 function LimpiezaInstagramVideo() {
     const { t } = useTranslation("treatments");
+    const sectionTitle = t("common.limpiezaInstagramTitle", { defaultValue: "Video: Limpieza dental" });
 
     return (
-        <TreatmentInstagramEmbed
-            postUrl={LIMPIEZA_INSTAGRAM_REEL_URL}
-            title={t("common.limpiezaInstagramTitle", { defaultValue: "Video: Limpieza dental" })}
-            subtitle={t("common.limpiezaInstagramSubtitle", {
-                defaultValue: "Mira cómo realizamos la profilaxis profesional en Dental City.",
-            })}
-            linkLabel={t("common.limpiezaInstagramLink", { defaultValue: "Ver reel en Instagram" })}
-        />
+        <section className="pb-16 md:pb-20">
+            <div className="mx-auto w-full max-w-5xl px-6 md:px-8">
+                <h2 className="font-display text-3xl font-semibold text-[#e4b892] md:text-4xl">{sectionTitle}</h2>
+                <p className="mt-3 max-w-2xl text-base leading-relaxed text-white/70 md:text-[17px]">
+                    {t("common.limpiezaInstagramSubtitle", {
+                        defaultValue: "Mira cómo realizamos la profilaxis profesional en Dental City.",
+                    })}
+                </p>
+                <article className="mx-auto mt-8 max-w-md">
+                    <div className="dc-treatment-video-card dc-treatment-instagram-pair-card flex flex-col items-center p-4 md:p-5">
+                        <InstagramReelIframe
+                            postUrl={LIMPIEZA_INSTAGRAM_REEL_URL}
+                            title={sectionTitle}
+                            className="dc-treatment-instagram-iframe"
+                        />
+                        <a
+                            href={LIMPIEZA_INSTAGRAM_REEL_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mt-4 text-center text-sm font-medium text-[#e4b892] transition hover:text-[#f4d3b3]"
+                        >
+                            {t("common.limpiezaInstagramLink", { defaultValue: "Ver en Instagram" })}
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
     );
 }
 
