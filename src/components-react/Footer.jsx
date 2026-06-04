@@ -1,5 +1,6 @@
 ﻿// src/components/Footer.jsx
 import React from "react";
+import FloatingPageUi from "./FloatingPageUi.jsx";
 import MainSiteLinks from "./MainSiteLinks.jsx";
 import { useOptionalSiteCopy } from "./SiteCopyContext.jsx";
 // Using regular anchor tags for Astro
@@ -23,6 +24,7 @@ export default function Footer() {
     const lang = siteCopy?.lang ?? "es";
 
     return (
+        <>
         <footer className="relative border-t border-white/10 bg-[#152b53] pt-8 pb-6 overflow-hidden">
             <div className="absolute top-0 left-0 h-[2px] w-full bg-gradient-to-r from-[#c89b7b] via-[#e4b892] to-[#c89b7b] animate-[shimmer_6s_linear_infinite]" />
             <div className="absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-[#c89b7b] via-[#e4b892] to-[#c89b7b] animate-[shimmer_6s_linear_infinite]" />
@@ -96,6 +98,8 @@ export default function Footer() {
         @keyframes shine { 0%{background-position:0% 50%} 100%{background-position:200% 50%} }
       `}</style>
         </footer>
+        <FloatingPageUi lang={lang} />
+        </>
     );
 }
 

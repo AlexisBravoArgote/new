@@ -20,8 +20,10 @@ const arquitectura = "/assets/arquitectura.png";
 
 import TopBar from "./TopBar.jsx";
 import Footer from "./Footer.jsx";
+import { GALLERY_INSTAGRAM_REEL_URL, InstagramReelIframe } from "./InstagramEmbed.jsx";
 import MainSiteLinks from "./MainSiteLinks.jsx";
 import LanguageSwitcher from "./LanguageSwitcher.jsx";
+import { navigateToLocation, scheduleScrollToHomeHash } from "../lib/home-sections.js";
 import { useSiteCopy } from "./SiteCopyContext.jsx";
 
 
@@ -43,40 +45,6 @@ const getWaUrl = (key, title) => {
 
 if (typeof window !== "undefined") window.WA_URL = WA_URL;
 
-const LOCATION_SCROLL_OFFSET = 132; // TopBar + margen para que el panel no quede muy abajo
-
-function scrollToClinicBranch() {
-    const isMobile =
-        typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches;
-    const heading = document.getElementById("clinic-branch-heading");
-    const panel = document.getElementById("ubicacion-panel");
-    const fallback = document.querySelector("#ubicacion");
-    const target = isMobile && heading ? heading : panel || fallback;
-    if (!target) return;
-
-    const offset = isMobile ? 120 : LOCATION_SCROLL_OFFSET;
-    const y = target.getBoundingClientRect().top + window.scrollY - offset;
-    window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
-}
-
-function navigateToLocation(tabKey) {
-    try {
-        sessionStorage.setItem("initialTab", tabKey);
-    } catch (err) { void err; }
-
-    window.dispatchEvent(new CustomEvent("select-location-tab", { detail: tabKey }));
-
-    requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-            window.setTimeout(() => scrollToClinicBranch(), 80);
-            if (location.hash !== "#ubicacion") {
-                history.replaceState(null, "", "#ubicacion");
-            }
-        });
-    });
-}
-
-
 // =========================
 // Helpers / Layout
 // =========================
@@ -95,6 +63,13 @@ function Home() {
     const { scrollYProgress } = useScroll();
     const bgOpacity = useTransform(scrollYProgress, [0, 1], [0.55, 0.85]);
     const { t, lang } = useSiteCopy();
+
+    useEffect(() => {
+        const hash = window.location.hash;
+        if (!hash) return undefined;
+        scheduleScrollToHomeHash(hash);
+        return undefined;
+    }, []);
 
     // Structured Data para LocalBusiness
     const localBusinessData = {
@@ -151,8 +126,6 @@ function Home() {
             <FAQ />
 
             <Footer />
-            <FloatingCta />
-            <FloatingBackToTop />
             <DevTests />
         </div>
     );
@@ -302,7 +275,7 @@ function Hero() {
                                 >
                                     <button
                                         onClick={() => {
-                                            navigateToLocation("Dental City");
+                                            navigateToLocation("Dental City", lang);
                                             setOpenHeroCta(false);
                                         }}
                                         className="flex w-full items-center justify-between gap-2 rounded-xl px-4 py-3.5 text-left transition-all duration-200 hover:bg-white/15 hover:translate-x-1"
@@ -322,7 +295,7 @@ function Hero() {
 
                                     <button
                                         onClick={() => {
-                                            navigateToLocation("Dental City Kids & Family");
+                                            navigateToLocation("Dental City Kids & Family", lang);
                                             setOpenHeroCta(false);
                                         }}
                                         className="mt-1 flex w-full items-center justify-between gap-2 rounded-xl px-4 py-3 text-left transition hover:bg-white/10"
@@ -1093,16 +1066,27 @@ function InfoModal({ open, onClose, service }) {
 
 
 function GalleryCarousel() {
-    const { t, lang } = useSiteCopy();
+    const { t } = useSiteCopy();
 
-    const IMAGES = [
-        { src: ubicacion, title: t("gallery.items.ubicacion.title"), subtitle: t("gallery.items.ubicacion.subtitle") },
-        { src: unidades, title: t("gallery.items.unidades.title"), subtitle: t("gallery.items.unidades.subtitle") },
-        { src: recepcion, title: t("gallery.items.recepcion.title"), subtitle: t("gallery.items.recepcion.subtitle") },
-        { src: fotos, title: t("gallery.items.detalles.title"), subtitle: t("gallery.items.detalles.subtitle") },
-    ];
+    const SLIDES = useMemo(
+        () => [
+            { type: "image", src: ubicacion, title: t("gallery.items.ubicacion.title"), subtitle: t("gallery.items.ubicacion.subtitle") },
+            { type: "image", src: unidades, title: t("gallery.items.unidades.title"), subtitle: t("gallery.items.unidades.subtitle") },
+            { type: "image", src: recepcion, title: t("gallery.items.recepcion.title"), subtitle: t("gallery.items.recepcion.subtitle") },
+            { type: "image", src: fotos, title: t("gallery.items.detalles.title"), subtitle: t("gallery.items.detalles.subtitle") },
+            {
+                type: "reel",
+                thumb: recepcion,
+                title: t("gallery.items.reel.title", { defaultValue: "Recorrido en video" }),
+                subtitle: t("gallery.items.reel.subtitle", { defaultValue: "Nuestras instalaciones en Instagram" }),
+            },
+        ],
+        [t]
+    );
 
+    const SLIDE_COUNT = SLIDES.length;
     const SLIDE_DURATION_MS = 5200;
+
     const [i, setI] = useState(0);
     const [hover, setHover] = useState(false);
     const [progressKey, setProgressKey] = useState(0);
@@ -1115,14 +1099,14 @@ function GalleryCarousel() {
     }, []);
 
     const next = useCallback(() => {
-        setI((p) => (p + 1) % IMAGES.length);
+        setI((p) => (p + 1) % SLIDE_COUNT);
         setProgressKey((k) => k + 1);
-    }, [IMAGES.length]);
+    }, [SLIDE_COUNT]);
 
     const prev = useCallback(() => {
-        setI((p) => (p - 1 + IMAGES.length) % IMAGES.length);
+        setI((p) => (p - 1 + SLIDE_COUNT) % SLIDE_COUNT);
         setProgressKey((k) => k + 1);
-    }, [IMAGES.length]);
+    }, [SLIDE_COUNT]);
 
     const goTo = useCallback(
         (idx) => {
@@ -1136,13 +1120,13 @@ function GalleryCarousel() {
     );
 
     useEffect(() => {
-        if (hover) return undefined;
+        if (hover || SLIDES[i]?.type === "reel") return undefined;
         timerRef.current = setInterval(() => {
-            setI((p) => (p + 1) % IMAGES.length);
+            setI((p) => (p + 1) % SLIDE_COUNT);
             setProgressKey((k) => k + 1);
         }, SLIDE_DURATION_MS);
         return () => clearInterval(timerRef.current);
-    }, [hover, i, IMAGES.length]);
+    }, [hover, i, SLIDE_COUNT, SLIDES]);
 
     useEffect(() => {
         const onKey = (e) => {
@@ -1163,7 +1147,9 @@ function GalleryCarousel() {
         if (dt < 600 && Math.abs(dx) > 40) (dx < 0 ? next() : prev());
     };
 
-    const active = IMAGES[i];
+    const active = SLIDES[i];
+    const isReel = active.type === "reel";
+    const pauseProgress = hover || isReel;
 
     return (
         <section id="galeria" className="section-dark py-20 md:py-24">
@@ -1182,22 +1168,51 @@ function GalleryCarousel() {
 
                     <div className="relative aspect-[16/9] w-full select-none" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
                         <AnimatePresence initial={false} mode="wait">
-                            <motion.img
-                                key={i}
-                                src={active.src}
-                                alt={active.title}
-                                className="absolute inset-0 h-full w-full object-cover"
-                                initial={{ opacity: 0, scale: 1.03, x: 8 }}
-                                animate={{ opacity: 1, scale: 1, x: 0 }}
-                                exit={{ opacity: 0, scale: 1.01, x: -8 }}
-                                transition={{ duration: 0.9, ease: "easeOut" }}
-                            />
+                            {isReel ? (
+                                <motion.div
+                                    key={`reel-${i}`}
+                                    className="absolute inset-0 flex items-center justify-center bg-[#0b1b2b] p-3 sm:p-6"
+                                    initial={{ opacity: 0, scale: 1.02 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 1.01 }}
+                                    transition={{ duration: 0.9, ease: "easeOut" }}
+                                >
+                                    <InstagramReelIframe
+                                        postUrl={GALLERY_INSTAGRAM_REEL_URL}
+                                        title={active.title}
+                                        className="dc-gallery-reel-iframe pointer-events-auto"
+                                    />
+                                    <a
+                                        href={GALLERY_INSTAGRAM_REEL_URL}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="absolute bottom-20 right-4 z-10 rounded-full border border-[#e4b892]/40 bg-black/50 px-3 py-1.5 text-xs font-medium text-[#e4b892] backdrop-blur transition hover:bg-black/65 sm:bottom-24"
+                                    >
+                                        Abrir en Instagram
+                                    </a>
+                                </motion.div>
+                            ) : (
+                                <motion.img
+                                    key={`img-${i}`}
+                                    src={active.src}
+                                    alt={active.title}
+                                    className="absolute inset-0 h-full w-full object-cover"
+                                    initial={{ opacity: 0, scale: 1.03, x: 8 }}
+                                    animate={{ opacity: 1, scale: 1, x: 0 }}
+                                    exit={{ opacity: 0, scale: 1.01, x: -8 }}
+                                    transition={{ duration: 0.9, ease: "easeOut" }}
+                                />
+                            )}
                         </AnimatePresence>
 
-                        {/* Overlays para legibilidad: móvil usa gradiente desde arriba; desktop mantiene desde abajo */}
-                        <div className="pointer-events-none absolute inset-0 hidden sm:block bg-gradient-to-t from-[#0b1b2b]/55 via-transparent to-transparent" />
-                        <div className="pointer-events-none absolute inset-0 sm:hidden bg-gradient-to-b from-[#0b1b2b]/55 via-transparent to-transparent" />
-                        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(11,27,43,.18),transparent_60%)]" />
+                        {/* Overlays para legibilidad (fotos; reel usa fondo sólido) */}
+                        {!isReel && (
+                            <>
+                                <div className="pointer-events-none absolute inset-0 hidden sm:block bg-gradient-to-t from-[#0b1b2b]/55 via-transparent to-transparent" />
+                                <div className="pointer-events-none absolute inset-0 sm:hidden bg-gradient-to-b from-[#0b1b2b]/55 via-transparent to-transparent" />
+                                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(11,27,43,.18),transparent_60%)]" />
+                            </>
+                        )}
 
                         {/* CAPTION */}
                         {/* Móvil: brand + título arriba; subtítulo abajo. Desktop: todo abajo como antes */}
@@ -1218,16 +1233,16 @@ function GalleryCarousel() {
                                 <div className="ml-4 hidden sm:flex items-center gap-2 rounded-full border border-white/20 bg-black/20 px-3 py-1.5 text-white/80 backdrop-blur">
                                     <span className="text-[#e4b892]">{String(i + 1).padStart(2, "0")}</span>
                                     <span className="opacity-50">/</span>
-                                    <span className="opacity-80">{String(IMAGES.length).padStart(2, "0")}</span>
+                                    <span className="opacity-80">{String(SLIDE_COUNT).padStart(2, "0")}</span>
                                 </div>
                             </div>
 
                             <div className="mt-3 h-[3px] w-full rounded bg-white/15 overflow-hidden">
                                 <motion.div
-                                    key={`progress-desktop-${progressKey}${hover ? "-pause" : ""}`}
+                                    key={`progress-desktop-${progressKey}${pauseProgress ? "-pause" : ""}`}
                                     className="h-full bg-gradient-to-r from-[#c89b7b] via-[#e4b892] to-[#c89b7b]"
                                     initial={{ width: "0%" }}
-                                    animate={{ width: hover ? "0%" : "100%" }}
+                                    animate={{ width: pauseProgress ? "0%" : "100%" }}
                                     transition={{ duration: SLIDE_DURATION_MS / 1000, ease: "linear" }}
                                 />
                             </div>
@@ -1240,10 +1255,10 @@ function GalleryCarousel() {
                             {/* Línea dorada de progreso (móvil, debajo del subtítulo) */}
                             <div className="mt-2 h-[3px] w-full rounded bg-white/15 overflow-hidden">
                                 <motion.div
-                                    key={`progress-mobile-${progressKey}${hover ? "-pause" : ""}`}
+                                    key={`progress-mobile-${progressKey}${pauseProgress ? "-pause" : ""}`}
                                     className="h-full bg-gradient-to-r from-[#c89b7b] via-[#e4b892] to-[#c89b7b]"
                                     initial={{ width: "0%" }}
-                                    animate={{ width: hover ? "0%" : "100%" }}
+                                    animate={{ width: pauseProgress ? "0%" : "100%" }}
                                     transition={{ duration: SLIDE_DURATION_MS / 1000, ease: "linear" }}
                                 />
                             </div>
@@ -1276,29 +1291,47 @@ function GalleryCarousel() {
 
                 {/* THUMBS: una sola fila en móvil (más pequeñas) */}
                 <div className="mt-5 flex items-center justify-center gap-2 flex-nowrap sm:flex-wrap">
-                    {IMAGES.map((img, idx) => (
+                    {SLIDES.map((slide, idx) => (
                         <button
                             key={idx}
                             onClick={() => goTo(idx)}
                             className={`thumb chic relative overflow-hidden rounded-xl border ${idx === i ? "border-[#e4b89299]" : "border-white/15"} bg-white/5 hover:bg-white/10 transition`}
-                            title={img.title}
+                            title={slide.title}
                         >
-                            <img
-                                src={img.src}
-                                alt={img.title}
-                                className="h-12 w-16 sm:h-14 sm:w-20 md:h-[68px] md:w-[96px] object-cover"
-                                loading="lazy"
-                            />
+                            {slide.type === "reel" ? (
+                                <>
+                                    <img
+                                        src={slide.thumb}
+                                        alt=""
+                                        className="h-12 w-16 sm:h-14 sm:w-20 md:h-[68px] md:w-[96px] object-cover opacity-80"
+                                        loading="lazy"
+                                    />
+                                    <span className="absolute inset-0 grid place-items-center bg-black/35">
+                                        <span className="grid h-8 w-8 place-items-center rounded-full bg-[#d8a07b]/90 text-[#0b1b2b] shadow-md">
+                                            <svg viewBox="0 0 24 24" className="ml-0.5 h-4 w-4" fill="currentColor" aria-hidden>
+                                                <path d="M8 5v14l11-7z" />
+                                            </svg>
+                                        </span>
+                                    </span>
+                                </>
+                            ) : (
+                                <img
+                                    src={slide.src}
+                                    alt={slide.title}
+                                    className="h-12 w-16 sm:h-14 sm:w-20 md:h-[68px] md:w-[96px] object-cover"
+                                    loading="lazy"
+                                />
+                            )}
                             {idx === i && <span className="pointer-events-none absolute inset-0 rounded-xl ring-2 ring-[#e4b892]/70" />}
                             <span className="tooltip absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-black/70 px-2.5 py-1 text-xs text-white/90 opacity-0 transition pointer-events-none">
-                                {img.title}
+                                {slide.title}
                             </span>
                         </button>
                     ))}
                 </div>
 
                 <div className="mt-4 flex justify-center gap-2">
-                    {IMAGES.map((_, idx) => (
+                    {SLIDES.map((_, idx) => (
                         <button
                             key={idx}
                             onClick={() => goTo(idx)}
@@ -2131,241 +2164,6 @@ function FAQ() {
         </section>
     );
 }
-
-
-
-
-function FloatingCta() {
-    const { t, lang } = useSiteCopy();
-    const [open, setOpen] = useState(false);
-    const wrapRef = useRef(null);
-
-    // Visible al llegar a #about y se mantiene al seguir bajando
-    const [showFromAbout, setShowFromAbout] = useState(false);
-    const [overlapsLocationCta, setOverlapsLocationCta] = useState(false);
-
-    useEffect(() => {
-        const about = document.getElementById("about");
-        if (!about) return undefined;
-
-        const checkOverlap = () => {
-            if (!window.matchMedia("(max-width: 767px)").matches) {
-                setOverlapsLocationCta(false);
-                return;
-            }
-            const floating = wrapRef.current;
-            const cta = document.getElementById("location-cta-buttons");
-            if (!floating || !cta) {
-                setOverlapsLocationCta(false);
-                return;
-            }
-            const a = floating.getBoundingClientRect();
-            const b = cta.getBoundingClientRect();
-            const overlaps =
-                a.top < b.bottom - 4 &&
-                a.bottom > b.top + 4 &&
-                a.left < b.right &&
-                a.right > b.left;
-            setOverlapsLocationCta(overlaps);
-        };
-
-        const update = () => {
-            const top = about.getBoundingClientRect().top;
-            const reachedAbout = top <= window.innerHeight * 0.9;
-            setShowFromAbout(reachedAbout);
-            if (!reachedAbout) setOpen(false);
-            checkOverlap();
-        };
-
-        update();
-        window.addEventListener("scroll", update, { passive: true });
-        window.addEventListener("resize", update);
-        return () => {
-            window.removeEventListener("scroll", update);
-            window.removeEventListener("resize", update);
-        };
-    }, []);
-
-    // Cerrar al hacer clic fuera o con ESC
-    useEffect(() => {
-        if (!open) return;
-        const onDown = (e) => {
-            if (wrapRef.current && !wrapRef.current.contains(e.target)) setOpen(false);
-        };
-        const onKey = (e) => {
-            if (e.key === "Escape") setOpen(false);
-        };
-        document.addEventListener("mousedown", onDown);
-        document.addEventListener("keydown", onKey);
-        return () => {
-            document.removeEventListener("mousedown", onDown);
-            document.removeEventListener("keydown", onKey);
-        };
-    }, [open]);
-
-    const go = (tabKey) => {
-        setOpen(false);
-        navigateToLocation(tabKey);
-    };
-
-    const visible = showFromAbout;
-
-    return (
-        <div
-            ref={wrapRef}
-            className={[
-                "fixed bottom-5 right-5 z-50 transition-all duration-300",
-                visible ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-3 pointer-events-none"
-            ].join(" ")}
-        >
-            {/* Botón principal */}
-            <motion.button
-                onClick={() => setOpen((v) => !v)}
-                className={[
-                    "relative rounded-full px-6 py-3 text-sm font-semibold shadow-xl transition hover:brightness-105 active:scale-[0.97]",
-                    overlapsLocationCta
-                        ? "max-md:bg-[#d8a07b]/45 max-md:text-[#0b1b2b]/90 max-md:ring-2 max-md:ring-[#d8a07b]/25 max-md:backdrop-blur-sm"
-                        : "bg-[#d8a07b] text-[#0b1b2b] ring-4 ring-[#d8a07b]/25",
-                ].join(" ")}
-                aria-haspopup="menu"
-                aria-expanded={open}
-                animate={{
-                    filter: open
-                        ? "drop-shadow(0 0 14px rgba(216,160,123,0.7))"
-                        : "drop-shadow(0 0 0 rgba(0,0,0,0))",
-                }}
-                transition={{ duration: 0.35 }}
-            >
-                {t("hero.book", { defaultValue: "Agendar cita" })}
-                <motion.span
-                    className="inline-block ml-1"
-                    animate={{ rotate: open ? 180 : 0 }}
-                    transition={{ duration: 0.25 }}
-                >
-                    ▾
-                </motion.span>
-            </motion.button>
-
-            {/* Backdrop clickeable para cerrar */}
-            <AnimatePresence>
-                {open && (
-                    <motion.button
-                        type="button"
-                        onClick={() => setOpen(false)}
-                        className="fixed inset-0 z-[-1] cursor-default"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        aria-hidden="true"
-                    />
-                )}
-            </AnimatePresence>
-
-            {/* Popover */}
-            <AnimatePresence>
-                {open && (
-                    <motion.div
-                        initial={{ opacity: 0, y: 8, scale: 0.96 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 8, scale: 0.96 }}
-                        transition={{ duration: 0.22 }}
-                        className="absolute bottom-[110%] right-0 w-[260px] rounded-2xl border border-[#d8a07b]/25 bg-[#11243a]/95 p-2 text-white/90 shadow-2xl backdrop-blur"
-                        role="menu"
-                    >
-                        {/* Caret dorado */}
-                        <span className="pointer-events-none absolute -bottom-2 right-6 h-4 w-4 rotate-45 rounded-[4px] bg-[#11243a]/95 border-l border-b border-[#d8a07b]/25" />
-
-                        <button
-                            onClick={() => go("Dental City")}
-                            className="flex w-full items-center justify-between gap-2 rounded-xl px-4 py-3 text-left transition hover:bg-[#d8a07b]/15"
-                            role="menuitem"
-                        >
-                            <span>Dental City</span>
-                            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6">
-                                <path d="M9 18l6-6-6-6" />
-                            </svg>
-                        </button>
-
-                        <button
-                            onClick={() => go("Dental City Kids & Family")}
-                            className="mt-1 flex w-full items-center justify-between gap-2 rounded-xl px-4 py-3 text-left transition hover:bg-[#d8a07b]/15"
-                            role="menuitem"
-                        >
-                            <span>Dental City Kids & Family</span>
-                            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6">
-                                <path d="M9 18l6-6-6-6" />
-                            </svg>
-                        </button>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </div>
-    );
-}
-
-
-function FloatingBackToTop() {
-    const [visible, setVisible] = React.useState(false);
-    const tickingRef = React.useRef(false);
-
-    React.useEffect(() => {
-        const onScroll = () => {
-            if (!tickingRef.current) {
-                tickingRef.current = true;
-                requestAnimationFrame(() => {
-                    const y = window.scrollY || document.documentElement.scrollTop || 0;
-                    setVisible(y > 360); // muestra tras bajar ~360px
-                    tickingRef.current = false;
-                });
-            }
-        };
-        window.addEventListener("scroll", onScroll, { passive: true });
-        onScroll(); // estado inicial
-        return () => window.removeEventListener("scroll", onScroll);
-    }, []);
-
-    const scrollTop = () => {
-        try {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        } catch {
-            // fallback muy básico
-            document.documentElement.scrollTop = 0;
-            document.body.scrollTop = 0;
-        }
-    };
-
-    return (
-        <AnimatePresence>
-            {visible && (
-                <motion.button
-                    key="backtotop"
-                    onClick={scrollTop}
-                    aria-label="Volver arriba"
-                    title="Volver arriba"
-                    initial={{ opacity: 0, y: 16, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 16, scale: 0.95 }}
-                    transition={{ duration: 0.25, ease: "easeOut" }}
-                    className="fixed bottom-5 left-5 z-50 grid h-12 w-12 place-items-center rounded-full 
-                     bg-[#d8a07b] text-[#0b1b2b] shadow-xl ring-4 ring-[#d8a07b]/25 
-                     hover:brightness-110 active:scale-95"
-                >
-                    {/* Flecha elegante hacia arriba */}
-                    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M12 19V5" />
-                        <path d="M5 12l7-7 7 7" />
-                    </svg>
-
-                    {/* Halo dorado suave (igual lenguaje visual que el resto) */}
-                    <span className="pointer-events-none absolute inset-0 rounded-full 
-                           bg-[radial-gradient(ellipse_at_center,rgba(228,184,146,0.20),transparent_60%)]" />
-                </motion.button>
-            )}
-        </AnimatePresence>
-    );
-}
-
-
 /* =========================
    Dev tests (ligeros)
    ========================= */

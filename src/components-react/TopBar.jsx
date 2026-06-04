@@ -2,6 +2,14 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 // Using regular anchor tags for Astro
+import {
+    homeSectionHref,
+    navigateToLocation,
+    scrollToGallery,
+    scrollToId,
+    scrollToLocationPanel,
+    scrollToServices,
+} from "../lib/home-sections.js";
 import { getHomeCopy, isHomePathname, localePath, normalizeLang, translate } from "../lib/site-copy.js";
 const logoPng = "/assets/download.avif";
 const __MOTION_USED = Boolean(motion); // eslint-disable-line no-unused-vars
@@ -26,68 +34,6 @@ function LogoImage({ className = "h-18 w-auto" }) {
             />
         </div>
     );
-}
-
-/* Scroll helper para cuando ya estamos en "/" */
-function scrollToId(hash) {
-    const el = document.querySelector(hash);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-}
-
-const SERVICES_SCROLL_OFFSET = 112;
-
-function scrollToServices() {
-    const search = document.getElementById("servicios-busqueda");
-    const fallback = document.querySelector("#servicios");
-    const target = search || fallback;
-    if (!target) return;
-    const y = target.getBoundingClientRect().top + window.scrollY - SERVICES_SCROLL_OFFSET;
-    window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
-}
-
-const GALLERY_SCROLL_OFFSET = 112;
-
-function scrollToGallery() {
-    const showcase = document.getElementById("galeria-showcase");
-    const carousel = document.getElementById("galeria-carousel");
-    const fallback = document.querySelector("#galeria");
-    const target = showcase || carousel || fallback;
-    if (!target) return;
-    const y = target.getBoundingClientRect().top + window.scrollY - GALLERY_SCROLL_OFFSET;
-    window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
-}
-
-const LOCATION_SCROLL_OFFSET = 132;
-
-function scrollToLocationPanel() {
-    const isMobile =
-        typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches;
-    const heading = document.getElementById("clinic-branch-heading");
-    const panel = document.getElementById("ubicacion-panel");
-    const fallback = document.querySelector("#ubicacion");
-    const target = isMobile && heading ? heading : panel || fallback;
-    if (!target) return;
-    const offset = isMobile ? 120 : LOCATION_SCROLL_OFFSET;
-    const y = target.getBoundingClientRect().top + window.scrollY - offset;
-    window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
-}
-
-/* Scroll al panel de ubicación y selecciona pestaña */
-function navigateToLocation(tabKey, lang = "es") {
-    try { sessionStorage.setItem("initialTab", tabKey); } catch { }
-    if (!isHomePathname(location.pathname, lang)) {
-        window.location.assign(`${localePath("/", lang)}#ubicacion-panel`);
-        return;
-    }
-    window.dispatchEvent(new CustomEvent("select-location-tab", { detail: tabKey }));
-    requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-            window.setTimeout(() => scrollToLocationPanel(), 80);
-            if (location.hash !== "#ubicacion") {
-                history.replaceState(null, "", "#ubicacion");
-            }
-        });
-    });
 }
 
 /* TOP BAR */
@@ -197,7 +143,7 @@ export default function TopBar({ bgOpacity, lang: langProp = "es" }) {
                     ].map(([label, hash, kind]) => (
                         <a
                             key={hash}
-                            href={`${homeHref.replace(/\/$/, "")}${hash}`}
+                            href={homeSectionHref(homeHref, hash)}
                             onClick={(e) => {
                                 if (onHome()) {
                                     e.preventDefault();
@@ -336,7 +282,7 @@ export default function TopBar({ bgOpacity, lang: langProp = "es" }) {
 
                                 <div className="flex flex-col gap-2 py-3 flex-1">
                                     <a
-                                        href={`${homeHref.replace(/\/$/, "")}#servicios`}
+                                        href={homeSectionHref(homeHref, "#servicios")}
                                         onClick={(e) => {
                                             setMobileOpen(false);
                                             if (onHome()) {
@@ -350,7 +296,7 @@ export default function TopBar({ bgOpacity, lang: langProp = "es" }) {
                                         {t("topbar.treatments", { defaultValue: "Nuestros tratamientos" })}
                                     </a>
                                     <a
-                                        href={`${homeHref.replace(/\/$/, "")}#galeria`}
+                                        href={homeSectionHref(homeHref, "#galeria")}
                                         onClick={(e) => {
                                             setMobileOpen(false);
                                             if (onHome()) {

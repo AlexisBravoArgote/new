@@ -84,7 +84,7 @@
                 "desc": "Ortodoncia fija para corrección de mordida y alineación."
             },
             "blanqueamientos": {
-                "title": "Blanqueamientos",
+                "title": "Blanqueamiento dental",
                 "desc": "Aclarado seguro y efectivo del tono dental."
             },
             "carillas": {
@@ -334,6 +334,10 @@
                 "detalles": {
                     "title": "Detalles",
                     "subtitle": "Diseño que inspira"
+                },
+                "reel": {
+                    "title": "Recorrido en video",
+                    "subtitle": "Nuestras instalaciones en Instagram"
                 }
             }
         },

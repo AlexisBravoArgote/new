@@ -20,7 +20,7 @@ const PAGE_TITLES = {
     alineadores: "Alineadores",
     invisalign: "Invisalign",
     brackets: "Brackets",
-    blanqueamientos: "Blanqueamientos",
+    blanqueamientos: "Blanqueamiento dental",
     carillas: "Carillas Dentales",
     "limpieza-ninos": "Limpieza Dental para Niños",
     selladores: "Selladores de Fosas y Fisuras",
@@ -540,7 +540,7 @@ const BRACKETS = {
 };
 
 const BLANQUEAMIENTOS = {
-    pageTitle: "Blanqueamientos",
+    pageTitle: "Blanqueamiento dental",
     heroSubtitle:
         "Aclara el color natural de tus dientes de forma segura y efectiva. Blanqueamiento en clínica y/o domiciliario supervisado en Dental City.",
     whatTitle: "¿Qué es el blanqueamiento dental?",
@@ -1014,9 +1014,25 @@ const output = {
         ctaOther: "Ver otros tratamientos",
         notFound: "Tratamiento no encontrado",
         backHome: "Volver al inicio",
-        bioInstagramTitle: "Video: Odontología Biológica",
-        bioInstagramSubtitle: "Conoce nuestro enfoque en este video de Dental City en Instagram.",
-        bioInstagramLink: "Ver publicación en Instagram",
+        bioInstagramTitle: "Videos: Odontología Biológica",
+        bioInstagramSubtitle: "Conoce nuestro enfoque y los beneficios de este tratamiento en Dental City.",
+        bioInstagramApproachTitle: "Nuestro enfoque",
+        bioInstagramBenefitsTitle: "Beneficios",
+        bioInstagramLink: "Ver en Instagram",
+        limpiezaInstagramTitle: "Video: Limpieza dental",
+        limpiezaInstagramSubtitle: "Mira cómo realizamos la profilaxis profesional en Dental City.",
+        limpiezaInstagramLink: "Ver reel en Instagram",
+        blanqueamientoInstagramTitle: "Videos: Blanqueamiento dental",
+        blanqueamientoInstagramSubtitle: "Blanqueamiento en consultorio y kit para casa supervisado en Dental City.",
+        blanqueamientoInstagramClinicTitle: "En el consultorio",
+        blanqueamientoInstagramHomeKitTitle: "Kit para casa",
+        blanqueamientoInstagramLink: "Ver en Instagram",
+        invisalignInstagramTitle: "Videos: Invisalign",
+        invisalignInstagramSubtitle:
+            "Escaneo digital para fabricar tus alineadores personalizados y colocación de attachments en consultorio.",
+        invisalignInstagramScanTitle: "Escaneo digital",
+        invisalignInstagramAttachmentsTitle: "Colocación de attachments",
+        invisalignInstagramLink: "Ver en Instagram",
     },
     byService: Object.fromEntries(TREATMENT_SLUGS.map((slug) => [slug, buildEntry(slug)])),
 };

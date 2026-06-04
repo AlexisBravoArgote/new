@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
+import InstagramEmbed, { InstagramReelIframe } from "./InstagramEmbed.jsx";
 import { useTranslation } from "react-i18next";
 import TopBar from "./TopBar.jsx";
 import Footer from "./Footer.jsx";
@@ -7,7 +8,13 @@ import KidsDoctorsCarouselSection from "./KidsDoctorsCarouselSection.jsx";
 import "./i18n";
 
 const INVISALIGN_DEMO_VIDEO = "https://www.youtube.com/embed/p_q0G4GhMnI?rel=0";
+const INVISALIGN_ATTACHMENTS_REEL_URL = "https://www.instagram.com/reel/CRr2n_Lll4f/";
+const INVISALIGN_SCAN_REEL_URL = "https://www.instagram.com/reel/CkY4DA8Jv7y/";
 const BIO_INSTAGRAM_POST_URL = "https://www.instagram.com/p/DJAeVnfy79T/";
+const BIO_INSTAGRAM_BENEFITS_REEL_URL = "https://www.instagram.com/reel/DJKstJES_ot/";
+const LIMPIEZA_INSTAGRAM_REEL_URL = "https://www.instagram.com/reel/CkuH5iLr1UT/";
+const BLANQUEAMIENTO_CLINIC_REEL_URL = "https://www.instagram.com/reel/CVLrTt5pnxU/";
+const BLANQUEAMIENTO_HOME_KIT_REEL_URL = "https://www.instagram.com/reel/Cz6pOH_uJ6p/";
 
 const WHATSAPP_NUMBER = "523333087833";
 const WA_URL = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(
@@ -83,82 +90,151 @@ function InvisalignDemoVideo() {
     );
 }
 
-function BiologicalDentistryInstagramVideo() {
+function InvisalignInstagramVideos() {
     const { t } = useTranslation("treatments");
-    const embedRef = useRef(null);
 
-    useEffect(() => {
-        const processEmbeds = () => {
-            window.instgrm?.Embeds?.process(embedRef.current ?? undefined);
-        };
+    return (
+        <TreatmentInstagramVideoPair
+            sectionTitle={t("common.invisalignInstagramTitle", { defaultValue: "Videos: Invisalign" })}
+            sectionSubtitle={t("common.invisalignInstagramSubtitle", {
+                defaultValue:
+                    "Escaneo digital para fabricar tus alineadores personalizados y colocación de attachments en consultorio.",
+            })}
+            linkLabel={t("common.invisalignInstagramLink", { defaultValue: "Ver en Instagram" })}
+            videos={[
+                {
+                    postUrl: INVISALIGN_SCAN_REEL_URL,
+                    cardTitle: t("common.invisalignInstagramScanTitle", {
+                        defaultValue: "Escaneo digital",
+                    }),
+                },
+                {
+                    postUrl: INVISALIGN_ATTACHMENTS_REEL_URL,
+                    cardTitle: t("common.invisalignInstagramAttachmentsTitle", {
+                        defaultValue: "Colocación de attachments",
+                    }),
+                },
+            ]}
+        />
+    );
+}
 
-        if (window.instgrm?.Embeds) {
-            processEmbeds();
-            return undefined;
-        }
-
-        const existing = document.querySelector('script[data-dc-instagram-embed="true"]');
-        if (existing) {
-            existing.addEventListener("load", processEmbeds);
-            return () => existing.removeEventListener("load", processEmbeds);
-        }
-
-        const script = document.createElement("script");
-        script.src = "https://www.instagram.com/embed.js";
-        script.async = true;
-        script.dataset.dcInstagramEmbed = "true";
-        script.onload = processEmbeds;
-        document.body.appendChild(script);
-
-        return undefined;
-    }, []);
-
-    const permalink = `${BIO_INSTAGRAM_POST_URL}?utm_source=ig_embed&utm_campaign=loading`;
-
+function TreatmentInstagramEmbed({ postUrl, title, subtitle, linkLabel }) {
     return (
         <section className="pb-16 md:pb-20">
             <Container>
-                <h2 className="font-display text-3xl font-semibold text-[#e4b892] md:text-4xl">
-                    {t("common.bioInstagramTitle", { defaultValue: "Video: Odontología Biológica" })}
-                </h2>
-                <p className="mt-3 max-w-2xl text-base leading-relaxed text-white/70 md:text-[17px]">
-                    {t("common.bioInstagramSubtitle", {
-                        defaultValue: "Conoce nuestro enfoque en este video de Dental City en Instagram.",
-                    })}
-                </p>
-                <div
-                    ref={embedRef}
-                    className="dc-treatment-video-card dc-treatment-instagram-embed mt-8 overflow-hidden rounded-2xl p-4 md:p-6"
-                >
-                    <blockquote
-                        className="instagram-media"
-                        data-instgrm-captioned
-                        data-instgrm-permalink={permalink}
-                        data-instgrm-version="14"
-                        style={{
-                            background: "#FFF",
-                            border: 0,
-                            borderRadius: 12,
-                            boxShadow: "0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15)",
-                            margin: "0 auto",
-                            maxWidth: 540,
-                            minWidth: 280,
-                            padding: 0,
-                            width: "100%",
-                        }}
+                <h2 className="font-display text-3xl font-semibold text-[#e4b892] md:text-4xl">{title}</h2>
+                <p className="mt-3 max-w-2xl text-base leading-relaxed text-white/70 md:text-[17px]">{subtitle}</p>
+                <div className="dc-treatment-video-card dc-treatment-instagram-embed mx-auto mt-8 overflow-hidden rounded-2xl">
+                    <InstagramEmbed postUrl={postUrl} captioned />
+                    <a
+                        href={postUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-3 block text-center text-sm text-[#e4b892] transition hover:text-[#f4d3b3]"
                     >
-                        <a
-                            href={BIO_INSTAGRAM_POST_URL}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-sm text-[#0b1b2b]/80 underline"
-                        >
-                            {t("common.bioInstagramLink", { defaultValue: "Ver publicación en Instagram" })}
-                        </a>
-                    </blockquote>
+                        {linkLabel}
+                    </a>
                 </div>
             </Container>
         </section>
+    );
+}
+
+function TreatmentInstagramVideoPair({ sectionTitle, sectionSubtitle, linkLabel, videos }) {
+    return (
+        <section className="pb-16 md:pb-20">
+            <div className="mx-auto w-full max-w-5xl px-6 md:px-8">
+                <h2 className="font-display text-3xl font-semibold text-[#e4b892] md:text-4xl">{sectionTitle}</h2>
+                <p className="mt-3 max-w-2xl text-base leading-relaxed text-white/70 md:text-[17px]">{sectionSubtitle}</p>
+
+                <div className="dc-treatment-instagram-pair mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
+                    {videos.map((video) => (
+                        <article key={video.postUrl} className="flex h-full flex-col">
+                            <h3 className="text-center text-lg font-semibold text-[#e4b892] md:text-xl">{video.cardTitle}</h3>
+                            <div className="dc-treatment-video-card dc-treatment-instagram-pair-card mt-4 flex flex-1 flex-col items-center p-4 md:p-5">
+                                <InstagramReelIframe
+                                    postUrl={video.postUrl}
+                                    title={video.cardTitle}
+                                    className="dc-treatment-instagram-iframe"
+                                />
+                                <a
+                                    href={video.postUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="mt-4 text-center text-sm font-medium text-[#e4b892] transition hover:text-[#f4d3b3]"
+                                >
+                                    {linkLabel}
+                                </a>
+                            </div>
+                        </article>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+function BiologicalDentistryInstagramVideos() {
+    const { t } = useTranslation("treatments");
+
+    return (
+        <TreatmentInstagramVideoPair
+            sectionTitle={t("common.bioInstagramTitle", { defaultValue: "Videos: Odontología Biológica" })}
+            sectionSubtitle={t("common.bioInstagramSubtitle", {
+                defaultValue: "Conoce nuestro enfoque y los beneficios de este tratamiento en Dental City.",
+            })}
+            linkLabel={t("common.bioInstagramLink", { defaultValue: "Ver en Instagram" })}
+            videos={[
+                {
+                    postUrl: BIO_INSTAGRAM_POST_URL,
+                    cardTitle: t("common.bioInstagramApproachTitle", { defaultValue: "Nuestro enfoque" }),
+                },
+                {
+                    postUrl: BIO_INSTAGRAM_BENEFITS_REEL_URL,
+                    cardTitle: t("common.bioInstagramBenefitsTitle", { defaultValue: "Beneficios" }),
+                },
+            ]}
+        />
+    );
+}
+
+function BlanqueamientoInstagramVideos() {
+    const { t } = useTranslation("treatments");
+
+    return (
+        <TreatmentInstagramVideoPair
+            sectionTitle={t("common.blanqueamientoInstagramTitle", { defaultValue: "Videos: Blanqueamiento dental" })}
+            sectionSubtitle={t("common.blanqueamientoInstagramSubtitle", {
+                defaultValue: "Blanqueamiento en consultorio y kit para casa supervisado en Dental City.",
+            })}
+            linkLabel={t("common.blanqueamientoInstagramLink", { defaultValue: "Ver en Instagram" })}
+            videos={[
+                {
+                    postUrl: BLANQUEAMIENTO_CLINIC_REEL_URL,
+                    cardTitle: t("common.blanqueamientoInstagramClinicTitle", { defaultValue: "En el consultorio" }),
+                },
+                {
+                    postUrl: BLANQUEAMIENTO_HOME_KIT_REEL_URL,
+                    cardTitle: t("common.blanqueamientoInstagramHomeKitTitle", { defaultValue: "Kit para casa" }),
+                },
+            ]}
+        />
+    );
+}
+
+function LimpiezaInstagramVideo() {
+    const { t } = useTranslation("treatments");
+
+    return (
+        <TreatmentInstagramEmbed
+            postUrl={LIMPIEZA_INSTAGRAM_REEL_URL}
+            title={t("common.limpiezaInstagramTitle", { defaultValue: "Video: Limpieza dental" })}
+            subtitle={t("common.limpiezaInstagramSubtitle", {
+                defaultValue: "Mira cómo realizamos la profilaxis profesional en Dental City.",
+            })}
+            linkLabel={t("common.limpiezaInstagramLink", { defaultValue: "Ver reel en Instagram" })}
+        />
     );
 }
 
@@ -229,7 +305,13 @@ export default function TreatmentContent({ slug }) {
 
                 {slug === "invisalign" && <InvisalignDemoVideo />}
 
-                {slug === "odontologia-biologica" && <BiologicalDentistryInstagramVideo />}
+                {slug === "invisalign" && <InvisalignInstagramVideos />}
+
+                {slug === "odontologia-biologica" && <BiologicalDentistryInstagramVideos />}
+
+                {slug === "blanqueamientos" && <BlanqueamientoInstagramVideos />}
+
+                {slug === "limpieza" && <LimpiezaInstagramVideo />}
 
                 <section className="pb-16 md:pb-20">
                     <Container>

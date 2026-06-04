@@ -537,12 +537,64 @@ a:focus-visible, button:focus-visible {
 .dc-treatment-instagram-embed {
     display: flex;
     justify-content: center;
-    min-height: 480px;
+    max-width: 340px;
+    margin-inline: auto;
+    min-height: 0;
+    padding: 0.75rem 1rem !important;
+}
+
+.dc-treatment-instagram-embed .instagram-media {
+    max-width: 320px !important;
+    min-width: 280px !important;
+    width: 100% !important;
+    margin-inline: auto !important;
 }
 
 .dc-treatment-instagram-embed iframe {
-    max-width: 100%;
+    max-width: 320px !important;
+    width: 100% !important;
     border-radius: 12px;
+}
+
+.dc-treatment-instagram-pair {
+    align-items: stretch;
+}
+
+.dc-treatment-instagram-pair-card {
+    min-height: 520px;
+}
+
+.dc-treatment-instagram-iframe {
+    width: 100%;
+    max-width: 320px;
+    height: 480px;
+    border: 0;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 767px) {
+    .dc-treatment-instagram-pair-card {
+        min-height: 0;
+    }
+
+    .dc-treatment-instagram-iframe {
+        height: min(480px, 72vh);
+    }
+}
+
+.dc-gallery-reel-iframe {
+    height: 100%;
+    width: auto;
+    max-width: min(380px, 92vw);
+    min-width: 260px;
+    border: 0;
+    border-radius: 14px;
+    background: #fff;
+    box-shadow:
+        0 0 0 1px rgba(228, 184, 146, 0.25),
+        0 16px 40px rgba(0, 0, 0, 0.35);
 }
 
 /* ─── Hero dental backdrop ─── */
