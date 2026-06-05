@@ -1,4 +1,4 @@
-﻿{
+{
     "metaTitle": "Nos docteurs | Dental City",
     "eyebrowTeam": "ÉQUIPE",
     "pageTitle": "Nos docteurs",
@@ -33,5 +33,37 @@
     "stat_implant": "Implantologue",
     "altTech": "Technologie numérique",
     "altKids": "Soins pour enfants",
-    "languageLabel": "Langue"
+    "languageLabel": "Langue",
+    "doctorVideos": {
+        "eyebrow": "NOS SPÉCIALISTES",
+        "title": "Vidéos de nos docteurs",
+        "subtitle": "Découvrez l'équipe médicale de Dental City et son approche dans chaque spécialité.",
+        "link": "Voir sur Instagram",
+        "items": {
+            "team": {
+                "title": "L'équipe Dental City",
+                "description": "29 spécialistes, formation continue, technologie numérique et attention humaine dans chaque spécialité."
+            },
+            "andrea": {
+                "title": "Design du sourire",
+                "description": "La Dre Andrea nous explique le design du sourire chez Dental City."
+            },
+            "alvaro": {
+                "title": "Pose d'implants",
+                "description": "Le Dr Álvaro nous parle de la pose d'implants."
+            },
+            "yolanda": {
+                "title": "Odontopédiatrie",
+                "description": "La Dre Yolanda nous parle de l'odontopédiatrie."
+            },
+            "ivan": {
+                "title": "Odontologie biologique",
+                "description": "Le Dr Iván nous parle de l'odontologie biologique (également appelée odontologie holistique)."
+            },
+            "digital": {
+                "title": "Équipe numérique en action",
+                "description": "Notre équipe numérique en action : technologie de pointe au service de votre sourire."
+            }
+        }
+    }
 }

@@ -11,13 +11,18 @@
         "notFound": "Tratamiento no encontrado",
         "backHome": "Volver al inicio",
         "bioInstagramTitle": "Videos: Odontología Biológica",
-        "bioInstagramSubtitle": "Conoce nuestro enfoque y los beneficios de este tratamiento en Dental City.",
+        "bioInstagramSubtitle": "Conoce nuestro enfoque, beneficios, atención para pacientes oncológicos y protocolo de extracción segura de amalgamas en Dental City.",
         "bioInstagramApproachTitle": "Nuestro enfoque",
         "bioInstagramBenefitsTitle": "Beneficios",
+        "bioInstagramOncologyTitle": "Pacientes oncológicos",
+        "bioInstagramAmalgamTitle": "Extracción segura de amalgamas",
         "bioInstagramLink": "Ver en Instagram",
         "limpiezaInstagramTitle": "Video: Limpieza dental",
         "limpiezaInstagramSubtitle": "Mira cómo realizamos la profilaxis profesional en Dental City.",
         "limpiezaInstagramLink": "Ver reel en Instagram",
+        "implantesInstagramTitle": "Video: Colocación de implantes",
+        "implantesInstagramSubtitle": "Conoce cómo realizamos la colocación de implantes dentales en Dental City.",
+        "implantesInstagramLink": "Ver en Instagram",
         "blanqueamientoInstagramTitle": "Videos: Blanqueamiento dental",
         "blanqueamientoInstagramSubtitle": "Blanqueamiento en consultorio y kit para casa supervisado en Dental City.",
         "blanqueamientoInstagramClinicTitle": "En el consultorio",
@@ -27,7 +32,12 @@
         "invisalignInstagramSubtitle": "Escaneo digital para fabricar tus alineadores personalizados y colocación de attachments en consultorio.",
         "invisalignInstagramScanTitle": "Escaneo digital",
         "invisalignInstagramAttachmentsTitle": "Colocación de attachments",
-        "invisalignInstagramLink": "Ver en Instagram"
+        "invisalignInstagramLink": "Ver en Instagram",
+        "bracketsInstagramTitle": "Videos: Brackets",
+        "bracketsInstagramSubtitle": "Colocación de brackets y cambio de ligas durante tu tratamiento de ortodoncia fija.",
+        "bracketsInstagramPlacementTitle": "Colocación de brackets",
+        "bracketsInstagramLigatureTitle": "Cambio de ligas",
+        "bracketsInstagramLink": "Ver en Instagram"
     },
     "byService": {
         "implantes": {
@@ -929,7 +939,7 @@
             "heroSubtitle": "Enfoque integral que conecta la salud bucal con el bienestar general, usando materiales biocompatibles y técnicas mínimamente invasivas en Dental City.",
             "whatTitle": "¿Qué es la odontología biológica?",
             "whatParagraphs": [
-                "La odontología biológica considera la boca como parte integral del cuerpo. Prioriza materiales biocompatibles, procedimientos mínimamente invasivos y tratamientos que respetan la salud general del paciente, reconociendo que lo que ocurre en la boca repercute en todo el organismo.",
+                "La odontología biológica (también conocida como odontología holística) considera la boca como parte integral del cuerpo. Prioriza materiales biocompatibles, procedimientos mínimamente invasivos y tratamientos que respetan la salud general del paciente, reconociendo que lo que ocurre en la boca repercute en todo el organismo.",
                 "En Dental City aplicamos este enfoque en restauraciones, endodoncia, periodoncia y rehabilitaciones, evitando materiales tóxicos cuando es posible y utilizando protocolos seguros para la remoción de amalgamas cuando el paciente lo requiere."
             ],
             "highlightPhrase": "materiales biocompatibles",

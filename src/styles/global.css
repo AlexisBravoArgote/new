@@ -370,6 +370,38 @@ a:focus-visible, button:focus-visible {
         0 16px 48px rgba(0, 0, 0, 0.38);
 }
 
+.dc-review-summary {
+    border: 1px solid rgba(228, 184, 146, 0.22);
+    background: linear-gradient(
+        160deg,
+        rgba(228, 184, 146, 0.08) 0%,
+        rgba(15, 33, 54, 0.92) 30%,
+        rgba(11, 27, 43, 0.98) 100%
+    );
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.38),
+        inset 0 1px 0 rgba(228, 184, 146, 0.1);
+}
+
+.dc-review-card {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: linear-gradient(165deg, rgba(255, 255, 255, 0.06) 0%, rgba(11, 27, 43, 0.92) 100%);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.28);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.dc-review-card:hover {
+    border-color: rgba(228, 184, 146, 0.35);
+    box-shadow:
+        0 0 0 1px rgba(228, 184, 146, 0.12),
+        0 16px 40px rgba(0, 0, 0, 0.34);
+}
+
+.dc-patient-reels-grid .dc-treatment-instagram-pair-card,
+#videos-doctores .dc-treatment-instagram-pair-card {
+    min-height: 0;
+}
+
 .dc-clinic-panel {
     border: 1px solid rgba(228, 184, 146, 0.22);
     background: linear-gradient(

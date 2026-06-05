@@ -417,6 +417,77 @@
             "kids": "Olá, gostaria de agendar uma consulta na Dental City Kids."
         }
     },
+    "reviews": {
+        "eyebrow": "OPINIÕES",
+        "title": "Opiniões",
+        "subtitle": "Nossos Pacientes",
+        "intro": "Na Dental City, clínica odontológica em Zapopan, a confiança dos nossos pacientes é nosso maior orgulho. Estas avaliações no Google refletem a qualidade do nosso atendimento, tecnologia digital e o compromisso de toda a equipe em cada consulta.",
+        "googleBadge": "Avaliações do Google",
+        "googleUrl": "https://www.google.com/maps/search/?api=1&query=Dental+City+By+Dra.+Linda+Argote,+Zapopan,+Jalisco",
+        "cta": "Ver todas as avaliações no Google",
+        "patientVideosEyebrow": "DEPOIMENTOS EM VÍDEO",
+        "patientVideosTitle": "Vídeos dos nossos pacientes",
+        "patientVideosSubtitle": "Experiências reais de pacientes que compartilham seu tratamento e resultados na Dental City.",
+        "patientVideosItem": "Vídeo {{index}}",
+        "patientVideosLink": "Ver no Instagram",
+        "stats": {
+            "rating": "4.9",
+            "ratingLabel": "de 5 no Google",
+            "satisfaction": "99%",
+            "satisfactionLabel": "dos nossos pacientes satisfeitos",
+            "count": "500+",
+            "countLabel": "avaliações verificadas"
+        },
+        "highlights": [
+            "Atendimento personalizado em Zapopan",
+            "Tecnologia odontológica digital",
+            "Equipe especializada e humana"
+        ],
+        "items": [
+            {
+                "author": "María G.",
+                "date": "Há 2 meses",
+                "rating": 5,
+                "tag": "Invisalign",
+                "text": "Excelente atendimento desde a primeira consulta. O escaneamento digital foi rápido e a equipe explicou cada etapa. Muito profissionais."
+            },
+            {
+                "author": "Carlos R.",
+                "date": "Há 3 meses",
+                "rating": 5,
+                "tag": "Implantes",
+                "text": "Colocaram um implante e todo o processo foi impecável. Sem dor, consultório muito limpo e médicos que transmitem confiança."
+            },
+            {
+                "author": "Ana L.",
+                "date": "Há 1 mês",
+                "rating": 5,
+                "tag": "Odontopediatria",
+                "text": "Levei minha filha à Dental City Kids e foi uma experiência maravilhosa. O trato com crianças é excepcional."
+            },
+            {
+                "author": "Roberto M.",
+                "date": "Há 4 meses",
+                "rating": 5,
+                "tag": "Limpeza dental",
+                "text": "A melhor limpeza dental que já tive. Instalações modernas, pontualidade e equipe muito simpática."
+            },
+            {
+                "author": "Patricia S.",
+                "date": "Há 2 meses",
+                "rating": 5,
+                "tag": "Clareamento",
+                "text": "Fiz clareamento dental e o resultado foi natural, sem sensibilidade. Nota-se o cuidado nos detalhes."
+            },
+            {
+                "author": "Luis H.",
+                "date": "Há 5 meses",
+                "rating": 5,
+                "tag": "Ortodontia",
+                "text": "Uso aparelho fixo e as consultas são sempre pontuais. Explicam tudo com clareza e o tratamento supera minhas expectativas."
+            }
+        ]
+    },
     "faq": {
         "eyebrow": "FAQ",
         "title": "Perguntas frequentes",
@@ -441,6 +512,7 @@
         "clinics": "Nossas clínicas",
         "doctors": "Nossos médicos",
         "resources": "Recursos",
+        "reviews": "Opiniões",
         "blog": "Blog e pesquisa",
         "edu": "Dental City Edu",
         "jobs": "Vagas de emprego",
@@ -448,5 +520,37 @@
         "menuCaps": "MENU",
         "openMenu": "Abrir menu",
         "closeMenu": "Fechar menu"
+    },
+    "doctorVideos": {
+        "eyebrow": "NOSSOS ESPECIALISTAS",
+        "title": "Vídeos dos nossos médicos",
+        "subtitle": "Conheça a equipe médica da Dental City e sua abordagem em cada especialidade.",
+        "link": "Ver no Instagram",
+        "items": {
+            "team": {
+                "title": "A equipe Dental City",
+                "description": "29 especialistas, formação contínua, tecnologia digital e atendimento humano em cada especialidade."
+            },
+            "andrea": {
+                "title": "Design de sorriso",
+                "description": "A Dra. Andrea explica como funciona o design de sorriso na Dental City."
+            },
+            "alvaro": {
+                "title": "Colocação de implantes",
+                "description": "O Dr. Álvaro fala sobre a colocação de implantes."
+            },
+            "yolanda": {
+                "title": "Odontopediatria",
+                "description": "A Dra. Yolanda nos conta sobre odontopediatria."
+            },
+            "ivan": {
+                "title": "Odontologia biológica",
+                "description": "O Dr. Iván fala sobre odontologia biológica (também conhecida como odontologia holística)."
+            },
+            "digital": {
+                "title": "Equipe digital em ação",
+                "description": "Nossa equipe digital em ação: tecnologia de ponta a serviço do seu sorriso."
+            }
+        }
     }
 }

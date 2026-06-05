@@ -22,6 +22,8 @@ import TopBar from "./TopBar.jsx";
 import Footer from "./Footer.jsx";
 import { GALLERY_INSTAGRAM_REEL_URL, InstagramReelIframe } from "./InstagramEmbed.jsx";
 import MainSiteLinks from "./MainSiteLinks.jsx";
+import DoctorVideosSection from "./DoctorVideosSection.jsx";
+import PatientReviewsSection from "./PatientReviewsSection.jsx";
 import LanguageSwitcher from "./LanguageSwitcher.jsx";
 import { navigateToLocation, scheduleScrollToHomeHash } from "../lib/home-sections.js";
 import { useSiteCopy } from "./SiteCopyContext.jsx";
@@ -107,6 +109,14 @@ function Home() {
         "areaServed": {
             "@type": "City",
             "name": "Zapopan, Guadalajara"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "bestRating": "5",
+            "worstRating": "1",
+            "ratingCount": "500",
+            "reviewCount": "500"
         }
     };
 
@@ -122,6 +132,8 @@ function Home() {
             <GalleryCarousel />
             <InvisalignInteractive />
             <LocationsTabs />
+            <PatientReviewsSection />
+            <DoctorVideosSection className="section-elevated" withTopBorder />
             <MainSiteLinks variant="section" showLanguages />
             <FAQ />
 

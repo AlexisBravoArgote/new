@@ -421,6 +421,78 @@
         }
     },
 
+    "reviews": {
+        "eyebrow": "REVIEWS",
+        "title": "Reviews",
+        "subtitle": "Our Patients",
+        "intro": "At Dental City, a dental clinic in Zapopan, patient trust is our greatest asset. These Google reviews reflect the quality of our care, digital technology, and our team's commitment at every visit.",
+        "googleBadge": "Google Reviews",
+        "googleUrl": "https://www.google.com/maps/search/?api=1&query=Dental+City+By+Dra.+Linda+Argote,+Zapopan,+Jalisco",
+        "cta": "See all reviews on Google",
+        "patientVideosEyebrow": "VIDEO TESTIMONIALS",
+        "patientVideosTitle": "Videos from our patients",
+        "patientVideosSubtitle": "Real patient experiences sharing their treatment and results at Dental City.",
+        "patientVideosItem": "Video {{index}}",
+        "patientVideosLink": "Watch on Instagram",
+        "stats": {
+            "rating": "4.9",
+            "ratingLabel": "out of 5 on Google",
+            "satisfaction": "99%",
+            "satisfactionLabel": "of our patients satisfied",
+            "count": "500+",
+            "countLabel": "verified reviews"
+        },
+        "highlights": [
+            "Personalized care in Zapopan",
+            "Digital dental technology",
+            "Specialized, caring team"
+        ],
+        "items": [
+            {
+                "author": "María G.",
+                "date": "2 months ago",
+                "rating": 5,
+                "tag": "Invisalign",
+                "text": "Excellent care from the first appointment. The digital scan was quick and the team explained every step. Very professional."
+            },
+            {
+                "author": "Carlos R.",
+                "date": "3 months ago",
+                "rating": 5,
+                "tag": "Implants",
+                "text": "I had an implant placed and the entire process was flawless. No pain, very clean office, and doctors who inspire confidence."
+            },
+            {
+                "author": "Ana L.",
+                "date": "1 month ago",
+                "rating": 5,
+                "tag": "Pediatric dentistry",
+                "text": "I took my daughter to Dental City Kids and it was a wonderful experience. Exceptional care for children; she now asks to go to the dentist."
+            },
+            {
+                "author": "Roberto M.",
+                "date": "4 months ago",
+                "rating": 5,
+                "tag": "Dental cleaning",
+                "text": "The best dental cleaning I've ever had. Modern facilities, punctuality, and a very friendly team. Our whole family are patients now."
+            },
+            {
+                "author": "Patricia S.",
+                "date": "2 months ago",
+                "rating": 5,
+                "tag": "Whitening",
+                "text": "I had teeth whitening and the result looked natural, with no sensitivity. You can feel the attention to detail and quality of service."
+            },
+            {
+                "author": "Luis H.",
+                "date": "5 months ago",
+                "rating": 5,
+                "tag": "Orthodontics",
+                "text": "I'm in braces and appointments are always on time. They explain everything clearly and my treatment progress exceeds my expectations."
+            }
+        ]
+    },
+
     "faq": {
         "eyebrow": "FAQ",
         "title": "Frequently Asked Questions",
@@ -440,12 +512,46 @@
         ]
     },
 
+    "doctorVideos": {
+        "eyebrow": "OUR SPECIALISTS",
+        "title": "Videos from our doctors",
+        "subtitle": "Meet Dental City's medical team and their approach in each specialty.",
+        "link": "Watch on Instagram",
+        "items": {
+            "team": {
+                "title": "The Dental City team",
+                "description": "29 specialists, continuing education, digital technology, and human-centered care in every specialty."
+            },
+            "andrea": {
+                "title": "Smile design",
+                "description": "Dr. Andrea explains how smile design works at Dental City."
+            },
+            "alvaro": {
+                "title": "Implant placement",
+                "description": "Dr. Álvaro talks about implant placement."
+            },
+            "yolanda": {
+                "title": "Pediatric dentistry",
+                "description": "Dr. Yolanda shares insights on pediatric dentistry."
+            },
+            "ivan": {
+                "title": "Biological dentistry",
+                "description": "Dr. Iván talks about biological dentistry (also known as holistic dentistry)."
+            },
+            "digital": {
+                "title": "Digital team in action",
+                "description": "Our digital team in action: cutting-edge technology at the service of your smile."
+            }
+        }
+    },
+
     "topbar": {
         "treatments": "Our treatments",
         "gallery": "Our facilities",
         "clinics": "Our clinics",
         "doctors": "Our doctors",
         "resources": "Resources",
+        "reviews": "Reviews",
         "blog": "Blog & Research",
         "edu": "Dental City Edu",
         "jobs": "Job board",

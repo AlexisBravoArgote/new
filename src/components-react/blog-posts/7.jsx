@@ -1,5 +1,6 @@
 // src/pages/blog/18.jsx
 import React from "react";
+import BlanqueamientoVideoCompare from "../BlanqueamientoVideoCompare.jsx";
 import TopBar from "../TopBar.jsx";
 import Footer from "../Footer.jsx";
 const blanqueamiento = "/assets/blanqueamiento.jpg";
@@ -228,6 +229,19 @@ export default function BlogPost7() {
                                     Para mantener el color, se recomienda un retoque anual y limpiezas
                                     profesionales cada seis meses.
                                 </p>
+                            </article>
+
+                            <article className="rounded-3xl bg-white/[.04] border border-white/10 p-6">
+                                <h2 className="text-2xl font-semibold text-[#e4b892]">
+                                    Video: Blanqueamiento en consultorio y en casa
+                                </h2>
+                                <p className="mt-3 text-white/85 leading-relaxed">
+                                    Conoce cómo realizamos el blanqueamiento en clínica y qué incluye
+                                    nuestro kit supervisado para usar en casa.
+                                </p>
+                                <div className="mt-6">
+                                    <BlanqueamientoVideoCompare />
+                                </div>
                             </article>
                         </div>
 

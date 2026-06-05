@@ -1,4 +1,4 @@
-﻿{
+{
     "hero": {
         "title": "미소에서 드러나는 품격 있는 우아함",
         "subtitle": "정밀함과 편안함, 그리고 맞춤 케어가 만나 완성되는 최첨단 디지털 치과 진료.",
@@ -417,6 +417,77 @@
             "kids": "안녕하세요, Dental City Kids에 내원 예약을 원합니다."
         }
     },
+    "reviews": {
+        "eyebrow": "후기",
+        "title": "환자 후기",
+        "subtitle": "우리 환자분들",
+        "intro": "사포판 치과 Dental City에서 환자분들의 신뢰는 우리의 가장 큰 자부심입니다. Google 후기는 진료 품질, 디지털 기술, 그리고 매 방문마다 팀의 헌신을 보여줍니다.",
+        "googleBadge": "Google 리뷰",
+        "googleUrl": "https://www.google.com/maps/search/?api=1&query=Dental+City+By+Dra.+Linda+Argote,+Zapopan,+Jalisco",
+        "cta": "Google에서 모든 후기 보기",
+        "patientVideosEyebrow": "영상 후기",
+        "patientVideosTitle": "환자 영상",
+        "patientVideosSubtitle": "Dental City에서 치료와 결과를 공유하는 실제 환자들의 영상입니다.",
+        "patientVideosItem": "영상 {{index}}",
+        "patientVideosLink": "Instagram에서 보기",
+        "stats": {
+            "rating": "4.9",
+            "ratingLabel": "Google 5점 만점 중",
+            "satisfaction": "99%",
+            "satisfactionLabel": "환자 만족도",
+            "count": "500+",
+            "countLabel": "검증된 후기"
+        },
+        "highlights": [
+            "사포판 맞춤 진료",
+            "디지털 치과 기술",
+            "전문적이고 따뜻한 팀"
+        ],
+        "items": [
+            {
+                "author": "María G.",
+                "date": "2개월 전",
+                "rating": 5,
+                "tag": "인비절라인",
+                "text": "첫 방문부터 훌륭했습니다. 디지털 스캔이 빠르고 각 단계를 자세히 설명해 주었습니다."
+            },
+            {
+                "author": "Carlos R.",
+                "date": "3개월 전",
+                "rating": 5,
+                "tag": "임플란트",
+                "text": "임플란트 시술이 완벽했습니다. 통증 없이 깨끗한 진료실과 신뢰가 가는 의료진입니다."
+            },
+            {
+                "author": "Ana L.",
+                "date": "1개월 전",
+                "rating": 5,
+                "tag": "소아치과",
+                "text": "딸을 Dental City Kids에 데려갔는데 정말 좋은 경험이었습니다. 아이들에 대한 배려가 뛰어납니다."
+            },
+            {
+                "author": "Roberto M.",
+                "date": "4개월 전",
+                "rating": 5,
+                "tag": "스케일링",
+                "text": "지금까지 받은 최고의 스케일링이었습니다. 현대적인 시설, 정시 진료, 친절한 팀입니다."
+            },
+            {
+                "author": "Patricia S.",
+                "date": "2개월 전",
+                "rating": 5,
+                "tag": "미백",
+                "text": "자연스러운 결과였고 시림 증상도 없었습니다. 세심한 케어가 느껴집니다."
+            },
+            {
+                "author": "Luis H.",
+                "date": "5개월 전",
+                "rating": 5,
+                "tag": "교정",
+                "text": "브라켓 치료 중인데 항상 정시입니다. 설명이 명확하고 진행이 기대 이상입니다."
+            }
+        ]
+    },
     "faq": {
         "eyebrow": "FAQ",
         "title": "자주 묻는 질문",
@@ -441,6 +512,7 @@
         "clinics": "지점 안내",
         "doctors": "의료진 소개",
         "resources": "자료실",
+        "reviews": "환자 후기",
         "blog": "블로그 & 리서치",
         "edu": "Dental City Edu",
         "jobs": "채용 정보",
@@ -448,5 +520,37 @@
         "menuCaps": "메뉴",
         "openMenu": "메뉴 열기",
         "closeMenu": "메뉴 닫기"
+    },
+    "doctorVideos": {
+        "eyebrow": "전문의 팀",
+        "title": "의료진 영상",
+        "subtitle": "Dental City 의료진과 각 전문 분야의 진료 철학을 만나보세요.",
+        "link": "Instagram에서 보기",
+        "items": {
+            "team": {
+                "title": "Dental City 팀",
+                "description": "29명의 전문의, 지속 교육, 디지털 기술, 그리고 각 분야의 인간적인 진료."
+            },
+            "andrea": {
+                "title": "스마일 디자인",
+                "description": "안드레아 원장이 Dental City의 스마일 디자인을 설명합니다."
+            },
+            "alvaro": {
+                "title": "임플란트 식립",
+                "description": "알바로 원장이 임플란트 식립에 대해 이야기합니다."
+            },
+            "yolanda": {
+                "title": "소아치과",
+                "description": "욜란다 원장이 소아치과에 대해 이야기합니다."
+            },
+            "ivan": {
+                "title": "생물학적 치과",
+                "description": "이반 원장이 생물학적 치과(홀리스틱 치과)에 대해 이야기합니다."
+            },
+            "digital": {
+                "title": "디지털 팀",
+                "description": "디지털 팀 현장: 최첨단 기술로 당신의 미소를 지킵니다."
+            }
+        }
     }
 }

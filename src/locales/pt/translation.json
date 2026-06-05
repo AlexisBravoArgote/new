@@ -33,5 +33,37 @@
     "stat_implant": "Implantodontistas",
     "altTech": "Tecnologia digital",
     "altKids": "Atendimento infantil",
-    "languageLabel": "Idioma"
+    "languageLabel": "Idioma",
+    "doctorVideos": {
+        "eyebrow": "NOSSOS ESPECIALISTAS",
+        "title": "Vídeos dos nossos médicos",
+        "subtitle": "Conheça a equipe médica da Dental City e sua abordagem em cada especialidade.",
+        "link": "Ver no Instagram",
+        "items": {
+            "team": {
+                "title": "A equipe Dental City",
+                "description": "29 especialistas, formação contínua, tecnologia digital e atendimento humano em cada especialidade."
+            },
+            "andrea": {
+                "title": "Design de sorriso",
+                "description": "A Dra. Andrea explica como funciona o design de sorriso na Dental City."
+            },
+            "alvaro": {
+                "title": "Colocação de implantes",
+                "description": "O Dr. Álvaro fala sobre a colocação de implantes."
+            },
+            "yolanda": {
+                "title": "Odontopediatria",
+                "description": "A Dra. Yolanda nos conta sobre odontopediatria."
+            },
+            "ivan": {
+                "title": "Odontologia biológica",
+                "description": "O Dr. Iván fala sobre odontologia biológica (também conhecida como odontologia holística)."
+            },
+            "digital": {
+                "title": "Equipe digital em ação",
+                "description": "Nossa equipe digital em ação: tecnologia de ponta a serviço do seu sorriso."
+            }
+        }
+    }
 }

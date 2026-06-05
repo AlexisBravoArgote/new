@@ -1,5 +1,7 @@
 // src/pages/blog/16.jsx
 import React from "react";
+import { IMPLANT_PLACEMENT_REEL_URL } from "../../config/treatment-instagram-urls.js";
+import { InstagramReelIframe } from "../InstagramEmbed.jsx";
 import TopBar from "../TopBar.jsx";
 import Footer from "../Footer.jsx";
 const implantes = "/assets/implante.jpg";
@@ -226,6 +228,32 @@ export default function BlogPost4() {
                                     mala higiene pueden afectar su éxito. En Dental City, cada
                                     caso se evalúa mediante un protocolo personalizado y seguro.
                                 </p>
+                            </article>
+
+                            <article className="rounded-3xl bg-white/[.04] border border-white/10 p-6">
+                                <h2 className="text-2xl font-semibold text-[#e4b892]">
+                                    Video: Colocación de implantes
+                                </h2>
+                                <p className="mt-3 text-white/85 leading-relaxed">
+                                    Mira cómo realizamos la colocación de implantes dentales en Dental City.
+                                </p>
+                                <div className="mx-auto mt-6 max-w-md">
+                                    <div className="dc-treatment-video-card dc-treatment-instagram-pair-card flex flex-col items-center p-4 md:p-5">
+                                        <InstagramReelIframe
+                                            postUrl={IMPLANT_PLACEMENT_REEL_URL}
+                                            title="Colocación de implantes en Dental City"
+                                            className="dc-treatment-instagram-iframe"
+                                        />
+                                        <a
+                                            href={IMPLANT_PLACEMENT_REEL_URL}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="mt-4 text-center text-sm font-medium text-[#e4b892] transition hover:text-[#f4d3b3]"
+                                        >
+                                            Ver en Instagram
+                                        </a>
+                                    </div>
+                                </div>
                             </article>
                         </div>
 

@@ -1,4 +1,4 @@
-﻿{
+{
     "metaTitle": "Unsere Ärzte | Dental City",
     "eyebrowTeam": "TEAM",
     "pageTitle": "Unsere Ärzte",
@@ -14,18 +14,14 @@
     "mainClinicDesc": "Unser Spezialistenteam in der Hauptklinik Dental City in Zona Real, Zapopan. Hochqualifizierte Fachkräfte in allen Bereichen der modernen Zahnmedizin.",
     "kidsClinicDesc": "Spezialisten für Kinderzahnheilkunde und Kieferorthopädie für Kinder bei Dental City Kids & Family. Unser Team ist besonders geschult, um Kindern und Jugendlichen in Zapopan, Jalisco, eine freundliche und effektive Zahnpflege zu bieten.",
     "dentistsCount": "Zahnärzte",
-
     "eyebrowMainClinic": "• HAUPTKLINIK •",
     "titleMainClinic": "Dental City",
     "ariaMainCarousel": "Ärzte Dental City",
-
     "eyebrowKids": "• KINDERZAHNHEILKUNDE & KIEFERORTHOPÄDIE •",
     "titleKids": "Dental City Kids & Family",
     "ariaKidsCarousel": "Ärzte Dental City Kids",
-
     "ariaPrev": "Zurück",
     "ariaNext": "Weiter",
-
     "stat_ortho": "Kieferorthopäden",
     "stat_gd": "Allgemeinzahnärzte",
     "stat_pros": "Prothetiker",
@@ -35,9 +31,39 @@
     "stat_oral": "Oralchirurgen",
     "stat_pedo": "Kinderzahnarzt",
     "stat_implant": "Implantologe",
-
     "altTech": "Digitale Technologie",
     "altKids": "Kinderbetreuung",
-
-    "languageLabel": "Sprache"
+    "languageLabel": "Sprache",
+    "doctorVideos": {
+        "eyebrow": "UNSERE SPEZIALISTEN",
+        "title": "Videos unserer Ärzte",
+        "subtitle": "Lernen Sie das medizinische Team von Dental City und seinen Ansatz in jeder Fachrichtung kennen.",
+        "link": "Auf Instagram ansehen",
+        "items": {
+            "team": {
+                "title": "Das Dental-City-Team",
+                "description": "29 Spezialisten, Fortbildung, digitale Technologie und menschliche Betreuung in jeder Fachrichtung."
+            },
+            "andrea": {
+                "title": "Smile Design",
+                "description": "Dr. Andrea erklärt, wie Smile Design bei Dental City funktioniert."
+            },
+            "alvaro": {
+                "title": "Implantatinsertion",
+                "description": "Dr. Álvaro spricht über die Implantatinsertion."
+            },
+            "yolanda": {
+                "title": "Kinderzahnheilkunde",
+                "description": "Dr. Yolanda erzählt über Kinderzahnheilkunde."
+            },
+            "ivan": {
+                "title": "Biologische Zahnheilkunde",
+                "description": "Dr. Iván spricht über biologische Zahnheilkunde (auch bekannt als holistische Zahnheilkunde)."
+            },
+            "digital": {
+                "title": "Digitales Team in Aktion",
+                "description": "Unser digitales Team in Aktion: Spitzentechnologie für Ihr Lächeln."
+            }
+        }
+    }
 }

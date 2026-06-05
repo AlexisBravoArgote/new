@@ -1,4 +1,4 @@
-﻿{
+{
     "metaTitle": "我们的医生 | Dental City",
     "eyebrowTeam": "团队",
     "pageTitle": "我们的医生",
@@ -33,5 +33,37 @@
     "stat_implant": "种植医生",
     "altTech": "数字技术",
     "altKids": "儿童护理",
-    "languageLabel": "语言"
+    "languageLabel": "语言",
+    "doctorVideos": {
+        "eyebrow": "我们的专家",
+        "title": "医生视频",
+        "subtitle": "了解 Dental City 医疗团队及各专科的诊疗理念。",
+        "link": "在 Instagram 观看",
+        "items": {
+            "team": {
+                "title": "Dental City 团队",
+                "description": "29 位专家、持续进修、数字化技术与每个专科的人文关怀。"
+            },
+            "andrea": {
+                "title": "微笑设计",
+                "description": "Andrea 医生讲解 Dental City 的微笑设计流程。"
+            },
+            "alvaro": {
+                "title": "种植牙",
+                "description": "Álvaro 医生介绍种植牙植入。"
+            },
+            "yolanda": {
+                "title": "儿童牙科",
+                "description": "Yolanda 医生分享儿童牙科相关内容。"
+            },
+            "ivan": {
+                "title": "生物牙科",
+                "description": "Iván 医生介绍生物牙科（亦称整体牙科）。"
+            },
+            "digital": {
+                "title": "数字化团队",
+                "description": "数字化团队实战：尖端技术为您的笑容服务。"
+            }
+        }
+    }
 }

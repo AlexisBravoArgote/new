@@ -1,4 +1,4 @@
-﻿{
+{
     "hero": {
         "title": "一笑之间尽显优雅",
         "subtitle": "前沿数字化口腔医疗，让精确诊疗与舒适体验和个性化关怀完美融合。",
@@ -417,6 +417,77 @@
             "kids": "您好，我想在 Dental City Kids 预约一个看诊时间。"
         }
     },
+    "reviews": {
+        "eyebrow": "评价",
+        "title": "患者评价",
+        "subtitle": "我们的患者",
+        "intro": "在 Zapopan 的 Dental City 牙科诊所，患者的信任是我们最大的骄傲。这些 Google 评价反映了我们的诊疗质量、数字化技术以及团队每次就诊的专业承诺。",
+        "googleBadge": "Google 评价",
+        "googleUrl": "https://www.google.com/maps/search/?api=1&query=Dental+City+By+Dra.+Linda+Argote,+Zapopan,+Jalisco",
+        "cta": "在 Google 查看全部评价",
+        "patientVideosEyebrow": "视频见证",
+        "patientVideosTitle": "患者视频",
+        "patientVideosSubtitle": "真实患者分享在 Dental City 的治疗体验与效果。",
+        "patientVideosItem": "视频 {{index}}",
+        "patientVideosLink": "在 Instagram 观看",
+        "stats": {
+            "rating": "4.9",
+            "ratingLabel": "Google 满分 5 分",
+            "satisfaction": "99%",
+            "satisfactionLabel": "患者满意度",
+            "count": "500+",
+            "countLabel": "条已验证评价"
+        },
+        "highlights": [
+            "Zapopan 个性化诊疗",
+            "数字化牙科技术",
+            "专业且温暖的团队"
+        ],
+        "items": [
+            {
+                "author": "María G.",
+                "date": "2 个月前",
+                "rating": 5,
+                "tag": "Invisalign",
+                "text": "从第一次就诊起服务就非常出色。数字化扫描很快，团队详细解释了每个步骤。"
+            },
+            {
+                "author": "Carlos R.",
+                "date": "3 个月前",
+                "rating": 5,
+                "tag": "种植牙",
+                "text": "种植过程非常顺利，几乎无痛，诊所非常干净，医生令人信赖。"
+            },
+            {
+                "author": "Ana L.",
+                "date": "1 个月前",
+                "rating": 5,
+                "tag": "儿童牙科",
+                "text": "带孩子去 Dental City Kids，体验非常好，对孩子特别耐心。"
+            },
+            {
+                "author": "Roberto M.",
+                "date": "4 个月前",
+                "rating": 5,
+                "tag": "洁牙",
+                "text": "这是我做过最好的洁牙。设施现代，准时，团队非常友善。"
+            },
+            {
+                "author": "Patricia S.",
+                "date": "2 个月前",
+                "rating": 5,
+                "tag": "美白",
+                "text": "牙齿美白效果自然，没有敏感问题，细节处理很用心。"
+            },
+            {
+                "author": "Luis H.",
+                "date": "5 个月前",
+                "rating": 5,
+                "tag": "正畸",
+                "text": "戴牙套期间预约总是很准时，解释清楚，进展超出预期。"
+            }
+        ]
+    },
     "faq": {
         "eyebrow": "常见问题",
         "title": "常见问答",
@@ -441,6 +512,7 @@
         "clinics": "我们的诊所",
         "doctors": "医生团队",
         "resources": "资源中心",
+        "reviews": "患者评价",
         "blog": "博客与研究",
         "edu": "Dental City Edu",
         "jobs": "招聘信息",
@@ -448,5 +520,37 @@
         "menuCaps": "菜单",
         "openMenu": "打开菜单",
         "closeMenu": "关闭菜单"
+    },
+    "doctorVideos": {
+        "eyebrow": "我们的专家",
+        "title": "医生视频",
+        "subtitle": "了解 Dental City 医疗团队及各专科的诊疗理念。",
+        "link": "在 Instagram 观看",
+        "items": {
+            "team": {
+                "title": "Dental City 团队",
+                "description": "29 位专家、持续进修、数字化技术与每个专科的人文关怀。"
+            },
+            "andrea": {
+                "title": "微笑设计",
+                "description": "Andrea 医生讲解 Dental City 的微笑设计流程。"
+            },
+            "alvaro": {
+                "title": "种植牙",
+                "description": "Álvaro 医生介绍种植牙植入。"
+            },
+            "yolanda": {
+                "title": "儿童牙科",
+                "description": "Yolanda 医生分享儿童牙科相关内容。"
+            },
+            "ivan": {
+                "title": "生物牙科",
+                "description": "Iván 医生介绍生物牙科（亦称整体牙科）。"
+            },
+            "digital": {
+                "title": "数字化团队",
+                "description": "数字化团队实战：尖端技术为您的笑容服务。"
+            }
+        }
     }
 }

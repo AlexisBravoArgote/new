@@ -1,7 +1,9 @@
 // src/components-react/blog-posts/1.jsx
 import React from "react";
+import { LIMPIEZA_INSTAGRAM_REEL_URL } from "../../config/treatment-instagram-urls.js";
 import TopBar from "../TopBar.jsx";
 import Footer from "../Footer.jsx";
+import { InstagramReelIframe } from "../InstagramEmbed.jsx";
 const limpiezaDental = "/assets/limpieza.jpg";
 
 function Container({ children, className = "" }) {
@@ -214,6 +216,30 @@ export default function BlogPost1() {
                                     ortodoncia, tienen implantes o antecedentes de enfermedad
                                     periodontal pueden requerir controles más frecuentes.
                                 </p>
+                            </article>
+
+                            <article className="rounded-3xl bg-white/[.04] border border-white/10 p-6">
+                                <h2 className="text-2xl font-semibold text-[#e4b892]">Video: Limpieza dental</h2>
+                                <p className="mt-3 text-white/85 leading-relaxed">
+                                    Mira cómo realizamos la profilaxis profesional en Dental City.
+                                </p>
+                                <div className="mx-auto mt-6 max-w-md">
+                                    <div className="dc-treatment-video-card dc-treatment-instagram-pair-card flex flex-col items-center p-4 md:p-5">
+                                        <InstagramReelIframe
+                                            postUrl={LIMPIEZA_INSTAGRAM_REEL_URL}
+                                            title="Limpieza dental en Dental City"
+                                            className="dc-treatment-instagram-iframe"
+                                        />
+                                        <a
+                                            href={LIMPIEZA_INSTAGRAM_REEL_URL}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="mt-4 text-center text-sm font-medium text-[#e4b892] transition hover:text-[#f4d3b3]"
+                                        >
+                                            Ver en Instagram
+                                        </a>
+                                    </div>
+                                </div>
                             </article>
                         </div>
 

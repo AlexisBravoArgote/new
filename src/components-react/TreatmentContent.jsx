@@ -1,4 +1,18 @@
 import React from "react";
+import {
+    BIO_AMALGAM_REMOVAL_REEL_URL,
+    BIO_INSTAGRAM_BENEFITS_REEL_URL,
+    BIO_INSTAGRAM_POST_URL,
+    BIO_ONCOLOGY_REEL_URL,
+    BLANQUEAMIENTO_CLINIC_REEL_URL,
+    BLANQUEAMIENTO_HOME_KIT_REEL_URL,
+    BRACKETS_LIGATURE_REEL_URL,
+    BRACKETS_PLACEMENT_REEL_URL,
+    INVISALIGN_ATTACHMENTS_REEL_URL,
+    IMPLANT_PLACEMENT_REEL_URL,
+    INVISALIGN_SCAN_REEL_URL,
+    LIMPIEZA_INSTAGRAM_REEL_URL,
+} from "../config/treatment-instagram-urls.js";
 import { InstagramReelIframe } from "./InstagramEmbed.jsx";
 import { useTranslation } from "react-i18next";
 import TopBar from "./TopBar.jsx";
@@ -8,14 +22,6 @@ import KidsDoctorsCarouselSection from "./KidsDoctorsCarouselSection.jsx";
 import "./i18n";
 
 const INVISALIGN_DEMO_VIDEO = "https://www.youtube.com/embed/p_q0G4GhMnI?rel=0";
-const INVISALIGN_ATTACHMENTS_REEL_URL = "https://www.instagram.com/reel/CRr2n_Lll4f/";
-const INVISALIGN_SCAN_REEL_URL = "https://www.instagram.com/reel/CkY4DA8Jv7y/";
-const BIO_INSTAGRAM_POST_URL = "https://www.instagram.com/p/DJAeVnfy79T/";
-const BIO_INSTAGRAM_BENEFITS_REEL_URL = "https://www.instagram.com/reel/DJKstJES_ot/";
-const LIMPIEZA_INSTAGRAM_REEL_URL = "https://www.instagram.com/reel/CkuH5iLr1UT/";
-const BLANQUEAMIENTO_CLINIC_REEL_URL = "https://www.instagram.com/reel/CVLrTt5pnxU/";
-const BLANQUEAMIENTO_HOME_KIT_REEL_URL = "https://www.instagram.com/reel/Cz6pOH_uJ6p/";
-
 const WHATSAPP_NUMBER = "523333087833";
 const WA_URL = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(
     "Hola 👋 me gustaría agendar una cita en Dental City."
@@ -160,7 +166,8 @@ function BiologicalDentistryInstagramVideos() {
         <TreatmentInstagramVideoPair
             sectionTitle={t("common.bioInstagramTitle", { defaultValue: "Videos: Odontología Biológica" })}
             sectionSubtitle={t("common.bioInstagramSubtitle", {
-                defaultValue: "Conoce nuestro enfoque y los beneficios de este tratamiento en Dental City.",
+                defaultValue:
+                    "Conoce nuestro enfoque, beneficios, atención para pacientes oncológicos y protocolo de extracción segura de amalgamas en Dental City.",
             })}
             linkLabel={t("common.bioInstagramLink", { defaultValue: "Ver en Instagram" })}
             videos={[
@@ -171,6 +178,14 @@ function BiologicalDentistryInstagramVideos() {
                 {
                     postUrl: BIO_INSTAGRAM_BENEFITS_REEL_URL,
                     cardTitle: t("common.bioInstagramBenefitsTitle", { defaultValue: "Beneficios" }),
+                },
+                {
+                    postUrl: BIO_ONCOLOGY_REEL_URL,
+                    cardTitle: t("common.bioInstagramOncologyTitle", { defaultValue: "Pacientes oncológicos" }),
+                },
+                {
+                    postUrl: BIO_AMALGAM_REMOVAL_REEL_URL,
+                    cardTitle: t("common.bioInstagramAmalgamTitle", { defaultValue: "Extracción segura de amalgamas" }),
                 },
             ]}
         />
@@ -198,6 +213,69 @@ function BlanqueamientoInstagramVideos() {
                 },
             ]}
         />
+    );
+}
+
+function BracketsInstagramVideos() {
+    const { t } = useTranslation("treatments");
+
+    return (
+        <TreatmentInstagramVideoPair
+            sectionTitle={t("common.bracketsInstagramTitle", { defaultValue: "Videos: Brackets" })}
+            sectionSubtitle={t("common.bracketsInstagramSubtitle", {
+                defaultValue: "Colocación de brackets y cambio de ligas durante tu tratamiento de ortodoncia fija.",
+            })}
+            linkLabel={t("common.bracketsInstagramLink", { defaultValue: "Ver en Instagram" })}
+            videos={[
+                {
+                    postUrl: BRACKETS_PLACEMENT_REEL_URL,
+                    cardTitle: t("common.bracketsInstagramPlacementTitle", {
+                        defaultValue: "Colocación de brackets",
+                    }),
+                },
+                {
+                    postUrl: BRACKETS_LIGATURE_REEL_URL,
+                    cardTitle: t("common.bracketsInstagramLigatureTitle", {
+                        defaultValue: "Cambio de ligas",
+                    }),
+                },
+            ]}
+        />
+    );
+}
+
+function ImplantesInstagramVideo() {
+    const { t } = useTranslation("treatments");
+    const sectionTitle = t("common.implantesInstagramTitle", { defaultValue: "Video: Colocación de implantes" });
+
+    return (
+        <section className="pb-16 md:pb-20">
+            <div className="mx-auto w-full max-w-5xl px-6 md:px-8">
+                <h2 className="font-display text-3xl font-semibold text-[#e4b892] md:text-4xl">{sectionTitle}</h2>
+                <p className="mt-3 max-w-2xl text-base leading-relaxed text-white/70 md:text-[17px]">
+                    {t("common.implantesInstagramSubtitle", {
+                        defaultValue: "Conoce cómo realizamos la colocación de implantes dentales en Dental City.",
+                    })}
+                </p>
+                <article className="mx-auto mt-8 max-w-md">
+                    <div className="dc-treatment-video-card dc-treatment-instagram-pair-card flex flex-col items-center p-4 md:p-5">
+                        <InstagramReelIframe
+                            postUrl={IMPLANT_PLACEMENT_REEL_URL}
+                            title={sectionTitle}
+                            className="dc-treatment-instagram-iframe"
+                        />
+                        <a
+                            href={IMPLANT_PLACEMENT_REEL_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mt-4 text-center text-sm font-medium text-[#e4b892] transition hover:text-[#f4d3b3]"
+                        >
+                            {t("common.implantesInstagramLink", { defaultValue: "Ver en Instagram" })}
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
     );
 }
 
@@ -305,9 +383,11 @@ export default function TreatmentContent({ slug }) {
 
                 {slug === "invisalign" && <InvisalignInstagramVideos />}
 
-                {slug === "odontologia-biologica" && <BiologicalDentistryInstagramVideos />}
-
                 {slug === "blanqueamientos" && <BlanqueamientoInstagramVideos />}
+
+                {slug === "brackets" && <BracketsInstagramVideos />}
+
+                {slug === "implantes" && <ImplantesInstagramVideo />}
 
                 {slug === "limpieza" && <LimpiezaInstagramVideo />}
 
@@ -334,6 +414,8 @@ export default function TreatmentContent({ slug }) {
                         </ol>
                     </Container>
                 </section>
+
+                {slug === "odontologia-biologica" && <BiologicalDentistryInstagramVideos />}
 
                 <section className="pb-16 md:pb-20">
                     <Container>

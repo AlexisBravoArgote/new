@@ -1,4 +1,4 @@
-﻿{
+{
     "metaTitle": "우리 의사들 | Dental City",
     "eyebrowTeam": "팀",
     "pageTitle": "우리 의사들",
@@ -33,5 +33,37 @@
     "stat_implant": "임플란트 전문의",
     "altTech": "디지털 기술",
     "altKids": "어린이 진료",
-    "languageLabel": "언어"
+    "languageLabel": "언어",
+    "doctorVideos": {
+        "eyebrow": "전문의 팀",
+        "title": "의료진 영상",
+        "subtitle": "Dental City 의료진과 각 전문 분야의 진료 철학을 만나보세요.",
+        "link": "Instagram에서 보기",
+        "items": {
+            "team": {
+                "title": "Dental City 팀",
+                "description": "29명의 전문의, 지속 교육, 디지털 기술, 그리고 각 분야의 인간적인 진료."
+            },
+            "andrea": {
+                "title": "스마일 디자인",
+                "description": "안드레아 원장이 Dental City의 스마일 디자인을 설명합니다."
+            },
+            "alvaro": {
+                "title": "임플란트 식립",
+                "description": "알바로 원장이 임플란트 식립에 대해 이야기합니다."
+            },
+            "yolanda": {
+                "title": "소아치과",
+                "description": "욜란다 원장이 소아치과에 대해 이야기합니다."
+            },
+            "ivan": {
+                "title": "생물학적 치과",
+                "description": "이반 원장이 생물학적 치과(홀리스틱 치과)에 대해 이야기합니다."
+            },
+            "digital": {
+                "title": "디지털 팀",
+                "description": "디지털 팀 현장: 최첨단 기술로 당신의 미소를 지킵니다."
+            }
+        }
+    }
 }

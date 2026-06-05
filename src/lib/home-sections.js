@@ -10,6 +10,7 @@ export function homeSectionHref(homeHref, hash) {
 
 const SERVICES_SCROLL_OFFSET = 112;
 const GALLERY_SCROLL_OFFSET = 112;
+const REVIEWS_SCROLL_OFFSET = 112;
 const LOCATION_SCROLL_OFFSET = 132;
 
 export function scrollToServices() {
@@ -28,6 +29,13 @@ export function scrollToGallery() {
     const target = showcase || carousel || fallback;
     if (!target) return;
     const y = target.getBoundingClientRect().top + window.scrollY - GALLERY_SCROLL_OFFSET;
+    window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
+}
+
+export function scrollToReviews() {
+    const target = document.getElementById("opiniones");
+    if (!target) return;
+    const y = target.getBoundingClientRect().top + window.scrollY - REVIEWS_SCROLL_OFFSET;
     window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
 }
 
@@ -65,6 +73,9 @@ export function scrollToHomeHash(hash) {
         case "#ubicacion":
         case "#ubicacion-panel":
             scrollToLocationPanel();
+            break;
+        case "#opiniones":
+            scrollToReviews();
             break;
         default:
             scrollToId(hash);

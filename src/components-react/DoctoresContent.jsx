@@ -5,6 +5,7 @@ import TopBar from "./TopBar.jsx";
 import Footer from "./Footer.jsx";
 import LanguageSwitcher from "./LanguageSwitcher.jsx";
 import Carousel from "./Carousel.jsx";
+import DoctorVideosSection from "./DoctorVideosSection.jsx";
 import { SiteCopyProvider, useSiteCopy } from "./SiteCopyContext.jsx";
 import { getDoctorsCopy, normalizeLang } from "../lib/site-copy.js";
 import { getKidsCarouselImages } from "../data/kidsCarouselImages.js";
@@ -211,6 +212,8 @@ function DoctoresPage() {
                         </div>
                     </Container>
                 </section>
+
+                <DoctorVideosSection className="border-t border-white/10 bg-[#0f2237]" />
 
                 {/* 29 dentistas + especialidades */}
                 <section className="pb-16 pt-6 md:pt-10">

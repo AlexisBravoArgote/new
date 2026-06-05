@@ -1,4 +1,4 @@
-﻿{
+{
     "hero": {
         "title": "Eleganz, die man beim Lächeln sieht",
         "subtitle": "Modernste digitale Zahnmedizin, wo Präzision auf Komfort und persönliche Betreuung trifft.",
@@ -310,7 +310,6 @@
             }
         }
     },
-
     "gallery": {
         "eyebrow": "GALERIE",
         "title": "Unsere Einrichtungen",
@@ -337,7 +336,6 @@
             }
         }
     },
-
     "invis": {
         "cta_whatsapp": "Termin",
         "cta_demo": "Demo ansehen",
@@ -376,7 +374,6 @@
             }
         }
     },
-
     "locations": {
         "eyebrow": "STANDORTE",
         "title": "Unsere Kliniken",
@@ -420,7 +417,77 @@
             "kids": "Hallo, ich möchte einen Termin bei Dental City Kids buchen."
         }
     },
-
+    "reviews": {
+        "eyebrow": "BEWERTUNGEN",
+        "title": "Bewertungen",
+        "subtitle": "Unsere Patienten",
+        "intro": "Bei Dental City, einer Zahnklinik in Zapopan, ist das Vertrauen unserer Patienten unser größtes Kapital. Diese Google-Bewertungen spiegeln die Qualität unserer Betreuung, digitale Technologie und das Engagement des gesamten Teams bei jedem Termin wider.",
+        "googleBadge": "Google-Bewertungen",
+        "googleUrl": "https://www.google.com/maps/search/?api=1&query=Dental+City+By+Dra.+Linda+Argote,+Zapopan,+Jalisco",
+        "cta": "Alle Bewertungen auf Google ansehen",
+        "patientVideosEyebrow": "VIDEO-TESTIMONIALS",
+        "patientVideosTitle": "Videos unserer Patienten",
+        "patientVideosSubtitle": "Echte Erfahrungen von Patienten, die ihre Behandlung und Ergebnisse bei Dental City teilen.",
+        "patientVideosItem": "Video {{index}}",
+        "patientVideosLink": "Auf Instagram ansehen",
+        "stats": {
+            "rating": "4.9",
+            "ratingLabel": "von 5 auf Google",
+            "satisfaction": "99%",
+            "satisfactionLabel": "unserer zufriedenen Patienten",
+            "count": "500+",
+            "countLabel": "verifizierte Bewertungen"
+        },
+        "highlights": [
+            "Persönliche Betreuung in Zapopan",
+            "Digitale Zahntechnologie",
+            "Spezialisiertes, menschliches Team"
+        ],
+        "items": [
+            {
+                "author": "María G.",
+                "date": "Vor 2 Monaten",
+                "rating": 5,
+                "tag": "Invisalign",
+                "text": "Ausgezeichnete Betreuung vom ersten Termin an. Der digitale Scan war schnell und das Team erklärte jeden Schritt. Sehr professionell."
+            },
+            {
+                "author": "Carlos R.",
+                "date": "Vor 3 Monaten",
+                "rating": 5,
+                "tag": "Implantate",
+                "text": "Implantat ohne Probleme gesetzt. Schmerzfrei, sehr saubere Praxis und Ärzte, die Vertrauen vermitteln."
+            },
+            {
+                "author": "Ana L.",
+                "date": "Vor 1 Monat",
+                "rating": 5,
+                "tag": "Kinderzahnheilkunde",
+                "text": "Ich brachte meine Tochter zu Dental City Kids – wunderbare Erfahrung. Außergewöhnlicher Umgang mit Kindern."
+            },
+            {
+                "author": "Roberto M.",
+                "date": "Vor 4 Monaten",
+                "rating": 5,
+                "tag": "Zahnreinigung",
+                "text": "Die beste Zahnreinigung, die ich je hatte. Moderne Räume, Pünktlichkeit und sehr freundliches Team."
+            },
+            {
+                "author": "Patricia S.",
+                "date": "Vor 2 Monaten",
+                "rating": 5,
+                "tag": "Bleaching",
+                "text": "Zahnaufhellung mit natürlichem Ergebnis, ohne Empfindlichkeit. Man spürt die Liebe zum Detail."
+            },
+            {
+                "author": "Luis H.",
+                "date": "Vor 5 Monaten",
+                "rating": 5,
+                "tag": "Kieferorthopädie",
+                "text": "Feste Spange: Termine immer pünktlich. Alles wird klar erklärt und der Fortschritt übertrifft meine Erwartungen."
+            }
+        ]
+    },
     "faq": {
         "eyebrow": "FAQ",
         "title": "Häufig gestellte Fragen",
@@ -439,13 +506,13 @@
             }
         ]
     },
-
     "topbar": {
         "treatments": "Unsere Behandlungen",
         "gallery": "Unsere Einrichtungen",
         "clinics": "Unsere Kliniken",
         "doctors": "Unsere Ärzte",
         "resources": "Ressourcen",
+        "reviews": "Bewertungen",
         "blog": "Blog & Forschung",
         "edu": "Dental City Edu",
         "jobs": "Stellenangebote",
@@ -453,5 +520,37 @@
         "menuCaps": "MENÜ",
         "openMenu": "Menü öffnen",
         "closeMenu": "Menü schließen"
+    },
+    "doctorVideos": {
+        "eyebrow": "UNSERE SPEZIALISTEN",
+        "title": "Videos unserer Ärzte",
+        "subtitle": "Lernen Sie das medizinische Team von Dental City und seinen Ansatz in jeder Fachrichtung kennen.",
+        "link": "Auf Instagram ansehen",
+        "items": {
+            "team": {
+                "title": "Das Dental-City-Team",
+                "description": "29 Spezialisten, Fortbildung, digitale Technologie und menschliche Betreuung in jeder Fachrichtung."
+            },
+            "andrea": {
+                "title": "Smile Design",
+                "description": "Dr. Andrea erklärt, wie Smile Design bei Dental City funktioniert."
+            },
+            "alvaro": {
+                "title": "Implantatinsertion",
+                "description": "Dr. Álvaro spricht über die Implantatinsertion."
+            },
+            "yolanda": {
+                "title": "Kinderzahnheilkunde",
+                "description": "Dr. Yolanda erzählt über Kinderzahnheilkunde."
+            },
+            "ivan": {
+                "title": "Biologische Zahnheilkunde",
+                "description": "Dr. Iván spricht über biologische Zahnheilkunde (auch bekannt als holistische Zahnheilkunde)."
+            },
+            "digital": {
+                "title": "Digitales Team in Aktion",
+                "description": "Unser digitales Team in Aktion: Spitzentechnologie für Ihr Lächeln."
+            }
+        }
     }
 }

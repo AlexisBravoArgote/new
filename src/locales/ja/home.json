@@ -1,4 +1,4 @@
-﻿{
+{
     "hero": {
         "title": "笑顔に宿る上質なエレガンス",
         "subtitle": "精密さと快適さ、そしてパーソナルなケアが融合した最先端のデジタル歯科医療。",
@@ -417,6 +417,77 @@
             "kids": "こんにちは、Dental City Kids で予約を取りたいです。"
         }
     },
+    "reviews": {
+        "eyebrow": "口コミ",
+        "title": "患者の声",
+        "subtitle": "私たちの患者様",
+        "intro": "サポパンの歯科クリニック Dental City では、患者様の信頼が私たちの誇りです。Google の口コミは、診療の質、デジタル技術、そしてチームの献身を反映しています。",
+        "googleBadge": "Google レビュー",
+        "googleUrl": "https://www.google.com/maps/search/?api=1&query=Dental+City+By+Dra.+Linda+Argote,+Zapopan,+Jalisco",
+        "cta": "Google で口コミをすべて見る",
+        "patientVideosEyebrow": "動画の声",
+        "patientVideosTitle": "患者様の動画",
+        "patientVideosSubtitle": "Dental City での治療体験と結果を共有する、実際の患者様の動画です。",
+        "patientVideosItem": "動画 {{index}}",
+        "patientVideosLink": "Instagram で見る",
+        "stats": {
+            "rating": "4.9",
+            "ratingLabel": "Google 5点満点中",
+            "satisfaction": "99%",
+            "satisfactionLabel": "患者満足度",
+            "count": "500+",
+            "countLabel": "件の認証済み口コミ"
+        },
+        "highlights": [
+            "サポパンでの個別ケア",
+            "デジタル歯科技術",
+            "専門的で温かいチーム"
+        ],
+        "items": [
+            {
+                "author": "María G.",
+                "date": "2か月前",
+                "rating": 5,
+                "tag": "Invisalign",
+                "text": "初診から素晴らしい対応でした。デジタルスキャンも迅速で、各ステップを丁寧に説明してくれました。"
+            },
+            {
+                "author": "Carlos R.",
+                "date": "3か月前",
+                "rating": 5,
+                "tag": "インプラント",
+                "text": "インプラントの処置は完璧でした。痛みもなく、クリニックもとても清潔で信頼できます。"
+            },
+            {
+                "author": "Ana L.",
+                "date": "1か月前",
+                "rating": 5,
+                "tag": "小児歯科",
+                "text": "娘を Dental City Kids に連れて行きました。子どもへの対応が素晴らしいです。"
+            },
+            {
+                "author": "Roberto M.",
+                "date": "4か月前",
+                "rating": 5,
+                "tag": "クリーニング",
+                "text": "今までで最高のクリーニングでした。設備も新しく、時間通りでスタッフも親切です。"
+            },
+            {
+                "author": "Patricia S.",
+                "date": "2か月前",
+                "rating": 5,
+                "tag": "ホワイトニング",
+                "text": "自然な仕上がりで知覚過敏もありませんでした。細部まで丁寧です。"
+            },
+            {
+                "author": "Luis H.",
+                "date": "5か月前",
+                "rating": 5,
+                "tag": "矯正",
+                "text": "ブラケット治療中ですが、いつも時間通り。説明も分かりやすく、進捗は期待以上です。"
+            }
+        ]
+    },
     "faq": {
         "eyebrow": "FAQ",
         "title": "よくあるご質問",
@@ -441,6 +512,7 @@
         "clinics": "クリニック一覧",
         "doctors": "ドクター紹介",
         "resources": "資料・リソース",
+        "reviews": "口コミ",
         "blog": "ブログ & リサーチ",
         "edu": "Dental City Edu",
         "jobs": "採用情報",
@@ -448,5 +520,37 @@
         "menuCaps": "メニュー",
         "openMenu": "メニューを開く",
         "closeMenu": "メニューを閉じる"
+    },
+    "doctorVideos": {
+        "eyebrow": "スペシャリスト",
+        "title": "ドクターの動画",
+        "subtitle": "Dental City の医療チームと各専門分野のアプローチをご紹介します。",
+        "link": "Instagram で見る",
+        "items": {
+            "team": {
+                "title": "Dental City チーム",
+                "description": "29名の専門医、継続教育、デジタル技術、そして各分野での人間的なケア。"
+            },
+            "andrea": {
+                "title": "スマイルデザイン",
+                "description": "アンドレア医師が Dental City のスマイルデザインを解説します。"
+            },
+            "alvaro": {
+                "title": "インプラント",
+                "description": "アルバロ医師がインプラント埋入について語ります。"
+            },
+            "yolanda": {
+                "title": "小児歯科",
+                "description": "ヨランダ医師が小児歯科についてお話しします。"
+            },
+            "ivan": {
+                "title": "生物歯科",
+                "description": "イヴァン医師が生物歯科（ホリスティック歯科とも呼ばれます）について語ります。"
+            },
+            "digital": {
+                "title": "デジタルチーム",
+                "description": "デジタルチームの現場：最先端技術であなたの笑顔を支えます。"
+            }
+        }
     }
 }

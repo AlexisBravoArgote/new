@@ -33,5 +33,37 @@
     "stat_implant": "Implantologists",
     "altTech": "Digital Technology",
     "altKids": "Child Care",
-    "languageLabel": "Language"
+    "languageLabel": "Language",
+    "doctorVideos": {
+        "eyebrow": "OUR SPECIALISTS",
+        "title": "Videos from our doctors",
+        "subtitle": "Meet Dental City's medical team and their approach in each specialty.",
+        "link": "Watch on Instagram",
+        "items": {
+            "team": {
+                "title": "The Dental City team",
+                "description": "29 specialists, continuing education, digital technology, and human-centered care in every specialty."
+            },
+            "andrea": {
+                "title": "Smile design",
+                "description": "Dr. Andrea explains how smile design works at Dental City."
+            },
+            "alvaro": {
+                "title": "Implant placement",
+                "description": "Dr. Álvaro talks about implant placement."
+            },
+            "yolanda": {
+                "title": "Pediatric dentistry",
+                "description": "Dr. Yolanda shares insights on pediatric dentistry."
+            },
+            "ivan": {
+                "title": "Biological dentistry",
+                "description": "Dr. Iván talks about biological dentistry (also known as holistic dentistry)."
+            },
+            "digital": {
+                "title": "Digital team in action",
+                "description": "Our digital team in action: cutting-edge technology at the service of your smile."
+            }
+        }
+    }
 }

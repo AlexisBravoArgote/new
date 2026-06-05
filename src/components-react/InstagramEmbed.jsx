@@ -6,7 +6,7 @@ function loadInstagramEmbeds(root) {
     window.instgrm?.Embeds?.process(root ?? undefined);
 }
 
-export const GALLERY_INSTAGRAM_REEL_URL = "https://www.instagram.com/reel/CvySdH8vBbw/";
+export { GALLERY_INSTAGRAM_REEL_URL } from "../config/treatment-instagram-urls.js";
 
 export function instagramEmbedSrc(postUrl) {
     const reel = postUrl.match(/\/reel\/([^/?#]+)/i);

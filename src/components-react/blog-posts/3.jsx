@@ -2,6 +2,7 @@
 import React from "react";
 import TopBar from "../TopBar.jsx";
 import Footer from "../Footer.jsx";
+import OrthodonticsVideoCompare from "../OrthodonticsVideoCompare.jsx";
 const ortodoncia = "/assets/alineadores.avif";
 
 function Container({ children, className = "" }) {
@@ -181,10 +182,25 @@ export default function BlogPost3() {
                                 </p>
                             </article>
 
+                            {/* Videos comparativos */}
+                            <article className="rounded-3xl bg-white/[.04] border border-white/10 p-6">
+                                <h2 className="text-2xl font-semibold text-[#e4b892]">
+                                    3. Comparación en video
+                                </h2>
+                                <p className="mt-3 text-white/85 leading-relaxed">
+                                    Así se vive cada tratamiento en consultorio en Dental City: escaneo
+                                    y attachments con Invisalign, frente a colocación de brackets y cambio
+                                    de ligas en ortodoncia fija.
+                                </p>
+                                <div className="mt-6">
+                                    <OrthodonticsVideoCompare />
+                                </div>
+                            </article>
+
                             {/* Comparación */}
                             <article className="rounded-3xl bg-white/[.04] border border-white/10 p-6">
                                 <h2 className="text-2xl font-semibold text-[#e4b892]">
-                                    3. Comparativa directa
+                                    4. Comparativa directa
                                 </h2>
                                 <table className="mt-3 w-full text-white/85 text-sm border-collapse">
                                     <thead>
@@ -227,7 +243,7 @@ export default function BlogPost3() {
                             {/* Cierre */}
                             <article className="rounded-3xl bg-white/[.04] border border-white/10 p-6">
                                 <h2 className="text-2xl font-semibold text-[#e4b892]">
-                                    4. La clave: diagnóstico personalizado
+                                    5. La clave: diagnóstico personalizado
                                 </h2>
                                 <p className="mt-3 text-white/85 leading-relaxed">
                                     No existe una «mejor» técnica universal. La elección depende

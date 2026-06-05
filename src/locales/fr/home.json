@@ -1,4 +1,4 @@
-﻿{
+{
     "hero": {
         "title": "L’élégance qui se voit quand vous souriez",
         "subtitle": "Dentisterie numérique de pointe, où la précision rencontre le confort et une attention personnalisée.",
@@ -310,7 +310,6 @@
             }
         }
     },
-
     "gallery": {
         "eyebrow": "GALERIE",
         "title": "Nos installations",
@@ -337,7 +336,6 @@
             }
         }
     },
-
     "invis": {
         "cta_whatsapp": "Planifier",
         "cta_demo": "Voir la démonstration",
@@ -376,7 +374,6 @@
             }
         }
     },
-
     "locations": {
         "eyebrow": "CLINIQUES",
         "title": "Nos cliniques",
@@ -420,7 +417,77 @@
             "kids": "Bonjour, je souhaite prendre un rendez-vous à Dental City Kids."
         }
     },
-
+    "reviews": {
+        "eyebrow": "AVIS",
+        "title": "Avis",
+        "subtitle": "Nos Patients",
+        "intro": "Chez Dental City, clinique dentaire à Zapopan, la confiance de nos patients est notre plus belle récompense. Ces avis Google reflètent la qualité de nos soins, notre technologie numérique et l'engagement de toute l'équipe à chaque consultation.",
+        "googleBadge": "Avis Google",
+        "googleUrl": "https://www.google.com/maps/search/?api=1&query=Dental+City+By+Dra.+Linda+Argote,+Zapopan,+Jalisco",
+        "cta": "Voir tous les avis sur Google",
+        "patientVideosEyebrow": "TÉMOIGNAGES VIDÉO",
+        "patientVideosTitle": "Vidéos de nos patients",
+        "patientVideosSubtitle": "Expériences réelles de patients qui partagent leur traitement et leurs résultats chez Dental City.",
+        "patientVideosItem": "Vidéo {{index}}",
+        "patientVideosLink": "Voir sur Instagram",
+        "stats": {
+            "rating": "4.9",
+            "ratingLabel": "sur 5 sur Google",
+            "satisfaction": "99%",
+            "satisfactionLabel": "de nos patients satisfaits",
+            "count": "500+",
+            "countLabel": "avis vérifiés"
+        },
+        "highlights": [
+            "Soins personnalisés à Zapopan",
+            "Technologie dentaire numérique",
+            "Équipe spécialisée et humaine"
+        ],
+        "items": [
+            {
+                "author": "María G.",
+                "date": "Il y a 2 mois",
+                "rating": 5,
+                "tag": "Invisalign",
+                "text": "Excellent accueil dès la première consultation. Le scan numérique a été rapide et l'équipe a tout expliqué. Très professionnels."
+            },
+            {
+                "author": "Carlos R.",
+                "date": "Il y a 3 mois",
+                "rating": 5,
+                "tag": "Implants",
+                "text": "Pose d'un implant impeccable. Sans douleur, cabinet très propre et médecins qui inspirent confiance."
+            },
+            {
+                "author": "Ana L.",
+                "date": "Il y a 1 mois",
+                "rating": 5,
+                "tag": "Pédodontie",
+                "text": "J'ai emmené ma fille à Dental City Kids : expérience merveilleuse. Un accueil exceptionnel pour les enfants."
+            },
+            {
+                "author": "Roberto M.",
+                "date": "Il y a 4 mois",
+                "rating": 5,
+                "tag": "Détartrage",
+                "text": "Le meilleur détartrage que j'ai eu. Installations modernes, ponctualité et équipe très aimable."
+            },
+            {
+                "author": "Patricia S.",
+                "date": "Il y a 2 mois",
+                "rating": 5,
+                "tag": "Blanchiment",
+                "text": "Blanchiment dentaire au résultat naturel, sans sensibilité. On sent l'attention aux détails."
+            },
+            {
+                "author": "Luis H.",
+                "date": "Il y a 5 mois",
+                "rating": 5,
+                "tag": "Orthodontie",
+                "text": "Appareil fixe : rendez-vous toujours à l'heure. Tout est expliqué clairement et les résultats dépassent mes attentes."
+            }
+        ]
+    },
     "faq": {
         "eyebrow": "FAQ",
         "title": "Questions fréquentes",
@@ -439,13 +506,13 @@
             }
         ]
     },
-
     "topbar": {
         "treatments": "Nos traitements",
         "gallery": "Nos installations",
         "clinics": "Nos cliniques",
         "doctors": "Nos docteurs",
         "resources": "Ressources",
+        "reviews": "Avis",
         "blog": "Blog & Recherche",
         "edu": "Dental City Edu",
         "jobs": "Offres d’emploi",
@@ -453,6 +520,37 @@
         "menuCaps": "MENU",
         "openMenu": "Ouvrir le menu",
         "closeMenu": "Fermer le menu"
+    },
+    "doctorVideos": {
+        "eyebrow": "NOS SPÉCIALISTES",
+        "title": "Vidéos de nos docteurs",
+        "subtitle": "Découvrez l'équipe médicale de Dental City et son approche dans chaque spécialité.",
+        "link": "Voir sur Instagram",
+        "items": {
+            "team": {
+                "title": "L'équipe Dental City",
+                "description": "29 spécialistes, formation continue, technologie numérique et attention humaine dans chaque spécialité."
+            },
+            "andrea": {
+                "title": "Design du sourire",
+                "description": "La Dre Andrea nous explique le design du sourire chez Dental City."
+            },
+            "alvaro": {
+                "title": "Pose d'implants",
+                "description": "Le Dr Álvaro nous parle de la pose d'implants."
+            },
+            "yolanda": {
+                "title": "Odontopédiatrie",
+                "description": "La Dre Yolanda nous parle de l'odontopédiatrie."
+            },
+            "ivan": {
+                "title": "Odontologie biologique",
+                "description": "Le Dr Iván nous parle de l'odontologie biologique (également appelée odontologie holistique)."
+            },
+            "digital": {
+                "title": "Équipe numérique en action",
+                "description": "Notre équipe numérique en action : technologie de pointe au service de votre sourire."
+            }
+        }
     }
 }
-

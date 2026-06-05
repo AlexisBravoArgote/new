@@ -1,4 +1,4 @@
-﻿{
+{
     "metaTitle": "私たちの医師 | Dental City",
     "eyebrowTeam": "チーム",
     "pageTitle": "私たちの医師",
@@ -33,5 +33,37 @@
     "stat_implant": "インプラント専門医",
     "altTech": "デジタル技術",
     "altKids": "子どもの診療",
-    "languageLabel": "言語"
+    "languageLabel": "言語",
+    "doctorVideos": {
+        "eyebrow": "スペシャリスト",
+        "title": "ドクターの動画",
+        "subtitle": "Dental City の医療チームと各専門分野のアプローチをご紹介します。",
+        "link": "Instagram で見る",
+        "items": {
+            "team": {
+                "title": "Dental City チーム",
+                "description": "29名の専門医、継続教育、デジタル技術、そして各分野での人間的なケア。"
+            },
+            "andrea": {
+                "title": "スマイルデザイン",
+                "description": "アンドレア医師が Dental City のスマイルデザインを解説します。"
+            },
+            "alvaro": {
+                "title": "インプラント",
+                "description": "アルバロ医師がインプラント埋入について語ります。"
+            },
+            "yolanda": {
+                "title": "小児歯科",
+                "description": "ヨランダ医師が小児歯科についてお話しします。"
+            },
+            "ivan": {
+                "title": "生物歯科",
+                "description": "イヴァン医師が生物歯科（ホリスティック歯科とも呼ばれます）について語ります。"
+            },
+            "digital": {
+                "title": "デジタルチーム",
+                "description": "デジタルチームの現場：最先端技術であなたの笑顔を支えます。"
+            }
+        }
+    }
 }

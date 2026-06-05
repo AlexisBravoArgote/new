@@ -869,7 +869,7 @@ const ODONTOLOGIA_BIOLOGICA = {
         "Enfoque integral que conecta la salud bucal con el bienestar general, usando materiales biocompatibles y técnicas mínimamente invasivas en Dental City.",
     whatTitle: "¿Qué es la odontología biológica?",
     whatParagraphs: [
-        "La odontología biológica considera la boca como parte integral del cuerpo. Prioriza materiales biocompatibles, procedimientos mínimamente invasivos y tratamientos que respetan la salud general del paciente, reconociendo que lo que ocurre en la boca repercute en todo el organismo.",
+        "La odontología biológica (también conocida como odontología holística) considera la boca como parte integral del cuerpo. Prioriza materiales biocompatibles, procedimientos mínimamente invasivos y tratamientos que respetan la salud general del paciente, reconociendo que lo que ocurre en la boca repercute en todo el organismo.",
         "En Dental City aplicamos este enfoque en restauraciones, endodoncia, periodoncia y rehabilitaciones, evitando materiales tóxicos cuando es posible y utilizando protocolos seguros para la remoción de amalgamas cuando el paciente lo requiere.",
     ],
     highlightPhrase: "materiales biocompatibles",
@@ -1033,6 +1033,12 @@ const output = {
         invisalignInstagramScanTitle: "Escaneo digital",
         invisalignInstagramAttachmentsTitle: "Colocación de attachments",
         invisalignInstagramLink: "Ver en Instagram",
+        bracketsInstagramTitle: "Videos: Brackets",
+        bracketsInstagramSubtitle:
+            "Colocación de brackets y cambio de ligas durante tu tratamiento de ortodoncia fija.",
+        bracketsInstagramPlacementTitle: "Colocación de brackets",
+        bracketsInstagramLigatureTitle: "Cambio de ligas",
+        bracketsInstagramLink: "Ver en Instagram",
     },
     byService: Object.fromEntries(TREATMENT_SLUGS.map((slug) => [slug, buildEntry(slug)])),
 };
