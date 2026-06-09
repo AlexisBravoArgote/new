@@ -50,8 +50,11 @@ export function FloatingCta({ lang: langProp }) {
                 checkOverlap();
                 return;
             }
-            const top = about.getBoundingClientRect().top;
-            const reachedAbout = top <= window.innerHeight * 0.9;
+            const rect = about.getBoundingClientRect();
+            const isMobile = window.matchMedia("(max-width: 767px)").matches;
+            const reachedAbout = isMobile
+                ? rect.top + rect.height * 0.5 <= window.innerHeight * 0.6
+                : rect.top <= window.innerHeight * 0.9;
             setShowCta(reachedAbout);
             if (!reachedAbout) setOpen(false);
             checkOverlap();
