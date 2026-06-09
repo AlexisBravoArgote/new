@@ -118,6 +118,18 @@
             "odontologia_biologica": {
                 "title": "Biologische Zahnmedizin",
                 "desc": "Ganzheitlicher Ansatz, der Mundgesundheit und Wohlbefinden mit biokompatiblen Materialien verbindet."
+            },
+            "tomografia_dental": {
+                "title": "Zahntomographie",
+                "desc": "3D-CBCT-Bildgebung für präzise Diagnose und Planung von Implantaten, Endodontie und Chirurgie."
+            },
+            "radiografia_dental": {
+                "title": "Zahnröntgen",
+                "desc": "Digitale Röntgenaufnahmen mit niedriger Dosis für schnelle, genaue Diagnose."
+            },
+            "escaneo_intraoral": {
+                "title": "Intraoraler Scan",
+                "desc": "3D-Digitalabdrücke ohne Abformmassen für Kieferorthopädie, Kronen und Smile Design."
             }
         }
     },
@@ -298,6 +310,30 @@
                     "Biokompatible Materialien, sichere Protokolle und persönliche Betreuung.",
                     "Geschätzte Zeit: je nach Behandlung variabel.",
                     "Geschätzter Preis: nach klinischer Bewertung."
+                ]
+            },
+            "tomografia-dental": {
+                "subtitle": "Cone-Beam-Computertomographie (CBCT) für 3D-Diagnose und Planung.",
+                "bullets": [
+                    "Ideal für Implantate, Endodontie, Weisheitszähne und Kieferchirurgie.",
+                    "Geschätzte Zeit: 10–15 Min.",
+                    "Geschätzter Preis: je nach Untersuchungstyp."
+                ]
+            },
+            "radiografia-dental": {
+                "subtitle": "Digitale periapikale, panoramische und Bissflügel-Röntgenaufnahmen.",
+                "bullets": [
+                    "Diagnose von Karies, Infektionen und Knochenbewertung mit niedriger Dosis.",
+                    "Geschätzte Zeit: 5–10 Min.",
+                    "Geschätzter Preis: je nach Röntgentyp."
+                ]
+            },
+            "escaneo-intraoral": {
+                "subtitle": "3D-Intraoralscanner ohne traditionelle Abformungen.",
+                "bullets": [
+                    "Für Invisalign, Kronen, Aufbissschienen und Smile Design.",
+                    "Geschätzte Zeit: 15–25 Min.",
+                    "Geschätzter Preis: auf Anfrage; kann im Behandlungsplan enthalten sein."
                 ]
             },
             "default": {
@@ -519,7 +555,10 @@
         "menu": "Menü",
         "menuCaps": "MENÜ",
         "openMenu": "Menü öffnen",
-        "closeMenu": "Menü schließen"
+        "closeMenu": "Menü schließen",
+        "yearsBadgeNumber": "26",
+        "yearsBadgeLabel": "Jahre",
+        "yearsBadgeAria": "26 Jahre Erfahrung bei Dental City"
     },
     "doctorVideos": {
         "eyebrow": "UNSERE SPEZIALISTEN",

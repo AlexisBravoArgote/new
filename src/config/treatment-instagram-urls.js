@@ -17,3 +17,6 @@ export const BLANQUEAMIENTO_HOME_KIT_REEL_URL = "https://www.instagram.com/reel/
 
 export const BRACKETS_PLACEMENT_REEL_URL = "https://www.instagram.com/reel/Cja7lXBtSqp/";
 export const BRACKETS_LIGATURE_REEL_URL = "https://www.instagram.com/reel/CUyjzNhF_34/";
+
+export const DISENO_SONRISA_MOCKUP_REEL_URL = "https://www.instagram.com/reel/C_9J0C7ypWG/";
+export const DISENO_SONRISA_CONSULTA_REEL_URL = "https://www.instagram.com/reel/C-6rQxaOXQP/";

@@ -29,6 +29,9 @@ const PAGE_TITLES = {
     "armonizacion-facial": "Armonización Facial",
     "diseno-sonrisa": "Diseño de Sonrisa",
     "odontologia-biologica": "Odontología Biológica",
+    "tomografia-dental": "Tomografía Dental",
+    "radiografia-dental": "Radiografía Dental",
+    "escaneo-intraoral": "Escaneo Intraoral",
 };
 
 const IMPLANTES = {

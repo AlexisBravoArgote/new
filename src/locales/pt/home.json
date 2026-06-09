@@ -118,6 +118,18 @@
             "odontologia_biologica": {
                 "title": "Odontologia biológica",
                 "desc": "Abordagem holística que conecta saúde bucal e bem-estar com materiais biocompatíveis."
+            },
+            "tomografia_dental": {
+                "title": "Tomografia dental",
+                "desc": "Imagem 3D CBCT para diagnóstico preciso e planejamento de implantes, endodontia e cirurgia."
+            },
+            "radiografia_dental": {
+                "title": "Radiografia dental",
+                "desc": "Raio-X digital de baixa dose para diagnóstico rápido e preciso."
+            },
+            "escaneo_intraoral": {
+                "title": "Escaneamento intraoral",
+                "desc": "Moldagens digitais 3D sem massas tradicionais para ortodontia, coroas e design do sorriso."
             }
         }
     },
@@ -298,6 +310,30 @@
                     "Materiais biocompatíveis, protocolos seguros e atendimento personalizado.",
                     "Tempo estimado: varia conforme o tratamento.",
                     "Preço estimado: orçamento após avaliação clínica."
+                ]
+            },
+            "tomografia-dental": {
+                "subtitle": "Tomografia volumétrica cone beam (CBCT) para diagnóstico e planejamento 3D.",
+                "bullets": [
+                    "Ideal para implantes, endodontia, sisos e cirurgia maxilofacial.",
+                    "Tempo estimado: 10–15 min.",
+                    "Preço estimado: orçamento conforme o tipo de exame."
+                ]
+            },
+            "radiografia-dental": {
+                "subtitle": "Radiografias digitais periapicais, panorâmicas e interproximais.",
+                "bullets": [
+                    "Diagnóstico de cáries, infecções e avaliação óssea com baixa dose.",
+                    "Tempo estimado: 5–10 min.",
+                    "Preço estimado: orçamento conforme o tipo de radiografia."
+                ]
+            },
+            "escaneo-intraoral": {
+                "subtitle": "Scanner intraoral 3D sem moldagens tradicionais.",
+                "bullets": [
+                    "Para Invisalign, coroas, placas oclusais e design do sorriso.",
+                    "Tempo estimado: 15–25 min.",
+                    "Preço estimado: orçamento; pode estar incluído no plano de tratamento."
                 ]
             },
             "default": {
@@ -519,7 +555,10 @@
         "menu": "Menu",
         "menuCaps": "MENU",
         "openMenu": "Abrir menu",
-        "closeMenu": "Fechar menu"
+        "closeMenu": "Fechar menu",
+        "yearsBadgeNumber": "26",
+        "yearsBadgeLabel": "anos",
+        "yearsBadgeAria": "26 anos de experiência na Dental City"
     },
     "doctorVideos": {
         "eyebrow": "NOSSOS ESPECIALISTAS",

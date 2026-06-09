@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import TreatmentContent from '../../components-react/TreatmentContent.jsx';
 import { TREATMENT_SLUGS } from '../../data/treatmentSlugs.js';
 import esTreatments from '../../locales/es/treatments.json';
+import { TREATMENT_SEO_KEYWORDS } from '../../config/treatment-seo-keywords.js';
 import {
     buildJsonLd,
     breadcrumbSchema,
@@ -20,14 +21,17 @@ const pageTitle = treatment?.pageTitle ?? 'Tratamiento dental';
 const description =
     treatment?.heroSubtitle ??
     `Tratamiento de ${pageTitle} en Dental City, clínica dental en Zapopan, Jalisco.`;
-const keywords = [
+const baseKeywords = [
     pageTitle,
     'Dental City',
     'clínica dental Zapopan',
     'dentista Guadalajara',
-    'tratamiento dental',
-    slug.replace(/-/g, ' '),
-].join(', ');
+];
+const extraKeywords =
+    treatment?.seoKeywords ??
+    TREATMENT_SEO_KEYWORDS[slug] ??
+    ['tratamiento dental', slug.replace(/-/g, ' ')];
+const keywords = [...baseKeywords, ...extraKeywords].join(', ');
 
 const structuredData = buildJsonLd(
     dentalClinicOrganization(),

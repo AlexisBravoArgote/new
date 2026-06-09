@@ -73,53 +73,6 @@ function Home() {
         return undefined;
     }, []);
 
-    // Structured Data para LocalBusiness
-    const localBusinessData = {
-        "@context": "https://schema.org",
-        "@type": "DentalClinic",
-        "name": "Dental City",
-        "description": "Clínica dental integral en Zapopan, Jalisco. Especialidades: ortodoncia, implantes, odontopediatría, estética dental. Tecnología digital de vanguardia.",
-        "url": "https://dentalcity.mx",
-        "logo": "https://dentalcity.mx/logo.png",
-        "image": "https://dentalcity.mx/logo.png",
-        "telephone": "+52-33-1234-5678",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Zona Real, Zapopan",
-            "addressLocality": "Zapopan",
-            "addressRegion": "Jalisco",
-            "postalCode": "45000",
-            "addressCountry": "MX"
-        },
-        "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "20.7238",
-            "longitude": "-103.3858"
-        },
-        "openingHoursSpecification": [
-            {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-                "opens": "09:00",
-                "closes": "19:00"
-            }
-        ],
-        "priceRange": "$$",
-        "medicalSpecialty": ["Orthodontics", "Dentistry", "Pediatric Dentistry", "Cosmetic Dentistry", "Dental Implants"],
-        "areaServed": {
-            "@type": "City",
-            "name": "Zapopan, Guadalajara"
-        },
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "bestRating": "5",
-            "worstRating": "1",
-            "ratingCount": "500",
-            "reviewCount": "500"
-        }
-    };
-
     return (
         <div className="min-h-screen w-full bg-[#0b1b2b] text-white">
             <TopBar bgOpacity={bgOpacity} lang={lang} />
@@ -716,6 +669,9 @@ function Services() {
             { key: "armonizacion-facial", title: t("services.items.armonizacion_facial.title"), desc: t("services.items.armonizacion_facial.desc") },
             { key: "diseno-sonrisa", title: t("services.items.diseno_sonrisa.title"), desc: t("services.items.diseno_sonrisa.desc") },
             { key: "odontologia-biologica", title: t("services.items.odontologia_biologica.title"), desc: t("services.items.odontologia_biologica.desc") },
+            { key: "tomografia-dental", title: t("services.items.tomografia_dental.title"), desc: t("services.items.tomografia_dental.desc") },
+            { key: "radiografia-dental", title: t("services.items.radiografia_dental.title"), desc: t("services.items.radiografia_dental.desc") },
+            { key: "escaneo-intraoral", title: t("services.items.escaneo_intraoral.title"), desc: t("services.items.escaneo_intraoral.desc") },
         ],
         [t]
     );
@@ -1097,12 +1053,14 @@ function GalleryCarousel() {
     );
 
     const SLIDE_COUNT = SLIDES.length;
-    const SLIDE_DURATION_MS = 5200;
+    const SLIDE_DURATION_MS = 7500;
 
     const [i, setI] = useState(0);
     const [hover, setHover] = useState(false);
+    const [inView, setInView] = useState(false);
     const [progressKey, setProgressKey] = useState(0);
     const timerRef = useRef(null);
+    const sectionRef = useRef(null);
     const touchRef = useRef({ x: 0, y: 0, t: 0 });
 
     const bumpSlide = useCallback((nextIndex) => {
@@ -1132,13 +1090,29 @@ function GalleryCarousel() {
     );
 
     useEffect(() => {
-        if (hover || SLIDES[i]?.type === "reel") return undefined;
+        const el = sectionRef.current;
+        if (!el) return undefined;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => setInView(entry.isIntersecting),
+            { threshold: 0.35, rootMargin: "0px 0px -8% 0px" }
+        );
+        observer.observe(el);
+        return () => observer.disconnect();
+    }, []);
+
+    useEffect(() => {
+        if (inView) setProgressKey((k) => k + 1);
+    }, [inView]);
+
+    useEffect(() => {
+        if (!inView || hover || SLIDES[i]?.type === "reel") return undefined;
         timerRef.current = setInterval(() => {
             setI((p) => (p + 1) % SLIDE_COUNT);
             setProgressKey((k) => k + 1);
         }, SLIDE_DURATION_MS);
         return () => clearInterval(timerRef.current);
-    }, [hover, i, SLIDE_COUNT, SLIDES]);
+    }, [inView, hover, i, SLIDE_COUNT, SLIDES]);
 
     useEffect(() => {
         const onKey = (e) => {
@@ -1161,10 +1135,10 @@ function GalleryCarousel() {
 
     const active = SLIDES[i];
     const isReel = active.type === "reel";
-    const pauseProgress = hover || isReel;
+    const pauseProgress = hover || isReel || !inView;
 
     return (
-        <section id="galeria" className="section-dark py-20 md:py-24">
+        <section id="galeria" ref={sectionRef} className="section-dark py-20 md:py-24">
             <Container>
                 <SectionHeading overline={t("gallery.eyebrow")} title={t("gallery.title")} />
 

@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import BlogPost4 from '../../components-react/blog-posts/4.jsx';
+import { buildBlogKeywords } from '../../lib/blog-seo.js';
 import { buildJsonLd, blogPostingSchema, breadcrumbSchema, dentalClinicOrganization } from '../../lib/seo.js';
 const implantes = '/assets/implante.jpg';
 
@@ -30,7 +31,7 @@ const structuredData = buildJsonLd(
 <Layout
     title={post.title}
     description={post.excerpt}
-    keywords={post.tags.join(", ")}
+    keywords={buildBlogKeywords(post)}
     image={`https://dentalcity.mx${post.cover}`}
     type="article"
     structuredData={structuredData}

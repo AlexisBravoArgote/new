@@ -21,6 +21,7 @@ import ptDoctors from "../locales/pt/translation.json";
 import hiDoctors from "../locales/hi/translation.json";
 
 import { DEFAULT_LOCALE, LOCALES, PAGE_SEO, SITE_ORIGIN } from "../config/languages.js";
+import { buildPageKeywords } from "../config/page-seo-keywords.js";
 
 const HOME_COPY = {
     es: esHome,
@@ -117,5 +118,9 @@ export function getAlternateLinks(page) {
 
 export function getPageSeo(page, lang) {
     const code = normalizeLang(lang);
-    return PAGE_SEO[page]?.[code] ?? PAGE_SEO[page]?.[DEFAULT_LOCALE];
+    const base = PAGE_SEO[page]?.[code] ?? PAGE_SEO[page]?.[DEFAULT_LOCALE];
+    return {
+        ...base,
+        keywords: buildPageKeywords(page, code),
+    };
 }

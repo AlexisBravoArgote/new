@@ -8,6 +8,8 @@ import {
     BLANQUEAMIENTO_HOME_KIT_REEL_URL,
     BRACKETS_LIGATURE_REEL_URL,
     BRACKETS_PLACEMENT_REEL_URL,
+    DISENO_SONRISA_CONSULTA_REEL_URL,
+    DISENO_SONRISA_MOCKUP_REEL_URL,
     INVISALIGN_ATTACHMENTS_REEL_URL,
     IMPLANT_PLACEMENT_REEL_URL,
     INVISALIGN_SCAN_REEL_URL,
@@ -244,6 +246,35 @@ function BracketsInstagramVideos() {
     );
 }
 
+function DisenoSonrisaInstagramVideos() {
+    const { t } = useTranslation("treatments");
+
+    return (
+        <TreatmentInstagramVideoPair
+            sectionTitle={t("common.disenoSonrisaInstagramTitle", { defaultValue: "Videos: Diseño de sonrisa" })}
+            sectionSubtitle={t("common.disenoSonrisaInstagramSubtitle", {
+                defaultValue:
+                    "Mock-up digital y explicación del proceso de diseño de sonrisa con nuestra especialista en Dental City.",
+            })}
+            linkLabel={t("common.disenoSonrisaInstagramLink", { defaultValue: "Ver en Instagram" })}
+            videos={[
+                {
+                    postUrl: DISENO_SONRISA_MOCKUP_REEL_URL,
+                    cardTitle: t("common.disenoSonrisaInstagramMockupTitle", {
+                        defaultValue: "Mock-up digital",
+                    }),
+                },
+                {
+                    postUrl: DISENO_SONRISA_CONSULTA_REEL_URL,
+                    cardTitle: t("common.disenoSonrisaInstagramConsultaTitle", {
+                        defaultValue: "Diseño de sonrisa en consulta",
+                    }),
+                },
+            ]}
+        />
+    );
+}
+
 function ImplantesInstagramVideo() {
     const { t } = useTranslation("treatments");
     const sectionTitle = t("common.implantesInstagramTitle", { defaultValue: "Video: Colocación de implantes" });
@@ -390,6 +421,8 @@ export default function TreatmentContent({ slug }) {
                 {slug === "implantes" && <ImplantesInstagramVideo />}
 
                 {slug === "limpieza" && <LimpiezaInstagramVideo />}
+
+                {slug === "diseno-sonrisa" && <DisenoSonrisaInstagramVideos />}
 
                 <section className="pb-16 md:pb-20">
                     <Container>

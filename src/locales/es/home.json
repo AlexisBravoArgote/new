@@ -118,6 +118,18 @@
             "odontologia_biologica": {
                 "title": "Odontología biológica",
                 "desc": "Enfoque integral que conecta salud bucal y bienestar general con materiales biocompatibles."
+            },
+            "tomografia_dental": {
+                "title": "Tomografía dental",
+                "desc": "Estudio 3D CBCT para diagnóstico preciso y planeación de implantes, endodoncia y cirugía."
+            },
+            "radiografia_dental": {
+                "title": "Radiografía dental",
+                "desc": "Rayos X digitales de baja dosis para diagnóstico rápido y exacto."
+            },
+            "escaneo_intraoral": {
+                "title": "Escaneo intraoral",
+                "desc": "Impresión digital 3D sin moldes, para ortodoncia, coronas y diseño de sonrisa."
             }
         }
     },
@@ -298,6 +310,30 @@
                     "Materiales biocompatibles, protocolos seguros y atención personalizada.",
                     "Tiempo estimado: variable según tratamiento.",
                     "Precio estimado: a cotizar tras valoración clínica."
+                ]
+            },
+            "tomografia-dental": {
+                "subtitle": "Tomografía volumétrica cone beam (CBCT) para diagnóstico y planeación 3D.",
+                "bullets": [
+                    "Ideal para implantes, endodoncia, cordales y cirugía maxilofacial.",
+                    "Tiempo estimado: 10–15 min.",
+                    "Precio estimado: a cotizar según tipo de estudio."
+                ]
+            },
+            "radiografia-dental": {
+                "subtitle": "Radiografías digitales periapicales, panorámicas y de aleta de mordida.",
+                "bullets": [
+                    "Diagnóstico de caries, infecciones y evaluación de hueso con baja dosis.",
+                    "Tiempo estimado: 5–10 min.",
+                    "Precio estimado: a cotizar según tipo de radiografía."
+                ]
+            },
+            "escaneo-intraoral": {
+                "subtitle": "Escáner intraoral 3D sin moldes tradicionales.",
+                "bullets": [
+                    "Para Invisalign, coronas, guardas oclusales y diseño de sonrisa.",
+                    "Tiempo estimado: 15–25 min.",
+                    "Precio estimado: a cotizar; puede incluirse en plan de tratamiento."
                 ]
             },
             "default": {
@@ -512,6 +548,18 @@
                 {
                     "q": "¿Qué incluye la primera cita?",
                     "a": "Valoración clínica, estudios necesarios y un plan a medida."
+                },
+                {
+                    "q": "¿Dónde está ubicada Dental City?",
+                    "a": "En Av. Santa Margarita 4410, Jardín Real, Zapopan, Jalisco. Atendemos pacientes de Zapopan, Guadalajara y la zona metropolitana."
+                },
+                {
+                    "q": "¿Qué especialidades y tratamientos ofrecen?",
+                    "a": "Ortodoncia (Invisalign y brackets), implantes Straumann, odontopediatría, blanqueamiento, diseño de sonrisa, endodoncia, periodoncia, cirugía maxilofacial, tomografía CBCT, escaneo intraoral y más."
+                },
+                {
+                    "q": "¿Usan tecnología dental digital?",
+                    "a": "Sí. Contamos con escáner intraoral 3D, tomografía dental CBCT, radiografía digital y planificación asistida por computadora para tratamientos más precisos."
                 }
             ]
         },
@@ -562,7 +610,10 @@
             "menu": "Menú",
             "menuCaps": "MENÚ",
             "openMenu": "Abrir menú",
-            "closeMenu": "Cerrar menú"
+            "closeMenu": "Cerrar menú",
+            "yearsBadgeNumber": "26",
+            "yearsBadgeLabel": "años",
+            "yearsBadgeAria": "26 años de experiencia en Dental City"
         }
     
 

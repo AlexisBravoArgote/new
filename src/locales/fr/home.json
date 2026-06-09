@@ -118,6 +118,18 @@
             "odontologia_biologica": {
                 "title": "Odontologie biologique",
                 "desc": "Approche globale reliant santé bucco-dentaire et bien-être général avec des matériaux biocompatibles."
+            },
+            "tomografia_dental": {
+                "title": "Tomographie dentaire",
+                "desc": "Imagerie 3D CBCT pour un diagnostic précis et la planification des implants, endodontie et chirurgie."
+            },
+            "radiografia_dental": {
+                "title": "Radiographie dentaire",
+                "desc": "Radiographies numériques à faible dose pour un diagnostic rapide et précis."
+            },
+            "escaneo_intraoral": {
+                "title": "Scan intraoral",
+                "desc": "Empreintes numériques 3D sans moules pour orthodontie, couronnes et design du sourire."
             }
         }
     },
@@ -298,6 +310,30 @@
                     "Matériaux biocompatibles, protocoles sûrs et soins personnalisés.",
                     "Durée : variable selon le traitement.",
                     "Prix : sur devis après évaluation clinique."
+                ]
+            },
+            "tomografia-dental": {
+                "subtitle": "Tomographie volumétrique cone beam (CBCT) pour diagnostic et planification 3D.",
+                "bullets": [
+                    "Idéal pour implants, endodontie, dents de sagesse et chirurgie maxillo-faciale.",
+                    "Durée : 10–15 min.",
+                    "Prix : sur devis selon le type d'examen."
+                ]
+            },
+            "radiografia-dental": {
+                "subtitle": "Radiographies numériques rétro-alvéolaires, panoramiques et interproximales.",
+                "bullets": [
+                    "Diagnostic des caries, infections et évaluation osseuse à faible dose.",
+                    "Durée : 5–10 min.",
+                    "Prix : sur devis selon le type de radiographie."
+                ]
+            },
+            "escaneo-intraoral": {
+                "subtitle": "Scanner intraoral 3D sans empreintes traditionnelles.",
+                "bullets": [
+                    "Pour Invisalign, couronnes, gouttières occlusales et design du sourire.",
+                    "Durée : 15–25 min.",
+                    "Prix : sur devis ; peut être inclus dans le plan de traitement."
                 ]
             },
             "default": {
@@ -519,7 +555,10 @@
         "menu": "Menu",
         "menuCaps": "MENU",
         "openMenu": "Ouvrir le menu",
-        "closeMenu": "Fermer le menu"
+        "closeMenu": "Fermer le menu",
+        "yearsBadgeNumber": "26",
+        "yearsBadgeLabel": "ans",
+        "yearsBadgeAria": "26 ans d'expérience chez Dental City"
     },
     "doctorVideos": {
         "eyebrow": "NOS SPÉCIALISTES",

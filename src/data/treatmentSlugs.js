@@ -21,6 +21,9 @@ export const TREATMENT_SLUGS = [
     "armonizacion-facial",
     "diseno-sonrisa",
     "odontologia-biologica",
+    "tomografia-dental",
+    "radiografia-dental",
+    "escaneo-intraoral",
 ];
 
 export const SLUG_TO_ITEM_KEY = {
@@ -29,6 +32,9 @@ export const SLUG_TO_ITEM_KEY = {
     "armonizacion-facial": "armonizacion_facial",
     "diseno-sonrisa": "diseno_sonrisa",
     "odontologia-biologica": "odontologia_biologica",
+    "tomografia-dental": "tomografia_dental",
+    "radiografia-dental": "radiografia_dental",
+    "escaneo-intraoral": "escaneo_intraoral",
 };
 
 export function slugToItemKey(slug) {

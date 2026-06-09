@@ -118,6 +118,18 @@
             "odontologia_biologica": {
                 "title": "Biological dentistry",
                 "desc": "Holistic approach connecting oral health and overall wellness with biocompatible materials."
+            },
+            "tomografia_dental": {
+                "title": "Dental tomography",
+                "desc": "3D CBCT imaging for precise diagnosis and implant, endodontic, and surgical planning."
+            },
+            "radiografia_dental": {
+                "title": "Dental radiography",
+                "desc": "Low-dose digital X-rays for fast, accurate diagnosis."
+            },
+            "escaneo_intraoral": {
+                "title": "Intraoral scanning",
+                "desc": "3D digital impressions without traditional molds for orthodontics, crowns, and smile design."
             }
         }
     },
@@ -298,6 +310,30 @@
                     "Biocompatible materials, safe protocols, and personalized care.",
                     "Estimated time: varies depending on treatment.",
                     "Estimated price: quoted after clinical evaluation."
+                ]
+            },
+            "tomografia-dental": {
+                "subtitle": "Cone beam computed tomography (CBCT) for 3D diagnosis and planning.",
+                "bullets": [
+                    "Ideal for implants, endodontics, wisdom teeth, and maxillofacial surgery.",
+                    "Estimated time: 10–15 min.",
+                    "Estimated price: quoted depending on study type."
+                ]
+            },
+            "radiografia-dental": {
+                "subtitle": "Digital periapical, panoramic, and bitewing X-rays.",
+                "bullets": [
+                    "Diagnosis of cavities, infections, and bone assessment with low radiation.",
+                    "Estimated time: 5–10 min.",
+                    "Estimated price: quoted depending on X-ray type."
+                ]
+            },
+            "escaneo-intraoral": {
+                "subtitle": "3D intraoral scanner without traditional impression molds.",
+                "bullets": [
+                    "For Invisalign, crowns, occlusal guards, and smile design.",
+                    "Estimated time: 15–25 min.",
+                    "Estimated price: quoted; may be included in treatment plan."
                 ]
             },
             "default": {
@@ -505,12 +541,24 @@
                 "q": "Do you accept credit cards?",
                 "a": "Yes, along with payment plans for selected treatments."
             },
-            {
-                "q": "What does the first visit include?",
-                "a": "Clinical evaluation, necessary studies, and a personalized plan."
-            }
-        ]
-    },
+                {
+                    "q": "What does the first visit include?",
+                    "a": "Clinical evaluation, necessary studies, and a personalized plan."
+                },
+                {
+                    "q": "Where is Dental City located?",
+                    "a": "At Av. Santa Margarita 4410, Jardín Real, Zapopan, Jalisco. We serve patients from Zapopan, Guadalajara, and the metropolitan area."
+                },
+                {
+                    "q": "What specialties and treatments do you offer?",
+                    "a": "Orthodontics (Invisalign and braces), Straumann implants, pediatric dentistry, whitening, smile design, endodontics, periodontics, maxillofacial surgery, CBCT tomography, intraoral scanning, and more."
+                },
+                {
+                    "q": "Do you use digital dental technology?",
+                    "a": "Yes. We use 3D intraoral scanning, dental CBCT tomography, digital X-rays, and computer-assisted planning for more precise treatments."
+                }
+            ]
+        },
 
     "doctorVideos": {
         "eyebrow": "OUR SPECIALISTS",
@@ -558,7 +606,10 @@
         "menu": "Menu",
         "menuCaps": "MENU",
         "openMenu": "Open menu",
-        "closeMenu": "Close menu"
+        "closeMenu": "Close menu",
+        "yearsBadgeNumber": "26",
+        "yearsBadgeLabel": "years",
+        "yearsBadgeAria": "26 years of experience at Dental City"
     }
 }
 

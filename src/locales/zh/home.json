@@ -118,6 +118,18 @@
             "odontologia_biologica": {
                 "title": "生物牙科",
                 "desc": "以生物相容材料连接口腔健康与全身健康的整体诊疗理念。"
+            },
+            "tomografia_dental": {
+                "title": "牙科CT（CBCT）",
+                "desc": "3D影像用于种植、根管及外科治疗的精准诊断与规划。"
+            },
+            "radiografia_dental": {
+                "title": "牙科X光",
+                "desc": "低剂量数字X光，快速精准诊断。"
+            },
+            "escaneo_intraoral": {
+                "title": "口内扫描",
+                "desc": "无需传统取模的3D数字印模，适用于正畸、冠修复与微笑设计。"
             }
         }
     },
@@ -298,6 +310,30 @@
                     "生物相容材料、安全方案与个性化诊疗。",
                     "预计时间：视具体治疗而定。",
                     "预计费用：临床评估后报价。"
+                ]
+            },
+            "tomografia-dental": {
+                "subtitle": "锥形束CT（CBCT）用于3D诊断与治疗规划。",
+                "bullets": [
+                    "适用于种植、根管、智齿及颌面外科。",
+                    "预计时间：10–15分钟。",
+                    "预计费用：按检查类型报价。"
+                ]
+            },
+            "radiografia-dental": {
+                "subtitle": "数字根尖片、全景片及咬翼片。",
+                "bullets": [
+                    "低剂量诊断龋齿、感染及骨组织情况。",
+                    "预计时间：5–10分钟。",
+                    "预计费用：按X光类型报价。"
+                ]
+            },
+            "escaneo-intraoral": {
+                "subtitle": "无需传统取模的3D口内扫描仪。",
+                "bullets": [
+                    "适用于隐适美、冠修复、咬合垫及微笑设计。",
+                    "预计时间：15–25分钟。",
+                    "预计费用：报价；可能包含在治疗方案中。"
                 ]
             },
             "default": {
@@ -519,7 +555,10 @@
         "menu": "菜单",
         "menuCaps": "菜单",
         "openMenu": "打开菜单",
-        "closeMenu": "关闭菜单"
+        "closeMenu": "关闭菜单",
+        "yearsBadgeNumber": "26",
+        "yearsBadgeLabel": "年",
+        "yearsBadgeAria": "Dental City 26 年专业经验"
     },
     "doctorVideos": {
         "eyebrow": "我们的专家",

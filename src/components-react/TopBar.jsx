@@ -37,6 +37,18 @@ function LogoImage({ className = "h-18 w-auto" }) {
     );
 }
 
+function YearsSeal({ number, label, ariaLabel, className = "" }) {
+    return (
+        <div className={`dc-years-seal ${className}`} aria-label={ariaLabel} title={ariaLabel}>
+            <span className="dc-years-seal__ring" aria-hidden />
+            <span className="dc-years-seal__inner">
+                <span className="dc-years-seal__number">{number}</span>
+                <span className="dc-years-seal__label">{label}</span>
+            </span>
+        </div>
+    );
+}
+
 /* TOP BAR */
 export default function TopBar({ bgOpacity, lang: langProp = "es" }) {
     const lang = normalizeLang(langProp);
@@ -105,8 +117,16 @@ export default function TopBar({ bgOpacity, lang: langProp = "es" }) {
             <div className="absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-[#c89b7b] via-[#e4b892] to-[#c89b7b] animate-[shimmer_6s_linear_infinite]" />
 
             <Container className="relative mx-auto flex max-w-7xl items-center justify-between py-5 md:py-6">
-                {/* Logo */}
+                {/* Logo — sello flotante: móvil a la derecha, desktop a la izquierda (no mueve el layout) */}
                 <div className="relative inline-flex items-center justify-center rounded-full p-2 transition-transform duration-500 hover:scale-[1.03] hover:brightness-110">
+                    <YearsSeal
+                        number={t("topbar.yearsBadgeNumber", { defaultValue: "26" })}
+                        label={t("topbar.yearsBadgeLabel", { defaultValue: "años" })}
+                        ariaLabel={t("topbar.yearsBadgeAria", {
+                            defaultValue: "26 años de experiencia en Dental City",
+                        })}
+                        className="pointer-events-none absolute top-1/2 z-20 -translate-y-1/2 left-full ml-1.5 md:left-auto md:right-full md:ml-0 md:mr-2"
+                    />
                     <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#d8a07b33] to-transparent blur-lg transition-all duration-500 hover:from-[#e4b89266]" />
                     <a href={homeHref} className="relative z-10">
                         <LogoImage className="h-14 w-auto md:h-16 object-contain" />

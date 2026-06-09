@@ -118,6 +118,18 @@
             "odontologia_biologica": {
                 "title": "생체 친화 치과",
                 "desc": "생체 적합 재료로 구강 건강과 전신 웰빙을 연결하는 통합적 접근."
+            },
+            "tomografia_dental": {
+                "title": "치과 CT(CBCT)",
+                "desc": "임플란트, 근관치료, 수술 계획을 위한 정밀 3D 영상 진단."
+            },
+            "radiografia_dental": {
+                "title": "치과 방사선",
+                "desc": "저선량 디지털 X-ray로 빠르고 정확한 진단."
+            },
+            "escaneo_intraoral": {
+                "title": "구강 스캔",
+                "desc": "전통적인 본뜨기 없이 3D 디지털 인상. 교정, 크라운, 스마일 디자인에."
             }
         }
     },
@@ -298,6 +310,30 @@
                     "생체 적합 재료, 안전한 프로토콜, 맞춤 진료.",
                     "예상 소요 시간: 치료에 따라 상이.",
                     "예상 비용: 임상 평가 후 견적."
+                ]
+            },
+            "tomografia-dental": {
+                "subtitle": "3D 진단 및 치료 계획을 위한 CBCT 콘빔 CT.",
+                "bullets": [
+                    "임플란트, 근관치료, 사랑니, 악안면 수술에 적합.",
+                    "예상 소요 시간: 10–15분.",
+                    "예상 비용: 검사 유형에 따라 견적."
+                ]
+            },
+            "radiografia-dental": {
+                "subtitle": "디지털 근단, 파노라마, 교합 방사선.",
+                "bullets": [
+                    "충치, 감염, 골 평가를 저선량으로 진단.",
+                    "예상 소요 시간: 5–10분.",
+                    "예상 비용: 촬영 유형에 따라 견적."
+                ]
+            },
+            "escaneo-intraoral": {
+                "subtitle": "전통적인 본뜨기 없는 3D 구강 스캐너.",
+                "bullets": [
+                    "인비절라인, 크라운, 교합 가드, 스마일 디자인에.",
+                    "예상 소요 시간: 15–25분.",
+                    "예상 비용: 견적; 치료 계획에 포함될 수 있음."
                 ]
             },
             "default": {
@@ -519,7 +555,10 @@
         "menu": "메뉴",
         "menuCaps": "메뉴",
         "openMenu": "메뉴 열기",
-        "closeMenu": "메뉴 닫기"
+        "closeMenu": "메뉴 닫기",
+        "yearsBadgeNumber": "26",
+        "yearsBadgeLabel": "년",
+        "yearsBadgeAria": "Dental City 26년의 경험"
     },
     "doctorVideos": {
         "eyebrow": "전문의 팀",

@@ -2,17 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 import HomeClient from '../components-react/HomeClient.jsx';
 import { getAlternateLinks, getPageSeo } from '../lib/site-copy.js';
-import { getMainNavLinks } from '../config/site-nav.js';
-import { buildJsonLd, dentalClinicOrganization, siteNavigationSchema, webSiteSchema } from '../lib/seo.js';
+import { buildHomeStructuredData } from '../lib/home-seo.js';
+import { SITE } from '../lib/seo.js';
 
 const seo = getPageSeo('home', 'es');
-const mainNavLinks = getMainNavLinks('es');
+const homeOgImage = `${SITE.origin}/assets/unidades.png`;
 
-const structuredData = buildJsonLd(
-    dentalClinicOrganization({ description: seo.description }),
-    webSiteSchema(),
-    siteNavigationSchema(mainNavLinks)
-);
+const structuredData = buildHomeStructuredData('es', seo.description);
 ---
 
 <Layout
@@ -20,6 +16,7 @@ const structuredData = buildJsonLd(
     title={seo.title}
     description={seo.description}
     keywords={seo.keywords}
+    image={homeOgImage}
     alternates={getAlternateLinks('home')}
     structuredData={structuredData}
     includeSiteSchemas={false}

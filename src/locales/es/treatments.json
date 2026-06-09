@@ -37,7 +37,12 @@
         "bracketsInstagramSubtitle": "Colocación de brackets y cambio de ligas durante tu tratamiento de ortodoncia fija.",
         "bracketsInstagramPlacementTitle": "Colocación de brackets",
         "bracketsInstagramLigatureTitle": "Cambio de ligas",
-        "bracketsInstagramLink": "Ver en Instagram"
+        "bracketsInstagramLink": "Ver en Instagram",
+        "disenoSonrisaInstagramTitle": "Videos: Diseño de sonrisa",
+        "disenoSonrisaInstagramSubtitle": "Mock-up digital y explicación del proceso de diseño de sonrisa con nuestra especialista en Dental City.",
+        "disenoSonrisaInstagramMockupTitle": "Mock-up digital",
+        "disenoSonrisaInstagramConsultaTitle": "Diseño de sonrisa en consulta",
+        "disenoSonrisaInstagramLink": "Ver en Instagram"
     },
     "byService": {
         "implantes": {
@@ -976,6 +981,138 @@
             ],
             "priceLines": [
                 "A cotizar tras valoración clínica."
+            ]
+        },
+        "tomografia-dental": {
+            "pageTitle": "Tomografía Dental",
+            "heroSubtitle": "Estudio 3D CBCT de alta precisión para diagnóstico, planeación de implantes, endodoncia y cirugía maxilofacial en Dental City, Zapopan.",
+            "whatTitle": "¿Qué es la tomografía dental?",
+            "whatParagraphs": [
+                "La tomografía dental, también conocida como tomografía volumétrica cone beam (CBCT), es un estudio de imagen 3D que permite visualizar huesos, dientes, nervios y estructuras faciales con precisión milimétrica. A diferencia de una radiografía convencional, ofrece información tridimensional esencial para planificar tratamientos complejos con mayor seguridad.",
+                "En Dental City utilizamos tomografía dental digital para diagnósticos avanzados, planeación de implantes, endodoncia guiada, evaluación de cordales y análisis de senos maxilares, reduciendo incertidumbre y optimizando resultados clínicos."
+            ],
+            "highlightPhrase": "tomografía dental digital",
+            "processTitle": "¿Cómo se realiza el estudio?",
+            "steps": [
+                {
+                    "title": "Indicación Clínica",
+                    "description": "Tu especialista determina si necesitas tomografía según tu diagnóstico, tratamiento planificado o complejidad del caso."
+                },
+                {
+                    "title": "Toma del Estudio CBCT",
+                    "description": "Escaneo rápido y cómodo en posición de pie o sentado. El equipo gira alrededor de la cabeza capturando imágenes 3D en segundos."
+                },
+                {
+                    "title": "Análisis e Interpretación",
+                    "description": "Revisión de las imágenes tridimensionales para medir hueso disponible, ubicación de estructuras anatómicas y planificar el procedimiento."
+                },
+                {
+                    "title": "Integración al Plan de Tratamiento",
+                    "description": "Los datos 3D se incorporan a la planeación digital de implantes, cirugía, endodoncia u otros tratamientos que requieran máxima precisión."
+                }
+            ],
+            "benefitsTitle": "Beneficios de la Tomografía Dental",
+            "benefits": [
+                "Diagnóstico 3D preciso y detallado",
+                "Planeación segura de implantes y cirugía",
+                "Menor dosis de radiación que tomografías médicas convencionales",
+                "Estudio rápido y no invasivo",
+                "Detección temprana de patologías",
+                "Mayor predictibilidad en tratamientos complejos"
+            ],
+            "timeLines": [
+                "10–15 min (toma del estudio)."
+            ],
+            "priceLines": [
+                "A cotizar según tipo de estudio y extensión del volumen."
+            ]
+        },
+        "radiografia-dental": {
+            "pageTitle": "Radiografía Dental",
+            "heroSubtitle": "Radiografías digitales de baja dosis para diagnóstico preciso de caries, infecciones, hueso y estructuras dentales en Dental City.",
+            "whatTitle": "¿Qué es una radiografía dental?",
+            "whatParagraphs": [
+                "La radiografía dental es un estudio de imagen fundamental que permite al odontólogo ver lo que no es visible a simple vista: caries entre dientes, infecciones en la raíz, nivel de hueso, lesiones y anomalías en desarrollo. Es una herramienta clave para un diagnóstico completo y tratamientos oportunos.",
+                "En Dental City contamos con radiografía digital, que ofrece imágenes de alta calidad con menor exposición a radiación, resultados inmediatos y mayor comodidad para el paciente en cada consulta."
+            ],
+            "highlightPhrase": "radiografía digital",
+            "processTitle": "Tipos de Radiografías que Realizamos",
+            "steps": [
+                {
+                    "title": "Radiografía Periapical",
+                    "description": "Muestra uno o dos dientes completos, desde la corona hasta la punta de la raíz. Ideal para detectar caries, abscesos o evaluar tratamientos de conducto."
+                },
+                {
+                    "title": "Radiografía Panorámica",
+                    "description": "Vista general de mandíbula, maxilar, dientes, senos maxilares y articulación temporomandibular en una sola imagen."
+                },
+                {
+                    "title": "Radiografía Interproximal (Aleta de Mordida)",
+                    "description": "Detecta caries entre dientes y evalúa niveles de hueso. Muy útil en controles de rutina y periodoncia."
+                },
+                {
+                    "title": "Interpretación y Diagnóstico",
+                    "description": "Tu dentista analiza las imágenes contigo, explica los hallazgos y define el plan de tratamiento más adecuado."
+                }
+            ],
+            "benefitsTitle": "Beneficios de la Radiografía Digital",
+            "benefits": [
+                "Diagnóstico temprano de caries e infecciones",
+                "Menor exposición a radiación que sistemas analógicos",
+                "Resultados inmediatos en pantalla",
+                "Imágenes nítidas para mayor precisión",
+                "Registro digital para seguimiento en el tiempo",
+                "Indispensable antes de implantes, extracciones y ortodoncia"
+            ],
+            "timeLines": [
+                "5–10 min según tipo de radiografía."
+            ],
+            "priceLines": [
+                "A cotizar según tipo de estudio (periapical, panorámica o aleta de mordida)."
+            ]
+        },
+        "escaneo-intraoral": {
+            "pageTitle": "Escaneo Intraoral",
+            "heroSubtitle": "Impresión digital 3D sin moldes incómodos. Escáner intraoral de última generación para ortodoncia, coronas, guardas y diseño de sonrisa en Dental City.",
+            "whatTitle": "¿Qué es el escaneo intraoral?",
+            "whatParagraphs": [
+                "El escaneo intraoral es una tecnología que captura la forma exacta de tus dientes y encías mediante un escáner óptico, generando un modelo digital 3D en tiempo real. Sustituye las impresiones tradicionales con pastas y alginatos, ofreciendo una experiencia más cómoda, rápida y precisa.",
+                "En Dental City utilizamos escaneo intraoral para planeación de Invisalign y alineadores, diseño de coronas y carillas, guardas oclusales, mock-ups de diseño de sonrisa y comunicación digital con laboratorio, logrando ajustes más exactos y tiempos de tratamiento más eficientes."
+            ],
+            "highlightPhrase": "escaneo intraoral",
+            "processTitle": "¿Cómo funciona el escaneo?",
+            "steps": [
+                {
+                    "title": "Preparación",
+                    "description": "Se acondiciona la boca y se secan ligeramente las superficies dentales para obtener un escaneo nítido."
+                },
+                {
+                    "title": "Captura Digital",
+                    "description": "Una cámara intraoral recorre tus dientes capturando miles de imágenes que se ensamblan en un modelo 3D en pantalla."
+                },
+                {
+                    "title": "Revisión en Tiempo Real",
+                    "description": "Puedes ver tu escaneo en el monitor mientras el especialista verifica que el registro sea completo y preciso."
+                },
+                {
+                    "title": "Planeación y Fabricación",
+                    "description": "El archivo digital se usa para simular ortodoncia, diseñar prótesis, fabricar guardas o enviar al laboratorio sin moldes físicos."
+                }
+            ],
+            "benefitsTitle": "Beneficios del Escaneo Intraoral",
+            "benefits": [
+                "Sin moldes ni pastas incómodas en la boca",
+                "Mayor precisión que impresiones convencionales",
+                "Procedimiento rápido y cómodo",
+                "Modelo 3D reutilizable para múltiples tratamientos",
+                "Simulación digital de resultados (ortodoncia y estética)",
+                "Integración con laboratorio y fresado digital"
+            ],
+            "timeLines": [
+                "15–25 min según extensión del escaneo."
+            ],
+            "priceLines": [
+                "A cotizar; puede incluirse en plan de ortodoncia, rehabilitación o diseño de sonrisa."
             ]
         }
     }
