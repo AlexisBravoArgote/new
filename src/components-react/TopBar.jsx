@@ -116,9 +116,9 @@ export default function TopBar({ bgOpacity, lang: langProp = "es" }) {
             <div className="absolute top-0 left-0 h-[2px] w-full bg-gradient-to-r from-[#c89b7b] via-[#e4b892] to-[#c89b7b] animate-[shimmer_6s_linear_infinite]" />
             <div className="absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-[#c89b7b] via-[#e4b892] to-[#c89b7b] animate-[shimmer_6s_linear_infinite]" />
 
-            <Container className="relative mx-auto flex max-w-7xl items-center justify-between py-5 md:py-6">
+            <Container className="dc-topbar-inner relative mx-auto flex max-w-7xl items-center py-5 md:py-4 lg:py-5">
                 {/* Logo — sello flotante: móvil a la derecha, desktop a la izquierda (no mueve el layout) */}
-                <div className="relative inline-flex items-center justify-center rounded-full p-2 transition-transform duration-500 hover:scale-[1.03] hover:brightness-110">
+                <div className="relative inline-flex shrink-0 items-center justify-center rounded-full p-2 transition-transform duration-500 hover:scale-[1.03] hover:brightness-110">
                     <YearsSeal
                         number={t("topbar.yearsBadgeNumber", { defaultValue: "26" })}
                         label={t("topbar.yearsBadgeLabel", { defaultValue: "años" })}
@@ -129,7 +129,7 @@ export default function TopBar({ bgOpacity, lang: langProp = "es" }) {
                     />
                     <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#d8a07b33] to-transparent blur-lg transition-all duration-500 hover:from-[#e4b89266]" />
                     <a href={homeHref} className="relative z-10">
-                        <LogoImage className="h-14 w-auto md:h-16 object-contain" />
+                        <LogoImage className="h-14 w-auto object-contain md:h-[3.25rem] lg:h-16" />
                     </a>
                 </div>
 
@@ -157,7 +157,7 @@ export default function TopBar({ bgOpacity, lang: langProp = "es" }) {
                 </button>
 
                 {/* Nav principal (desktop) */}
-                <nav className="hidden items-center gap-8 md:flex text-[15px] font-medium tracking-wide">
+                <nav className="dc-topbar-nav hidden md:flex">
                     {[
                         [t("topbar.treatments", { defaultValue: "Nuestros tratamientos" }), "#servicios", "services"],
                         [t("topbar.gallery", { defaultValue: "Nuestras instalaciones" }), "#galeria", "gallery"],
@@ -174,20 +174,20 @@ export default function TopBar({ bgOpacity, lang: langProp = "es" }) {
                                     else scrollToId(hash);
                                 }
                             }}
-                            className="text-white/80 transition hover:text-white hover:drop-shadow-[0_0_4px_rgba(228,184,146,0.6)]"
+                            className="dc-topbar-nav__link"
                         >
                             {label}
                         </a>
                     ))}
 
                     {/* Dropdown: Nuestras clínicas (desktop) */}
-                    <div className="relative" ref={clinicsRef}>
+                    <div className="relative shrink-0" ref={clinicsRef}>
                         <button
                             type="button"
                             onClick={() =>
                                 setOpenDesktop((v) => (v === "clinicas" ? null : "clinicas"))
                             }
-                            className="flex items-center gap-1 text-white/80 transition hover:text-white hover:drop-shadow-[0_0_4px_rgba(228,184,146,0.6)]"
+                            className="dc-topbar-nav__link dc-topbar-nav__trigger"
                         >
                             {t("topbar.clinics", { defaultValue: "Nuestras clínicas" })}
                             <svg xmlns="http://www.w3.org/2000/svg"
@@ -217,26 +217,26 @@ export default function TopBar({ bgOpacity, lang: langProp = "es" }) {
 
                     <a
                         href={doctorsHref}
-                        className="text-white/80 transition hover:text-white hover:drop-shadow-[0_0_4px_rgba(228,184,146,0.6)]"
+                        className="dc-topbar-nav__link"
                     >
                         {t("topbar.doctors", { defaultValue: "Nuestros doctores" })}
                     </a>
 
                     <a
                         href="/blog"
-                        className="text-white/80 transition hover:text-white hover:drop-shadow-[0_0_4px_rgba(228,184,146,0.6)]"
+                        className="dc-topbar-nav__link"
                     >
                         {t("topbar.blog", { defaultValue: "Blog & Research" })}
                     </a>
 
                     {/* Dropdown: Recursos (desktop) */}
-                    <div className="relative" ref={recursosRef}>
+                    <div className="relative shrink-0" ref={recursosRef}>
                         <button
                             type="button"
                             onClick={() =>
                                 setOpenDesktop((v) => (v === "recursos" ? null : "recursos"))
                             }
-                            className="flex items-center gap-1 text-white/80 transition hover:text-white hover:drop-shadow-[0_0_4px_rgba(228,184,146,0.6)]"
+                            className="dc-topbar-nav__link dc-topbar-nav__trigger"
                         >
                             {t("topbar.resources", { defaultValue: "Recursos" })}
                             <svg xmlns="http://www.w3.org/2000/svg"

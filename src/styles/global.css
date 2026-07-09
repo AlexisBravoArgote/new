@@ -710,6 +710,60 @@ a:focus-visible, button:focus-visible {
     }
 }
 
+/* ─── TopBar: nav desktop (una sola fila en laptops) ─── */
+.dc-topbar-inner {
+    gap: clamp(1rem, 2vw, 2.5rem);
+    padding-right: clamp(3.25rem, 4vw, 3.75rem);
+}
+
+.dc-topbar-nav {
+    flex: 1;
+    min-width: 0;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(0.875rem, 1.35vw, 2rem);
+    font-size: clamp(0.75rem, 0.6rem + 0.36vw, 0.96875rem);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+}
+
+@media (min-width: 1280px) {
+    .dc-topbar-nav {
+        gap: clamp(1.125rem, 1.5vw, 2.25rem);
+    }
+}
+
+@media (min-width: 1536px) {
+    .dc-topbar-nav {
+        letter-spacing: 0.025em;
+    }
+}
+
+.dc-topbar-nav__link {
+    flex-shrink: 0;
+    white-space: nowrap;
+    color: rgba(255, 255, 255, 0.8);
+    transition: color 0.2s ease, filter 0.2s ease;
+}
+
+.dc-topbar-nav__link:hover {
+    color: #fff;
+    filter: drop-shadow(0 0 4px rgba(228, 184, 146, 0.6));
+}
+
+.dc-topbar-nav__trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+@media (min-width: 1280px) {
+    .dc-topbar-nav__trigger {
+        gap: 0.25rem;
+    }
+}
+
 /* ─── Hero dental backdrop ─── */
 .hero-dental-svg {
     opacity: 0.55;
