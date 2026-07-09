@@ -125,7 +125,7 @@ export default function TopBar({ bgOpacity, lang: langProp = "es" }) {
                         ariaLabel={t("topbar.yearsBadgeAria", {
                             defaultValue: "26 años de experiencia en Dental City",
                         })}
-                        className="pointer-events-none absolute top-1/2 z-20 -translate-y-1/2 left-full ml-1.5 md:left-auto md:right-full md:ml-0 md:mr-2"
+                        className="pointer-events-none absolute top-1/2 z-20 -translate-y-1/2 left-full ml-1.5"
                     />
                     <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#d8a07b33] to-transparent blur-lg transition-all duration-500 hover:from-[#e4b89266]" />
                     <a href={homeHref} className="relative z-10">
