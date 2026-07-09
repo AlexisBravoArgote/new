@@ -713,7 +713,25 @@ a:focus-visible, button:focus-visible {
 /* ─── TopBar: nav desktop (una sola fila en laptops) ─── */
 .dc-topbar-inner {
     gap: clamp(1rem, 2vw, 2.5rem);
-    padding-right: clamp(3.25rem, 4vw, 3.75rem);
+    padding-left: max(1.25rem, env(safe-area-inset-left, 0px));
+    padding-right: max(clamp(3.25rem, 4vw, 3.75rem), env(safe-area-inset-right, 0px));
+}
+
+@media (min-width: 768px) {
+    .dc-topbar-inner {
+        padding-left: max(3rem, calc(env(safe-area-inset-left, 0px) + 2.5rem));
+    }
+}
+
+@media (min-width: 1024px) {
+    .dc-topbar-inner {
+        padding-left: max(2.5rem, calc(env(safe-area-inset-left, 0px) + 2.5rem));
+        padding-right: max(clamp(3.5rem, 3vw, 4rem), env(safe-area-inset-right, 0px));
+    }
+}
+
+.dc-topbar-brand {
+    flex-shrink: 0;
 }
 
 .dc-topbar-nav {

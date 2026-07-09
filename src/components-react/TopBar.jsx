@@ -116,9 +116,9 @@ export default function TopBar({ bgOpacity, lang: langProp = "es" }) {
             <div className="absolute top-0 left-0 h-[2px] w-full bg-gradient-to-r from-[#c89b7b] via-[#e4b892] to-[#c89b7b] animate-[shimmer_6s_linear_infinite]" />
             <div className="absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-[#c89b7b] via-[#e4b892] to-[#c89b7b] animate-[shimmer_6s_linear_infinite]" />
 
-            <Container className="dc-topbar-inner relative mx-auto flex max-w-7xl items-center py-5 md:py-4 lg:py-5">
+            <div className="dc-topbar-inner relative flex w-full items-center py-5 md:py-4 lg:py-5">
                 {/* Logo — sello flotante: móvil a la derecha, desktop a la izquierda (no mueve el layout) */}
-                <div className="relative inline-flex shrink-0 items-center justify-center rounded-full p-2 transition-transform duration-500 hover:scale-[1.03] hover:brightness-110">
+                <div className="dc-topbar-brand relative inline-flex shrink-0 items-center justify-center rounded-full p-2 transition-transform duration-500 hover:scale-[1.03] hover:brightness-110">
                     <YearsSeal
                         number={t("topbar.yearsBadgeNumber", { defaultValue: "26" })}
                         label={t("topbar.yearsBadgeLabel", { defaultValue: "años" })}
@@ -139,7 +139,7 @@ export default function TopBar({ bgOpacity, lang: langProp = "es" }) {
                     aria-label={t("topbar.openMenu", { defaultValue: "Abrir menú" })}
                     aria-expanded={mobileOpen}
                     onClick={() => setMobileOpen((v) => !v)}
-                    className="md:hidden inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 p-2 text-white/90 hover:bg-white/10 transition"
+                    className="md:hidden ml-auto inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 p-2 text-white/90 hover:bg-white/10 transition"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                         className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2"
@@ -270,7 +270,7 @@ export default function TopBar({ bgOpacity, lang: langProp = "es" }) {
                         </div>
                     </div>
                 </nav>
-            </Container>
+            </div>
 
             {/* Menú móvil fullscreen */}
             <AnimatePresence>
