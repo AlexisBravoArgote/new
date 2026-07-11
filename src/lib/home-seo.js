@@ -12,15 +12,6 @@ import {
     webSiteSchema,
 } from "./seo.js";
 
-const AGGREGATE_RATING = {
-    "@type": "AggregateRating",
-    ratingValue: "4.9",
-    bestRating: "5",
-    worstRating: "1",
-    ratingCount: 500,
-    reviewCount: 500,
-};
-
 /** @param {{ q: string; a: string }[]} items */
 export function faqPageSchema(items) {
     return {
@@ -106,7 +97,6 @@ export function buildHomeStructuredData(lang, description) {
             description,
             foundingDate: "1999",
             numberOfEmployees: { "@type": "QuantitativeValue", value: 29 },
-            aggregateRating: AGGREGATE_RATING,
             hasMap: GOOGLE_MAPS_URL,
             medicalSpecialty: HOME_MEDICAL_SPECIALTIES,
         }),
