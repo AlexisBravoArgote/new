@@ -1152,12 +1152,21 @@ function GalleryCarousel() {
                     <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-[#c89b7b] via-[#e4b892] to-[#c89b7b] opacity-80" />
                     <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-[#c89b7b] via-[#e4b892] to-[#c89b7b] opacity-80" />
 
-                    <div className="relative aspect-[16/9] w-full select-none" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+                    <div
+                        className={[
+                            "relative w-full select-none",
+                            isReel
+                                ? "aspect-[16/9] max-md:aspect-auto max-md:h-[min(460px,70vh)]"
+                                : "aspect-[16/9]",
+                        ].join(" ")}
+                        onTouchStart={onTouchStart}
+                        onTouchEnd={onTouchEnd}
+                    >
                         <AnimatePresence initial={false} mode="wait">
                             {isReel ? (
                                 <motion.div
                                     key={`reel-${i}`}
-                                    className="absolute inset-0 flex items-center justify-center bg-[#0b1b2b] p-3 sm:p-6"
+                                    className="absolute inset-0 flex items-center justify-center bg-[#0b1b2b] p-3 max-md:px-4 max-md:py-10 sm:p-6"
                                     initial={{ opacity: 0, scale: 1.02 }}
                                     animate={{ opacity: 1, scale: 1 }}
                                     exit={{ opacity: 0, scale: 1.01 }}
@@ -1172,7 +1181,7 @@ function GalleryCarousel() {
                                         href={GALLERY_INSTAGRAM_REEL_URL}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="absolute bottom-20 right-4 z-10 rounded-full border border-[#e4b892]/40 bg-black/50 px-3 py-1.5 text-xs font-medium text-[#e4b892] backdrop-blur transition hover:bg-black/65 sm:bottom-24"
+                                        className="absolute bottom-20 right-4 z-10 rounded-full border border-[#e4b892]/40 bg-black/50 px-3 py-1.5 text-xs font-medium text-[#e4b892] backdrop-blur transition hover:bg-black/65 max-md:bottom-3 max-md:left-1/2 max-md:right-auto max-md:-translate-x-1/2 sm:bottom-24"
                                     >
                                         Abrir en Instagram
                                     </a>
@@ -1202,11 +1211,13 @@ function GalleryCarousel() {
 
                         {/* CAPTION */}
                         {/* Móvil: brand + título arriba; subtítulo abajo. Desktop: todo abajo como antes */}
-                        {/* Top caption (mobile only) */}
+                        {/* Top caption (mobile only; oculto en reel para no tapar el video) */}
+                        {!isReel && (
                         <div className="absolute left-0 right-0 top-0 p-4 sm:hidden">
                             <div className="text-xs tracking-[.35em] text-white/60">{t("gallery.brand")}</div>
                             <h3 className="mt-1 text-2xl font-semibold text-white/95">{active.title}</h3>
                         </div>
+                        )}
 
                         {/* Desktop caption (unchanged) */}
                         <div className="absolute bottom-0 left-0 right-0 p-5 md:p-7 hidden sm:block">
@@ -1234,7 +1245,8 @@ function GalleryCarousel() {
                             </div>
                         </div>
 
-                        {/* Bottom subtitle (mobile only) */}
+                        {/* Bottom subtitle (mobile only; oculto en reel) */}
+                        {!isReel && (
                         <div className="absolute left-0 right-0 bottom-0 p-4 sm:hidden">
                             <p className="text-white/80 text-sm">{active.subtitle}</p>
 
@@ -1249,6 +1261,7 @@ function GalleryCarousel() {
                                 />
                             </div>
                         </div>
+                        )}
 
 
                         {/* Arrows (iguales) */}

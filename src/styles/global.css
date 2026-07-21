@@ -629,6 +629,19 @@ a:focus-visible, button:focus-visible {
         0 16px 40px rgba(0, 0, 0, 0.35);
 }
 
+/* Móvil: reel más chico y centrado para verse completo (desktop sin cambios) */
+@media (max-width: 767px) {
+    .dc-gallery-reel-iframe {
+        display: block;
+        width: min(220px, 56vw);
+        height: min(390px, 58vh);
+        min-width: 0;
+        max-width: 220px;
+        margin-inline: auto;
+        border-radius: 12px;
+    }
+}
+
 /* ─── TopBar: sello de años (posición absoluta, no afecta layout) ─── */
 .dc-years-seal {
     --seal-size: 1.85rem;
