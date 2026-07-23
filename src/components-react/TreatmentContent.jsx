@@ -14,6 +14,7 @@ import {
     IMPLANT_PLACEMENT_REEL_URL,
     INVISALIGN_SCAN_REEL_URL,
     LIMPIEZA_INSTAGRAM_REEL_URL,
+    ESCANEO_INTRAORAL_INSTAGRAM_URL,
 } from "../config/treatment-instagram-urls.js";
 import { InstagramReelIframe } from "./InstagramEmbed.jsx";
 import { useTranslation } from "react-i18next";
@@ -50,6 +51,37 @@ function CheckIcon() {
         <svg viewBox="0 0 24 24" className="h-5 w-5 shrink-0 text-[#e4b892]" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
             <path d="M20 6L9 17l-5-5" />
         </svg>
+    );
+}
+
+function YearsSeal({ number, label, ariaLabel, className = "" }) {
+    return (
+        <div className={`dc-years-seal relative ${className}`} aria-label={ariaLabel} title={ariaLabel}>
+            <span className="dc-years-seal__ring" aria-hidden />
+            <span className="dc-years-seal__inner">
+                <span className="dc-years-seal__number">{number}</span>
+                <span className="dc-years-seal__label">{label}</span>
+            </span>
+        </div>
+    );
+}
+
+function TreatmentBrandClose({ common }) {
+    return (
+        <div className="dc-treatment-brand-close mx-auto mt-14 max-w-2xl text-center md:mt-16">
+            <YearsSeal
+                number={common.brandCloseYearsNumber ?? "26"}
+                label={common.brandCloseYearsLabel ?? "años"}
+                ariaLabel={common.brandCloseYearsAria ?? "26 años de experiencia en Dental City"}
+                className="dc-treatment-brand-close__seal mx-auto"
+            />
+            <p className="mt-5 font-display text-2xl font-semibold leading-snug tracking-tight text-[#e4b892] md:text-3xl">
+                {common.brandCloseHeadline ?? "Más de dos décadas cuidando sonrisas en Zapopan."}
+            </p>
+            <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-white/65 md:text-[15px]">
+                {common.brandCloseSupport ?? "De la valoración al seguimiento, con el mismo estándar clínico."}
+            </p>
+        </div>
     );
 }
 
@@ -345,6 +377,43 @@ function LimpiezaInstagramVideo() {
     );
 }
 
+function EscaneoIntraoralInstagramVideo() {
+    const { t } = useTranslation("treatments");
+    const sectionTitle = t("common.escaneoIntraoralInstagramTitle", {
+        defaultValue: "Video: Escaneo intraoral",
+    });
+
+    return (
+        <section className="pb-16 md:pb-20">
+            <div className="mx-auto w-full max-w-5xl px-6 md:px-8">
+                <h2 className="font-display text-3xl font-semibold text-[#e4b892] md:text-4xl">{sectionTitle}</h2>
+                <p className="mt-3 max-w-2xl text-base leading-relaxed text-white/70 md:text-[17px]">
+                    {t("common.escaneoIntraoralInstagramSubtitle", {
+                        defaultValue: "Mira cómo realizamos el escaneo digital 3D en Dental City.",
+                    })}
+                </p>
+                <article className="mx-auto mt-8 max-w-md">
+                    <div className="dc-treatment-video-card dc-treatment-instagram-pair-card flex flex-col items-center p-4 md:p-5">
+                        <InstagramReelIframe
+                            postUrl={ESCANEO_INTRAORAL_INSTAGRAM_URL}
+                            title={sectionTitle}
+                            className="dc-treatment-instagram-iframe"
+                        />
+                        <a
+                            href={ESCANEO_INTRAORAL_INSTAGRAM_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mt-4 text-center text-sm font-medium text-[#e4b892] transition hover:text-[#f4d3b3]"
+                        >
+                            {t("common.escaneoIntraoralInstagramLink", { defaultValue: "Ver en Instagram" })}
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    );
+}
+
 export default function TreatmentContent({ slug }) {
     const { t } = useTranslation("treatments");
     const data = t(`byService.${slug}`, { returnObjects: true, defaultValue: null });
@@ -447,6 +516,8 @@ export default function TreatmentContent({ slug }) {
 
                 {slug === "limpieza" && <LimpiezaInstagramVideo />}
 
+                {slug === "escaneo-intraoral" && <EscaneoIntraoralInstagramVideo />}
+
                 {slug === "diseno-sonrisa" && <DisenoSonrisaInstagramVideos />}
 
                 <section className="pb-16 md:pb-20">
@@ -534,6 +605,8 @@ export default function TreatmentContent({ slug }) {
                                 </div>
                             </div>
                         </div>
+
+                        <TreatmentBrandClose common={common} />
 
                         <div className="mt-10 flex flex-col items-stretch justify-center gap-4 sm:flex-row sm:items-center">
                             <a

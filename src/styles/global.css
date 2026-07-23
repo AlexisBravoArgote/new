@@ -723,6 +723,39 @@ a:focus-visible, button:focus-visible {
     }
 }
 
+/* ─── Tratamientos: cierre de marca (opción 4) ─── */
+.dc-treatment-brand-close__seal {
+    --seal-size: 3.25rem;
+}
+
+@media (min-width: 768px) {
+    .dc-treatment-brand-close__seal {
+        --seal-size: 3.75rem;
+    }
+}
+
+.dc-treatment-brand-close__seal .dc-years-seal__number {
+    font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+    .dc-treatment-brand-close__seal .dc-years-seal__number {
+        font-size: 1.15rem;
+    }
+}
+
+.dc-treatment-brand-close__seal .dc-years-seal__label {
+    margin-top: 0.1rem;
+    font-size: 0.45rem;
+    letter-spacing: 0.16em;
+}
+
+@media (min-width: 768px) {
+    .dc-treatment-brand-close__seal .dc-years-seal__label {
+        font-size: 0.5rem;
+    }
+}
+
 /* ─── TopBar: nav desktop (una sola fila en laptops) ─── */
 .dc-topbar-inner {
     gap: clamp(1rem, 2vw, 2.5rem);

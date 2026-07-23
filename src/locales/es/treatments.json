@@ -20,6 +20,9 @@
         "limpiezaInstagramTitle": "Video: Limpieza dental",
         "limpiezaInstagramSubtitle": "Mira cómo realizamos la profilaxis profesional en Dental City.",
         "limpiezaInstagramLink": "Ver reel en Instagram",
+        "escaneoIntraoralInstagramTitle": "Video: Escaneo intraoral",
+        "escaneoIntraoralInstagramSubtitle": "Mira cómo realizamos el escaneo digital 3D en Dental City.",
+        "escaneoIntraoralInstagramLink": "Ver en Instagram",
         "implantesInstagramTitle": "Video: Colocación de implantes",
         "implantesInstagramSubtitle": "Conoce cómo realizamos la colocación de implantes dentales en Dental City.",
         "implantesInstagramLink": "Ver en Instagram",
@@ -42,7 +45,12 @@
         "disenoSonrisaInstagramSubtitle": "Mock-up digital y explicación del proceso de diseño de sonrisa con nuestra especialista en Dental City.",
         "disenoSonrisaInstagramMockupTitle": "Mock-up digital",
         "disenoSonrisaInstagramConsultaTitle": "Diseño de sonrisa en consulta",
-        "disenoSonrisaInstagramLink": "Ver en Instagram"
+        "disenoSonrisaInstagramLink": "Ver en Instagram",
+        "brandCloseHeadline": "Más de dos décadas cuidando sonrisas en Zapopan.",
+        "brandCloseSupport": "De la valoración al seguimiento, con el mismo estándar clínico.",
+        "brandCloseYearsNumber": "26",
+        "brandCloseYearsLabel": "años",
+        "brandCloseYearsAria": "26 años de experiencia en Dental City"
     },
     "byService": {
         "implantes": {
@@ -294,13 +302,38 @@
         },
         "endodoncia": {
             "pageTitle": "Endodoncia",
-            "heroSubtitle": "Tratamiento de conductos para salvar dientes con pulpa infectada o dañada. Conserva tu pieza dental natural con técnicas avanzadas en Dental City.",
+            "heroSubtitle": "Tratamiento de conductos para conservar dientes con la pulpa infectada o dañada, evitando la extracción. Conserva tu pieza dental natural con técnicas avanzadas en Dental City.",
             "whatTitle": "¿Qué es la endodoncia?",
             "whatParagraphs": [
-                "La endodoncia, también conocida como tratamiento de conductos, es un procedimiento que se realiza para salvar un diente que tiene la pulpa (nervio) infectada o dañada. En lugar de extraer el diente, se limpia y sella el conducto radicular, permitiendo conservar la pieza dental natural.",
-                "Este tratamiento es necesario cuando la pulpa dental se inflama o infecta debido a caries profundas, fracturas, o traumatismos. En Dental City realizamos desinfección, conformación y sellado del conducto con técnicas avanzadas para garantizar el éxito del tratamiento."
+                "La endodoncia, o tratamiento de conductos, permite salvar un diente cuya pulpa, el tejido interno que contiene los nervios y vasos sanguíneos, se ha inflamado o infectado. En lugar de extraer la pieza, se retira el tejido dañado, se limpian y desinfectan los conductos de la raíz, y se sellan herméticamente para evitar que las bacterias vuelvan a colonizarlos."
             ],
-            "highlightPhrase": "desinfección, conformación y sellado del conducto",
+            "afterWhat": {
+                "title": "¿Cuándo se necesita?",
+                "paragraphs": [
+                    "Cuando una caries profunda, una fractura o un traumatismo alcanzan la pulpa. Los signos más frecuentes son dolor espontáneo o nocturno, sensibilidad prolongada al frío o al calor, molestia al masticar, o inflamación en la encía cercana al diente. En algunos casos la pulpa se necrosa sin dolor y solo se detecta en una radiografía."
+                ],
+                "subsections": [
+                    {
+                        "title": "¿Duele?",
+                        "paragraphs": [
+                            "Es la duda más común. El tratamiento se realiza con anestesia local y no debe doler durante el procedimiento. Lo que sí duele es la infección; la endodoncia es lo que la resuelve. Es normal cierta molestia los primeros días, controlable con analgésicos habituales."
+                        ]
+                    },
+                    {
+                        "title": "Después del tratamiento",
+                        "paragraphs": [
+                            "Un diente endodonciado pierde estructura y se vuelve más frágil, por lo que en la mayoría de los casos, especialmente en molares, requiere una restauración definitiva, generalmente una corona. Este paso no es opcional: es lo que determina que el diente dure años. Un tratamiento de conductos bien hecho pero sin restaurar termina con frecuencia en fractura."
+                        ]
+                    },
+                    {
+                        "title": "¿Por qué conservar el diente?",
+                        "paragraphs": [
+                            "Ningún reemplazo iguala al diente natural. Conservarlo mantiene el hueso, la posición de los dientes vecinos y la mordida, y suele ser menos costoso a largo plazo que una extracción seguida de implante o prótesis."
+                        ]
+                    }
+                ]
+            },
+            "highlightPhrase": "tratamiento de conductos",
             "steps": [
                 {
                     "title": "Diagnóstico y Anestesia",
@@ -1101,6 +1134,21 @@
                 "El escaneo intraoral es una tecnología que captura la forma exacta de tus dientes y encías mediante un escáner óptico, generando un modelo digital 3D en tiempo real. Sustituye las impresiones tradicionales con pastas y alginatos, ofreciendo una experiencia más cómoda, rápida y precisa.",
                 "En Dental City utilizamos escaneo intraoral para planeación de Invisalign y alineadores, diseño de coronas y carillas, guardas oclusales, mock-ups de diseño de sonrisa y comunicación digital con laboratorio, logrando ajustes más exactos y tiempos de tratamiento más eficientes."
             ],
+            "afterWhat": {
+                "title": "El valor que no se suele mencionar: el registro",
+                "paragraphs": [
+                    "Tu escaneo queda archivado. Eso permite comparar en el tiempo con precisión objetiva: desgaste dental por bruxismo, recesión de encía, movimiento dental. En lugar de depender de la memoria clínica o de fotografías, hay un modelo tridimensional de referencia.",
+                    "Para pacientes en ortodoncia, con desgaste progresivo o en seguimiento periodontal, esto convierte al escaneo en una herramienta de diagnóstico, no solo de fabricación."
+                ],
+                "subsections": [
+                    {
+                        "title": "Lo que conviene aclarar",
+                        "paragraphs": [
+                            "El escaneo intraoral no es radiografía: no muestra caries interproximales ni estructuras óseas. No sustituye la exploración clínica ni las imágenes radiográficas; complementa."
+                        ]
+                    }
+                ]
+            },
             "highlightPhrase": "escaneo intraoral",
             "processTitle": "¿Cómo funciona el escaneo?",
             "steps": [

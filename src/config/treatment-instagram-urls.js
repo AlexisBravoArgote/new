@@ -10,6 +10,8 @@ export const BIO_AMALGAM_REMOVAL_REEL_URL = "https://www.instagram.com/reel/DF6I
 
 export const LIMPIEZA_INSTAGRAM_REEL_URL = "https://www.instagram.com/reel/CkuH5iLr1UT/";
 
+export const ESCANEO_INTRAORAL_INSTAGRAM_URL = "https://www.instagram.com/p/Cw1UQrdOfdF/";
+
 export const IMPLANT_PLACEMENT_REEL_URL = "https://www.instagram.com/reel/DEX-4R1xpGX/";
 
 export const BLANQUEAMIENTO_CLINIC_REEL_URL = "https://www.instagram.com/reel/CVLrTt5pnxU/";
