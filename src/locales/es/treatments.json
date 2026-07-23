@@ -97,6 +97,28 @@
                 "La limpieza dental profesional, también conocida como profilaxis, es un procedimiento preventivo esencial que elimina la placa bacteriana, el sarro (cálculo dental) y las manchas superficiales que no se pueden remover con el cepillado diario en casa.",
                 "Este tratamiento es fundamental para prevenir enfermedades periodontales, caries y mantener una salud bucal óptima. En Dental City realizamos limpiezas dentales completas utilizando tecnología avanzada, incluyendo el uso de aeropulidor para una limpieza más profunda y efectiva."
             ],
+            "afterWhat": {
+                "title": "Por qué el cepillado no basta: lo que dice la evidencia sobre la limpieza dental",
+                "paragraphs": [
+                    "En la boca se forma constantemente una película de bacterias llamada biofilm. Con el cepillado y el hilo dental se controla bien mientras es blanda. El problema es que en 24 a 72 horas empieza a mineralizarse con el calcio de la saliva y se convierte en cálculo dental (lo que la gente conoce como sarro). A partir de ese momento, ningún cepillo, enjuague ni pasta lo puede eliminar."
+                ],
+                "subsections": [
+                    {
+                        "title": "Por qué importa",
+                        "paragraphs": [
+                            "El cálculo tiene una superficie rugosa y porosa que retiene más bacterias y hace imposible una higiene efectiva en esa zona. La inflamación de la encía que resulta en gingivitis se manifiesta con el signo más común y más ignorado en consulta: sangrado al cepillarse. Una encía sana no sangra. Si sangra, hay inflamación.",
+                            "Si esa inflamación persiste, en pacientes susceptibles puede progresar a periodontitis, donde se pierde el hueso que sostiene el diente. Este proceso es indoloro y silencioso durante años. Cuando el paciente nota movilidad, la pérdida ósea ya es considerable y en gran medida irreversible."
+                        ]
+                    },
+                    {
+                        "title": "Qué logra la limpieza profesional",
+                        "paragraphs": [
+                            "La remoción mecánica del cálculo y el biofilm reduce la inflamación gingival y el sangrado al sondaje, y restablece una superficie dental que el paciente sí puede mantener limpia en casa. Este es el punto clave: la limpieza profesional no reemplaza tu higiene diaria, la hace posible.",
+                            "En pacientes con antecedente de periodontitis, la terapia periodontal de mantenimiento a intervalos regulares se asocia con menor progresión de la enfermedad y menor pérdida dental a largo plazo. Es la recomendación central de la guía europea de práctica clínica para el tratamiento de periodontitis (Sanz, M., et al. (2015). Treatment of stage I–III periodontitis—The EFP S3 level clinical practice guideline. Journal of Clinical Periodontology.)."
+                        ]
+                    }
+                ]
+            },
             "highlightPhrase": "aeropulidor",
             "processTitle": "¿Qué incluye la limpieza dental?",
             "steps": [

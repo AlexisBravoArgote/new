@@ -410,6 +410,31 @@ export default function TreatmentContent({ slug }) {
                     </Container>
                 </section>
 
+                {data.afterWhat?.title && (
+                    <section className="pb-16 md:pb-20">
+                        <Container>
+                            <h2 className="font-display text-3xl font-semibold text-[#e4b892] md:text-4xl">
+                                {data.afterWhat.title}
+                            </h2>
+                            <div className="mt-8 space-y-6 text-base leading-relaxed text-white/75 md:text-[17px]">
+                                {(data.afterWhat.paragraphs ?? []).map((para, i) => (
+                                    <p key={i}>{para}</p>
+                                ))}
+                            </div>
+                            {(data.afterWhat.subsections ?? []).map((sub, i) => (
+                                <div key={i} className="mt-10">
+                                    <h3 className="text-xl font-semibold text-white md:text-2xl">{sub.title}</h3>
+                                    <div className="mt-5 space-y-5 text-base leading-relaxed text-white/75 md:text-[17px]">
+                                        {(sub.paragraphs ?? []).map((para, j) => (
+                                            <p key={j}>{para}</p>
+                                        ))}
+                                    </div>
+                                </div>
+                            ))}
+                        </Container>
+                    </section>
+                )}
+
                 {slug === "invisalign" && <InvisalignDemoVideo />}
 
                 {slug === "invisalign" && <InvisalignInstagramVideos />}
