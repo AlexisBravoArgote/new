@@ -691,13 +691,27 @@ function Services() {
     const openInfo = (service) => { setActive(service); setOpen(true); };
     const closeInfo = () => setOpen(false);
 
-    // --- Solo móvil (SIN CAMBIOS): paginar de 3 en 3 ---
+    // --- Solo móvil: paginar de 3 en 3 ---
     const PAGE_SIZE_MOBILE = 3;
     const [mPage, setMPage] = useState(0);
     const totalPagesMobile = Math.ceil(filtered.length / PAGE_SIZE_MOBILE);
     const pageItemsMobile = filtered.slice(mPage * PAGE_SIZE_MOBILE, mPage * PAGE_SIZE_MOBILE + PAGE_SIZE_MOBILE);
-    const nextPageMobile = () => setMPage((p) => Math.min(p + 1, totalPagesMobile - 1));
-    const prevPageMobile = () => setMPage((p) => Math.max(p - 1, 0));
+
+    const scrollToMobileTreatmentCards = useCallback(() => {
+        const el = document.getElementById("servicios-cards-mobile");
+        if (!el) return;
+        const y = el.getBoundingClientRect().top + window.scrollY - 112;
+        window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
+    }, []);
+
+    const nextPageMobile = () => {
+        setMPage((p) => Math.min(p + 1, totalPagesMobile - 1));
+        requestAnimationFrame(scrollToMobileTreatmentCards);
+    };
+    const prevPageMobile = () => {
+        setMPage((p) => Math.max(p - 1, 0));
+        requestAnimationFrame(scrollToMobileTreatmentCards);
+    };
 
     // --- Desktop/Tablet NUEVO: máximo 8 por página ---
     const PAGE_SIZE_DESKTOP = 8;
@@ -783,8 +797,8 @@ function Services() {
                     </div>
                 )}
 
-                {/* Móvil: 3 por página (sin cambios) */}
-                <div className="mt-8 grid gap-6 sm:hidden">
+                {/* Móvil: 3 por página */}
+                <div id="servicios-cards-mobile" className="mt-8 grid gap-6 scroll-mt-[112px] sm:hidden">
                     {pageItemsMobile.map((s, i) => (
                         <ServiceCard
                             key={s.key}
