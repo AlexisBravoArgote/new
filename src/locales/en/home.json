@@ -461,10 +461,13 @@
         "eyebrow": "REVIEWS",
         "title": "Reviews",
         "subtitle": "Our Patients",
-        "intro": "At Dental City, a dental clinic in Zapopan, patient trust is our greatest asset. These Google reviews reflect the quality of our care, digital technology, and our team's commitment at every visit.",
+        "intro": "At Dental City, a dental clinic in Zapopan, patient trust is our greatest asset. These Google and Doctoralia reviews reflect the quality of our care, digital technology, and our team's commitment at every visit.",
         "googleBadge": "Google Reviews",
         "googleUrl": "https://www.google.com/maps/search/?api=1&query=Dental+City+By+Dra.+Linda+Argote,+Zapopan,+Jalisco",
+        "doctoraliaBadge": "Doctoralia Reviews",
+        "doctoraliaUrl": "https://www.doctoralia.com.mx/clinicas/dental-city-kids-family-square-center#facility-opinion-stats",
         "cta": "See all reviews on Google",
+        "doctoraliaCta": "See all reviews on Doctoralia",
         "patientVideosEyebrow": "VIDEO TESTIMONIALS",
         "patientVideosTitle": "Videos from our patients",
         "patientVideosSubtitle": "Real patient experiences sharing their treatment and results at Dental City.",
@@ -473,6 +476,8 @@
         "stats": {
             "rating": "4.9",
             "ratingLabel": "out of 5 on Google",
+            "doctoraliaRating": "5.0",
+            "doctoraliaRatingLabel": "out of 5 on Doctoralia",
             "satisfaction": "99%",
             "satisfactionLabel": "of our patients satisfied",
             "count": "500+",
@@ -482,6 +487,11 @@
             "Personalized care in Zapopan",
             "Digital dental technology",
             "Specialized, caring team"
+        ],
+        "highlightsRight": [
+            "Over 26 years of experience",
+            "Invisalign Diamond Provider",
+            "Premium Straumann implants"
         ],
         "items": [
             {

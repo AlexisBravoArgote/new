@@ -383,6 +383,33 @@ a:focus-visible, button:focus-visible {
         inset 0 1px 0 rgba(228, 184, 146, 0.1);
 }
 
+.dc-review-platform {
+    position: relative;
+}
+
+@media (min-width: 640px) {
+    .dc-review-platform + .dc-review-platform::before {
+        content: "";
+        position: absolute;
+        left: -0.75rem;
+        top: 10%;
+        bottom: 10%;
+        width: 1px;
+        background: linear-gradient(
+            to bottom,
+            transparent,
+            rgba(228, 184, 146, 0.28),
+            transparent
+        );
+    }
+}
+
+@media (min-width: 1024px) {
+    .dc-review-platform + .dc-review-platform::before {
+        left: -1.25rem;
+    }
+}
+
 .dc-review-card {
     border: 1px solid rgba(255, 255, 255, 0.1);
     background: linear-gradient(165deg, rgba(255, 255, 255, 0.06) 0%, rgba(11, 27, 43, 0.92) 100%);
@@ -395,6 +422,32 @@ a:focus-visible, button:focus-visible {
     box-shadow:
         0 0 0 1px rgba(228, 184, 146, 0.12),
         0 16px 40px rgba(0, 0, 0, 0.34);
+}
+
+.dc-review-highlight {
+    border: 1px solid rgba(228, 184, 146, 0.18);
+    background: linear-gradient(
+        145deg,
+        rgba(228, 184, 146, 0.1) 0%,
+        rgba(255, 255, 255, 0.03) 45%,
+        rgba(11, 27, 43, 0.55) 100%
+    );
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.06),
+        0 8px 20px rgba(0, 0, 0, 0.18);
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+.dc-review-highlight:hover {
+    border-color: rgba(228, 184, 146, 0.4);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        0 0 0 1px rgba(228, 184, 146, 0.08),
+        0 12px 28px rgba(0, 0, 0, 0.24);
+    transform: translateY(-1px);
 }
 
 .dc-patient-reels-grid .dc-treatment-instagram-pair-card,

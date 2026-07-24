@@ -465,10 +465,13 @@
             "eyebrow": "OPINIONES",
             "title": "Opiniones",
             "subtitle": "Nuestros Pacientes",
-            "intro": "En Dental City, clínica dental en Zapopan, la confianza de nuestros pacientes es nuestra mejor carta de presentación. Estas reseñas en Google reflejan la calidad de nuestra atención, tecnología digital y el compromiso de todo el equipo en cada consulta.",
+            "intro": "En Dental City, clínica dental en Zapopan, la confianza de nuestros pacientes es nuestra mejor carta de presentación. Estas reseñas en Google y Doctoralia reflejan la calidad de nuestra atención, tecnología digital y el compromiso de todo el equipo en cada consulta.",
             "googleBadge": "Reseñas de Google",
             "googleUrl": "https://www.google.com/maps/search/?api=1&query=Dental+City+By+Dra.+Linda+Argote,+Zapopan,+Jalisco",
+            "doctoraliaBadge": "Reseñas de Doctoralia",
+            "doctoraliaUrl": "https://www.doctoralia.com.mx/clinicas/dental-city-kids-family-square-center#facility-opinion-stats",
             "cta": "Ver todas las reseñas en Google",
+            "doctoraliaCta": "Ver todas las reseñas en Doctoralia",
             "patientVideosEyebrow": "TESTIMONIOS EN VIDEO",
             "patientVideosTitle": "Videos de nuestros pacientes",
             "patientVideosSubtitle": "Experiencias reales de pacientes que comparten su tratamiento y resultados en Dental City.",
@@ -477,6 +480,8 @@
             "stats": {
                 "rating": "4.9",
                 "ratingLabel": "de 5 en Google",
+                "doctoraliaRating": "5.0",
+                "doctoraliaRatingLabel": "de 5 en Doctoralia",
                 "satisfaction": "99%",
                 "satisfactionLabel": "de nuestros pacientes satisfechos",
                 "count": "500+",
@@ -486,6 +491,11 @@
                 "Atención personalizada en Zapopan",
                 "Tecnología dental digital",
                 "Equipo especializado y humano"
+            ],
+            "highlightsRight": [
+                "Más de 26 años de experiencia",
+                "Invisalign Diamond Provider",
+                "Implantes Straumann premium"
             ],
             "items": [
                 {
