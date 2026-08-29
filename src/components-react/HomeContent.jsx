@@ -45,8 +45,6 @@ const getWaUrl = (key, title) => {
     return `${base}${sep}text=${encodeURIComponent(msg)}`;
 };
 
-if (typeof window !== "undefined") window.WA_URL = WA_URL;
-
 // =========================
 // Helpers / Layout
 // =========================
@@ -1402,8 +1400,10 @@ function InvisalignInteractive() {
     const next = () => setIdx((i) => (i + 1) % slides.length);
     const prev = () => setIdx((i) => (i - 1 + slides.length) % slides.length);
 
-    const waHref =
-        typeof window !== "undefined" && window.WA_URL ? window.WA_URL : "#";
+    const waHref = getWaUrl(
+        "invisalign",
+        t("services.items.invisalign.title", { defaultValue: "Invisalign" })
+    );
 
     useEffect(() => {
         const onKey = (e) => {
