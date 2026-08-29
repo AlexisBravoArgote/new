@@ -12,6 +12,8 @@ export const LIMPIEZA_INSTAGRAM_REEL_URL = "https://www.instagram.com/reel/CkuH5
 
 export const ESCANEO_INTRAORAL_INSTAGRAM_URL = "https://www.instagram.com/p/Cw1UQrdOfdF/";
 
+export const ITERO_5D_PLUS_REEL_URL = "https://www.instagram.com/reel/DcedPn3M9YR/";
+
 export const IMPLANT_PLACEMENT_REEL_URL = "https://www.instagram.com/reel/DEX-4R1xpGX/";
 
 export const BLANQUEAMIENTO_CLINIC_REEL_URL = "https://www.instagram.com/reel/CVLrTt5pnxU/";

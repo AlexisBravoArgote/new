@@ -23,6 +23,7 @@ import Footer from "./Footer.jsx";
 import { GALLERY_INSTAGRAM_REEL_URL, InstagramReelIframe } from "./InstagramEmbed.jsx";
 import MainSiteLinks from "./MainSiteLinks.jsx";
 import DoctorVideosSection from "./DoctorVideosSection.jsx";
+import IteroScannerSection from "./IteroScannerSection.jsx";
 import PatientReviewsSection from "./PatientReviewsSection.jsx";
 import LanguageSwitcher from "./LanguageSwitcher.jsx";
 import { navigateToLocation, scheduleScrollToHomeHash } from "../lib/home-sections.js";
@@ -85,6 +86,7 @@ function Home() {
             <LocationsTabs />
             <PatientReviewsSection />
             <DoctorVideosSection className="section-elevated" withTopBorder />
+            <IteroScannerSection />
             <MainSiteLinks variant="section" showLanguages />
             <FAQ />
 

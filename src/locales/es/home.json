@@ -592,6 +592,46 @@
             ]
         },
     
+        "itero": {
+            "eyebrow": "TECNOLOGÍA DIGITAL",
+            "title": "iTero Element 5D Plus",
+            "subtitle": "Escáner intraoral de última generación en nuestra clínica dental en Zapopan: impresiones digitales 3D sin moldes, apoyo en la detección temprana de caries sin radiación y simulación de tu sonrisa antes de comenzar.",
+            "paragraphs": [
+                "El iTero Element 5D Plus es el escáner intraoral de Align Technology con el que digitalizamos tu boca en Dental City. En pocos minutos obtenemos un modelo 3D exacto de tus dientes y encías, sin pastas ni cubetas de impresión, con la precisión que requieren Invisalign, coronas, carillas, guardas oclusales y el diseño de sonrisa.",
+                "Su cabezal captura imagen a color, escaneo 3D e imagen por infrarrojo cercano (NIRI) en una sola pasada, así que el diagnóstico y la planeación ocurren frente a ti, en pantalla. Como contamos con laboratorio propio, ese archivo digital pasa directo a diseño y fabricación: menos citas, ajustes más exactos y tratamientos más cortos."
+            ],
+            "chips": [
+                "Align Technology",
+                "Escaneo 3D + NIRI",
+                "Clínica Diamond Invisalign",
+                "Laboratorio propio"
+            ],
+            "featuresTitle": "Qué lo hace diferente",
+            "features": [
+                {
+                    "title": "Detección de caries sin radiación",
+                    "description": "La imagen por infrarrojo cercano (NIRI) ayuda a detectar caries interproximales en tiempo real, sin rayos X ni radiación ionizante."
+                },
+                {
+                    "title": "Impresión digital 3D sin moldes",
+                    "description": "Un escaneo cómodo y en minutos sustituye las impresiones con pasta: sin arcadas, sin repetir la toma y con mayor precisión."
+                },
+                {
+                    "title": "iTero TimeLapse",
+                    "description": "Compara tus escaneos a lo largo del tiempo para detectar desgaste por bruxismo, recesión de encía y movimiento dental."
+                },
+                {
+                    "title": "Simulador de resultado Invisalign",
+                    "description": "Visualiza una simulación de tu sonrisa alineada antes de iniciar tu tratamiento de ortodoncia invisible."
+                }
+            ],
+            "videoTitle": "Así funciona en consulta",
+            "instagramLink": "Ver en Instagram",
+            "ctaWhatsapp": "Agendar mi escaneo digital",
+            "ctaTreatment": "Ver escaneo intraoral",
+            "waMessage": "Hola 👋 me gustaría agendar un escaneo digital con el iTero Element 5D Plus en Dental City."
+        },
+
         "doctorVideos": {
             "eyebrow": "NUESTROS ESPECIALISTAS",
             "title": "Videos de nuestros doctores",

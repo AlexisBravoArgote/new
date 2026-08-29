@@ -588,6 +588,46 @@
             ]
         },
 
+    "itero": {
+        "eyebrow": "DIGITAL TECHNOLOGY",
+        "title": "iTero Element 5D Plus",
+        "subtitle": "A latest-generation intraoral scanner at our dental clinic in Zapopan: 3D digital impressions with no molds, support for early caries detection without radiation, and a simulation of your smile before you start.",
+        "paragraphs": [
+            "The iTero Element 5D Plus is the Align Technology intraoral scanner we use at Dental City to digitize your mouth. In just a few minutes we capture an exact 3D model of your teeth and gums, with no impression putty or trays, at the accuracy required by Invisalign, crowns, veneers, occlusal guards, and smile design.",
+            "Its wand captures color images, 3D scanning, and near-infrared imaging (NIRI) in a single pass, so diagnosis and planning happen right in front of you, on screen. Because we have our own lab, that digital file goes straight to design and fabrication: fewer appointments, more precise fits, and shorter treatments."
+        ],
+        "chips": [
+            "Align Technology",
+            "3D scanning + NIRI",
+            "Invisalign Diamond clinic",
+            "In-house lab"
+        ],
+        "featuresTitle": "What makes it different",
+        "features": [
+            {
+                "title": "Caries detection without radiation",
+                "description": "Near-infrared imaging (NIRI) helps detect interproximal caries in real time, with no X-rays or ionizing radiation."
+            },
+            {
+                "title": "3D digital impressions, no molds",
+                "description": "A comfortable scan in minutes replaces putty impressions: no gagging, no retakes, and greater accuracy."
+            },
+            {
+                "title": "iTero TimeLapse",
+                "description": "Compare your scans over time to spot wear from bruxism, gum recession, and tooth movement."
+            },
+            {
+                "title": "Invisalign outcome simulator",
+                "description": "See a simulation of your aligned smile before starting your invisible orthodontic treatment."
+            }
+        ],
+        "videoTitle": "How it works in the clinic",
+        "instagramLink": "Watch on Instagram",
+        "ctaWhatsapp": "Book my digital scan",
+        "ctaTreatment": "See intraoral scanning",
+        "waMessage": "Hello 👋 I would like to book a digital scan with the iTero Element 5D Plus at Dental City."
+    },
+
     "doctorVideos": {
         "eyebrow": "OUR SPECIALISTS",
         "title": "Videos from our doctors",

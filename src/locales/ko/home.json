@@ -578,6 +578,46 @@
         "yearsBadgeLabel": "년",
         "yearsBadgeAria": "Dental City 26년의 경험"
     },
+    "itero": {
+        "eyebrow": "디지털 기술",
+        "title": "iTero Element 5D Plus",
+        "subtitle": "사포판 치과에 도입한 최신 구강 스캐너입니다. 본뜨기 없는 3D 디지털 인상, 방사선 없는 초기 충치 검출 지원, 치료 전 미소 시뮬레이션을 제공합니다.",
+        "paragraphs": [
+            "iTero Element 5D Plus는 Dental City에서 구강을 디지털화할 때 사용하는 Align Technology의 구강 스캐너입니다. 인상재나 트레이 없이 몇 분 만에 치아와 잇몸의 정확한 3D 모델을 얻을 수 있으며, 인비절라인과 크라운, 라미네이트, 교합 안정장치, 스마일 디자인에 필요한 정밀도를 갖췄습니다.",
+            "스캐너는 컬러 이미지, 3D 스캔, 근적외선 영상(NIRI)을 한 번에 촬영하므로 진단과 치료 계획을 화면으로 함께 확인할 수 있습니다. 자체 기공소를 운영하기 때문에 이 디지털 파일은 곧바로 설계와 제작으로 이어집니다. 내원 횟수는 줄고, 적합도는 높아지며, 치료 기간은 짧아집니다."
+        ],
+        "chips": [
+            "Align Technology",
+            "3D 스캔 + NIRI",
+            "인비절라인 다이아몬드 클리닉",
+            "자체 기공소"
+        ],
+        "featuresTitle": "무엇이 다른가",
+        "features": [
+            {
+                "title": "방사선 없는 충치 검출",
+                "description": "근적외선 영상(NIRI)으로 엑스레이나 전리 방사선 없이 인접면 충치를 실시간으로 확인할 수 있습니다."
+            },
+            {
+                "title": "본뜨기 없는 3D 디지털 인상",
+                "description": "몇 분이면 끝나는 편안한 스캔이 인상재를 대체합니다. 구역질이 없고 다시 뜰 필요도 없으며 정확도가 높습니다."
+            },
+            {
+                "title": "iTero TimeLapse",
+                "description": "시간에 따른 스캔을 비교해 이갈이로 인한 마모, 잇몸 퇴축, 치아 이동을 확인합니다."
+            },
+            {
+                "title": "인비절라인 결과 시뮬레이터",
+                "description": "투명 교정을 시작하기 전에 가지런해진 미소의 시뮬레이션을 미리 확인할 수 있습니다."
+            }
+        ],
+        "videoTitle": "진료실에서의 실제 과정",
+        "instagramLink": "Instagram에서 보기",
+        "ctaWhatsapp": "디지털 스캔 예약하기",
+        "ctaTreatment": "구강 스캔 보기",
+        "waMessage": "안녕하세요 👋 Dental City에서 iTero Element 5D Plus 디지털 스캔을 예약하고 싶습니다."
+    },
+
     "doctorVideos": {
         "eyebrow": "전문의 팀",
         "title": "의료진 영상",

@@ -578,6 +578,46 @@
         "yearsBadgeLabel": "年",
         "yearsBadgeAria": "Dental City 26 年专业经验"
     },
+    "itero": {
+        "eyebrow": "数字化技术",
+        "title": "iTero Element 5D Plus",
+        "subtitle": "萨波潘诊所配备的新一代口内扫描仪：无需取模的 3D 数字印模、无辐射的早期龋齿辅助检测，并可在治疗前模拟您的笑容。",
+        "paragraphs": [
+            "iTero Element 5D Plus 是 Align Technology 的口内扫描仪，我们在 Dental City 用它完成口腔数字化。几分钟内即可获得牙齿与牙龈的精确 3D 模型，无需印模膏和托盘，精度可满足隐形矫治、牙冠、贴面、咬合垫与微笑设计的要求。",
+            "扫描头一次通过即可采集彩色影像、3D 扫描与近红外成像（NIRI），诊断与方案规划在您面前的屏幕上完成。由于我们拥有自有技工所，该数字文件可直接进入设计与制作环节：就诊次数更少、配适更精准、疗程更短。"
+        ],
+        "chips": [
+            "Align Technology",
+            "3D 扫描 + NIRI",
+            "Invisalign 钻石级诊所",
+            "自有技工所"
+        ],
+        "featuresTitle": "与众不同之处",
+        "features": [
+            {
+                "title": "无辐射龋齿检测",
+                "description": "近红外成像（NIRI）有助于实时发现邻面龋，无需 X 光，也没有电离辐射。"
+            },
+            {
+                "title": "无需取模的 3D 数字印模",
+                "description": "几分钟的舒适扫描取代传统印模膏：不会引起恶心，无需重复取模，精度更高。"
+            },
+            {
+                "title": "iTero TimeLapse 时间对比",
+                "description": "对比不同时期的扫描结果，发现磨牙造成的磨损、牙龈退缩与牙齿移动。"
+            },
+            {
+                "title": "隐形矫治效果模拟",
+                "description": "在开始隐形正畸治疗前，先看到牙齿排列整齐后的笑容模拟效果。"
+            }
+        ],
+        "videoTitle": "诊室中的实际操作",
+        "instagramLink": "在 Instagram 观看",
+        "ctaWhatsapp": "预约数字扫描",
+        "ctaTreatment": "了解口内扫描",
+        "waMessage": "您好 👋 我想在 Dental City 预约 iTero Element 5D Plus 数字扫描。"
+    },
+
     "doctorVideos": {
         "eyebrow": "我们的专家",
         "title": "医生视频",
