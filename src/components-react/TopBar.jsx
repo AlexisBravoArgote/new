@@ -212,6 +212,16 @@ export default function TopBar({ bgOpacity, lang: langProp = "es" }) {
                             >
                                 Dental City Kids & Family
                             </button>
+                            <button
+                                type="button"
+                                onClick={() => { navigateToLocation("Dental City Providencia", lang); setOpenDesktop(null); }}
+                                className="mt-1 block w-full rounded-xl px-4 py-3 text-left transition hover:bg-white/10"
+                            >
+                                Dental City Providencia
+                                <span className="mt-0.5 block text-[10px] font-semibold uppercase tracking-[.16em] text-[#e4b892]">
+                                    {t("locations.comingSoon.badge", { defaultValue: "Próximamente" })}
+                                </span>
+                            </button>
                         </div>
                     </div>
 
@@ -382,6 +392,16 @@ export default function TopBar({ bgOpacity, lang: langProp = "es" }) {
                                                         className="mt-1 block w-full rounded-lg px-4 py-2.5 text-left text-[14px] text-white/90 hover:bg-white/10"
                                                     >
                                                         Dental City Kids & Family
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => { navigateToLocation("Dental City Providencia", lang); setMobileOpen(false); }}
+                                                        className="mt-1 block w-full rounded-lg px-4 py-2.5 text-left text-[14px] text-white/90 hover:bg-white/10"
+                                                    >
+                                                        Dental City Providencia
+                                                        <span className="mt-0.5 block text-[10px] font-semibold uppercase tracking-[.16em] text-[#e4b892]">
+                                                            {t("locations.comingSoon.badge", { defaultValue: "Próximamente" })}
+                                                        </span>
                                                     </button>
                                                 </motion.div>
                                             )}

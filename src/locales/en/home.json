@@ -453,7 +453,25 @@
         },
         "msg": {
             "dc": "Hello, I would like to book an appointment at Dental City.",
-            "kids": "Hello, I would like to book an appointment at Dental City Kids."
+            "kids": "Hello, I would like to book an appointment at Dental City Kids.",
+            "providencia": "Hello, I would like information about the opening of Dental City Providencia."
+        },
+        "comingSoon": {
+            "badge": "Coming soon",
+            "eyebrow": "NEW LOCATION",
+            "title": "Coming soon to Providencia",
+            "description": "We are preparing our new clinic at CentrOttawa Plaza, in the heart of Providencia. As soon as we open, we will share phone numbers, hours, and online booking.",
+            "perks": [
+                "All the specialties you already know, with the same Dental City team.",
+                "Digital dentistry: intraoral scanning, CBCT imaging, and our in-house lab.",
+                "Prime location in Providencia, easy to reach and with parking."
+            ],
+            "notifyCta": "Notify me about the opening",
+            "notifyNote": "We will message you on WhatsApp as soon as we open our doors.",
+            "openingLabel": "Opening",
+            "openingValue": "Coming soon",
+            "addressNote": "Reference location. We will confirm the suite number before opening.",
+            "followNote": "Follow us on social media to hear about the Dental City Providencia opening."
         }
     },
 

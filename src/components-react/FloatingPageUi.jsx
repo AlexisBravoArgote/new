@@ -180,6 +180,23 @@ export function FloatingCta({ lang: langProp }) {
                                 <path d="M9 18l6-6-6-6" />
                             </svg>
                         </button>
+
+                        <button
+                            type="button"
+                            onClick={() => go("Dental City Providencia")}
+                            className="mt-1 flex w-full items-center justify-between gap-2 rounded-xl px-4 py-3 text-left transition hover:bg-[#d8a07b]/15"
+                            role="menuitem"
+                        >
+                            <span className="flex flex-col items-start">
+                                <span>Dental City Providencia</span>
+                                <span className="text-[10px] font-semibold uppercase tracking-[.16em] text-[#e4b892]">
+                                    {t("locations.comingSoon.badge", { defaultValue: "Próximamente" })}
+                                </span>
+                            </span>
+                            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.6">
+                                <path d="M9 18l6-6-6-6" />
+                            </svg>
+                        </button>
                     </motion.div>
                 )}
             </AnimatePresence>

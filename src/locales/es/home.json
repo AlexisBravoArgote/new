@@ -457,7 +457,25 @@
             },
             "msg": {
                 "dc": "Hola quiero agendar una cita en Dental City.",
-                "kids": "Hola quiero agendar una cita en Dental City Kids."
+                "kids": "Hola quiero agendar una cita en Dental City Kids.",
+                "providencia": "Hola, quiero recibir información sobre la apertura de Dental City Providencia."
+            },
+            "comingSoon": {
+                "badge": "Próximamente",
+                "eyebrow": "NUEVA SUCURSAL",
+                "title": "Muy pronto en Providencia",
+                "description": "Estamos preparando nuestra nueva clínica en CentrOttawa Plaza, en el corazón de Providencia. En cuanto abramos compartiremos teléfonos, horarios y agenda en línea.",
+                "perks": [
+                    "Todas las especialidades que ya conoces, con el mismo equipo de Dental City.",
+                    "Odontología digital: escaneo intraoral, tomografía CBCT y laboratorio propio.",
+                    "Ubicación privilegiada en Providencia, fácil de llegar y con estacionamiento."
+                ],
+                "notifyCta": "Avísame de la apertura",
+                "notifyNote": "Te escribimos por WhatsApp en cuanto abramos nuestras puertas.",
+                "openingLabel": "Apertura",
+                "openingValue": "Próximamente",
+                "addressNote": "Ubicación de referencia. Confirmaremos el número de local antes de la apertura.",
+                "followNote": "Sigue nuestras redes para enterarte de la apertura de Dental City Providencia."
             }
         },
 

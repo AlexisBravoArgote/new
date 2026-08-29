@@ -450,7 +450,25 @@
         },
         "msg": {
             "dc": "こんにちは、Dental City で予約を取りたいです。",
-            "kids": "こんにちは、Dental City Kids で予約を取りたいです。"
+            "kids": "こんにちは、Dental City Kids で予約を取りたいです。",
+            "providencia": "こんにちは、Dental City Providencia の開院について情報をいただきたいです。"
+        },
+        "comingSoon": {
+            "badge": "近日オープン",
+            "eyebrow": "新クリニック",
+            "title": "まもなくプロビデンシアに開院",
+            "description": "プロビデンシア中心部の CentrOttawa Plaza に新しいクリニックを準備しています。開院次第、電話番号・診療時間・オンライン予約をご案内します。",
+            "perks": [
+                "これまでと同じ Dental City のチームが、すべての診療科目を担当します。",
+                "デジタル歯科医療：口腔内スキャン、CBCT、自社ラボを完備。",
+                "プロビデンシアの好立地。アクセスしやすく駐車場もあります。"
+            ],
+            "notifyCta": "開院のお知らせを受け取る",
+            "notifyNote": "開院しましたら WhatsApp でご連絡いたします。",
+            "openingLabel": "開院",
+            "openingValue": "近日",
+            "addressNote": "参考位置です。区画番号は開院前に確定してお知らせします。",
+            "followNote": "Dental City Providencia の開院情報は SNS でお知らせします。"
         }
     },
     "reviews": {

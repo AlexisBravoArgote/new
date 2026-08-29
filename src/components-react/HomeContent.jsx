@@ -275,6 +275,31 @@ function Hero() {
                                             <path d="M9 18l6-6-6-6" />
                                         </svg>
                                     </button>
+
+                                    <button
+                                        onClick={() => {
+                                            navigateToLocation("Dental City Providencia", lang);
+                                            setOpenHeroCta(false);
+                                        }}
+                                        className="mt-1 flex w-full items-center justify-between gap-2 rounded-xl px-4 py-3 text-left transition hover:bg-white/10"
+                                        role="menuitem"
+                                    >
+                                        <span className="flex flex-col items-start">
+                                            <span>Dental City Providencia</span>
+                                            <span className="text-[10px] font-semibold uppercase tracking-[.16em] text-[#e4b892]">
+                                                {t("locations.comingSoon.badge")}
+                                            </span>
+                                        </span>
+                                        <svg
+                                            viewBox="0 0 24 24"
+                                            className="h-5 w-5"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            strokeWidth="1.6"
+                                        >
+                                            <path d="M9 18l6-6-6-6" />
+                                        </svg>
+                                    </button>
                                 </motion.div>
                             )}
                         </AnimatePresence>
@@ -1669,6 +1694,21 @@ function LocationsTabs() {
                 schedule: scheduleRows,
                 holidays: holidayRows,
             },
+            "Dental City Providencia": {
+                comingSoon: true,
+                query: "CentrOttawa Plaza, Ottawa 1406, Providencia, Guadalajara, Jalisco",
+                address:
+                    "CentrOttawa Plaza · Ottawa 1406, esq. Pablo Neruda, Providencia, 44630 Guadalajara, Jal.",
+                phones: [],
+                whatsapp: "33 3308 7833",
+                socials: [
+                    { key: "facebook", label: "Facebook", href: "https://www.facebook.com/DentalCityOficial/", icon: FacebookIcon },
+                    { key: "instagram", label: "Instagram", href: "https://www.instagram.com/dentalcity_oficial/", icon: InstagramIcon },
+                    { key: "whatsapp", label: "WhatsApp", href: WA_URL, icon: WhatsAppIcon },
+                ],
+                schedule: [],
+                holidays: [],
+            },
         }),
         [scheduleRows, holidayRows]
     );
@@ -1705,9 +1745,10 @@ function LocationsTabs() {
     }, [normalizeMx]);
 
     const waHref = useMemo(() => {
-        const msg = tab === "Dental City"
-            ? t("locations.msg.dc")
-            : t("locations.msg.kids");
+        let msg;
+        if (tab === "Dental City") msg = t("locations.msg.dc");
+        else if (tab === "Dental City Providencia") msg = t("locations.msg.providencia");
+        else msg = t("locations.msg.kids");
         return buildWaLink(tabs[tab]?.whatsapp, msg);
     }, [tab, tabs, buildWaLink, t]);
 
@@ -1739,6 +1780,7 @@ function LocationsTabs() {
     };
 
     const active = tabs[tab];
+    const isComingSoon = Boolean(active.comingSoon);
 
     const rightCardRef = useRef(null);
     const [rightHeight, setRightHeight] = useState(0);
@@ -1790,6 +1832,17 @@ function LocationsTabs() {
 
     const leftTopRef = useRef(null);
     const [mapHeight, setMapHeight] = useState(MAP_HEIGHT);
+
+    // Las tarjetas se estiran a la altura de la fila, así que las medidas solo
+    // crecen: sin reiniciarlas al cambiar de sucursal, la más alta deja
+    // estiradas a las demás.
+    const [measuredTab, setMeasuredTab] = useState(tab);
+    if (measuredTab !== tab) {
+        setMeasuredTab(tab);
+        setMapHeight(MAP_HEIGHT);
+        setRightHeight(0);
+    }
+
     useEffect(() => {
         const el = leftTopRef.current;
         if (!el) return;
@@ -1816,6 +1869,7 @@ function LocationsTabs() {
                     <div className="flex flex-wrap gap-2">
                         {Object.keys(tabs).map((k) => {
                             const isActive = k === tab;
+                            const soon = Boolean(tabs[k]?.comingSoon);
                             return (
                                 <button
                                     key={k}
@@ -1828,6 +1882,15 @@ function LocationsTabs() {
                                     ].join(" ")}
                                 >
                                     {k}
+                                    {soon && (
+                                        <span className="ml-2 inline-flex items-center gap-1.5 rounded-full bg-[#e4b892]/15 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[.14em] text-[#e4b892] ring-1 ring-[#e4b892]/30">
+                                            <span className="relative flex h-1.5 w-1.5">
+                                                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#e4b892] opacity-70" />
+                                                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#e4b892]" />
+                                            </span>
+                                            {t("locations.comingSoon.badge")}
+                                        </span>
+                                    )}
                                     {isActive && (
                                         <span className="pointer-events-none absolute inset-0 rounded-full ring-2 ring-[#e4b892]/50" />
                                     )}
@@ -1839,15 +1902,31 @@ function LocationsTabs() {
                     <div className="mt-6">
                         <div className="flex flex-wrap items-center justify-between gap-3">
                             <h4 id="clinic-branch-heading" className="scroll-mt-[120px] text-2xl font-semibold tracking-wide md:scroll-mt-[132px]">{tab}</h4>
-                            <div className="inline-flex items-center gap-2 rounded-full border border-[#e4b89233] bg-white/5 px-3 py-1.5 text-xs text-white/90">
-                                <span className="text-[#e4b892]">{t("locations.labels.whatsapp")}:</span>
-                                <span className="opacity-90">{active.whatsapp}</span>
-                            </div>
+                            {isComingSoon ? (
+                                <div className="inline-flex items-center gap-2 rounded-full border border-[#e4b892]/40 bg-[#e4b892]/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[.16em] text-[#e4b892]">
+                                    <SparkleIcon />
+                                    {t("locations.comingSoon.badge")}
+                                </div>
+                            ) : (
+                                <div className="inline-flex items-center gap-2 rounded-full border border-[#e4b89233] bg-white/5 px-3 py-1.5 text-xs text-white/90">
+                                    <span className="text-[#e4b892]">{t("locations.labels.whatsapp")}:</span>
+                                    <span className="opacity-90">{active.whatsapp}</span>
+                                </div>
+                            )}
                         </div>
 
                         <p className="mt-2 text-[15px]">
-                            <span className="text-[#e4b892] font-semibold">{t("locations.labels.phones")}:</span>{" "}
-                            <span className="text-white/85">{active.phones.join(" · ")}</span>
+                            {isComingSoon ? (
+                                <>
+                                    <span className="text-[#e4b892] font-semibold">{t("locations.comingSoon.openingLabel")}:</span>{" "}
+                                    <span className="text-white/85">{t("locations.comingSoon.openingValue")}</span>
+                                </>
+                            ) : (
+                                <>
+                                    <span className="text-[#e4b892] font-semibold">{t("locations.labels.phones")}:</span>{" "}
+                                    <span className="text-white/85">{active.phones.join(" · ")}</span>
+                                </>
+                            )}
                         </p>
 
                         <div className="mt-3 h-[2px] w-full overflow-hidden rounded bg-white/10">
@@ -1856,6 +1935,54 @@ function LocationsTabs() {
                     </div>
 
                     <div className="mt-7 grid items-stretch gap-8 md:grid-cols-2">
+                        {isComingSoon ? (
+                        <div
+                            ref={leftTopRef}
+                            className="relative flex flex-col overflow-hidden rounded-2xl border border-[#e4b892]/25 bg-gradient-to-b from-[#13273f]/70 to-[#0b1b2b]/40 p-6"
+                            style={{ minHeight: MAP_HEIGHT }}
+                        >
+                            <span className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#e4b892] to-transparent opacity-80" />
+                            <span className="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full bg-[#e4b892]/10 blur-3xl" />
+
+                            <div className="text-[11px] uppercase tracking-[.28em] text-[#e4b892]/80">
+                                {t("locations.comingSoon.eyebrow")}
+                            </div>
+                            <h5 className="font-display mt-2 text-[26px] font-semibold leading-snug">
+                                <span className="golden-sweep">{t("locations.comingSoon.title")}</span>
+                            </h5>
+                            <p className="mt-3 text-[15px] leading-relaxed text-white/75">
+                                {t("locations.comingSoon.description")}
+                            </p>
+
+                            <div className="mt-5 h-px w-full bg-gradient-to-r from-transparent via-[#e4b892]/40 to-transparent" />
+
+                            <ul className="mt-5 flex-1 space-y-3">
+                                {(t("locations.comingSoon.perks", { returnObjects: true, defaultValue: [] }) || []).map((perk, i) => (
+                                    <li key={i} className="flex items-start gap-3">
+                                        <span className="mt-[3px] grid h-5 w-5 shrink-0 place-items-center rounded-full bg-[#e4b892]/15 ring-1 ring-[#e4b892]/30">
+                                            <svg viewBox="0 0 24 24" className="h-3 w-3 text-[#e4b892]" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                                <path d="M20 6L9 17l-5-5" />
+                                            </svg>
+                                        </span>
+                                        <span className="text-[15px] leading-relaxed text-white/85">{perk}</span>
+                                    </li>
+                                ))}
+                            </ul>
+
+                            <a
+                                href={waHref}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#d8a07b] via-[#e4b892] to-[#d8a07b] px-5 py-2.5 text-sm font-semibold text-[#0b1b2b] shadow-[0_8px_24px_rgba(216,160,123,.28)] transition hover:brightness-110"
+                            >
+                                <WhatsAppIcon />
+                                {t("locations.comingSoon.notifyCta")}
+                            </a>
+                            <p className="mt-2.5 text-center text-xs leading-relaxed text-white/50">
+                                {t("locations.comingSoon.notifyNote")}
+                            </p>
+                        </div>
+                        ) : (
                         <div
                             ref={leftTopRef}
                             className="relative flex flex-col rounded-2xl border border-[#e4b892]/15 bg-[#0b1b2b]/40 p-5"
@@ -1916,6 +2043,7 @@ function LocationsTabs() {
                                 </a>
                             </div>
                         </div>
+                        )}
 
                         <div
                             className="overflow-hidden rounded-2xl border border-[#e4b892]/15 bg-black/20 shadow-[0_10px_25px_rgba(0,0,0,.3)]"
@@ -1931,6 +2059,7 @@ function LocationsTabs() {
                             />
                         </div>
 
+                        {!isComingSoon && (
                         <div
                             className="relative flex flex-col rounded-2xl border border-[#e4b892]/15 bg-[#0b1b2b]/40 p-5"
                             style={isMdUp && rightHeight ? { height: `${rightHeight}px` } : undefined}
@@ -1959,10 +2088,11 @@ function LocationsTabs() {
                                 ))}
                             </ul>
                         </div>
+                        )}
 
                         <div
                             ref={rightCardRef}
-                            className="relative rounded-2xl border border-[#e4b892]/15 bg-[#0b1b2b]/40 p-4"
+                            className={`relative rounded-2xl border border-[#e4b892]/15 bg-[#0b1b2b]/40 p-4 ${isComingSoon ? "md:col-span-2" : ""}`}
                         >
                             <span className="pointer-events-none absolute left-0 top-0 h-[2px] w-6 rounded-r bg-[#e4b89266]" />
                             <span className="pointer-events-none absolute left-0 top-0 h-6 w-[2px] rounded-b bg-[#e4b89266]" />
@@ -1971,6 +2101,11 @@ function LocationsTabs() {
 
                             <div className="text-xs uppercase tracking-[.2em] text-white/50">{t("locations.labels.address")}</div>
                             <p className="mt-2 text-[15px] leading-relaxed text-white/90">{active.address}</p>
+                            {isComingSoon && (
+                                <p className="mt-2 text-[13px] italic leading-relaxed text-[#e4b892]/80">
+                                    {t("locations.comingSoon.addressNote")}
+                                </p>
+                            )}
                             <div className="mt-3 flex flex-wrap gap-2">
                                 <button
                                     onClick={() => copy(active.address)}
@@ -1995,9 +2130,9 @@ function LocationsTabs() {
 
                             <div className="mt-6 text-xs uppercase tracking-[.2em] text-white/50">{t("locations.labels.followUs")}</div>
                             <p className="mt-2 text-[15px] leading-relaxed text-white/90">
-                                {tab === "Dental City"
-                                    ? t("locations.follow.dc")
-                                    : t("locations.follow.kids")}
+                                {tab === "Dental City" && t("locations.follow.dc")}
+                                {tab === "Dental City Kids & Family" && t("locations.follow.kids")}
+                                {isComingSoon && t("locations.comingSoon.followNote")}
                             </p>
                             <div className="mt-3 flex flex-wrap gap-3">
                                 {active.socials.map(({ key, label, href, icon: Icon }) => {
@@ -2035,6 +2170,14 @@ function ClockIcon() {
         <svg viewBox="0 0 24 24" className="h-5 w-5 text-[#d8a07b]" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="12" cy="12" r="10" />
             <path d="M12 6v6l4 2" />
+        </svg>
+    );
+}
+function SparkleIcon() {
+    return (
+        <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="currentColor" aria-hidden>
+            <path d="M12 2.5l1.9 5.1 5.1 1.9-5.1 1.9L12 16.5l-1.9-5.1L5 9.5l5.1-1.9L12 2.5Z" />
+            <path d="M18.5 15l.9 2.4 2.4.9-2.4.9-.9 2.4-.9-2.4-2.4-.9 2.4-.9.9-2.4Z" opacity=".65" />
         </svg>
     );
 }

@@ -450,7 +450,25 @@
         },
         "msg": {
             "dc": "您好，我想在 Dental City 预约一个看诊时间。",
-            "kids": "您好，我想在 Dental City Kids 预约一个看诊时间。"
+            "kids": "您好，我想在 Dental City Kids 预约一个看诊时间。",
+            "providencia": "您好，我想了解 Dental City Providencia 新诊所的开业信息。"
+        },
+        "comingSoon": {
+            "badge": "即将开业",
+            "eyebrow": "全新诊所",
+            "title": "即将登陆 Providencia",
+            "description": "我们正在 Providencia 核心地段的 CentrOttawa Plaza 筹备新诊所。开业后将公布电话、营业时间与在线预约。",
+            "perks": [
+                "您熟悉的全部专科项目，由同一支 Dental City 团队提供。",
+                "数字化口腔诊疗：口内扫描、CBCT 断层影像与自有技工所。",
+                "位于 Providencia 的优越地段，交通便利并配有停车位。"
+            ],
+            "notifyCta": "开业时通知我",
+            "notifyNote": "诊所开业后，我们会通过 WhatsApp 与您联系。",
+            "openingLabel": "开业",
+            "openingValue": "即将开业",
+            "addressNote": "此为参考位置，具体铺位号将在开业前确认。",
+            "followNote": "关注我们的社交媒体，第一时间获知 Dental City Providencia 的开业消息。"
         }
     },
     "reviews": {
