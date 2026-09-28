@@ -1,9 +1,10 @@
 ﻿import React, { useMemo, useState } from "react";
 import TopBar from "./TopBar.jsx";
 import Footer from "./Footer.jsx";
+import CazacariesGame from "./CazacariesGame.jsx";
 
 /**
- * DentalCity – Quizzes (solo quiz, sin mini-juego)
+ * DentalCity – Quizzes + mini-juego Cazacaries
  * - Misma UI y flujo.
  * - Nuevos temas solicitados.
  */
@@ -831,6 +832,27 @@ export default function DentalCityQuizzes() {
                                 </div>
                             </div>
                         )}
+                    </section>
+
+                    {/* Mini-juego */}
+                    <section
+                        id="cazacaries"
+                        className="mt-10 rounded-3xl bg-white/[.04] border border-white/10 p-5 sm:p-8 shadow-[0_18px_50px_rgba(0,0,0,.35)]"
+                    >
+                        <div className="text-center">
+                            <p className="text-xs uppercase tracking-[.3em] text-[#e4b892]/80">MINI-JUEGO</p>
+                            <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
+                                <span className="golden-sweep">Cazacaries</span>
+                            </h2>
+                            <p className="mx-auto mt-3 max-w-xl text-white/80">
+                                Aprende jugando: elimina las bacterias antes de que se conviertan en caries, aprovecha
+                                el hilo dental y el flúor, y no caigas en los dulces.
+                            </p>
+                        </div>
+
+                        <div className="mt-8">
+                            <CazacariesGame />
+                        </div>
                     </section>
                 </div>
             </div>
