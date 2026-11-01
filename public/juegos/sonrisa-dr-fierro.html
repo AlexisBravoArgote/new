@@ -126,7 +126,7 @@ const CONFIG = {
   color2: "#ff6b8b"
 };
 // Aspecto del doctor (cámbialo para que se parezca más)
-const DOC = {style: 'doc', skin: '#f1cfb4', hair: '#3b2a1e', eye: '#5a3a22', coat: true, lips: '#b0606a'};
+const DOC = {style: 'doc', skin: '#f1cfb4', hair: '#3b2a1e', eye: '#5a3a22', coat: true, badge: CONFIG.doctor};
 
 const W = 400, H = 500;
 const $ = id => document.getElementById(id);
@@ -189,120 +189,98 @@ function beep(f, d, type = 'sine', v = .06, slide = 0){
 }
 const chime = () => { beep(523, .15, 'triangle', .06); setTimeout(() => beep(659, .15, 'triangle', .06), 140); setTimeout(() => beep(784, .3, 'triangle', .06), 280); };
 
-/* ===== Personajes ===== */
+/* ===== Personajes (estilo plano y simple) ===== */
 function drawPerson(c, x, y, s, o){
-  const hair = o.hair, hairD = shade(hair, -.35), hairL = shade(hair, .28);
-  const fem = o.style === 'fem';
+  const st = o.style, fem = st === 'fem' || st === 'linda';
+  const skin = o.skin, skinD = shade(skin, -.1), hair = o.hair;
+  const ink = '#3a2a22';
   c.save(); c.translate(x, y); c.scale(s, s);
   c.lineCap = 'round'; c.lineJoin = 'round';
+  // cabello de atrás
   c.fillStyle = hair;
-  if (fem){
-    c.beginPath(); c.ellipse(0, -7, 30, 31, 0, 0, 7); c.fill();
-    c.beginPath(); c.ellipse(31, -10, 8, 18, .5, 0, 7); c.fill();
-    c.beginPath(); c.ellipse(35, 8, 7, 16, .15, 0, 7); c.fill();
-  } else {
-    c.beginPath(); c.ellipse(0, -10, 28.5, 26, 0, 0, 7); c.fill();
+  if (st === 'linda'){
+    c.beginPath(); c.moveTo(-30, 0);
+    c.bezierCurveTo(-32, -30, -16, -38, 0, -38); c.bezierCurveTo(16, -38, 32, -30, 30, 0);
+    c.lineTo(32, 36); c.quadraticCurveTo(0, 44, -32, 36); c.closePath(); c.fill();
+  } else if (st === 'fem'){
+    c.beginPath(); c.moveTo(-29, 0);
+    c.bezierCurveTo(-31, -30, -16, -37, 0, -37); c.bezierCurveTo(16, -37, 31, -30, 29, 0);
+    c.lineTo(30, 56); c.lineTo(-30, 56); c.closePath(); c.fill();
   }
-  const top = o.coat ? '#ffffff' : (fem ? '#f6b8c8' : '#8fb3e0');
-  c.fillStyle = top; rr(c, -56, 42, 112, 100, 30, 0); c.fill();
-  c.strokeStyle = 'rgba(0,0,0,.08)'; c.lineWidth = 1.2; c.stroke();
-  c.fillStyle = shade(o.skin, -.1); rr(c, -8.5, 20, 17, 26, 3, 3); c.fill();
+  // cuerpo
+  const body = () => {
+    c.beginPath(); c.moveTo(-10, 38);
+    c.bezierCurveTo(-34, 40, -54, 50, -56, 80); c.lineTo(-58, 146); c.lineTo(58, 146); c.lineTo(56, 80);
+    c.bezierCurveTo(54, 50, 34, 40, 10, 38); c.closePath();
+  };
+  c.fillStyle = skinD; c.fillRect(-8, 18, 16, 24);
   if (o.coat){
+    body(); c.fillStyle = '#ffffff'; c.fill();
     c.fillStyle = CONFIG.color;
-    c.beginPath(); c.moveTo(-13, 42); c.lineTo(13, 42); c.lineTo(0, 64); c.closePath(); c.fill();
-    c.strokeStyle = '#cfdade'; c.lineWidth = 1.2; c.fillStyle = '#f4f7f8';
-    [-1, 1].forEach(sd => {
-      c.beginPath(); c.moveTo(sd * 15, 42); c.lineTo(sd * 30, 46); c.lineTo(sd * 12, 88); c.lineTo(sd * 3, 70); c.closePath();
-      c.fill(); c.stroke();
-    });
-    c.beginPath(); c.moveTo(0, 70); c.lineTo(0, 142); c.stroke();
-    c.fillStyle = '#ffffff'; rr(c, 16, 76, 36, 16, 2.5, 2.5); c.fill();
-    c.strokeStyle = CONFIG.color; c.lineWidth = 1; c.stroke();
-    c.fillStyle = CONFIG.color; c.fillRect(16, 76, 36, 3.5);
-    c.fillStyle = '#12353a'; c.textAlign = 'center'; c.textBaseline = 'middle';
-    c.font = 'bold 4.4px system-ui'; c.fillText(CONFIG.doctor, 34, 84);
-    c.font = '3.8px system-ui'; c.fillText(CONFIG.especialidad, 34, 88.5);
-    c.strokeStyle = '#cfdade'; c.beginPath(); c.moveTo(-42, 100); c.lineTo(-20, 100); c.stroke();
-    c.fillStyle = CONFIG.color; c.fillRect(-35, 91, 2.5, 10);
-  } else if (o.bib){
-    c.fillStyle = '#a9dcef'; rr(c, -24, 54, 48, 38, 4, 4); c.fill();
-    c.strokeStyle = '#7cc4e0'; c.lineWidth = 1.3;
-    c.beginPath(); c.moveTo(-22, 55); c.lineTo(-9, 43); c.moveTo(22, 55); c.lineTo(9, 43); c.stroke();
+    c.beginPath(); c.moveTo(-12, 38); c.lineTo(0, 68); c.lineTo(12, 38); c.closePath(); c.fill();
+    c.fillStyle = skinD;
+    c.beginPath(); c.moveTo(-8, 38); c.lineTo(0, 52); c.lineTo(8, 38); c.closePath(); c.fill();
+    c.strokeStyle = '#dbe4e7'; c.lineWidth = 1.5;
+    c.beginPath(); c.moveTo(-14, 39); c.lineTo(0, 74); c.lineTo(14, 39); c.stroke();
+    c.beginPath(); c.moveTo(0, 74); c.lineTo(0, 146); c.stroke();
+    // gafete
+    c.fillStyle = CONFIG.color; rr(c, 18, 82, 30, 12, 3, 3); c.fill();
+    c.fillStyle = '#ffffff'; c.textAlign = 'center'; c.textBaseline = 'middle';
+    c.font = '600 4.4px system-ui'; c.fillText(o.badge || '', 33, 88.3, 27);
+  } else {
+    body(); c.fillStyle = fem ? '#f4c3cd' : '#b7cbe6'; c.fill();
+    if (o.bib){
+      c.fillStyle = '#bfe4f2'; rr(c, -22, 56, 44, 36, 4, 4); c.fill();
+      c.strokeStyle = '#9fb3bc'; c.lineWidth = 1.2;
+      c.beginPath(); c.moveTo(-20, 57); c.lineTo(-8, 40); c.moveTo(20, 57); c.lineTo(8, 40); c.stroke();
+    }
   }
-  c.fillStyle = o.skin;
-  c.beginPath(); c.ellipse(-25.5, 2, 4.5, 7, 0, 0, 7); c.fill();
-  c.beginPath(); c.ellipse(25.5, 2, 4.5, 7, 0, 0, 7); c.fill();
-  if (o.style === 'doc'){ c.beginPath(); c.ellipse(0, 1, 26.5, 31, 0, 0, 7); c.fill(); }
-  else { c.beginPath(); c.ellipse(0, 0, 26, 31, 0, 0, 7); c.fill(); }
-  c.fillStyle = 'rgba(0,0,0,.05)'; c.beginPath(); c.ellipse(0, 25, 15, 5, 0, 0, 7); c.fill();
+  // orejas y cara
+  c.fillStyle = skin;
+  if (!fem){ c.beginPath(); c.arc(-24, 2, 5, 0, 7); c.arc(24, 2, 5, 0, 7); c.fill(); }
+  c.beginPath(); c.ellipse(0, 0, 24, 28, 0, 0, 7); c.fill();
   // cabello de enfrente
   c.fillStyle = hair;
-  if (fem){
-    c.beginPath(); c.moveTo(-27, 2);
-    c.bezierCurveTo(-30, -26, -10, -36, 6, -33);
-    c.bezierCurveTo(22, -31, 30, -18, 27, 0);
-    c.bezierCurveTo(24, -10, 18, -18, 10, -20);
-    c.bezierCurveTo(0, -16, -14, -14, -20, -10);
-    c.bezierCurveTo(-24, -6, -25, -2, -27, 2); c.fill();
-    c.strokeStyle = hairL; c.lineWidth = 1.2;
-    c.beginPath(); c.moveTo(-18, -26); c.bezierCurveTo(-8, -30, 6, -30, 16, -24); c.stroke();
-  } else if (o.style === 'doc'){
-    c.beginPath(); c.moveTo(-27, -1);
-    c.bezierCurveTo(-30, -28, -14, -38, 2, -36);
-    c.bezierCurveTo(22, -36, 31, -24, 27.5, -1);
-    c.bezierCurveTo(26, -12, 23, -19, 17, -22);
-    c.bezierCurveTo(10, -25, 0, -22, -8, -25);
-    c.bezierCurveTo(-16, -22, -22, -16, -24, -10);
-    c.bezierCurveTo(-25.5, -7, -26, -4, -27, -1); c.fill();
-    c.strokeStyle = hairL; c.lineWidth = 1.2;
-    c.beginPath(); c.moveTo(-8, -33); c.bezierCurveTo(2, -35, 14, -32, 22, -26); c.stroke();
-    c.strokeStyle = hairD; c.lineWidth = 1;
-    c.beginPath(); c.moveTo(-8, -34); c.quadraticCurveTo(-10, -30, -8, -25); c.stroke();
+  if (st === 'linda'){
+    c.beginPath(); c.moveTo(-26, 4);
+    c.bezierCurveTo(-28, -24, -12, -34, 4, -32);
+    c.bezierCurveTo(20, -30, 28, -18, 26, 4);
+    c.bezierCurveTo(20, -10, 10, -18, -6, -20);
+    c.bezierCurveTo(-16, -14, -22, -6, -26, 4); c.closePath(); c.fill();
+  } else if (st === 'fem'){
+    c.beginPath(); c.moveTo(-25, 6);
+    c.bezierCurveTo(-27, -24, -12, -31, 0, -31);
+    c.bezierCurveTo(12, -31, 27, -24, 25, 6);
+    c.bezierCurveTo(22, -8, 12, -18, 0, -20);
+    c.bezierCurveTo(-12, -18, -22, -8, -25, 6); c.closePath(); c.fill();
   } else {
-    c.beginPath(); c.moveTo(-27, -2);
-    c.bezierCurveTo(-30, -28, -12, -37, 4, -35);
-    c.bezierCurveTo(22, -34, 31, -22, 27, -2);
-    c.bezierCurveTo(25, -12, 22, -18, 16, -20);
-    c.bezierCurveTo(6, -24, -8, -22, -18, -18);
-    c.bezierCurveTo(-23, -14, -25, -8, -27, -2); c.fill();
-    c.strokeStyle = hairL; c.lineWidth = 1.2;
-    c.beginPath(); c.moveTo(-14, -28); c.bezierCurveTo(-4, -32, 8, -31, 18, -26); c.stroke();
+    c.beginPath(); c.moveTo(-25, -2);
+    c.bezierCurveTo(-27, -28, -12, -36, 2, -35);
+    c.bezierCurveTo(18, -34, 28, -26, 25, -2);
+    c.bezierCurveTo(22, -14, 14, -18, 4, -19);
+    c.bezierCurveTo(-8, -19, -18, -14, -25, -2); c.closePath(); c.fill();
   }
-  // ojos y cejas
-  [-1, 1].forEach(sd => {
-    const ex = sd * 10.5, ey = -1;
-    c.save();
-    c.beginPath(); c.moveTo(ex - 5.5, ey);
-    c.quadraticCurveTo(ex, ey - 4.6, ex + 5.5, ey); c.quadraticCurveTo(ex, ey + 3.8, ex - 5.5, ey); c.closePath();
-    c.fillStyle = '#fbfbfb'; c.fill(); c.clip();
-    c.fillStyle = o.eye; c.beginPath(); c.arc(ex, ey - .2, 3.1, 0, 7); c.fill();
-    c.fillStyle = '#1a1410'; c.beginPath(); c.arc(ex, ey - .2, 1.45, 0, 7); c.fill();
-    c.fillStyle = 'rgba(255,255,255,.9)'; c.beginPath(); c.arc(ex + 1, ey - 1.3, .8, 0, 7); c.fill();
-    c.restore();
-    c.strokeStyle = '#2a211b'; c.lineWidth = fem ? 1.4 : 1.1;
-    c.beginPath(); c.moveTo(ex - 5.6, ey + .2); c.quadraticCurveTo(ex, ey - 4.9, ex + 5.6, ey); c.stroke();
-    if (fem){ c.beginPath(); c.moveTo(ex + sd * 5.4, ey - .3); c.lineTo(ex + sd * 7, ey - 1.8); c.stroke(); }
-    c.strokeStyle = hairD; c.lineWidth = fem ? 1.5 : 2.3;
-    c.beginPath(); c.moveTo(ex - sd * 4.5, ey - 7.2); c.quadraticCurveTo(ex + sd * 1, ey - 9.8, ex + sd * 6.2, ey - 7.8); c.stroke();
-  });
-  c.strokeStyle = shade(o.skin, -.25); c.lineWidth = 1.1;
-  c.beginPath(); c.moveTo(-1, 2); c.quadraticCurveTo(-2.8, 8.5, -.5, 10.3); c.stroke();
-  c.beginPath(); c.moveTo(-3, 10.4); c.quadraticCurveTo(0, 12, 3, 10.4); c.stroke();
-  c.fillStyle = fem ? 'rgba(235,120,130,.12)' : 'rgba(220,120,110,.07)';
-  c.beginPath(); c.ellipse(-15, 9, 5, 3, 0, 0, 7); c.fill();
-  c.beginPath(); c.ellipse(15, 9, 5, 3, 0, 0, 7); c.fill();
-  if (o.style === 'doc'){ // sombra de barba muy sutil
-    c.fillStyle = 'rgba(60,40,30,.06)'; c.beginPath(); c.ellipse(0, 20, 18, 11, 0, 0, Math.PI); c.fill();
-  }
+  // ojos
+  c.fillStyle = ink;
+  c.beginPath(); c.arc(-8.5, 1, 2.3, 0, 7); c.arc(8.5, 1, 2.3, 0, 7); c.fill();
+  // cejas
+  c.strokeStyle = st === 'linda' ? '#b89250' : shade(hair, -.2); c.lineWidth = 1.6;
+  c.beginPath(); c.moveTo(-11.5, -5.5); c.quadraticCurveTo(-8.5, -7.5, -5.5, -6);
+  c.moveTo(11.5, -5.5); c.quadraticCurveTo(8.5, -7.5, 5.5, -6); c.stroke();
+  // mejillas
+  c.fillStyle = 'rgba(240,120,130,.15)';
+  c.beginPath(); c.arc(-14, 9, 4, 0, 7); c.arc(14, 9, 4, 0, 7); c.fill();
   // boca
-  c.fillStyle = '#ffffff';
-  c.beginPath(); c.moveTo(-9, 15); c.quadraticCurveTo(0, 22.5, 9, 15); c.quadraticCurveTo(0, 17.3, -9, 15); c.closePath(); c.fill();
-  c.strokeStyle = o.lips; c.lineWidth = 1.5;
-  c.beginPath(); c.moveTo(-9.5, 14.8); c.quadraticCurveTo(0, 17, 9.5, 14.8); c.stroke();
-  c.beginPath(); c.moveTo(-9, 15.2); c.quadraticCurveTo(0, 22.8, 9, 15.2); c.stroke();
-  c.globalAlpha = .45; c.lineWidth = 1.3;
-  c.beginPath(); c.moveTo(-5, 23.3); c.quadraticCurveTo(0, 24.8, 5, 23.3); c.stroke();
-  c.globalAlpha = 1;
+  if (o.mouth === 'open'){
+    c.fillStyle = '#7a2a36';
+    c.beginPath(); c.moveTo(-8, 11); c.quadraticCurveTo(0, 10, 8, 11); c.quadraticCurveTo(0, 24, -8, 11); c.fill();
+    c.fillStyle = '#ffffff'; rr(c, -6.5, 11, 13, 3.4, 1, 1); c.fill();
+    if (o.brackets){ for (let k = 0; k < 4; k++){ c.fillStyle = ligaColor(k); c.fillRect(-5.6 + k * 3.2, 11.8, 1.8, 1.8); } }
+  } else {
+    c.fillStyle = '#ffffff'; c.strokeStyle = ink; c.lineWidth = 1.5;
+    c.beginPath(); c.moveTo(-6.5, 11); c.quadraticCurveTo(0, 17.5, 6.5, 11); c.closePath(); c.fill(); c.stroke();
+    if (o.brackets){ for (let k = 0; k < 3; k++){ c.fillStyle = ligaColor(k); c.fillRect(-4.2 + k * 3.2, 11.6, 1.6, 1.6); } }
+  }
   c.restore();
 }
 function drawPortrait(canvas, size, look){
