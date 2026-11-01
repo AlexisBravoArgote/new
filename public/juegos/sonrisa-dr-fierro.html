@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="robots" content="noindex">
+<title>Tu sonrisa con el Dr. Fierro · Dental City</title>
+<style>
+  :root{--bg:#eaf7f6;--ink:#12353a;--accent:#14a3a0;--accent2:#ff6b8b;--card:#ffffff;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:transparent;overflow:hidden}
+  body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);
+    display:flex;justify-content:center;align-items:flex-start;-webkit-tap-highlight-color:transparent;
+    user-select:none;-webkit-user-select:none}
+  #wrap{width:100%;height:100%}
+  #stage{position:relative;width:100%;height:100%;border-radius:24px;overflow:hidden;background:#dff4f2;touch-action:none}
+  canvas#cv{display:block;width:100%;height:100%}
+  .hidden{display:none!important}
+  .screen{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:20px;background:rgba(234,247,246,.97);gap:10px;overflow:auto}
+  h1{font-size:30px;color:var(--accent);letter-spacing:-.5px;line-height:1.05}
+  .brand{font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--accent2)}
+  .sub{font-size:13.5px;line-height:1.35;max-width:330px}
+  label{font-size:13px;font-weight:700}
+  input[type=text]{font:inherit;font-size:17px;padding:9px 14px;border-radius:12px;border:2px solid #cfe7e5;width:220px;text-align:center;color:var(--ink);outline:none}
+  input[type=text]:focus{border-color:var(--accent)}
+  .sw{display:flex;gap:8px;justify-content:center}
+  .sw button{width:32px;height:32px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 2px #cfe7e5;cursor:pointer}
+  .sw button.on{box-shadow:0 0 0 3px var(--accent)}
+  .seg{display:flex;background:#fff;border-radius:999px;padding:3px;box-shadow:0 0 0 2px #cfe7e5}
+  .seg button{border:0;background:none;font:inherit;font-weight:800;font-size:14px;padding:7px 18px;border-radius:999px;color:var(--ink);cursor:pointer}
+  .seg button.on{background:var(--accent);color:#fff}
+  #preview{width:96px;height:96px}
+  .btn{background:var(--accent);color:#fff;border:0;border-radius:999px;padding:12px 28px;font-size:17px;font-weight:800;
+    cursor:pointer;box-shadow:0 4px 0 #0d7775;font-family:inherit;text-decoration:none;display:inline-block}
+  .btn:active{transform:translateY(3px);box-shadow:0 1px 0 #0d7775}
+  .btn.alt{background:var(--accent2);box-shadow:0 4px 0 #c94a66}
+  #dlg{position:absolute;inset:0;display:flex;align-items:flex-end;padding:12px;cursor:pointer}
+  #dlgBox{background:#fff;border-radius:18px;padding:12px 14px;display:flex;gap:12px;width:100%;
+    box-shadow:0 6px 20px rgba(18,53,58,.25);border:3px solid var(--accent);min-height:104px}
+  #dlgPic{width:64px;height:64px;border-radius:50%;background:#dff4f2;flex:none}
+  #dlgName{font-weight:800;color:var(--accent);font-size:14px}
+  #dlgText{font-size:15.5px;line-height:1.38;margin-top:2px;min-height:44px}
+  #dlgNext{font-size:11px;opacity:.55;text-align:right;margin-top:2px}
+  #shades{position:absolute;left:0;right:0;bottom:0;background:rgba(255,255,255,.97);padding:12px 12px 16px;text-align:center;
+    border-radius:20px 20px 0 0;box-shadow:0 -4px 16px rgba(0,0,0,.1)}
+  #shades p{font-weight:800;margin-bottom:8px}
+  #shadeSw{display:flex;gap:6px;justify-content:center;margin-bottom:12px}
+  #shadeSw button{width:36px;height:54px;border-radius:9px 9px 16px 16px;border:2px solid #d6e2e3;cursor:pointer;
+    font:inherit;font-size:11px;font-weight:800;color:#6b5a3e;display:flex;align-items:flex-end;justify-content:center;padding-bottom:4px}
+  #shadeSw button.on{border-color:var(--accent);box-shadow:0 0 0 3px rgba(20,163,160,.35);transform:translateY(-3px)}
+  .cert{background:#fff;border-radius:18px;padding:16px 18px;border:3px dashed var(--accent);max-width:340px;width:100%}
+  .cert .t{font-size:12px;letter-spacing:2px;font-weight:800;color:var(--accent2);text-transform:uppercase}
+  .cert .n{font-size:28px;font-weight:900;margin:4px 0;color:var(--ink);word-break:break-word}
+  .cert .s{font-size:30px;letter-spacing:4px;margin:4px 0;color:#f5b301}
+  .cert .d{font-size:13px;line-height:1.35}
+  .cert .sig{margin-top:10px;padding-top:6px;border-top:1px solid #d6e7e6;font-size:13px;font-weight:700}
+  .row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+  .small{font-size:12px;opacity:.7}
+</style>
+</head>
+<body>
+<div id="wrap">
+  <div id="stage">
+    <canvas id="cv"></canvas>
+
+    <div class="screen" id="title">
+      <div class="brand" id="brandTop">Dental City</div>
+      <h1 id="titleH"></h1>
+      <p class="sub">Eres paciente de rehabilitación oral. El doctor va a restaurar tu sonrisa con un implante, coronas y una resina, y tú lo ayudarás en cada paso.</p>
+      <canvas id="preview"></canvas>
+      <input type="text" id="name" maxlength="14" placeholder="Tu nombre" autocomplete="off">
+      <div class="seg" id="genderSeg"><button data-g="f" class="on">Paciente mujer</button><button data-g="m">Paciente hombre</button></div>
+      <label>Tono de piel</label>
+      <div class="sw" id="skinSw"></div>
+      <label>Color de cabello</label>
+      <div class="sw" id="hairSw"></div>
+      <button class="btn" id="startBtn">Entrar a la clínica</button>
+    </div>
+
+    <div id="shades" class="hidden">
+      <p>¿Qué tono se parece más a tu diente?</p>
+      <div id="shadeSw"></div>
+      <button class="btn" id="shadeOk">Elegir este tono</button>
+    </div>
+
+    <div id="dlg" class="hidden">
+      <div id="dlgBox">
+        <canvas id="dlgPic"></canvas>
+        <div style="flex:1">
+          <div id="dlgName"></div>
+          <div id="dlgText"></div>
+          <div id="dlgNext">toca para continuar ▸</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen hidden" id="end">
+      <div class="cert">
+        <div class="t">Certificado de sonrisa</div>
+        <div class="d">Otorgado a</div>
+        <div class="n" id="certName"></div>
+        <div class="s" id="certStars"></div>
+        <div class="d" id="certText"></div>
+        <div class="sig" id="certSig"></div>
+      </div>
+      <div class="small" id="certScore"></div>
+      <div class="row">
+        <button class="btn" id="againBtn">Jugar otra vez</button>
+        <a class="btn alt" id="cta" target="_top" rel="noopener"></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== Configuración: edita aquí ===== */
+const CONFIG = {
+  clinica: "Dental City",
+  doctor: "Dr. Fernando Fierro",
+  doctorCorto: "Dr. Fierro",
+  especialidad: "Rehabilitador oral",
+  ctaTexto: "Agenda tu valoración",
+  ctaUrl: "/#ubicacion",
+  color: "#14a3a0",
+  color2: "#ff6b8b"
+};
+// Aspecto del doctor (cámbialo para que se parezca más)
+const DOC = {style: 'doc', skin: '#f1cfb4', hair: '#3b2a1e', eye: '#5a3a22', coat: true, lips: '#b0606a'};
+
+const W = 400, H = 500;
+const $ = id => document.getElementById(id);
+const cv = $('cv'), ctx = cv.getContext('2d');
+
+/* ===== Paciente ===== */
+const SKINS = ['#f7d7c0', '#e0ac85', '#a8714f'];
+const HAIRS = ['#5a3a22', '#1f1a17', '#e2b650', '#b5532a'];
+const P = {name: 'Paciente', gender: 'f', skin: SKINS[0], hair: HAIRS[0], sc: [0, 0, 0, 0, 0]};
+const patientLook = extra => Object.assign({style: P.gender === 'f' ? 'fem' : 'masc', skin: P.skin, hair: P.hair,
+  eye: '#4a2e1c', bib: true, lips: P.gender === 'f' ? '#c2415a' : '#a8575f'}, extra || {});
+
+/* ===== Guía de colores (tonos dentales) ===== */
+const SHADES = [['B1', '#fbf8ef'], ['A1', '#f7f0df'], ['B2', '#f4ead0'], ['A2', '#f1e3c4'],
+                ['C1', '#ebe4d2'], ['A3', '#ecd9b0'], ['B3', '#e8d2a0'], ['A3.5', '#e2c796']];
+const TARGET = 1; // el tono real de la paciente (A1)
+const NAT = SHADES[TARGET][1];
+
+/* ===== Utilidades ===== */
+const rand = (a, b) => a + Math.random() * (b - a);
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const ease = v => v < .5 ? 2 * v * v : 1 - Math.pow(-2 * v + 2, 2) / 2;
+function shade(hex, amt){
+  const n = parseInt(hex.slice(1), 16);
+  const f = v => clamp(Math.round(amt < 0 ? v * (1 + amt) : v + (255 - v) * amt), 0, 255);
+  return `rgb(${f(n >> 16)},${f((n >> 8) & 255)},${f(n & 255)})`;
+}
+function rr(c, l, y, w, h, rT, rB){
+  const r = l + w, b = y + h;
+  c.beginPath();
+  c.moveTo(l + rT, y); c.lineTo(r - rT, y); c.quadraticCurveTo(r, y, r, y + rT);
+  c.lineTo(r, b - rB); c.quadraticCurveTo(r, b, r - rB, b);
+  c.lineTo(l + rB, b); c.quadraticCurveTo(l, b, l, b - rB);
+  c.lineTo(l, y + rT); c.quadraticCurveTo(l, y, l + rT, y);
+  c.closePath();
+}
+function setupCanvas(c, w, h){
+  const d = window.devicePixelRatio || 1;
+  c.width = w * d; c.height = h * d;
+  const x = c.getContext('2d'); x.setTransform(d, 0, 0, d, 0, 0); return x;
+}
+function resize(){
+  const r = cv.getBoundingClientRect(), d = window.devicePixelRatio || 1;
+  cv.width = Math.round(r.width * d); cv.height = Math.round(r.height * d);
+  ctx.setTransform(cv.width / W, 0, 0, cv.height / H, 0, 0);
+}
+window.addEventListener('resize', resize);
+
+/* ===== Sonido ===== */
+let actx = null;
+function beep(f, d, type = 'sine', v = .06, slide = 0){
+  try {
+    actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+    const o = actx.createOscillator(), g = actx.createGain(), n = actx.currentTime;
+    o.type = type; o.frequency.setValueAtTime(f, n);
+    if (slide) o.frequency.exponentialRampToValueAtTime(slide, n + d);
+    g.gain.setValueAtTime(v, n); g.gain.exponentialRampToValueAtTime(.001, n + d);
+    o.connect(g).connect(actx.destination); o.start(n); o.stop(n + d);
+  } catch (e) {}
+}
+const chime = () => { beep(523, .15, 'triangle', .06); setTimeout(() => beep(659, .15, 'triangle', .06), 140); setTimeout(() => beep(784, .3, 'triangle', .06), 280); };
+
+/* ===== Personajes ===== */
+function drawPerson(c, x, y, s, o){
+  const hair = o.hair, hairD = shade(hair, -.35), hairL = shade(hair, .28);
+  const fem = o.style === 'fem';
+  c.save(); c.translate(x, y); c.scale(s, s);
+  c.lineCap = 'round'; c.lineJoin = 'round';
+  c.fillStyle = hair;
+  if (fem){
+    c.beginPath(); c.ellipse(0, -7, 30, 31, 0, 0, 7); c.fill();
+    c.beginPath(); c.ellipse(31, -10, 8, 18, .5, 0, 7); c.fill();
+    c.beginPath(); c.ellipse(35, 8, 7, 16, .15, 0, 7); c.fill();
+  } else {
+    c.beginPath(); c.ellipse(0, -10, 28.5, 26, 0, 0, 7); c.fill();
+  }
+  const top = o.coat ? '#ffffff' : (fem ? '#f6b8c8' : '#8fb3e0');
+  c.fillStyle = top; rr(c, -56, 42, 112, 100, 30, 0); c.fill();
+  c.strokeStyle = 'rgba(0,0,0,.08)'; c.lineWidth = 1.2; c.stroke();
+  c.fillStyle = shade(o.skin, -.1); rr(c, -8.5, 20, 17, 26, 3, 3); c.fill();
+  if (o.coat){
+    c.fillStyle = CONFIG.color;
+    c.beginPath(); c.moveTo(-13, 42); c.lineTo(13, 42); c.lineTo(0, 64); c.closePath(); c.fill();
+    c.strokeStyle = '#cfdade'; c.lineWidth = 1.2; c.fillStyle = '#f4f7f8';
+    [-1, 1].forEach(sd => {
+      c.beginPath(); c.moveTo(sd * 15, 42); c.lineTo(sd * 30, 46); c.lineTo(sd * 12, 88); c.lineTo(sd * 3, 70); c.closePath();
+      c.fill(); c.stroke();
+    });
+    c.beginPath(); c.moveTo(0, 70); c.lineTo(0, 142); c.stroke();
+    c.fillStyle = '#ffffff'; rr(c, 16, 76, 36, 16, 2.5, 2.5); c.fill();
+    c.strokeStyle = CONFIG.color; c.lineWidth = 1; c.stroke();
+    c.fillStyle = CONFIG.color; c.fillRect(16, 76, 36, 3.5);
+    c.fillStyle = '#12353a'; c.textAlign = 'center'; c.textBaseline = 'middle';
+    c.font = 'bold 4.4px system-ui'; c.fillText(CONFIG.doctor, 34, 84);
+    c.font = '3.8px system-ui'; c.fillText(CONFIG.especialidad, 34, 88.5);
+    c.strokeStyle = '#cfdade'; c.beginPath(); c.moveTo(-42, 100); c.lineTo(-20, 100); c.stroke();
+    c.fillStyle = CONFIG.color; c.fillRect(-35, 91, 2.5, 10);
+  } else if (o.bib){
+    c.fillStyle = '#a9dcef'; rr(c, -24, 54, 48, 38, 4, 4); c.fill();
+    c.strokeStyle = '#7cc4e0'; c.lineWidth = 1.3;
+    c.beginPath(); c.moveTo(-22, 55); c.lineTo(-9, 43); c.moveTo(22, 55); c.lineTo(9, 43); c.stroke();
+  }
+  c.fillStyle = o.skin;
+  c.beginPath(); c.ellipse(-25.5, 2, 4.5, 7, 0, 0, 7); c.fill();
+  c.beginPath(); c.ellipse(25.5, 2, 4.5, 7, 0, 0, 7); c.fill();
+  if (o.style === 'doc'){ c.beginPath(); c.ellipse(0, 1, 26.5, 31, 0, 0, 7); c.fill(); }
+  else { c.beginPath(); c.ellipse(0, 0, 26, 31, 0, 0, 7); c.fill(); }
+  c.fillStyle = 'rgba(0,0,0,.05)'; c.beginPath(); c.ellipse(0, 25, 15, 5, 0, 0, 7); c.fill();
+  // cabello de enfrente
+  c.fillStyle = hair;
+  if (fem){
+    c.beginPath(); c.moveTo(-27, 2);
+    c.bezierCurveTo(-30, -26, -10, -36, 6, -33);
+    c.bezierCurveTo(22, -31, 30, -18, 27, 0);
+    c.bezierCurveTo(24, -10, 18, -18, 10, -20);
+    c.bezierCurveTo(0, -16, -14, -14, -20, -10);
+    c.bezierCurveTo(-24, -6, -25, -2, -27, 2); c.fill();
+    c.strokeStyle = hairL; c.lineWidth = 1.2;
+    c.beginPath(); c.moveTo(-18, -26); c.bezierCurveTo(-8, -30, 6, -30, 16, -24); c.stroke();
+  } else if (o.style === 'doc'){
+    c.beginPath(); c.moveTo(-27, -1);
+    c.bezierCurveTo(-30, -28, -14, -38, 2, -36);
+    c.bezierCurveTo(22, -36, 31, -24, 27.5, -1);
+    c.bezierCurveTo(26, -12, 23, -19, 17, -22);
+    c.bezierCurveTo(10, -25, 0, -22, -8, -25);
+    c.bezierCurveTo(-16, -22, -22, -16, -24, -10);
+    c.bezierCurveTo(-25.5, -7, -26, -4, -27, -1); c.fill();
+    c.strokeStyle = hairL; c.lineWidth = 1.2;
+    c.beginPath(); c.moveTo(-8, -33); c.bezierCurveTo(2, -35, 14, -32, 22, -26); c.stroke();
+    c.strokeStyle = hairD; c.lineWidth = 1;
+    c.beginPath(); c.moveTo(-8, -34); c.quadraticCurveTo(-10, -30, -8, -25); c.stroke();
+  } else {
+    c.beginPath(); c.moveTo(-27, -2);
+    c.bezierCurveTo(-30, -28, -12, -37, 4, -35);
+    c.bezierCurveTo(22, -34, 31, -22, 27, -2);
+    c.bezierCurveTo(25, -12, 22, -18, 16, -20);
+    c.bezierCurveTo(6, -24, -8, -22, -18, -18);
+    c.bezierCurveTo(-23, -14, -25, -8, -27, -2); c.fill();
+    c.strokeStyle = hairL; c.lineWidth = 1.2;
+    c.beginPath(); c.moveTo(-14, -28); c.bezierCurveTo(-4, -32, 8, -31, 18, -26); c.stroke();
+  }
+  // ojos y cejas
+  [-1, 1].forEach(sd => {
+    const ex = sd * 10.5, ey = -1;
+    c.save();
+    c.beginPath(); c.moveTo(ex - 5.5, ey);
+    c.quadraticCurveTo(ex, ey - 4.6, ex + 5.5, ey); c.quadraticCurveTo(ex, ey + 3.8, ex - 5.5, ey); c.closePath();
+    c.fillStyle = '#fbfbfb'; c.fill(); c.clip();
+    c.fillStyle = o.eye; c.beginPath(); c.arc(ex, ey - .2, 3.1, 0, 7); c.fill();
+    c.fillStyle = '#1a1410'; c.beginPath(); c.arc(ex, ey - .2, 1.45, 0, 7); c.fill();
+    c.fillStyle = 'rgba(255,255,255,.9)'; c.beginPath(); c.arc(ex + 1, ey - 1.3, .8, 0, 7); c.fill();
+    c.restore();
+    c.strokeStyle = '#2a211b'; c.lineWidth = fem ? 1.4 : 1.1;
+    c.beginPath(); c.moveTo(ex - 5.6, ey + .2); c.quadraticCurveTo(ex, ey - 4.9, ex + 5.6, ey); c.stroke();
+    if (fem){ c.beginPath(); c.moveTo(ex + sd * 5.4, ey - .3); c.lineTo(ex + sd * 7, ey - 1.8); c.stroke(); }
+    c.strokeStyle = hairD; c.lineWidth = fem ? 1.5 : 2.3;
+    c.beginPath(); c.moveTo(ex - sd * 4.5, ey - 7.2); c.quadraticCurveTo(ex + sd * 1, ey - 9.8, ex + sd * 6.2, ey - 7.8); c.stroke();
+  });
+  c.strokeStyle = shade(o.skin, -.25); c.lineWidth = 1.1;
+  c.beginPath(); c.moveTo(-1, 2); c.quadraticCurveTo(-2.8, 8.5, -.5, 10.3); c.stroke();
+  c.beginPath(); c.moveTo(-3, 10.4); c.quadraticCurveTo(0, 12, 3, 10.4); c.stroke();
+  c.fillStyle = fem ? 'rgba(235,120,130,.12)' : 'rgba(220,120,110,.07)';
+  c.beginPath(); c.ellipse(-15, 9, 5, 3, 0, 0, 7); c.fill();
+  c.beginPath(); c.ellipse(15, 9, 5, 3, 0, 0, 7); c.fill();
+  if (o.style === 'doc'){ // sombra de barba muy sutil
+    c.fillStyle = 'rgba(60,40,30,.06)'; c.beginPath(); c.ellipse(0, 20, 18, 11, 0, 0, Math.PI); c.fill();
+  }
+  // boca
+  c.fillStyle = '#ffffff';
+  c.beginPath(); c.moveTo(-9, 15); c.quadraticCurveTo(0, 22.5, 9, 15); c.quadraticCurveTo(0, 17.3, -9, 15); c.closePath(); c.fill();
+  c.strokeStyle = o.lips; c.lineWidth = 1.5;
+  c.beginPath(); c.moveTo(-9.5, 14.8); c.quadraticCurveTo(0, 17, 9.5, 14.8); c.stroke();
+  c.beginPath(); c.moveTo(-9, 15.2); c.quadraticCurveTo(0, 22.8, 9, 15.2); c.stroke();
+  c.globalAlpha = .45; c.lineWidth = 1.3;
+  c.beginPath(); c.moveTo(-5, 23.3); c.quadraticCurveTo(0, 24.8, 5, 23.3); c.stroke();
+  c.globalAlpha = 1;
+  c.restore();
+}
+function drawPortrait(canvas, size, look){
+  const c = setupCanvas(canvas, size, size);
+  c.save(); c.beginPath(); c.arc(size / 2, size / 2, size / 2, 0, 7); c.clip();
+  c.fillStyle = '#dff4f2'; c.fillRect(0, 0, size, size);
+  drawPerson(c, size / 2, size * .56, size / 76, look);
+  c.restore();
+}
+
+/* ===== Dientes ===== */
+const UPW = [40, 39, 46, 46, 39, 40], UPH = [66, 62, 70, 70, 62, 66];
+const LOW = [38, 35, 31, 31, 35, 38], LOH = [52, 48, 46, 46, 48, 52];
+const TYPE = ['c', 'l', 'i', 'i', 'l', 'c'];
+const teeth = [];
+function buildRow(ws, hs, upper){
+  let x = 200 - ws.reduce((a, b) => a + b, 0) / 2;
+  ws.forEach((w, i) => {
+    const cx = x + w / 2; x += w;
+    const h = hs[i];
+    const edge = upper ? 232 - Math.pow((cx - 200) / 130, 2) * 4 : 300 - Math.pow((cx - 200) / 104, 2) * 3;
+    teeth.push({x: cx, y: upper ? edge - h : edge, w: w - 1.5, h, upper, type: TYPE[i], idx: teeth.length, state: 'ok', hp: 1, flash: 0});
+  });
+}
+buildRow(UPW, UPH, true); buildRow(LOW, LOH, false);
+const T_MISS = teeth[4], T_BROKEN = teeth[2], T_OLD = teeth[9];
+let BITE = 0;
+const BITE_SHIFT = 74;
+const shiftOf = t => t.upper ? 0 : -BITE_SHIFT * BITE;
+const center = t => [t.x, t.y + t.h / 2 + shiftOf(t)];
+const ridgeY = t => t.y + 24;
+const mouthE = () => ({cx: 200, cy: 262 - 20 * BITE, rx: 180, ry: 178 - 60 * BITE});
+const gone = t => t.state === 'missing' || t.state === 'implant' || t.state === 'abutment';
+
+function toothPath(c, t, w, h, ext){
+  const rEdge = w * (t.type === 'i' ? .15 : t.type === 'l' ? .2 : .32);
+  if (t.upper) rr(c, -w / 2, -h / 2 - ext, w, h + ext, w * .12, rEdge);
+  else rr(c, -w / 2, -h / 2, w, h + ext, rEdge, w * .12);
+}
+function fillEnamel(c, t, w, h, col){
+  const g = c.createLinearGradient(-w / 2, 0, w / 2, 0);
+  g.addColorStop(0, shade(col, -.08)); g.addColorStop(.4, shade(col, .45)); g.addColorStop(.7, col); g.addColorStop(1, shade(col, -.1));
+  c.fillStyle = g; c.fill();
+  const ey = t.upper ? h / 2 : -h / 2;
+  const tr = c.createLinearGradient(0, ey, 0, ey + (t.upper ? -h * .3 : h * .3));
+  tr.addColorStop(0, 'rgba(170,200,225,.3)'); tr.addColorStop(1, 'rgba(170,200,225,0)');
+  c.fillStyle = tr; c.fill();
+  c.strokeStyle = 'rgba(70,50,40,.16)'; c.lineWidth = 1.2; c.stroke();
+}
+
+function drawTooth(t){
+  if (gone(t)) return;
+  const [cx, cy] = center(t), w = t.w, h = t.h;
+  ctx.save(); ctx.translate(cx, cy);
+  if (t.state === 'stump'){
+    const sw = w * .62, sh = h * .72;
+    ctx.translate(0, t.upper ? -h * .14 : h * .14);
+    rr(ctx, -sw / 2, -sh / 2 - 14, sw, sh + 14, 4, sw * .3);
+    fillEnamel(ctx, t, sw, sh, '#e9d5ae');
+    ctx.restore(); return;
+  }
+  toothPath(ctx, t, w, h, 14);
+  fillEnamel(ctx, t, w, h, t.state === 'crown' ? t.crownCol : NAT);
+  ctx.fillStyle = 'rgba(255,255,255,.8)';
+  rr(ctx, -w * .3, t.upper ? -h * .25 : -h * .1, w * .11, h * .38, 3, 3); ctx.fill();
+  if (t.state === 'broken'){
+    ctx.fillStyle = '#4a1420';
+    ctx.beginPath(); ctx.moveTo(w / 2 + 2, h / 2 - 22); ctx.lineTo(w * .3, h / 2 - 12); ctx.lineTo(w * .2, h / 2 - 5);
+    ctx.lineTo(w * .02, h / 2 + 2); ctx.lineTo(w / 2 + 2, h / 2 + 2); ctx.closePath(); ctx.fill();
+    ctx.strokeStyle = 'rgba(120,90,60,.45)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(w * .3, h / 2 - 12); ctx.lineTo(w * .12, h / 2 - 24); ctx.stroke();
+  }
+  if (t.state === 'old' || t.state === 'prep'){
+    const a = t.state === 'old' ? .35 + t.hp * .65 : 1;
+    if (t.state === 'old'){
+      ctx.fillStyle = `rgba(110,98,86,${a})`; ctx.beginPath(); ctx.ellipse(1, 2, w * .3, h * .24, 0, 0, 7); ctx.fill();
+      ctx.strokeStyle = `rgba(122,84,40,${a})`; ctx.lineWidth = 2.5; ctx.stroke();
+      ctx.fillStyle = `rgba(70,50,35,${a * .7})`; ctx.beginPath(); ctx.ellipse(-3, 5, w * .1, h * .08, 0, 0, 7); ctx.fill();
+    } else {
+      ctx.fillStyle = '#e7cdb2'; ctx.beginPath(); ctx.ellipse(1, 2, w * .28, h * .22, 0, 0, 7); ctx.fill();
+      ctx.strokeStyle = 'rgba(180,140,110,.6)'; ctx.lineWidth = 1.2; ctx.stroke();
+    }
+  }
+  if (t.flash > 0){
+    ctx.globalAlpha = t.flash; ctx.fillStyle = '#fff'; toothPath(ctx, t, w, h, 0); ctx.fill(); ctx.globalAlpha = 1;
+  }
+  ctx.restore();
+}
+
+function drawImplant(t){ // tornillo antes de la encía (la parte dentro queda oculta)
+  if (t.state !== 'implant') return;
+  const plat = ridgeY(t) + 44 - g2.dd * 44, x = t.x;
+  const g = ctx.createLinearGradient(x - 7, 0, x + 7, 0);
+  g.addColorStop(0, '#7f8a94'); g.addColorStop(.45, '#e3e8ec'); g.addColorStop(1, '#8c97a1');
+  ctx.fillStyle = g; rr(ctx, x - 6.5, plat - 44, 13, 44, 6, 1); ctx.fill();
+  ctx.strokeStyle = 'rgba(70,80,90,.55)'; ctx.lineWidth = 1.2;
+  const ph = (g2.spin * 6) % 5;
+  for (let yy = plat - 40 + ph; yy < plat - 2; yy += 5){ ctx.beginPath(); ctx.moveTo(x - 6.5, yy + 2); ctx.lineTo(x + 6.5, yy - 1); ctx.stroke(); }
+  ctx.fillStyle = '#b7c0c8'; rr(ctx, x - 8, plat - 3, 16, 5, 2, 2); ctx.fill();
+  // llave de inserción
+  ctx.fillStyle = '#6b7280'; rr(ctx, x - 3, plat + 2, 6, 120, 2, 2); ctx.fill();
+  ctx.fillStyle = CONFIG.color; rr(ctx, x - 7, plat + 50, 14, 60, 5, 5); ctx.fill();
+}
+function drawAbutment(t){
+  if (t.state !== 'abutment') return;
+  const x = t.x, y = ridgeY(t) - 6;
+  const g = ctx.createLinearGradient(x - 8, 0, x + 8, 0);
+  g.addColorStop(0, '#8c97a1'); g.addColorStop(.45, '#eef1f4'); g.addColorStop(1, '#8c97a1');
+  ctx.fillStyle = g;
+  ctx.beginPath(); ctx.moveTo(x - 9, y); ctx.lineTo(x + 9, y); ctx.lineTo(x + 7, y + 30); ctx.quadraticCurveTo(x, y + 34, x - 7, y + 30); ctx.closePath(); ctx.fill();
+  ctx.strokeStyle = 'rgba(70,80,90,.4)'; ctx.lineWidth = 1; ctx.stroke();
+}
+
+function drawGum(row, upper){
+  const sh = upper ? 0 : -BITE_SHIFT * BITE;
+  const ts = row.slice().sort((a, b) => a.x - b.x), first = ts[0], last = ts[ts.length - 1];
+  ctx.beginPath();
+  if (upper){ ctx.moveTo(0, 0); ctx.lineTo(0, first.y + 40); ctx.lineTo(first.x - first.w / 2, first.y + 14); }
+  else { ctx.moveTo(0, H); ctx.lineTo(0, first.y + first.h - 40 + sh); ctx.lineTo(first.x - first.w / 2, first.y + first.h - 14 + sh); }
+  ts.forEach(t => {
+    const l = t.x - t.w / 2 - .75, r = t.x + t.w / 2 + .75;
+    if (upper){
+      ctx.lineTo(l, t.y + 14);
+      if (gone(t)) ctx.quadraticCurveTo(t.x, t.y + 34, r, t.y + 14);
+      else ctx.quadraticCurveTo(t.x, t.y - 6, r, t.y + 14);
+    } else { const b = t.y + t.h + sh; ctx.lineTo(l, b - 14); ctx.quadraticCurveTo(t.x, b + 6, r, b - 14); }
+  });
+  if (upper){ ctx.lineTo(W, last.y + 40); ctx.lineTo(W, 0); }
+  else { ctx.lineTo(W, last.y + last.h - 40 + sh); ctx.lineTo(W, H); }
+  ctx.closePath();
+  const gg = ctx.createLinearGradient(0, upper ? 120 : 400 + sh, 0, upper ? 200 : 320 + sh);
+  gg.addColorStop(0, '#e9798f'); gg.addColorStop(1, '#f59aab');
+  ctx.fillStyle = gg; ctx.fill();
+  ctx.strokeStyle = 'rgba(180,70,95,.3)'; ctx.lineWidth = 1.2; ctx.stroke();
+}
+
+function drawMouth(extra){
+  const m = mouthE();
+  const sk = ctx.createRadialGradient(200, 260, 150, 200, 260, 320);
+  sk.addColorStop(0, P.skin); sk.addColorStop(1, shade(P.skin, -.12));
+  ctx.fillStyle = sk; ctx.fillRect(0, 0, W, H);
+  ctx.save();
+  ctx.beginPath(); ctx.ellipse(m.cx, m.cy, m.rx, m.ry, 0, 0, 7); ctx.clip();
+  ctx.fillStyle = '#4a1420'; ctx.fillRect(0, 0, W, H);
+  ctx.globalAlpha = 1 - BITE;
+  const tg = ctx.createRadialGradient(200, 300, 10, 200, 310, 130);
+  tg.addColorStop(0, '#f07a92'); tg.addColorStop(1, '#c9445f');
+  ctx.fillStyle = tg; ctx.beginPath(); ctx.ellipse(200, 322, 120, 60, 0, 0, 7); ctx.fill();
+  ctx.globalAlpha = 1;
+  const lower = teeth.filter(t => !t.upper), upper = teeth.filter(t => t.upper);
+  lower.forEach(drawTooth); drawGum(lower, false);
+  upper.forEach(drawTooth); upper.forEach(drawImplant); drawGum(upper, true); upper.forEach(drawAbutment);
+  if (extra) extra();
+  ctx.restore();
+  ctx.beginPath(); ctx.ellipse(m.cx, m.cy, m.rx, m.ry, 0, 0, 7);
+  ctx.strokeStyle = '#d9707f'; ctx.lineWidth = 26; ctx.stroke();
+  ctx.beginPath(); ctx.ellipse(m.cx, m.cy, m.rx + 4, m.ry + 4, 0, Math.PI * 1.15, Math.PI * 1.45);
+  ctx.strokeStyle = 'rgba(255,255,255,.35)'; ctx.lineWidth = 5; ctx.lineCap = 'round'; ctx.stroke();
+}
+
+/* ===== Escenario ===== */
+function drawMiniTooth(x, y, s){
+  ctx.save(); ctx.translate(x, y); ctx.fillStyle = CONFIG.color;
+  ctx.beginPath(); ctx.moveTo(-s, -s * .5);
+  ctx.bezierCurveTo(-s, -s * 1.2, -s * .2, -s * 1.1, 0, -s * .8);
+  ctx.bezierCurveTo(s * .2, -s * 1.1, s, -s * 1.2, s, -s * .5);
+  ctx.bezierCurveTo(s, s * .2, s * .6, s * .4, s * .5, s * 1.1);
+  ctx.lineTo(s * .2, s * .3); ctx.lineTo(-s * .2, s * .3); ctx.lineTo(-s * .5, s * 1.1);
+  ctx.bezierCurveTo(-s * .6, s * .4, -s, s * .2, -s, -s * .5); ctx.fill(); ctx.restore();
+}
+function drawClinic(){
+  const wall = ctx.createLinearGradient(0, 0, 0, H);
+  wall.addColorStop(0, '#eefaf9'); wall.addColorStop(1, '#cdeeed');
+  ctx.fillStyle = wall; ctx.fillRect(0, 0, W, H);
+  ctx.fillStyle = '#d4e2e5'; ctx.fillRect(0, 410, W, 90);
+  ctx.fillStyle = CONFIG.color; ctx.globalAlpha = .18; ctx.fillRect(0, 400, W, 10); ctx.globalAlpha = 1;
+  ctx.fillStyle = '#ffffff'; rr(ctx, 24, 60, 116, 96, 8, 8); ctx.fill();
+  const sky = ctx.createLinearGradient(0, 66, 0, 150); sky.addColorStop(0, '#9bd3f5'); sky.addColorStop(1, '#d8f0ff');
+  ctx.fillStyle = sky; rr(ctx, 30, 66, 104, 84, 5, 5); ctx.fill();
+  ctx.fillStyle = '#ffffff'; ctx.fillRect(80, 66, 4, 84); ctx.fillRect(30, 106, 104, 4);
+  ctx.font = '900 20px system-ui';
+  const signW = Math.min(210, ctx.measureText(CONFIG.clinica).width + 64);
+  ctx.fillStyle = '#ffffff'; rr(ctx, 380 - signW, 56, signW, 50, 14, 14); ctx.fill();
+  ctx.strokeStyle = CONFIG.color; ctx.lineWidth = 3; ctx.stroke();
+  drawMiniTooth(380 - signW + 24, 81, 11);
+  ctx.fillStyle = CONFIG.color; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+  ctx.fillText(CONFIG.clinica, 380 - signW + 42, 82, signW - 54);
+  ctx.textBaseline = 'alphabetic';
+}
+function drawChair(x, y){
+  ctx.fillStyle = shade(CONFIG.color, -.15); rr(ctx, x - 62, y - 70, 124, 210, 40, 10); ctx.fill();
+  ctx.fillStyle = shade(CONFIG.color, .15); rr(ctx, x - 50, y - 60, 100, 190, 34, 8); ctx.fill();
+  ctx.strokeStyle = '#9aa7b1'; ctx.lineWidth = 5; ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(x - 90, 0); ctx.lineTo(x - 90, 150); ctx.lineTo(x - 30, 190); ctx.stroke();
+  ctx.fillStyle = '#ffffff'; ctx.beginPath(); ctx.ellipse(x - 26, 196, 22, 12, .5, 0, 7); ctx.fill();
+  ctx.fillStyle = 'rgba(255,250,200,.55)'; ctx.beginPath(); ctx.ellipse(x - 20, 202, 14, 7, .5, 0, 7); ctx.fill();
+}
+function hudBar(left, right){
+  ctx.save();
+  ctx.fillStyle = 'rgba(18,53,58,.85)'; rr(ctx, 12, 10, W - 24, 36, 18, 18); ctx.fill();
+  ctx.fillStyle = '#fff'; ctx.font = '800 15px system-ui'; ctx.textBaseline = 'middle';
+  ctx.textAlign = 'left'; ctx.fillText(left, 28, 28.5);
+  ctx.textAlign = 'right'; ctx.fillText(right, W - 28, 28.5);
+  ctx.restore();
+}
+
+/* ===== Efectos ===== */
+let particles = [], floats = [];
+function burst(x, y, n, cols = ['#ffffff', '#bfeaff', '#8fd8f0']){
+  for (let i = 0; i < n; i++){
+    const a = rand(0, Math.PI * 2), s = rand(40, 170);
+    particles.push({x, y, vx: Math.cos(a) * s, vy: Math.sin(a) * s - 30, life: 0, max: rand(.4, .8), r: rand(2.5, 6), col: cols[i % cols.length]});
+  }
+}
+function floatText(x, y, text, col){ floats.push({x, y, text, col, life: 0}); }
+function updateFx(dt){
+  particles = particles.filter(p => (p.life += dt) < p.max);
+  particles.forEach(p => { p.x += p.vx * dt; p.y += p.vy * dt; p.vy += 260 * dt; });
+  floats = floats.filter(f => (f.life += dt) < 1.2);
+  teeth.forEach(t => { if (t.flash > 0) t.flash -= dt * 2; });
+}
+function drawFx(){
+  particles.forEach(p => {
+    ctx.globalAlpha = 1 - p.life / p.max; ctx.fillStyle = p.col;
+    ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 7); ctx.fill();
+  });
+  ctx.globalAlpha = 1; ctx.textAlign = 'center';
+  floats.forEach(f => {
+    ctx.globalAlpha = Math.min(1, 1.2 - f.life); ctx.font = '800 18px system-ui';
+    ctx.lineWidth = 4; ctx.strokeStyle = '#fff'; ctx.strokeText(f.text, f.x, f.y - f.life * 26);
+    ctx.fillStyle = f.col; ctx.fillText(f.text, f.x, f.y - f.life * 26);
+  });
+  ctx.globalAlpha = 1;
+}
+function sparkle(x, y, s){
+  ctx.fillStyle = '#fff'; ctx.beginPath();
+  ctx.moveTo(x, y - s); ctx.quadraticCurveTo(x, y, x + s, y); ctx.quadraticCurveTo(x, y, x, y + s);
+  ctx.quadraticCurveTo(x, y, x - s, y); ctx.quadraticCurveTo(x, y, x, y - s); ctx.fill();
+}
+
+/* ===== Herramientas (cursor) ===== */
+function drawLens(x, y){
+  ctx.save(); ctx.translate(x, y);
+  ctx.strokeStyle = '#374151'; ctx.lineWidth = 6; ctx.lineCap = 'round';
+  ctx.beginPath(); ctx.moveTo(16, 16); ctx.lineTo(34, 34); ctx.stroke();
+  ctx.fillStyle = 'rgba(200,235,255,.25)'; ctx.beginPath(); ctx.arc(0, 0, 20, 0, 7); ctx.fill();
+  ctx.strokeStyle = CONFIG.color; ctx.lineWidth = 4; ctx.stroke();
+  ctx.strokeStyle = 'rgba(255,255,255,.8)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(0, 0, 14, 3.6, 4.4); ctx.stroke();
+  ctx.restore();
+}
+function drawDrill(x, y, on){
+  ctx.save(); ctx.translate(x, y); ctx.rotate(-.7 + (on ? Math.sin(time * 60) * .03 : 0));
+  ctx.fillStyle = '#c0c7ce'; ctx.fillRect(-1.2, -2, 2.4, 12);
+  ctx.fillStyle = '#ffffff'; rr(ctx, -6, 10, 12, 20, 4, 3); ctx.fill();
+  ctx.strokeStyle = '#cfd6dc'; ctx.lineWidth = 1; ctx.stroke();
+  ctx.fillStyle = CONFIG.color; ctx.fillRect(-6, 26, 12, 4);
+  ctx.fillStyle = '#e5e7eb'; rr(ctx, -5, 30, 10, 70, 3, 5); ctx.fill();
+  ctx.fillStyle = '#9ca3af'; ctx.beginPath(); ctx.arc(0, -2, 2, 0, 7); ctx.fill();
+  ctx.restore();
+}
+
+/* ===== Diálogo ===== */
+let dlgQ = [], dlgCb = null, dlgFull = '', dlgShown = 0, dlgActive = false;
+function say(lines, cb){ dlgQ = lines.slice(); dlgCb = cb; dlgActive = true; $('dlg').classList.remove('hidden'); nextLine(); }
+function nextLine(){
+  if (!dlgQ.length){
+    dlgActive = false; $('dlg').classList.add('hidden');
+    const c = dlgCb; dlgCb = null; if (c) c(); return;
+  }
+  dlgFull = dlgQ.shift().replace(/\{name\}/g, P.name).replace(/\{a\}/g, P.gender === 'f' ? 'a' : 'o'); dlgShown = 0;
+}
+$('dlg').addEventListener('pointerdown', e => {
+  e.preventDefault(); e.stopPropagation();
+  if (dlgShown < dlgFull.length) dlgShown = dlgFull.length;
+  else { beep(700, .05, 'triangle', .04); nextLine(); }
+});
+
+/* Pantalla de transición */
+let ov = null;
+function interlude(text, sub, cb){ ov = {text, sub, t: 0, cb}; }
+function drawOverlay(){
+  if (!ov) return;
+  const a = Math.min(1, ov.t * 2.5, (2.6 - ov.t) * 2.5);
+  ctx.fillStyle = `rgba(18,53,58,${.9 * a})`; ctx.fillRect(0, 0, W, H);
+  ctx.globalAlpha = a; ctx.fillStyle = '#fff'; ctx.textAlign = 'center';
+  ctx.font = '800 30px system-ui'; ctx.fillText(ov.text, 200, 245);
+  ctx.font = '600 16px system-ui'; ctx.fillText(ov.sub, 200, 278);
+  ctx.globalAlpha = 1;
+}
+
+/* ===== Escenas ===== */
+let cur = null, time = 0;
+const pointer = {x: -99, y: -99, down: false, mouse: false, inside: false, tap: 0};
+function go(name){ cur = S[name]; if (cur.enter) cur.enter(); }
+const S = {};
+
+function resetMouth(){
+  BITE = 0;
+  teeth.forEach(t => { t.state = 'ok'; t.hp = 1; t.flash = 0; t.crownCol = null; });
+  T_MISS.state = 'missing'; T_BROKEN.state = 'broken'; T_OLD.state = 'old';
+  P.sc = [0, 0, 0, 0, 0];
+}
+
+S.intro = {
+  enter(){
+    resetMouth();
+    say([
+      "¡Hola, {name}! Bienvenid{a} a " + CONFIG.clinica + ". Soy el " + CONFIG.doctor + ", " + CONFIG.especialidad.toLowerCase() + ".",
+      "Mi trabajo es devolverle a tu sonrisa su función y su estética: implantes, coronas, resinas y más.",
+      "Primero vamos a revisarte. ¡Ayúdame a encontrar todo lo que hay que arreglar!"
+    ], () => go('g1'));
+  },
+  draw(){
+    drawClinic();
+    drawChair(125, 330);
+    drawPerson(ctx, 125, 300 + Math.sin(time * 2) * 1.5, 1.25, patientLook());
+    drawPerson(ctx, 290, 292 + Math.sin(time * 2 + 1) * 1.5, 1.6, DOC);
+  }
+};
+
+/* --- 1. Diagnóstico --- */
+const g1 = {};
+const PROBS = [
+  {t: T_MISS, label: 'Falta un diente'},
+  {t: T_BROKEN, label: 'Diente fracturado'},
+  {t: T_OLD, label: 'Resina vieja con caries'}
+];
+S.g1 = {
+  enter(){
+    Object.assign(g1, {found: [], foundByUser: 0, wrong: 0, t: 25, ready: false, done: false});
+    say([
+      "Revisa bien tu boca con la lupa. Hay 3 problemas escondidos.",
+      "Toca cada problema que encuentres. ¡Ojo! Si tocas un diente sano, pierdes puntos."
+    ], () => g1.ready = true);
+  },
+  update(dt){
+    if (!g1.ready || g1.done) return;
+    g1.t -= dt;
+    if (g1.t <= 0) this.finish();
+  },
+  finish(){
+    g1.done = true;
+    PROBS.forEach(p => { if (!g1.found.includes(p)) g1.found.push(p); });
+    P.sc[0] = clamp((g1.foundByUser - g1.wrong * .5) / 3, 0, 1);
+    chime();
+    setTimeout(() => say([
+      "¡Buen ojo, {name}! Ya tenemos el plan de tratamiento.",
+      "Te falta un diente: lo vamos a reponer con un implante, que funciona como una raíz de titanio.",
+      "Mantén presionada la pantalla para atornillar el implante y suelta cuando la plataforma quede al ras de la encía (zona verde)."
+    ], () => go('g2')), 900);
+  },
+  down(x, y){
+    if (!g1.ready || g1.done) return;
+    const t = teeth.find(t => { const [cx, cy] = center(t); return Math.abs(x - cx) < t.w / 2 + 4 && Math.abs(y - cy) < t.h / 2 + 8; });
+    if (!t) return;
+    const p = PROBS.find(p => p.t === t);
+    const [cx, cy] = center(t);
+    if (p){
+      if (g1.found.includes(p)) return;
+      g1.found.push(p);
+      floatText(cx, cy - t.h / 2 - 8, '+30', '#0d7775'); burst(cx, cy, 10);
+      beep(760, .12, 'triangle', .06, 1100);
+      if (g1.found.length === PROBS.length){ g1.foundByUser = 3; this.finish(); }
+    } else {
+      g1.wrong++; t.flash = .6;
+      floatText(cx, cy - 20, 'Ese está sano', '#c2410c'); beep(220, .15, 'sine', .05);
+    }
+    g1.foundByUser = g1.found.length;
+  },
+  draw(){
+    drawMouth(() => {
+      g1.found.forEach(p => {
+        const [cx, cy] = center(p.t), r = Math.max(p.t.w, p.t.h) / 2 + 8;
+        ctx.strokeStyle = '#ffd60a'; ctx.lineWidth = 3.5; ctx.setLineDash([6, 4]);
+        ctx.beginPath(); ctx.arc(cx, cy, r, 0, 7); ctx.stroke(); ctx.setLineDash([]);
+      });
+    });
+    ctx.textAlign = 'center'; ctx.font = '800 12px system-ui';
+    g1.found.forEach(p => {
+      const [cx, cy] = center(p.t), r = Math.max(p.t.w, p.t.h) / 2 + 8;
+      const ly = p.t.upper ? cy - r - 12 : cy + r + 18;
+      const wT = ctx.measureText(p.label).width + 16;
+      ctx.fillStyle = 'rgba(18,53,58,.9)'; rr(ctx, cx - wT / 2, ly - 13, wT, 20, 10, 10); ctx.fill();
+      ctx.fillStyle = '#fff'; ctx.fillText(p.label, cx, ly + 1);
+    });
+    hudBar('🔍 Encontrados ' + g1.found.length + '/3', '⏱ ' + Math.max(0, Math.ceil(g1.t)) + ' s');
+    if (g1.ready && !g1.done && ((pointer.mouse && pointer.inside) || pointer.tap > 0)) drawLens(pointer.x, pointer.y);
+  }
+};
+
+/* --- 2. Implante --- */
+const g2 = {dd: 0, spin: 0};
+S.g2 = {
+  enter(){ Object.assign(g2, {dd: 0, spin: 0, hold: false, done: false}); T_MISS.state = 'implant'; },
+  update(dt){
+    if (g2.done || !g2.hold) return;
+    g2.dd += dt * .26; g2.spin += dt;
+    if (Math.random() < .25) beep(140 + g2.dd * 60, .05, 'sawtooth', .015);
+    if (g2.dd > 1.14){ g2.dd = 1.14; this.release(); }
+  },
+  down(){ if (!g2.done) g2.hold = true; },
+  up(){ if (g2.hold) this.release(); },
+  release(){
+    g2.hold = false;
+    const e = g2.dd - 1, x = T_MISS.x, y = ridgeY(T_MISS) - 10;
+    if (e < -.12){ floatText(x, y, 'Un poco más…', '#c2410c'); beep(300, .1, 'sine', .04); return; }
+    g2.done = true;
+    let pts, msg;
+    if (Math.abs(e) <= .12){ pts = Math.round(30 - Math.abs(e) * 100); msg = Math.abs(e) <= .05 ? '¡Perfecto!' : '¡Muy bien!'; P.sc[1] = pts / 30; }
+    else { pts = 10; msg = 'Muy profundo'; P.sc[1] = .35; }
+    g2.dd = 1;
+    floatText(x, y, msg + ' +' + pts, pts > 10 ? '#0d7775' : '#c2410c'); burst(x, ridgeY(T_MISS), 12, ['#e3e8ec', '#ffffff', '#9aa4ad']);
+    chime();
+    setTimeout(() => interlude('Meses después…', 'El implante ya se unió al hueso', () => {
+      T_MISS.state = 'abutment';
+      say([
+        (P.sc[1] > .6 ? "¡El implante quedó en la posición ideal! " : "Lo ajustamos un poquito y quedó muy bien. ") + "Ya se integró al hueso y le colocamos su pilar.",
+        "Ahora elegimos el color de tus coronas. Compara con tu diente y elige el tono que más se le parezca."
+      ], () => go('g3'));
+    }), 900);
+  },
+  draw(){
+    drawMouth();
+    // medidor de profundidad
+    const bx = 356, by = 110, bh = 260;
+    ctx.fillStyle = 'rgba(255,255,255,.92)'; rr(ctx, bx - 6, by - 6, 30, bh + 12, 12, 12); ctx.fill();
+    const toY = v => by + bh - (v / 1.14) * bh;
+    ctx.fillStyle = 'rgba(34,197,94,.35)'; ctx.fillRect(bx, toY(1.12), 18, toY(.88) - toY(1.12));
+    ctx.fillStyle = CONFIG.color; rr(ctx, bx + 3, toY(g2.dd), 12, by + bh - toY(g2.dd), 4, 4); ctx.fill();
+    ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(bx - 2, toY(1)); ctx.lineTo(bx + 20, toY(1)); ctx.stroke();
+    if (!g2.done){
+      ctx.fillStyle = 'rgba(18,53,58,.85)'; rr(ctx, 70, 440, 260, 40, 20, 20); ctx.fill();
+      ctx.fillStyle = '#fff'; ctx.font = '800 14px system-ui'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText(g2.hold ? (g2.dd >= .88 ? '¡Suelta ahora!' : 'Atornillando…') : 'Mantén presionado en la pantalla', 200, 460);
+      ctx.textBaseline = 'alphabetic';
+    }
+    hudBar('🔩 Implante', g2.done ? '✓' : 'Suelta en la zona verde');
+  }
+};
+
+/* --- 3. Color --- */
+const g3 = {pick: 3};
+S.g3 = {
+  enter(){ g3.pick = 3; $('shades').classList.remove('hidden'); paintShades(); },
+  draw(){
+    const bg = ctx.createLinearGradient(0, 0, 0, H); bg.addColorStop(0, '#eef6f6'); bg.addColorStop(1, '#d6ebea');
+    ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = '#4a1420'; rr(ctx, 40, 70, 320, 250, 26, 26); ctx.fill();
+    const big = (x, col, label) => {
+      const t = {upper: true, type: 'i'}, w = 92, h = 150;
+      ctx.save(); ctx.translate(x, 190);
+      toothPath(ctx, t, w, h, 0); fillEnamel(ctx, t, w, h, col);
+      ctx.fillStyle = 'rgba(255,255,255,.75)'; rr(ctx, -w * .3, -h * .25, w * .1, h * .4, 4, 4); ctx.fill();
+      ctx.restore();
+      ctx.fillStyle = '#fff'; ctx.font = '800 14px system-ui'; ctx.textAlign = 'center'; ctx.fillText(label, x, 300);
+    };
+    big(135, NAT, 'Tu diente');
+    big(265, SHADES[g3.pick][1], 'Tono ' + SHADES[g3.pick][0]);
+    hudBar('🎨 Color de las coronas', '');
+  }
+};
+function paintShades(){ [...$('shadeSw').children].forEach((b, i) => b.classList.toggle('on', i === g3.pick)); }
+SHADES.forEach(([code, col], i) => {
+  const b = document.createElement('button');
+  b.style.background = `linear-gradient(90deg, ${shade(col, -.06)}, ${shade(col, .4)} 45%, ${col})`;
+  b.textContent = code;
+  b.onclick = () => { g3.pick = i; paintShades(); beep(900, .05, 'triangle', .04); };
+  $('shadeSw').appendChild(b);
+});
+$('shadeOk').onclick = () => {
+  $('shades').classList.add('hidden');
+  const d = Math.abs(g3.pick - TARGET);
+  P.sc[2] = d === 0 ? 1 : d === 1 ? .55 : .2;
+  if (d === 0) chime(); else beep(440, .15, 'triangle', .05);
+  say([
+    d === 0 ? "¡Exacto! Tu tono es " + SHADES[TARGET][0] + ". Tienes ojo de laboratorista." :
+    d === 1 ? "¡Muy cerca! Tu tono es " + SHADES[TARGET][0] + ". En el laboratorio lo afinamos para que quede idéntico." :
+              "Casi… tu tono real es " + SHADES[TARGET][0] + ". No te preocupes, el laboratorio lo ajusta a la perfección.",
+    "Ya preparamos tu diente fracturado. Arrastra cada corona a su lugar: una va sobre el pilar del implante y la otra sobre el diente preparado."
+  ], () => go('g4'));
+};
+
+/* --- 4. Coronas --- */
+const g4 = {};
+S.g4 = {
+  enter(){
+    T_BROKEN.state = 'stump';
+    g4.crowns = [
+      {target: T_BROKEN, hx: 150, hy: 468, x: 150, y: 468, placed: false},
+      {target: T_MISS, hx: 250, hy: 468, x: 250, y: 468, placed: false}
+    ];
+    Object.assign(g4, {drag: null, sel: null, moved: false, pts: 0, n: 0, done: false});
+  },
+  down(x, y){
+    if (g4.done) return;
+    // ¿tocó un hueco con una corona seleccionada? (modo tocar-tocar)
+    if (g4.sel && this.tryPlace(g4.sel, x, y)) return;
+    const c = g4.crowns.find(c => !c.placed && Math.abs(x - c.x) < 50 && Math.abs(y - c.y) < 45);
+    if (c){ g4.drag = c; g4.sel = c; g4.moved = false; c.x = x; c.y = y; beep(600, .05, 'triangle', .04); }
+  },
+  move(x, y){ const c = g4.drag; if (c){ c.x = x; c.y = y; g4.moved = true; } },
+  hover(x, y){ return g4.crowns.some(c => !c.placed && Math.abs(x - c.x) < 50 && Math.abs(y - c.y) < 45); },
+  up(){
+    const c = g4.drag; if (!c) return; g4.drag = null;
+    if (!this.tryPlace(c, c.x, c.y)){
+      c.x = c.hx; c.y = c.hy;
+      if (g4.moved) beep(260, .1, 'sine', .04);
+    }
+  },
+  tryPlace(c, x, y){
+    let best = null, bd = 1e9;
+    g4.crowns.forEach(o => { if (o.placed) return; const [tx, ty] = center(o.target), d = Math.hypot(x - tx, y - ty); if (d < bd){ bd = d; best = o; } });
+    if (!best || bd > 55) return false;
+    // intercambia destinos si la soltó en el otro hueco
+    if (best !== c){ const t = best.target; best.target = c.target; c.target = t; }
+    const [tx, ty] = center(c.target), d = bd;
+    g4.sel = null;
+    {
+      c.placed = true; c.target.state = 'crown'; c.target.crownCol = NAT; c.target.flash = 1;
+      const pts = Math.round(30 - Math.min(d, 50) * .2); g4.pts += pts; g4.n++;
+      floatText(tx, ty - c.target.h / 2 - 6, (d < 25 ? '¡Ajuste perfecto! ' : '¡Bien! ') + '+' + pts, '#0d7775');
+      burst(tx, ty, 14); beep(880, .12, 'triangle', .06, 1320);
+      if (g4.n === 2){
+        g4.done = true; P.sc[3] = g4.pts / 60;
+        setTimeout(() => say([
+          "¡Tus coronas quedaron perfectas y del color exacto!",
+          "Por último: esa resina vieja tiene caries debajo. Pasa la fresa sobre ella para retirarla y yo coloco una resina nueva."
+        ], () => go('g5')), 900);
+      }
+    }
+    return true;
+  },
+  draw(){
+    drawMouth(() => {
+      g4.crowns.forEach(c => {
+        if (c.placed) return;
+        const t = c.target, [tx, ty] = center(t);
+        ctx.save(); ctx.translate(tx, ty); ctx.setLineDash([5, 4]);
+        toothPath(ctx, t, t.w, t.h, 0); ctx.strokeStyle = '#ffd60a'; ctx.lineWidth = 2.5; ctx.stroke();
+        if (g4.drag || g4.sel){ ctx.globalAlpha = .25 + Math.sin(time * 6) * .15; ctx.fillStyle = '#ffd60a'; ctx.fill(); ctx.globalAlpha = 1; }
+        ctx.restore();
+      });
+    });
+    // charola
+    ctx.fillStyle = 'rgba(255,255,255,.95)'; rr(ctx, 70, 432, 260, 62, 16, 16); ctx.fill();
+    ctx.strokeStyle = CONFIG.color; ctx.lineWidth = 2.5; ctx.stroke();
+    ctx.fillStyle = CONFIG.color; ctx.font = '800 11px system-ui'; ctx.textAlign = 'center'; ctx.fillText('CORONAS', 200, 447);
+    g4.crowns.forEach(c => {
+      if (c.placed) return;
+      const t = c.target, s = g4.drag === c ? 1 : (g4.sel === c ? .75 : .62);
+      ctx.save(); ctx.translate(c.x, c.y); ctx.scale(s, s);
+      if (g4.drag === c){ ctx.shadowColor = 'rgba(0,0,0,.25)'; ctx.shadowBlur = 12; ctx.shadowOffsetY = 6; }
+      toothPath(ctx, t, t.w, t.h, 0); fillEnamel(ctx, t, t.w, t.h, NAT);
+      ctx.restore();
+    });
+    if (!g4.done){
+      const hint = g4.sel && !g4.drag ? 'Ahora toca el hueco amarillo' : 'Arrastra una corona a su hueco (o tócala)';
+      ctx.font = '800 13px system-ui'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      const hw = ctx.measureText(hint).width + 28;
+      ctx.fillStyle = 'rgba(18,53,58,.85)'; rr(ctx, 200 - hw / 2, 400, hw, 26, 13, 13); ctx.fill();
+      ctx.fillStyle = '#fff'; ctx.fillText(hint, 200, 413.5); ctx.textBaseline = 'alphabetic';
+    }
+    hudBar('👑 Coronas ' + g4.n + '/2', '⭐ ' + g4.pts);
+  }
+};
+
+/* --- 5. Resina --- */
+const g5 = {};
+S.g5 = {
+  enter(){ T_OLD.state = 'old'; T_OLD.hp = 1; Object.assign(g5, {t: 20, done: false, cure: 0, lx: 0, ly: 0}); },
+  update(dt){
+    if (g5.cure > 0){
+      g5.cure -= dt;
+      if (g5.cure <= 0){
+        T_OLD.state = 'ok'; T_OLD.flash = 1;
+        const [x, y] = center(T_OLD); burst(x, y, 16); chime();
+        setTimeout(() => say([
+          "¡Quedó como nueva! Endurecimos la resina con luz azul y la pulimos para que se vea natural.",
+          "Tu tratamiento está listo. ¿Lista para ver tu sonrisa?".replace('Lista', 'List{a}')
+        ], () => go('reveal')), 700);
+      }
+      return;
+    }
+    if (g5.done) return;
+    g5.t -= dt;
+    if (g5.t <= 0){ T_OLD.hp = 0; this.clean(); }
+  },
+  clean(){
+    g5.done = true; T_OLD.state = 'prep';
+    P.sc[4] = clamp(g5.t / 14, .3, 1);
+    beep(500, .1, 'triangle', .05);
+    setTimeout(() => { g5.cure = 1.6; beep(1200, 1.4, 'sine', .03, 900); }, 700);
+  },
+  down(x, y){ g5.lx = x; g5.ly = y; },
+  move(x, y){
+    if (!pointer.down || g5.done) return;
+    const d = Math.hypot(x - g5.lx, y - g5.ly); g5.lx = x; g5.ly = y;
+    const [cx, cy] = center(T_OLD);
+    if (Math.hypot(x - cx, y - cy) < 24 && d > 0){
+      T_OLD.hp -= d / 110;
+      if (Math.random() < .35){ burst(x, y, 1, ['#8a8178', '#d6d0c8']); beep(900 + Math.random() * 200, .03, 'square', .012); }
+      if (T_OLD.hp <= 0) this.clean();
+    }
+  },
+  draw(){
+    drawMouth(() => {
+      if (g5.cure > 0){
+        const [cx, cy] = center(T_OLD);
+        ctx.save(); ctx.globalAlpha = .55 + Math.sin(time * 30) * .1;
+        const g = ctx.createLinearGradient(cx + 60, cy - 110, cx, cy);
+        g.addColorStop(0, 'rgba(90,150,255,.1)'); g.addColorStop(1, 'rgba(90,150,255,.8)');
+        ctx.fillStyle = g; ctx.beginPath(); ctx.moveTo(cx + 50, cy - 118); ctx.lineTo(cx + 74, cy - 104); ctx.lineTo(cx + 14, cy + 10); ctx.lineTo(cx - 14, cy - 4); ctx.closePath(); ctx.fill();
+        ctx.restore();
+      }
+    });
+    if (g5.cure > 0){
+      const [cx, cy] = center(T_OLD);
+      ctx.save(); ctx.translate(cx + 62, cy - 112); ctx.rotate(-2.6);
+      ctx.fillStyle = '#e5e7eb'; rr(ctx, -8, -80, 16, 80, 5, 5); ctx.fill();
+      ctx.fillStyle = '#5a8cff'; rr(ctx, -9, -4, 18, 10, 3, 3); ctx.fill();
+      ctx.restore();
+    }
+    hudBar('🦷 Retira la resina vieja', g5.done ? 'Fotocurado…' : '⏱ ' + Math.max(0, Math.ceil(g5.t)) + ' s');
+    if (!g5.done && ((pointer.mouse && pointer.inside) || pointer.down)) drawDrill(pointer.x, pointer.y, pointer.down);
+  }
+};
+
+/* --- Revelación --- */
+const rv = {};
+S.reveal = {
+  enter(){ Object.assign(rv, {t: 0, said: false}); },
+  update(dt){
+    rv.t += dt;
+    BITE = ease(clamp((rv.t - .6) / 1.2, 0, 1));
+    if (rv.t > .6 && rv.t < 2.2 && Math.random() < .5){
+      const t = teeth[Math.random() * 6 | 0], [x, y] = center(t); burst(x + rand(-10, 10), y + rand(-20, 20), 2);
+    }
+    if (rv.t > 2.3 && !rv.said){
+      rv.said = true; BITE = 1; chime();
+      say([
+        "¡Listo, {name}! Mira tu sonrisa: completa, fuerte y natural.",
+        "Cuida tus implantes y coronas igual que tus dientes: cepíllate, usa hilo dental y ven a revisión cada 6 meses.",
+        "¡Gracias por confiar en " + CONFIG.clinica + "! Aquí te esperamos."
+      ], showEnd);
+    }
+  },
+  draw(){
+    drawMouth(() => {
+      if (BITE > .5) teeth.filter(t => t.upper).forEach((t, i) => {
+        const [x, y] = center(t);
+        ctx.save(); ctx.globalAlpha = .5 + Math.sin(time * 6 + i) * .5;
+        sparkle(x - t.w * .18, y - t.h * .18, 5); ctx.restore();
+      });
+    });
+    hudBar('✨ Tu nueva sonrisa', '');
+  }
+};
+
+/* ===== Final ===== */
+function showEnd(){
+  const avg = P.sc.reduce((a, b) => a + b, 0) / P.sc.length;
+  const stars = avg >= .75 ? 3 : avg >= .45 ? 2 : 1;
+  $('certName').textContent = P.name;
+  $('certStars').textContent = '★'.repeat(stars) + '☆'.repeat(3 - stars);
+  $('certText').textContent = 'por completar su rehabilitación oral en ' + CONFIG.clinica + ': implante, coronas y resina.';
+  $('certSig').textContent = CONFIG.doctor + ' · ' + CONFIG.especialidad;
+  const names = ['Diagnóstico', 'Implante', 'Color', 'Coronas', 'Resina'];
+  $('certScore').textContent = names.map((n, i) => n + ' ' + Math.round(P.sc[i] * 100) + '%').join(' · ');
+  $('end').classList.remove('hidden');
+}
+$('cta').textContent = CONFIG.ctaTexto;
+$('cta').href = CONFIG.ctaUrl;
+$('againBtn').onclick = () => { $('end').classList.add('hidden'); go('intro'); };
+
+/* ===== Portada ===== */
+const pv = $('preview');
+function paintPreview(){
+  const c = setupCanvas(pv, 96, 96);
+  c.save(); c.beginPath(); c.arc(48, 48, 48, 0, 7); c.clip();
+  c.fillStyle = '#dff4f2'; c.fillRect(0, 0, 96, 96);
+  drawPerson(c, 48, 50, 1.05, patientLook());
+  c.restore();
+}
+function makeSw(el, list, key){
+  list.forEach(col => {
+    const b = document.createElement('button');
+    b.style.background = col;
+    b.onclick = () => { P[key] = col; [...el.children].forEach(x => x.classList.toggle('on', x === b)); paintPreview(); };
+    if (P[key] === col) b.classList.add('on');
+    el.appendChild(b);
+  });
+}
+[...$('genderSeg').children].forEach(b => b.onclick = () => {
+  P.gender = b.dataset.g;
+  [...$('genderSeg').children].forEach(x => x.classList.toggle('on', x === b));
+  paintPreview();
+});
+makeSw($('skinSw'), SKINS, 'skin');
+makeSw($('hairSw'), HAIRS, 'hair');
+$('brandTop').textContent = CONFIG.clinica;
+$('titleH').innerHTML = 'Tu sonrisa con<br>el ' + CONFIG.doctorCorto;
+document.title = 'Tu sonrisa con el ' + CONFIG.doctorCorto + ' · ' + CONFIG.clinica;
+$('dlgName').textContent = CONFIG.doctor;
+$('startBtn').onclick = () => {
+  P.name = $('name').value.trim() || 'Paciente';
+  $('title').classList.add('hidden');
+  beep(660, .1, 'triangle', .06);
+  go('intro');
+};
+
+/* ===== Entrada ===== */
+function toLogical(e){
+  const r = cv.getBoundingClientRect();
+  return [(e.clientX - r.left) * W / r.width, (e.clientY - r.top) * H / r.height];
+}
+cv.addEventListener('pointerdown', e => {
+  e.preventDefault();
+  try { cv.setPointerCapture(e.pointerId); } catch (err) {}
+  const [x, y] = toLogical(e);
+  Object.assign(pointer, {x, y, down: true, mouse: e.pointerType === 'mouse', inside: true, tap: .35});
+  if (!dlgActive && !ov && cur && cur.down) cur.down(x, y);
+});
+cv.addEventListener('pointermove', e => {
+  const [x, y] = toLogical(e);
+  Object.assign(pointer, {x, y, mouse: e.pointerType === 'mouse', inside: true});
+  if (!dlgActive && !ov && cur && cur.move) cur.move(x, y);
+});
+const up = () => { pointer.down = false; if (!dlgActive && !ov && cur && cur.up) cur.up(); };
+cv.addEventListener('pointerup', up);
+cv.addEventListener('pointercancel', up);
+cv.addEventListener('pointerleave', () => { pointer.inside = false; });
+
+/* ===== Bucle ===== */
+let last = performance.now();
+function loop(now){
+  const dt = Math.min(.05, (now - last) / 1000); last = now; time += dt;
+  if (pointer.tap > 0) pointer.tap -= dt;
+  if (ov){
+    ov.t += dt;
+    if (ov.t > 2.6){ const c = ov.cb; ov = null; c(); }
+  } else if (dlgActive){
+    if (dlgShown < dlgFull.length) dlgShown += dt * 48;
+    $('dlgText').textContent = dlgFull.slice(0, Math.floor(dlgShown));
+  } else if (cur && cur.update) cur.update(dt);
+  if (dlgActive) $('dlgText').textContent = dlgFull.slice(0, Math.floor(dlgShown));
+  updateFx(dt);
+  // cursor: se oculta solo cuando el juego dibuja una herramienta
+  let cs = 'default';
+  if (!dlgActive && !ov){
+    if ((cur === S.g1 && g1.ready && !g1.done) || (cur === S.g5 && !g5.done)) cs = 'none';
+    else if (cur === S.g2 && !g2.done) cs = 'pointer';
+    else if (cur === S.g4) cs = g4.drag ? 'grabbing' : (S.g4.hover(pointer.x, pointer.y) ? 'grab' : (g4.sel ? 'pointer' : 'default'));
+  }
+  if (cv.style.cursor !== cs) cv.style.cursor = cs;
+  if (cur) cur.draw();
+  drawFx();
+  drawOverlay();
+  requestAnimationFrame(loop);
+}
+
+resize();
+drawPortrait($('dlgPic'), 64, DOC);
+paintPreview();
+resetMouth();
+cur = S.intro;
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>

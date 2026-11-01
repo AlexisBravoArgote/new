@@ -879,6 +879,31 @@ export default function DentalCityQuizzes() {
                             />
                         </div>
                     </section>
+
+                    <section
+                        id="sonrisa-dr-fierro"
+                        className="mt-10 rounded-3xl bg-white/[.04] border border-white/10 p-5 sm:p-8 shadow-[0_18px_50px_rgba(0,0,0,.35)]"
+                    >
+                        <div className="text-center">
+                            <p className="text-xs uppercase tracking-[.3em] text-[#e4b892]/80">MINI-JUEGO</p>
+                            <h2 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
+                                <span className="golden-sweep">Tu sonrisa con el Dr. Fierro</span>
+                            </h2>
+                            <p className="mx-auto mt-3 max-w-xl text-white/80">
+                                Vive una rehabilitación oral: encuentra los problemas con la lupa, coloca un implante,
+                                elige el tono de tus coronas, colócalas y cambia una resina vieja por una nueva.
+                            </p>
+                        </div>
+
+                        <div className="mt-8">
+                            <iframe
+                                src="/juegos/sonrisa-dr-fierro.html"
+                                title="Tu sonrisa con el Dr. Fierro"
+                                loading="lazy"
+                                className="mx-auto block aspect-[4/5] w-full max-w-[460px] rounded-3xl border-0 shadow-[0_18px_50px_rgba(0,0,0,.45)]"
+                            />
+                        </div>
+                    </section>
                 </div>
             </div>
 
