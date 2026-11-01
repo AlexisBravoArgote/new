@@ -938,19 +938,20 @@ function InfoModal({ open, onClose, service }) {
         return () => window.removeEventListener("keydown", onKey);
     }, [open, onClose]);
 
-    if (!open || !service) return null;
-
-    const waForThisService = getWaUrl(service.key, service.title);
+    const visible = open && Boolean(service);
+    const waForThisService = visible ? getWaUrl(service.key, service.title) : "";
 
     // --- Textos por servicio desde i18n ---
-    const baseKey = `serviceModal.byService.${service.key}`;
-    const subtitle =
-        t(`${baseKey}.subtitle`, { defaultValue: "" }) ||
-        t("serviceModal.byService.default.subtitle",
-            { defaultValue: "Atención personalizada según tu diagnóstico." });
+    const baseKey = visible ? `serviceModal.byService.${service.key}` : "";
+    const subtitle = visible
+        ? t(`${baseKey}.subtitle`, { defaultValue: "" }) ||
+          t("serviceModal.byService.default.subtitle",
+              { defaultValue: "Atención personalizada según tu diagnóstico." })
+        : "";
 
-    const bullets =
-        t(`${baseKey}.bullets`, { returnObjects: true, defaultValue: [] })?.length
+    const bullets = !visible
+        ? []
+        : t(`${baseKey}.bullets`, { returnObjects: true, defaultValue: [] })?.length
             ? t(`${baseKey}.bullets`, { returnObjects: true })
             : t("serviceModal.byService.default.bullets", {
                 returnObjects: true,
@@ -963,14 +964,17 @@ function InfoModal({ open, onClose, service }) {
 
     return (
         <AnimatePresence>
-            <motion.button
-                type="button"
-                aria-label={t("serviceModal.ariaClose", { defaultValue: "Cerrar modal" })}
+            {visible && (
+            <motion.div
+                key="service-info-modal"
+                role="dialog"
+                aria-modal="true"
+                aria-label={service.title}
                 onClick={onClose}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 z-[90] grid place-items-center bg-black/60 p-4"
+                className="fixed inset-0 z-[90] grid cursor-pointer place-items-center bg-black/60 p-4"
             >
                 <motion.div
                     onClick={(e) => e.stopPropagation()}
@@ -978,7 +982,7 @@ function InfoModal({ open, onClose, service }) {
                     animate={{ y: 0, opacity: 1, scale: 1 }}
                     exit={{ y: 10, opacity: 0, scale: 0.98 }}
                     transition={{ duration: 0.25, ease: "easeOut" }}
-                    className="relative w-full max-w-2xl overflow-hidden rounded-[22px] border border-[#e4b892]/45 bg-[#0f2237] text-white shadow-[0_24px_80px_rgba(0,0,0,0.55)] ring-1 ring-[#e4b892]/20"
+                    className="relative w-full max-w-2xl cursor-default overflow-hidden rounded-[22px] border border-[#e4b892]/45 bg-[#0f2237] text-white shadow-[0_24px_80px_rgba(0,0,0,0.55)] ring-1 ring-[#e4b892]/20"
                 >
                     <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#e4b892] to-transparent opacity-90" />
                     <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-transparent via-[#e4b892] to-transparent opacity-90" />
@@ -1064,7 +1068,8 @@ function InfoModal({ open, onClose, service }) {
                         </div>
                     </div>
                 </motion.div>
-            </motion.button>
+            </motion.div>
+            )}
         </AnimatePresence>
     );
 }
