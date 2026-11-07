@@ -127,8 +127,8 @@ const PT_HOME = {
     "Dental care with design": "Cuidado dental com design",
     "Founded by Dr. Linda Argote in 1999, we combine technology and quality so your smile looks and feels better.":
         "Fundada pela Dra. Linda Argote em 1999, unimos tecnologia e qualidade para que seu sorriso fique melhor por dentro e por fora.",
-    "Comprehensive dental clinic with all specialties, located in Zapopan, Jalisco. We are a Diamond Invisalign clinic with an in-house lab to create precise, natural, and personalized digital smile designs.":
-        "Clínica odontológica integral com todas as especialidades em Zapopan, Jalisco. Somos clínica Invisalign Diamond com laboratório próprio para designs digitais de sorriso precisos e personalizados.",
+    "Comprehensive dental clinic with all specialties, located in Zapopan, Jalisco. We are an Emerald Invisalign clinic with an in-house lab to create precise, natural, and personalized digital smile designs.":
+        "Clínica odontológica integral com todas as especialidades em Zapopan, Jalisco. Somos clínica Invisalign Emerald com laboratório próprio para designs digitais de sorriso precisos e personalizados.",
     "all dental specialties": "todas as especialidades odontológicas",
     "digital smile designs": "designs digitais de sorriso",
     "3D Diagnosis": "Diagnóstico 3D",
@@ -294,8 +294,8 @@ const HI_HOME = {
     "Dental care with design": "डिज़ाइन के साथ दंत देखभाल",
     "Founded by Dr. Linda Argote in 1999, we combine technology and quality so your smile looks and feels better.":
         "1999 में डॉ. लिंडा अर्गोटे द्वारा स्थापित, हम तकनीक और गुणवत्ता को जोड़ते हैं ताकि आपकी मुस्कान बेहतर दिखे और महसूस हो।",
-    "Comprehensive dental clinic with all specialties, located in Zapopan, Jalisco. We are a Diamond Invisalign clinic with an in-house lab to create precise, natural, and personalized digital smile designs.":
-        "ज़ापोपान, जालिस्को में सभी विशेषताओं वाली संपूर्ण दंत क्लिनिक। हम Invisalign डायमंड क्लिनिक हैं, अपने लैब में सटीक, प्राकृतिक और व्यक्तिगत डिजिटल स्माइल डिज़ाइन बनाते हैं।",
+    "Comprehensive dental clinic with all specialties, located in Zapopan, Jalisco. We are an Emerald Invisalign clinic with an in-house lab to create precise, natural, and personalized digital smile designs.":
+        "ज़ापोपान, जालिस्को में सभी विशेषताओं वाली संपूर्ण दंत क्लिनिक। हम Invisalign Emerald क्लिनिक हैं, अपने लैब में सटीक, प्राकृतिक और व्यक्तिगत डिजिटल स्माइल डिज़ाइन बनाते हैं।",
     "all dental specialties": "सभी दंत विशेषताएँ",
     "digital smile designs": "डिजिटल स्माइल डिज़ाइन",
     "3D Diagnosis": "3D निदान",

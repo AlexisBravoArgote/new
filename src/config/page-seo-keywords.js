@@ -37,7 +37,7 @@ export const PAGE_SEO_KEYWORDS = {
             "odontólogo Zapopan",
             "dentistas especialistas Jalisco",
             "ortodoncia Invisalign Zapopan",
-            "clínica Invisalign Diamond",
+            "clínica Invisalign Emerald",
             "implantes dentales Straumann",
             "odontopediatría Dental City Kids",
             "blanqueamiento dental Zapopan",
@@ -104,7 +104,7 @@ export const PAGE_SEO_KEYWORDS = {
             "dentist Zapopan",
             "dental specialists Jalisco",
             "Invisalign orthodontics Zapopan",
-            "Invisalign Diamond provider",
+            "Invisalign Emerald provider",
             "Straumann dental implants",
             "pediatric dentistry Dental City Kids",
             "teeth whitening Zapopan",
@@ -162,7 +162,7 @@ export const PAGE_SEO_KEYWORDS = {
         fr: [
             "clinique dentaire Jardín Real Zapopan",
             "orthodontie Invisalign Zapopan",
-            "clinique Invisalign Diamond",
+            "clinique Invisalign Emerald",
             "implants dentaires Straumann",
             "dentisterie pédiatrique",
             "blanchiment dentaire",
@@ -192,7 +192,7 @@ export const PAGE_SEO_KEYWORDS = {
         de: [
             "Zahnklinik Jardín Real Zapopan",
             "Invisalign Kieferorthopädie",
-            "Invisalign Diamond Klinik",
+            "Invisalign Emerald Klinik",
             "Straumann Zahnimplantate",
             "Kinderzahnheilkunde",
             "Zahnaufhellung",
@@ -222,7 +222,7 @@ export const PAGE_SEO_KEYWORDS = {
         it: [
             "clinica dentale Jardín Real Zapopan",
             "ortodonzia Invisalign Zapopan",
-            "clinica Invisalign Diamond",
+            "clinica Invisalign Emerald",
             "impianti dentali Straumann",
             "odontoiatria pediatrica",
             "sbiancamento dentale",
@@ -251,7 +251,7 @@ export const PAGE_SEO_KEYWORDS = {
         zh: [
             "萨波潘花园城牙科",
             "隐适美正畸",
-            "Invisalign Diamond 诊所",
+            "Invisalign Emerald 诊所",
             "Straumann 种植牙",
             "儿童牙科",
             "牙齿美白",
@@ -280,7 +280,7 @@ export const PAGE_SEO_KEYWORDS = {
         ja: [
             "ハルディン・レアル 歯科",
             "インビザライン 矯正",
-            "インビザライン ダイヤモンド",
+            "インビザライン Emerald",
             "ストローマン インプラント",
             "小児歯科",
             "ホワイトニング",
@@ -309,7 +309,7 @@ export const PAGE_SEO_KEYWORDS = {
         ko: [
             "하르딘 레알 치과",
             "인비절라인 교정",
-            "인비절라인 다이아몬드",
+            "인비절라인 Emerald",
             "스트라우만 임플란트",
             "소아치과",
             "치아 미백",
@@ -338,7 +338,7 @@ export const PAGE_SEO_KEYWORDS = {
         pt: [
             "clínica odontológica Jardín Real Zapopan",
             "ortodontia Invisalign Zapopan",
-            "clínica Invisalign Diamond",
+            "clínica Invisalign Emerald",
             "implantes Straumann",
             "odontopediatria Dental City Kids",
             "clareamento dental",
@@ -367,7 +367,7 @@ export const PAGE_SEO_KEYWORDS = {
         hi: [
             "जार्डिन रियल ज़ापोपान दंत क्लिनिक",
             "इनविज़लाइन ऑर्थोडॉन्टिक्स",
-            "इनविज़लाइन डायमंड क्लिनिक",
+            "इनविज़लाइन Emerald क्लिनिक",
             "स्ट्रॉमैन इम्प्लांट",
             "बाल दंत चिकित्सा",
             "दांत सफेद करना",

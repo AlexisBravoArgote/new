@@ -268,7 +268,7 @@ export default function PatientReviewsSection() {
                                     returnObjects: true,
                                     defaultValue: [
                                         "Más de 26 años de experiencia",
-                                        "Invisalign Diamond Provider",
+                                        "Invisalign Emerald Provider",
                                         "Implantes Straumann premium",
                                     ],
                                 }) || []

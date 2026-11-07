@@ -455,13 +455,13 @@ const PUENTES = {
 const INVISALIGN = {
     pageTitle: "Invisalign",
     heroSubtitle:
-        "Ortodoncia invisible con alineadores transparentes y planeación digital 3D. Clínica diamante Invisalign con laboratorio propio en Dental City.",
+        "Ortodoncia invisible con alineadores transparentes y planeación digital 3D. Clínica Invisalign Emerald con laboratorio propio en Dental City.",
     whatTitle: "¿Qué es Invisalign?",
     whatParagraphs: [
         "Invisalign es el sistema de ortodoncia invisible más avanzado del mundo. Utiliza alineadores transparentes y removibles fabricados con tecnología 3D para mover los dientes de forma gradual y precisa hacia su posición ideal.",
-        "En Dental City somos clínica diamante Invisalign con laboratorio propio. Ofrecemos planeación digital que te permite ver el resultado final antes de comenzar, garantizando comodidad y control preciso del tratamiento.",
+        "En Dental City somos clínica Invisalign Emerald con laboratorio propio. Ofrecemos planeación digital que te permite ver el resultado final antes de comenzar, garantizando comodidad y control preciso del tratamiento.",
     ],
-    highlightPhrase: "clínica diamante Invisalign",
+    highlightPhrase: "clínica Invisalign Emerald",
     steps: [
         {
             title: "Consulta y Evaluación",

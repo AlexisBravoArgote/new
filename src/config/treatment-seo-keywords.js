@@ -83,7 +83,7 @@ export const TREATMENT_SEO_KEYWORDS = {
     invisalign: [
         "Invisalign Zapopan",
         "alineadores invisibles Guadalajara",
-        "clínica Invisalign Diamond",
+        "clínica Invisalign Emerald",
         "ortodoncia sin brackets",
         "alineadores removibles",
         "tratamiento Invisalign adultos",
